@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[archlinux安装配置-3]]></title>
+    <title><![CDATA[archlinux安装配置(3)]]></title>
     <url>%2Fposts%2F12422.html</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[距离第一篇博文时隔快两年的更新。由于本次配置文件有问题，KDE直接罢工。修补无果于是决定重装。 前文： 基础系统安装 基础系统配置 前言本文将会涉及到的内容： 相当个人级别的系统配置 可能非常不符合常理的做法 可能涉及到的错误 如果是第一次或者还没安装的话可以先按照正经的步骤进行安装以避免误导。 chroot下的变更在正常的安装流程下，我增加安装了几个包： 1pacman -S fish iw dialog dhcp wpa_supplicant vim sudo screenfetch htop 将其分为几类： shell: fish(开箱即用的强大shell) network: iw dialog wpa_supplicant dhcp(保证进入新系统有网) editor: vim(个人非常喜欢的编辑器，更改sudoer会强制使用) tools: htop sudo screenfetch(强大的进程管理器、提权工具、基础信息查看) 这样的话进入新系统会节省一部分时间。 新系统下的更改由于我是重新安装系统，因此/home还在，因此没必要按照常规的在新建用户时候添加-m选项： 1useradd username 1passwd username 这样的话就完成了用户建立（并且使用旧的/home）。 因为之前配置完了大部分的内容，因此进入系统的第二件事是先联网。这里使用的是netctl,稍后再更换为NetworkManager。 因为是wifi链接，所以执行： 1wifi-menu 然后连接到自己需要的网络。由于个人的路由器是限制设备ip的，因此需要在设备上填入固定IP才能正常联网。虽然上一步执行后失败，但是此时netctl已经有了需要的配置文件。形如： 123456789# /etc/netctl/wlp2s0-wifiDescription='Automatically generated profile by wifi-menu'Interface=wlp2s0Connection=wirelessSecurity=wpaESSID= #WiFi名称IP=staticAddress=() #指定的IPKey= #密码 当然这个是修改过得，然后执行： 1netctl start wlp2s0-wifi 来链接到这个Wifi，并使用： 1netctl status wlp2s0-wifi 查看连接状况。]]></content>
+      <categories>
+        <category>archlinux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>linux</tag>
+        <tag>完全配置</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[使用pandoc撰写论文]]></title>
