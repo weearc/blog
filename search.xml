@@ -3,7 +3,12 @@
   <entry>
     <title><![CDATA[使用nodejs+shellscript实现github-webhook]]></title>
     <url>%2Fposts%2F41471.html</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>webhook</tag>
+        <tag>nodejs</tag>
+        <tag>自动化流程</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[archlinux安装配置(3)]]></title>
