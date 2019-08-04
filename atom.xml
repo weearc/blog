@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weearc.top/"/>
-  <updated>2019-07-21T23:18:19.596Z</updated>
+  <updated>2019-07-10T19:33:29.313Z</updated>
   <id>https://blog.weearc.top/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://blog.weearc.top/posts/2.html"/>
-    <id>https://blog.weearc.top/posts/2.html</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-21T23:18:19.596Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>使用nodejs+shellscript实现github-webhook</title>
@@ -54,6 +40,32 @@
       <category term="nodejs" scheme="https://blog.weearc.top/tags/nodejs/"/>
     
       <category term="自动化流程" scheme="https://blog.weearc.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用zenity+xclip实现文字复制粘贴</title>
+    <link href="https://blog.weearc.top/posts/5960.html"/>
+    <id>https://blog.weearc.top/posts/5960.html</id>
+    <published>2019-07-10T11:27:40.000Z</published>
+    <updated>2019-08-04T19:24:57.967Z</updated>
+    
+    <content type="html"><![CDATA[<p>都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。</p><a id="more"></a><p>就算直接不能输入中文我们也有办法暂时解决这个问题。那就是使用zenity+xclip制作一个可输入中文的带有 <strong>GUI</strong> 的一个脚本。</p><blockquote><p>xclip是Unix以及类Unix系统下非常强大的剪贴板交互程序</p></blockquote><p>我们可以简单看一下xclip的help输出：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: xclip [OPTION] [FILE]...</span><br><span class="line">Access an X server selection <span class="keyword">for</span> reading or writing.</span><br><span class="line"></span><br><span class="line">  -i, -<span class="keyword">in</span>          <span class="built_in">read</span> text into X selection from standard input or files</span><br><span class="line">                   (default)</span><br><span class="line">  -o, -out         prints the selection to standard out (generally <span class="keyword">for</span></span><br><span class="line">                   piping to a file or program)</span><br><span class="line">  -l, -loops       number of selection requests to <span class="built_in">wait</span> <span class="keyword">for</span> before exiting</span><br><span class="line">  -d, -display     X display to connect to (eg localhost:0<span class="string">")</span></span><br><span class="line"><span class="string">  -h, -help        usage information</span></span><br><span class="line"><span class="string">      -selection   selection to access ("</span>primary<span class="string">", "</span>secondary<span class="string">", "</span>clipboard<span class="string">" or "</span>buffer-cut<span class="string">")</span></span><br><span class="line"><span class="string">      -noutf8      don't treat text as utf-8, use old unicode</span></span><br><span class="line"><span class="string">      -target      use the given target atom</span></span><br><span class="line"><span class="string">      -rmlastnl    remove the last newline charater if present</span></span><br><span class="line"><span class="string">      -version     version information</span></span><br><span class="line"><span class="string">      -silent      errors only, run in background (default)</span></span><br><span class="line"><span class="string">      -quiet       run in foreground, show what's happening</span></span><br><span class="line"><span class="string">      -verbose     running commentary</span></span><br></pre></td></tr></table></figure><p>按照功能，我们需要：</p><ol><li>输入文字</li><li>将文字输入到剪贴板</li><li>将文字传给clipboard程序</li></ol><p>非常简单的三个部分。输入文字部分由zenity负责，同时将输入的文字存入变量中，之后用管道传给xclip程序。</p><p>那么需要用到的xclip选项应该就很容易选择了。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># xclip option</span></span><br><span class="line">xclip -i  <span class="comment"># read text into X selection from standard input or files</span></span><br><span class="line">xclip --selectron clipboard <span class="comment"># copy input to clipboard for output</span></span><br></pre></td></tr></table></figure><p>思路明确了以后就非常容易办了，我们再看一下zenity <code>entry</code>部分的帮助说明：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用法：</span><br><span class="line">  zenity [OPTION…]</span><br><span class="line"></span><br><span class="line">文字输入选项</span><br><span class="line">  --entry                                显示文本输入对话框</span><br><span class="line">  --text=文字                            设置对话框文字</span><br><span class="line">  --entry-text=文字                      设置输入文字</span><br><span class="line">  --hide-text                            隐藏输入文字</span><br></pre></td></tr></table></figure><p>也就是说我们只需要使用 <code>--entry</code> 选项显示输入框即可，在尝试中发现，bash下执行zenity –entry后会将输入打印到终端，也就是说我们需要将其存为变量才可以使用。因此完整代码如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">words_to_copy=$(zenity --entry)</span><br><span class="line"><span class="comment"># Use zenity to display a GUI information message.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -i </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -sel c</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="archlinux" scheme="https://blog.weearc.top/categories/archlinux/"/>
+    
+    
+      <category term="zenity" scheme="https://blog.weearc.top/tags/zenity/"/>
+    
+      <category term="xclip" scheme="https://blog.weearc.top/tags/xclip/"/>
+    
+      <category term="去他妈的网易云" scheme="https://blog.weearc.top/tags/%E5%8E%BB%E4%BB%96%E5%A6%88%E7%9A%84%E7%BD%91%E6%98%93%E4%BA%91/"/>
     
   </entry>
   
