@@ -1529,9 +1529,11 @@ em.search-keyword {
 .frienddiv {
   height: 92px;
   margin-top: 10px;
-  width: 48%;
+  width: 31.3%;
   background-color: rgba(255, 255, 255, 0.603);
-  display: inline-block !important; }
+  display: inline-block !important;
+  float: left;
+  padding-left: 2%; }
 
 .frienddiv:hover {
   background: rgba(87, 142, 224, 0.15); }
@@ -1548,4 +1550,24 @@ em.search-keyword {
   margin-right: 18px;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap; }
+  word-break: break-word; }
+
+@media print, screen and (max-width: 900px) {
+  .frienddivright {
+    white-space: nowrap;
+    word-break: unset; } }
+
+@media print, screen and (max-width: 850px) {
+  .frienddiv {
+    width: 48%;
+    padding-left: 1%; }
+  .frienddivright {
+    white-space: nowrap;
+    word-break: unset; } }
+
+@media print, screen and (max-width: 35.5em) {
+  .frienddiv {
+    width: 100%; }
+  .frienddivright {
+    white-space: nowrap;
+    word-break: unset; } }
