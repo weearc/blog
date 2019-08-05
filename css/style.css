@@ -1501,3 +1501,51 @@ em.search-keyword {
   list-style: none; }
   .post-copyright li {
     margin: 8px 0; }
+
+.myfriends {
+  text-align: center; }
+
+.myfriends a {
+  color: black; }
+
+.myfriends p {
+  display: none; }
+
+.friendurl {
+  text-decoration: none !important;
+  color: black; }
+
+.myfriend {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 2px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  margin-top: 14px !important;
+  margin-left: 14px !important;
+  background-color: #fff; }
+
+.frienddiv {
+  height: 92px;
+  margin-top: 10px;
+  width: 48%;
+  background-color: rgba(255, 255, 255, 0.603);
+  display: inline-block !important; }
+
+.frienddiv:hover {
+  background: rgba(87, 142, 224, 0.15); }
+
+.frienddivleft {
+  width: 92px;
+  float: left; }
+
+.frienddivleft {
+  margin-right: 2px; }
+
+.frienddivright {
+  margin-top: 18px;
+  margin-right: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
