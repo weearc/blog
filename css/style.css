@@ -1571,3 +1571,44 @@ em.search-keyword {
   .frienddivright {
     white-space: nowrap;
     word-break: unset; } }
+
+.aboutme {
+  text-align: center; }
+
+.aboutme a {
+  color: black; }
+
+.aboutme p {
+  display: none; }
+
+.aboutme {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  padding: 2px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  margin-top: 14px !important;
+  margin-left: 14px !important;
+  background-color: #fff; }
+
+.aboutmediv {
+  height: 92px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.603);
+  display: inline-block !important; }
+
+.aboutmedivleft {
+  width: 92px;
+  float: left; }
+
+.aboutmedivleft {
+  margin-right: 2px; }
+
+.aboutmedivright {
+  margin-top: 18px;
+  margin-right: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word; }
