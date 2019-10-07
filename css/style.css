@@ -1610,5 +1610,10 @@ em.search-keyword {
   margin-top: 18px;
   margin-right: 18px;
   text-overflow: ellipsis;
-  overflow: hidden;
-  word-break: break-word; }
+  overflow: hidden; }
+
+.pure-button {
+  height: 20px; }
+
+.pure-button:hover {
+  background-color: #4eb7d1; }
