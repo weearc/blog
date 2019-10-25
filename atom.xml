@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weearc.top/"/>
-  <updated>2019-08-27T21:44:42.453Z</updated>
+  <updated>2019-10-25T13:34:30.306Z</updated>
   <id>https://blog.weearc.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fcitx5尝鲜(另付fcitx5输入法皮肤摸索)</title>
+    <link href="https://blog.weearc.top/posts/14466.html"/>
+    <id>https://blog.weearc.top/posts/14466.html</id>
+    <published>2019-10-25T13:19:33.000Z</published>
+    <updated>2019-10-25T13:34:30.306Z</updated>
+    
+    <content type="html"><![CDATA[<p>原本搜狗输入法确实是真香的，但是架不住它总不更新问题一大堆。</p><a id="more"></a><p>作为非英语作为母语的计算机使用者，尤其是 GNU/Linux 用户，输入法确实是非常大的一个硬伤。如果说 QQ 微信 网易云 还可以勉强要么通过 wine 的方式要么通过虚拟机 就多多少少都还能解决，输入法如果没有原生可用的那就非常痛苦了。因此国内最厉害的中文输入法 搜狗输入法 在推出 Linux 版本的时候为什么那么多人感到异常兴奋也就多多少少能够理解。你用或者不用，都无法否认搜狗在输入法上做的贡献之大。</p><p>但是距离上一次更新也过去许久，依旧构建于 QT4 的搜狗拼音已经渐渐暴露出很多问题，并且看来短时间内没法迁移到 QT5。并且搜狗造的轮子 <code>sogou-qimpanel</code> 还会和 fcitx 的 <code>kimpanel</code> 产生冲突。但是说实在的如果不是搜狗的词库异常强大咱也就不会就算一直被恶心也要坚持使用下去了。</p><p>不过，其实很早我们可能就有了另外一个非常棒的选择，也就是 fcitx5 。</p><h4 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原本搜狗输入法确实是真香的，但是架不住它总不更新问题一大堆。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="archlinux" scheme="https://blog.weearc.top/categories/archlinux/"/>
+    
+      <category term="输入法" scheme="https://blog.weearc.top/categories/archlinux/%E8%BE%93%E5%85%A5%E6%B3%95/"/>
+    
+    
+      <category term="archlinux" scheme="https://blog.weearc.top/tags/archlinux/"/>
+    
+      <category term="fcitx" scheme="https://blog.weearc.top/tags/fcitx/"/>
+    
+      <category term="fcitx5" scheme="https://blog.weearc.top/tags/fcitx5/"/>
+    
+  </entry>
   
   <entry>
     <title>杂谈</title>
@@ -490,30 +518,6 @@
       <category term="archlinux" scheme="https://blog.weearc.top/tags/archlinux/"/>
     
       <category term="linux" scheme="https://blog.weearc.top/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么我屏蔽了知乎？</title>
-    <link href="https://blog.weearc.top/posts/12984.html"/>
-    <id>https://blog.weearc.top/posts/12984.html</id>
-    <published>2018-07-02T13:11:08.000Z</published>
-    <updated>2019-07-08T20:12:30.177Z</updated>
-    
-    <content type="html"><![CDATA[<p>别的我不知道反正我是先在路由器里执行了如下命令……<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I FORWARD -d www<span class="selector-class">.zhihu</span><span class="selector-class">.com</span> -J DROP</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>说起来，今年好像是知乎成立的八周年的样子。那么我也姑且算是入坑知乎六年了。为什么我会选择退坑知乎，我想就算我不说，也会有好多人有相同感触——知乎已经俨然成为了培养故事创作能力的地方。</p><p>在这里，你可以重新塑造你自己的身份，你的经历。你也可以诱导其他人，避开矛头。这里已经是故事的创作中心、网络写手和键盘侠的集聚地，也是好多人仍然从中获取力量的地方。极其诡异，但是又极其有诱惑力。</p><h1 id="为什么当年的我选择入坑知乎"><a href="#为什么当年的我选择入坑知乎" class="headerlink" title="为什么当年的我选择入坑知乎"></a>为什么当年的我选择入坑知乎</h1><p>说到底，是因为百度知道实在是太不靠谱。同期的知乎，虽然内容很少但是答案含金量很高。草根大佬也能各显神通。但是，也存在一个问题，那就是因为圈子不大，所以好多问题，合法的、非法的都可以被讨论。正确的、错误的，无论怎样。那里的人们和我所听到的互联网才在中国开始流行的那几年的人儿一样，都有着别致的气息和绿林侠样的思维模式。</p><p>但是问题终究还是存在的。一个圈子会变大，会做大，是因为内容和氛围得到了其他人的认可。但是做大了。就必然需要更多的资金，更种方面的支持。知乎选择融资，与其本身而言，是有利的。知识变现，也成为那个时期的风潮。</p><h1 id="但是，从那个时候我开始迟疑"><a href="#但是，从那个时候我开始迟疑" class="headerlink" title="但是，从那个时候我开始迟疑"></a>但是，从那个时候我开始迟疑</h1><p>知乎用户爆发式增长的那几年，正好是我比较忙的几年，毕竟是全宿制高中的学生，周末放学回家也满脑子都是事情。<br>但是，我，那几年确实是真正学到了很多东西。</p><p>全宿制带来的好处是在学校可以隔离一切，专心于自己想做的事情。正好那段时间也是我接触不到智能手机的几年，也是我深入玩儿Linux的几年。那段时间，能上网的功能机成为了我获取知识的主要渠道。不知道现在还有多少人记得那个红红的圆圈，浏览器多标签的开创者： Opera。要知道Ｊava的功能机也是可以使用３G网络的。那段时间真的是获取到了非常多的内容，知乎上每一个有关Linux的话题，问题，我都会关注。每个人的每一个字每一张图，直到现在我都记得。</p><p>混开源圈的终究没有那么多纯技术人员。每个人多少又会有书生气。而那段时间所看到的，无论是有关开闭源的讨论，发行版的讨论（Archlinux &amp; Gentoo,说多了怕引起圣战），甚至乎编辑器的讨论（Emacs &amp; Vim）都有着很是浓厚的技术色彩和宗教色彩。引人入胜。</p><p>但是也正是从那个时期我开始迟疑。我为什么要继续浏览着知乎的内容。不知道是从哪个时间点，对于技术的讨论嫣然成为了技术圈外的人装逼的资本。</p><h1 id="沉下心来冷静思考"><a href="#沉下心来冷静思考" class="headerlink" title="沉下心来冷静思考"></a>沉下心来冷静思考</h1><p>有的时候包括操作系统在内不使用常规工具，其实说实话有那么一点点是为了能有装逼的资本。但是越来越深入才发现，所谓技术不也是实现一个个梦想么？我做不了很多的技术工作，那能够做的是什么？我所想寻找的。终究是一个容身之所，对等的，用自己的劳动来换取包容感。就算是翻译，我做的也只有这些，认同感其实并不是别人给予的。都是自我的心理安慰。每个字词的翻译，每个标点的调整，每次的最初根本不背父母理解的无偿志愿工作，说到底是为了寻求精神上的满足，为了缓解在学校也好在生活上也罢的心里压力。</p><p>我们的大学英语结课论文我们选择进行调查的是大学生志愿服务的心里、动机和渠道。不约而同的，回到了讨论当初困扰了我好久的心理状态上。后来，才发现其实志愿活动都是“利己性的”，无论愿不愿意承认，这个世界上从来都没有无私奉献。</p><h2 id="但是压倒骆驼的稻草是什么"><a href="#但是压倒骆驼的稻草是什么" class="headerlink" title="但是压倒骆驼的稻草是什么"></a>但是压倒骆驼的稻草是什么</h2><p>上面说的，最多是我单方面认为需要像知乎上的大佬们那样，为了更强的自己而向上前进。我并不讨厌知乎。但是最终却被它激怒了。</p><p>那么究竟是什么能够让我如此愤怒？我想，可能原因其实并不在于知乎，根本是在于网络的使用者的无界限。</p><p>记得假期的时候有人在Biibili上进行引战，其直接后果是“国家队”的禁播。但这些并不是事情的全部，有人在知乎上利用伪技术骗取他人信任，从而成功地将所有关注点集中到一个无辜的消防员身上。其问题在于，那个假的消息之所以会为人信服，之所以会引爆所有人的情绪，关键在于知乎的匿名功能。</p><p>网络的匿名性本来提供给了使用者保护自己的便利，但是利用这些胡作非为确实已经导致了一系列的问题：社会、道德、伦理，凡是有人类出现的地方，只要匿名性存在，人们就会自相残杀。说到底人类的本质根本不是善，而是极度罪恶。人类，是恶的代名词。</p><p>不过话说回来，在这个世界上本来就是弱肉强食。弱者只有被吃掉的份，没有任何话语权。而为了成为强者，所有手段都是被默许的。变的是成为强者的方式和历代强者们，不变的永远是弱者会被宰割的事实以及成为强者的方式。</p><blockquote><p><b>看到这里，你也许会认为我是个极度偏激的人，同时也是个有神论者。</b></p></blockquote><p>我承认，我将会是你见过的很偏激的那些人之一，但是永远不是最和善的那个。<br>如果说很久以前由于另一些原因我就开始嫌弃知乎。那么点燃引线的是国家队事件。而引爆我的则是之前无意中看到的一篇专栏。链接当然是没找到，但是，我仍然清楚地记得：那是篇博人眼球为目的的，狂妄的，过分偏激的文章。评论区更是聚集了我所见过的一切没有信仰的话语和肮脏的词汇、还有更多的自以为是的声音。</p><blockquote><p>　<b>你问有没有反对的观点？我看到是有的，但是占据绝对少数而且被很肮脏的话辱骂着。</b></p></blockquote><p>这里不得不提一点，我是有神论者。但是我同样信仰科学。</p><blockquote><p><b>Je désapprouve ce que vous dites, mais je défendrai jusqu’à la mort votre droit de le dire.—François-Marie Arouet</b><br><br><b>我不赞成你说的每一个字，但是你说话的权力我誓死捍卫。—伏尔泰</b></p></blockquote><p>我认为这种大无畏的精神也许也可以用到现在的事情上。但是，前提是双方都能够拥有这样的权力。当其中一方想要以某种方式方式夺取另一方这种权力时，那么我可以认为在对等的前提下，这一方也不需要这种权利。</p><p>因此我可以认为，在匿名性的保护下大放厥词的人也是不需要我们尊重的。这种人本该让他自生自灭才好，问题在于害虫多了以后，已经到了无法会被净化掉的程度。那么，他所贬低的宗教，真的有那么可怕吗？在我看来没有。只有没有信仰的人才会惧怕宗教。前面我也说过我是有神论者，我相信所有的行为终究会被上天所看到。</p><p>然后我们来说说那个人。他的本意也许是好的，也只是为了清除掉借宗教名义敛财的人。但是他把矛头指向宗教却是不能令人赞同的。正如他自己所说的自己应该信仰科学。那么，“所谓科学”难道没有告诉你要对一切未知事物保持敬意吗？难道没有说过任何事物都具有两面性吗？不存在敬意的人，同样也是不被允许尊重的。确实，当宗教的行为比较极端是会引发一系列社会问题。但是宗教在现代，我想更多的是填补了人们由于那段时间内心出现的信仰空隙。</p><p>当一个一个人的心中没有任何信仰的时候，他不会对任何事物抱有敬意。他可以做任何事，他甚至可以诋毁其他一切思想。</p><h2 id="当代国人所需要的就是信仰"><a href="#当代国人所需要的就是信仰" class="headerlink" title="当代国人所需要的就是信仰"></a>当代国人所需要的就是信仰</h2><p>不是其他东西，当代国人最缺乏的就是信仰。信仰的力量有时候可以约束人的行为。而没有信仰，就可以胡作非为—–反正是在法律的空白区。对其他人造成的伤害都可以忽略不计——只因为那些话语是“合法言论”。</p><p>法律是用来管教人的，不可以用来约束人。</p><h1 id="所以，我选择离开知乎"><a href="#所以，我选择离开知乎" class="headerlink" title="所以，我选择离开知乎"></a>所以，我选择离开知乎</h1><p>这也许是个极其无奈的选择。我喜欢从前知乎的环境，每个人言论自由，但是会自觉避开敏感话题。所有人智商上线，且言之有物。</p><p>而不是现在，网络低龄化严重，经历可以编造，所有东西不再可信。那过去的时代也许不会再一次来临了。过度的低龄化势必会起到与发展相反的效果。小圈子所无法带来的利益是更大的圈子可以带来的。蛋糕做大，单也只不过是充入了更多的空气而已。果壳如此、36Kr如此、豆瓣如此、人人网如此，而如今，知乎也是如此。什么情怀不情怀的。只要一定程度上它自身能够盈利，那其他的就什么都不是。知乎在衰落，我们也是看得到的。有更多商业资本在运作的团队，下一个开始衰落的是谁呢？</p><p>既然事已至此，那么我选择主动离开。无论是以前在那里有多么的欢乐、得到了多少感动、又重新振奋了多少次。过去是回不去的。那么，知乎，再见了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;别的我不知道反正我是先在路由器里执行了如下命令……&lt;br&gt;&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;iptables -I FORWARD -d www&lt;span class=&quot;selector-class&quot;&gt;.zhihu&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.com&lt;/span&gt; -J DROP&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="杂谈" scheme="https://blog.weearc.top/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-      <category term="随笔" scheme="https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="知乎" scheme="https://blog.weearc.top/tags/%E7%9F%A5%E4%B9%8E/"/>
     
   </entry>
   
