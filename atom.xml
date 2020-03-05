@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weearc.top/"/>
-  <updated>2019-11-26T12:49:06.620Z</updated>
+  <updated>2020-03-05T09:07:02.505Z</updated>
   <id>https://blog.weearc.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有失公允？ 红米AC2100路由器体验</title>
+    <link href="https://blog.weearc.top/posts/32494.html"/>
+    <id>https://blog.weearc.top/posts/32494.html</id>
+    <published>2020-03-05T08:12:35.000Z</published>
+    <updated>2020-03-05T09:07:02.505Z</updated>
+    
+    <content type="html"><![CDATA[<p>往年这个时间就已经回到学校了，今年算是个例外也正好给家里换一下老旧设备。</p><a id="more"></a><p>本着勤俭节约的美德，一个物品确实是应该用到彻底罢工才能换的。本来想着这次也如此 —— 但是架不住网络提速，原本家里的普联某超旧型号的路由器在 20m 升级到 50m 的时候就已经不能跑满带宽了，更何况是现在百兆直接升级千兆网。因此也有了一个很好的理由说服父母允许咱更换路由器。</p><p>那么问题就来了，是按照惯例再挑选一个普联的新产品？还是选水星家的 D191g ？还是买 Newifi？Newifi 在学校寝室使用后我初步得出的结果是：同时接驳多个设备后负载非常大，承载能力太低。并且一些功能鲁棒性测试无法通过。虽然可以通过刷入 Openwrt 提升素质，但是对于需要非常稳定使用的家庭使用场景还是不太适合，因此不再做考虑。至于其他产品倒也是让人纠结不知如何下手。</p><p>在纠结了好一段之后突然想起朋友说过 Redmi 新出的那个路由器风评也相当不错，既然普联水星没法考虑，那就都不考虑吧，遂在看了一些测评后决定购买 <strong>Redmi AC2100</strong> 。</p><h3 id="开箱"><a href="#开箱" class="headerlink" title="开箱"></a>开箱</h3><p>疫情期间小米之家发货速度一般，顺丰也因为管制绕了本省一大圈才送进来。<img src="https://blog-1256749229.cos.eu-frankfurt.myqcloud.com/2020.03.05/IMG_20200305_142359.jpg" alt="外包装"></p><p>外包装倒是相当突出产品本体，内层使用纸模</p><p><img src="https://blog-1256749229.cos.eu-frankfurt.myqcloud.com/2020.03.05/IMG_20200305_142546.jpg" alt="内层"></p><p>产品本体为白色，使用了磨砂材质的塑料，气孔较多可能需要做防灰处理。另外看了一下天线等地方，包括充电器本体都出现了水口未处理干净或者飞边，考虑到同价位的水星做工都没出现这种问题还是要批评下。<img src="https://blog-1256749229.cos.eu-frankfurt.myqcloud.com/2020.03.05/IMG_20200305_142801.jpg" alt="分模线">（看到了吗…天线下部的那个分模线……）作为胶佬得时刻提醒自己这个是摆在那放着的不是模型……</p><h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>连接相比之前了解到的倒是简单了很多，不需要先用电脑来初始化。只要路由器上电，连接到网络以后就算通过手机也能轻松的进行设置。另外初始化时提供了包括中继的设置，这点好评。</p><h3 id="测速"><a href="#测速" class="headerlink" title="测速"></a>测速</h3><p>相比 speedtest 这种枯燥无味的测试，我觉得找一些相对极限的场景进行测试更有代表性，比如找一个穿墙次数相当多的地方下载文件：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ddqi &gt; ~ &gt; aria2c -x 16 http://mirrors.cqu.edu.cn/UbuntuKylin_release/ubuntukylin-19.10-enhanced-amd64.iso</span><br><span class="line">03/05 16:43:55 [NOTICE] Downloading 1 item(s)</span><br><span class="line"> *** Download Progress Summary as of Thu Mar  5 16:44:55 2020 ***                                                                     </span><br><span class="line">===================================================================</span><br><span class="line">[<span class="comment">#a89ecf 441MiB/2.5GiB(17%) CN:5 DL:7.0MiB ETA:5m3s]</span></span><br><span class="line">FILE: /home/ddqi/ubuntukylin-19.10-enhanced-amd64.iso</span><br><span class="line">-------------------------------------------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure><p>2.4 GHz 下穿墙效果一般都比 5GHz 要好上不少，但是在用网小高峰时候还隔着墙进行测试都能有这种成绩还是能说明一些问题的，至少从结果上讲这款路由器一般家用场景应该是完全应付得了，甚至可以说绰绰有余。（不要小看老旧小区所谓的“全楼共享带宽”带来的网络问题啊喂！）</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>既然本着家用场景，那就不需要再做其他专业性质的测试。目前使用情况来看完全是物有所值，是一款具有性价比的产品。至于是不是“有失公允”还有待测试，但是至少从风评上看确实是相比小米旧款路由器的评价好了不少，小米路由器团队做出的努力也确实让人看到了。卢十瓦吹得再神，这也是一款面向实用场景的产品，是一款有诚意的产品。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;往年这个时间就已经回到学校了，今年算是个例外也正好给家里换一下老旧设备。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="玩赏" scheme="https://blog.weearc.top/categories/%E7%8E%A9%E8%B5%8F/"/>
+    
+    
+      <category term="路由器" scheme="https://blog.weearc.top/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
+    
+      <category term="Redmi" scheme="https://blog.weearc.top/tags/Redmi/"/>
+    
+      <category term="小米" scheme="https://blog.weearc.top/tags/%E5%B0%8F%E7%B1%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>ArchLinux + Windows10 双系统固态硬盘迁移</title>
@@ -485,37 +511,6 @@
       <category term="木下ゆうか" scheme="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B/"/>
     
       <category term="木下佑香" scheme="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E4%BD%91%E9%A6%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>結城友奈は勇者である</title>
-    <link href="https://blog.weearc.top/posts/11193.html"/>
-    <id>https://blog.weearc.top/posts/11193.html</id>
-    <published>2018-07-09T16:52:22.000Z</published>
-    <updated>2019-07-08T20:12:30.177Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="勇者部五箇条"><a href="#勇者部五箇条" class="headerlink" title="勇者部五箇条"></a><s>勇者部五箇条</s></h3><h3 id="勇者部六箇条"><a href="#勇者部六箇条" class="headerlink" title="勇者部六箇条"></a>勇者部六箇条</h3><blockquote><p></p><p style="color:rgb(120, 120, 120)">一、挨拶はきちんと<br><br>二、なるべく谛めない<br><br>三、よく寝て、よく食べる<br><br>四、悩んだら相谈<br><br>五、なせば大抵なんとかなる<br></p><a id="more"></a>.  .  .  .  .  .<br><p></p></blockquote><p></p><p style="color:rgb(120, 120, 120)">六、人を助けるが、自分も幸せになる。<br></p><p><h>つづく<h></h></h></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;勇者部五箇条&quot;&gt;&lt;a href=&quot;#勇者部五箇条&quot; class=&quot;headerlink&quot; title=&quot;勇者部五箇条&quot;&gt;&lt;/a&gt;&lt;s&gt;勇者部五箇条&lt;/s&gt;&lt;/h3&gt;&lt;h3 id=&quot;勇者部六箇条&quot;&gt;&lt;a href=&quot;#勇者部六箇条&quot; class=&quot;headerlink&quot; title=&quot;勇者部六箇条&quot;&gt;&lt;/a&gt;勇者部六箇条&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;/p&gt;&lt;p style=&quot;color:rgb(120, 120, 120)&quot;&gt;一、挨拶はきちんと&lt;br&gt;&lt;br&gt;二、なるべく谛めない&lt;br&gt;&lt;br&gt;三、よく寝て、よく食べる&lt;br&gt;&lt;br&gt;四、悩んだら相谈&lt;br&gt;&lt;br&gt;五、なせば大抵なんとかなる&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://blog.weearc.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="漫评" scheme="https://blog.weearc.top/tags/%E6%BC%AB%E8%AF%84/"/>
-    
-      <category term="结城友奈是勇者" scheme="https://blog.weearc.top/tags/%E7%BB%93%E5%9F%8E%E5%8F%8B%E5%A5%88%E6%98%AF%E5%8B%87%E8%80%85/"/>
-    
-      <category term="魔法少女" scheme="https://blog.weearc.top/tags/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3/"/>
-    
-      <category term="泪腺崩坏" scheme="https://blog.weearc.top/tags/%E6%B3%AA%E8%85%BA%E5%B4%A9%E5%9D%8F/"/>
     
   </entry>
   
