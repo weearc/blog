@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[夜食食谱]]></title>
+    <url>%2Fposts%2F1552.html</url>
+    <content type="text"><![CDATA[最近晚上很容易饿，就自己摸索了一点简单的食谱出来。 可能是北方最近结束供暖的缘故，地气很凉，然后为了保持体温之前供暖那段时间的不大的饭量转化为热可能就没剩下多少了。有时候夜里也爱到处寻找食物，但是 … 毕竟宵夜不能总吃而且对身体不好，晚饭在家里又只有我一个人吃，那就不如晚饭做一点容易暖和起来的更容易有饱腹感的食物。(在家不吃肉，所以肉是不存在的.jpg) 大概参考了日式杂烩饭的做法，稍稍改造了一下，食谱如下： 原料： 大米（看量杯就可以，一般一小杯是一人一碗半的量）、胡萝卜、生姜。如果有吃剩下的蘑菇也可以加一点进去 调料：酱油、白酒、砂糖 没了，就这么简单。煮个大米饭也没什么要点。无非是控制好水不要太多，把手指插入米中差不多水面比大米高出一个指关节高度。然后酱油用生抽就好，如果能买到日式酱油当然更棒，酒 + 砂糖这个组合是为了替代味淋（本来早打算再买一点，但是卖这些的店这几天才重新开起来了），砂糖不用很多，刚好似有似无甜味的程度就可以了，得自己慢慢试着来。整个饭的亮点感觉在于生姜，给饭增添了非常棒的风味。如果是用南方的籼米做的话可以在出国后少淋一点芝麻油，当然东北大米就不需要了，油水很足，干吃都非常香。 以前也试着用咖喱粉+鸡蛋简单调一个蛋糊做调味饭，但是还是觉得自己更喜欢偏向日餐韩餐的风味，贴近锅边的地方会有一点点锅巴，很让人满足。]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+        <tag>食谱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[冷门向] 使用 mpv 打造专属播放器]]></title>
+    <url>%2Fposts%2F162.html</url>
+    <content type="text"><![CDATA[全文已发布至重庆大学蓝盟微信公众号往期内容内，博客上的版本待修改完善。 作为一个影音爱好者，我需要利器去使电影播放效果更加出色。作为技术向玩家，既然目前已有的工具都不怎么好用，那我们就来改造它让它更好用。 这就是我们今天要介绍的主角：mpv。 MPV 是基于 MPlayer 和 MPlayer2 的开源软件。具有卓越的性能以及跨平台兼容性。 — 维基百科 说到 MPV ， 大部分日常使用 Windows 的同志可能都没有听说过。但是 Linux 和 Mac OS 用户可能大部分人还是接触过的，即便是使用了 MPV 的变种（比如： bomi，或者是 Mac 下拥有精美 GUI 界面的IINA）他们都和 MPV 同宗同源。在大部分情况下，使用已经功能足够完善的带 GUI 的 MPV 虽然已经足够，但是就个人而言，却远远不够，这个影音大杀器只有在我们的完全自定义中才能最强大的力量。 安装MPV 的安装极其简单： Windows： 访问 mpv.io 并下载 mingw-w64-mpv Mac：Mac OS 用户可以通过 Brew 安装 MPV： 1brew install mpv Linux：一般的 Linux 仓库都会包含 MPV，部分发行版预装了 MPV，想要独立安装请使用以下指令 Ubuntu / Debian ： 1sudo apt install mpv OpenSUSE ： 1sudo zypper in mpv Fedora： 1sudo dnf install mpv Arch Linux： 1sudo pacman -S mpv 当然你也可以从源代码编译 MPV ，可以从 MPV 的 GITHUB 仓库获取源代码并修改编译参数，包含 / 去除 某些特性 配置如果你成功的克服了心里上的恐惧，成功“安装”了MPV，那么这一步将是你能够愉快使用与否的关键。 在大部分情况下（尤其是 Mac 和 Linux 用户），已经将编解码器作为依赖安装到了操作系统中，而 Windows 用户可能需要手动安装 FFmpeg 作为编解码工具。由于没有编解码器的播放器只是一个“睁眼瞎”，只有在编解码器的存在下它才能发挥其真正的作用。那么在安装结束后，你可以使用 MPV 的默认设置进行视频播放了。 通常来讲直接运行 MPV 应该是这个样子，相比于其他完全基于命令行的播放器，MPV 还有个 GUI（虽然没什么用）。 播放视频的时候是这个样子，功能全部集中于下部的控制栏上，好像也还够用（其实确实够用了）。这个是小编配置完的 MPV ，但是因为懒 GUI 部分就不打算动了，这样也挺好的。 MPV 之所以看上去很简单（应该叫简陋），是因为它和大多数的高自定义化的工具一样，许多功能只有在探索之后才会被发现，另外支持丰富的扩展，可以找别人已经写好了的插件，也可以自己学着写一些插件。与其让开发者动手去满足用户（还不一定都会满足），不如自己动手丰衣足食。如果使用默认配置就能够让你满足那确实是最好不过，但是我们完全可以给它加上一些更有趣的功能。 缩略图这个是一般开箱即用的播放器都会有的功能。 地址：https://github.com/TheAMM/mpv_thumbnail_script 这是一个非常棒的查看进度条上缩略图的脚本，基于 Lua ，并具有一定的自定义功能 安装：将脚本放于以下位置 Windows: %APPDATA%\mpv\scripts\mpv_thumbnail_script_server.lua &amp; %APPDATA%\mpv\scripts\mpv_thumbnail_script_client_osc.lua Linux/Unix/Mac: ~/.config/mpv/scripts/mpv_thumbnail_script_server.lua &amp; ~/.config/mpv/scripts/mpv_thumbnail_script_client_osc.lua 注：如果目录不存在则需要手动创建，具体可以参照 GITHUB 上的说明 文本菜单如果觉得部分基于命令行的功能不太适应的话，不妨试一下图形菜单。 地址： https://github.com/carmanaught/mpvcontextmenu 这里只给出了作者展示的样式，可以通过自己修改样式表获得更加美观并且好用的菜单。图形部分通过 TK 或 GTK 实现。部分功能需要自己书写一定配置。 kdialog open files此方法仅适用于 Linux （KDE）。 作为一名 KDE 用户，在 Linux 桌面环境上 GTK 和 QT 程序体验上的割裂极其难受，别的都可以忍，但是 GTK 反人类的会话样式不能忍。幸好有人开源了这个调用 Kdialog 打开文件的脚本，打开 MPV 以后，使用快捷键即可开启打开文件的窗口。 Play with mpv这是一个相当好用的浏览器插件。在看视频的时候希望不看到浏览器上花花绿绿的列表 / 广告？还是单纯的就只想在本地播放器上播放网页视频？这个插件都可以满足你。该插件需要配合一个 Python 脚本实现网页视频本地化播放，通过调用 youtube-dl 解析播放地址，实测支持大部分主流的视频网站，配合弹幕插件可以本地愉快的看番，不用“关弹幕保智商”了。 总结MPV 是一个相当好玩并且强大的工具。如果你期待的是开箱即用，那么它可能确实是开箱即用（虽然看上去不好用），如果你希望的是它生来强大，那么它也确实是生来强大，丰富的自定义选项以及插件可以使得它变成任何你想要的样子。 如果你和我一样对现有的工具并不满意，又有一定的“折腾的勇气”，那为什么不试试看这个工具呢？期待你的尝试！更多的插件部分可以参阅 MPV 仓库 文档：https://github.com/mpv-player/mpv/wiki/User-Scripts]]></content>
+      <tags>
+        <tag>待修改</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一言 20200319]]></title>
     <url>%2Fposts%2F3498.html</url>
     <content type="text"><![CDATA[人完全可以为自己的愤怒而感到庆幸，因为它维系了自己的价值观。]]></content>
@@ -324,8 +344,8 @@
       </categories>
       <tags>
         <tag>随笔</tag>
-        <tag>毕业季</tag>
         <tag>待修改</tag>
+        <tag>毕业季</tag>
       </tags>
   </entry>
   <entry>
