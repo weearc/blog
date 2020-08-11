@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weearc.top/"/>
-  <updated>2020-08-11T14:06:03.621Z</updated>
+  <updated>2020-08-11T14:52:10.786Z</updated>
   <id>https://blog.weearc.top/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="https://blog.weearc.top/posts/49037.html"/>
     <id>https://blog.weearc.top/posts/49037.html</id>
     <published>2020-08-11T13:58:34.000Z</published>
-    <updated>2020-08-11T14:06:03.621Z</updated>
+    <updated>2020-08-11T14:52:10.786Z</updated>
     
-    <content type="html"><![CDATA[<p>for test now</p>]]></content>
+    <content type="html"><![CDATA[<p>for test now<br>does it work now?</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;for test now&lt;/p&gt;
+        &lt;p&gt;for test now&lt;br&gt;does it work now?&lt;/p&gt;
 
       
     

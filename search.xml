@@ -11,6 +11,16 @@
       </tags>
   </entry>
   <entry>
+    <title>使用nodejs+shellscript实现github-webhook</title>
+    <url>/posts/41471.html</url>
+    <content><![CDATA[<a id="more"></a>]]></content>
+      <tags>
+        <tag>webhook</tag>
+        <tag>nodejs</tag>
+        <tag>自动化流程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用pandoc撰写论文</title>
     <url>/posts/1448.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>谁又说不可以呢？</p>
@@ -160,13 +170,37 @@
       </tags>
   </entry>
   <entry>
-    <title>使用nodejs+shellscript实现github-webhook</title>
-    <url>/posts/41471.html</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
+    <title>使用zenity+xclip实现文字复制粘贴</title>
+    <url>/posts/5960.html</url>
+    <content><![CDATA[<p>都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。</p>
+<a id="more"></a>
+<p>就算直接不能输入中文我们也有办法暂时解决这个问题。那就是使用zenity+xclip制作一个可输入中文的带有 <strong>GUI</strong> 的一个脚本。</p>
+<blockquote>
+<p>xclip是Unix以及类Unix系统下非常强大的剪贴板交互程序</p>
+</blockquote>
+<p>我们可以简单看一下xclip的help输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: xclip [OPTION] [FILE]...</span><br><span class="line">Access an X server selection <span class="keyword">for</span> reading or writing.</span><br><span class="line"></span><br><span class="line">  -i, -<span class="keyword">in</span>          <span class="built_in">read</span> text into X selection from standard input or files</span><br><span class="line">                   (default)</span><br><span class="line">  -o, -out         prints the selection to standard out (generally <span class="keyword">for</span></span><br><span class="line">                   piping to a file or program)</span><br><span class="line">  -l, -loops       number of selection requests to <span class="built_in">wait</span> <span class="keyword">for</span> before exiting</span><br><span class="line">  -d, -display     X display to connect to (eg localhost:0<span class="string">")</span></span><br><span class="line"><span class="string">  -h, -help        usage information</span></span><br><span class="line"><span class="string">      -selection   selection to access ("</span>primary<span class="string">", "</span>secondary<span class="string">", "</span>clipboard<span class="string">" or "</span>buffer-cut<span class="string">")</span></span><br><span class="line"><span class="string">      -noutf8      don't treat text as utf-8, use old unicode</span></span><br><span class="line"><span class="string">      -target      use the given target atom</span></span><br><span class="line"><span class="string">      -rmlastnl    remove the last newline charater if present</span></span><br><span class="line"><span class="string">      -version     version information</span></span><br><span class="line"><span class="string">      -silent      errors only, run in background (default)</span></span><br><span class="line"><span class="string">      -quiet       run in foreground, show what's happening</span></span><br><span class="line"><span class="string">      -verbose     running commentary</span></span><br></pre></td></tr></table></figure>
+<p>按照功能，我们需要：</p>
+<ol>
+<li>输入文字</li>
+<li>将文字输入到剪贴板</li>
+<li>将文字传给clipboard程序</li>
+</ol>
+<p>非常简单的三个部分。输入文字部分由zenity负责，同时将输入的文字存入变量中，之后用管道传给xclip程序。</p>
+<p>那么需要用到的xclip选项应该就很容易选择了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># xclip option</span></span><br><span class="line">xclip -i  <span class="comment"># read text into X selection from standard input or files</span></span><br><span class="line">xclip --selectron clipboard <span class="comment"># copy input to clipboard for output</span></span><br></pre></td></tr></table></figure>
+<p>思路明确了以后就非常容易办了，我们再看一下zenity <code>entry</code>部分的帮助说明：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">用法：</span><br><span class="line">  zenity [OPTION…]</span><br><span class="line"></span><br><span class="line">文字输入选项</span><br><span class="line">  --entry                                显示文本输入对话框</span><br><span class="line">  --text=文字                            设置对话框文字</span><br><span class="line">  --entry-text=文字                      设置输入文字</span><br><span class="line">  --hide-text                            隐藏输入文字</span><br></pre></td></tr></table></figure>
+<p>也就是说我们只需要使用 <code>--entry</code> 选项显示输入框即可，在尝试中发现，bash下执行zenity –entry后会将输入打印到终端，也就是说我们需要将其存为变量才可以使用。因此完整代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">words_to_copy=$(zenity --entry)</span><br><span class="line"><span class="comment"># Use zenity to display a GUI information message.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -i </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -sel c</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>archlinux</category>
+      </categories>
       <tags>
-        <tag>webhook</tag>
-        <tag>nodejs</tag>
-        <tag>自动化流程</tag>
+        <tag>zenity</tag>
+        <tag>xclip</tag>
+        <tag>去他妈的网易云</tag>
       </tags>
   </entry>
   <entry>
@@ -222,59 +256,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用zenity+xclip实现文字复制粘贴</title>
-    <url>/posts/5960.html</url>
-    <content><![CDATA[<p>都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。</p>
-<a id="more"></a>
-<p>就算直接不能输入中文我们也有办法暂时解决这个问题。那就是使用zenity+xclip制作一个可输入中文的带有 <strong>GUI</strong> 的一个脚本。</p>
-<blockquote>
-<p>xclip是Unix以及类Unix系统下非常强大的剪贴板交互程序</p>
-</blockquote>
-<p>我们可以简单看一下xclip的help输出：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: xclip [OPTION] [FILE]...</span><br><span class="line">Access an X server selection <span class="keyword">for</span> reading or writing.</span><br><span class="line"></span><br><span class="line">  -i, -<span class="keyword">in</span>          <span class="built_in">read</span> text into X selection from standard input or files</span><br><span class="line">                   (default)</span><br><span class="line">  -o, -out         prints the selection to standard out (generally <span class="keyword">for</span></span><br><span class="line">                   piping to a file or program)</span><br><span class="line">  -l, -loops       number of selection requests to <span class="built_in">wait</span> <span class="keyword">for</span> before exiting</span><br><span class="line">  -d, -display     X display to connect to (eg localhost:0<span class="string">")</span></span><br><span class="line"><span class="string">  -h, -help        usage information</span></span><br><span class="line"><span class="string">      -selection   selection to access ("</span>primary<span class="string">", "</span>secondary<span class="string">", "</span>clipboard<span class="string">" or "</span>buffer-cut<span class="string">")</span></span><br><span class="line"><span class="string">      -noutf8      don't treat text as utf-8, use old unicode</span></span><br><span class="line"><span class="string">      -target      use the given target atom</span></span><br><span class="line"><span class="string">      -rmlastnl    remove the last newline charater if present</span></span><br><span class="line"><span class="string">      -version     version information</span></span><br><span class="line"><span class="string">      -silent      errors only, run in background (default)</span></span><br><span class="line"><span class="string">      -quiet       run in foreground, show what's happening</span></span><br><span class="line"><span class="string">      -verbose     running commentary</span></span><br></pre></td></tr></table></figure>
-<p>按照功能，我们需要：</p>
-<ol>
-<li>输入文字</li>
-<li>将文字输入到剪贴板</li>
-<li>将文字传给clipboard程序</li>
-</ol>
-<p>非常简单的三个部分。输入文字部分由zenity负责，同时将输入的文字存入变量中，之后用管道传给xclip程序。</p>
-<p>那么需要用到的xclip选项应该就很容易选择了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># xclip option</span></span><br><span class="line">xclip -i  <span class="comment"># read text into X selection from standard input or files</span></span><br><span class="line">xclip --selectron clipboard <span class="comment"># copy input to clipboard for output</span></span><br></pre></td></tr></table></figure>
-<p>思路明确了以后就非常容易办了，我们再看一下zenity <code>entry</code>部分的帮助说明：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">用法：</span><br><span class="line">  zenity [OPTION…]</span><br><span class="line"></span><br><span class="line">文字输入选项</span><br><span class="line">  --entry                                显示文本输入对话框</span><br><span class="line">  --text=文字                            设置对话框文字</span><br><span class="line">  --entry-text=文字                      设置输入文字</span><br><span class="line">  --hide-text                            隐藏输入文字</span><br></pre></td></tr></table></figure>
-<p>也就是说我们只需要使用 <code>--entry</code> 选项显示输入框即可，在尝试中发现，bash下执行zenity –entry后会将输入打印到终端，也就是说我们需要将其存为变量才可以使用。因此完整代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">words_to_copy=$(zenity --entry)</span><br><span class="line"><span class="comment"># Use zenity to display a GUI information message.</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -i </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$words_to_copy</span> | xclip -sel c</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>archlinux</category>
-      </categories>
-      <tags>
-        <tag>zenity</tag>
-        <tag>xclip</tag>
-        <tag>去他妈的网易云</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>杂谈</title>
-    <url>/posts/12326.html</url>
-    <content><![CDATA[<p>人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。</p>
-<a id="more"></a>
-<p>近两年的个人状态可以说是非常奇怪了。总结下来也无非是开头那句话。正因为害怕空虚所以去做各种事情，将自己的时间填满。不过，就算空着的时间都填满了，难道就会感到满足了吗？我不以为意。反而感觉更加的空虚。说白了，这种因为空虚所以选择让自己看起来很忙的行为无异于饮鸩止渴，逞一时之快后患无穷。究其原因还是因为少了方向感。</p>
-<p>高考前之所以能稳住拼尽全力，也无非是因为只需要考虑怎么答题就对了，脑子里什么都不需要想。拼命学了三年需要有一个突破口，一个来发泄的点。然后进入了大学，不再如同高中，可以考虑可以尝试的东西极大丰富，本来就患有选择困难的我人生第一次感到如此迷茫。专业不是我喜欢的、但是成绩又不是最好的、喜欢的东西在侵占我的时间、但是不喜欢的东西却本需要大把时间。越是想逃离就越是逃不掉，最后深陷其中。坦然接受现状虽然是最佳选择，不过，我又浪费掉了一年。确实可以有很多，但是似乎在前途面前都是苍白无力。每次回家看到父母日渐衰老，家事变化也不由得暗自落泪。</p>
-<p>家人倒也不像是其他人说的那样对我寄予厚望，到时自己越是给说一般般平平常常就可以越是感到压力倍增。正因为看到了家人的辛苦之处，才想变得更强将来可以保护家人；越是想变得更强越是对现状不满，对自己不满；越是对自己不满就越是急切的想找到目标。然而我没有目标。因此愈发感到无比空虚。因此就尝试做很多事情，又因为本身学习能力并不差所以就学会很多事情，以此可以更好地消磨时间。</p>
-<p>我急切的需要摆脱这种现状，那么最好的办法我希望不再是定下长远的目标，而是短时间内先从眼前的事情做好。以前到时很瞧不起做计划之类的，总觉得“到时候总会有办法”，不过现在看前人的经验真的是正确无比，所谓摸着石头过河也是需要摸到下一个石头的位置，更长远的目标就是“对岸”。重新来过的这一年，我仍不希望自己空虚，那么就尝试换成另外一种方法填满自己算了。</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -354,6 +335,25 @@
       </tags>
   </entry>
   <entry>
+    <title>杂谈</title>
+    <url>/posts/12326.html</url>
+    <content><![CDATA[<p>人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。</p>
+<a id="more"></a>
+<p>近两年的个人状态可以说是非常奇怪了。总结下来也无非是开头那句话。正因为害怕空虚所以去做各种事情，将自己的时间填满。不过，就算空着的时间都填满了，难道就会感到满足了吗？我不以为意。反而感觉更加的空虚。说白了，这种因为空虚所以选择让自己看起来很忙的行为无异于饮鸩止渴，逞一时之快后患无穷。究其原因还是因为少了方向感。</p>
+<p>高考前之所以能稳住拼尽全力，也无非是因为只需要考虑怎么答题就对了，脑子里什么都不需要想。拼命学了三年需要有一个突破口，一个来发泄的点。然后进入了大学，不再如同高中，可以考虑可以尝试的东西极大丰富，本来就患有选择困难的我人生第一次感到如此迷茫。专业不是我喜欢的、但是成绩又不是最好的、喜欢的东西在侵占我的时间、但是不喜欢的东西却本需要大把时间。越是想逃离就越是逃不掉，最后深陷其中。坦然接受现状虽然是最佳选择，不过，我又浪费掉了一年。确实可以有很多，但是似乎在前途面前都是苍白无力。每次回家看到父母日渐衰老，家事变化也不由得暗自落泪。</p>
+<p>家人倒也不像是其他人说的那样对我寄予厚望，到时自己越是给说一般般平平常常就可以越是感到压力倍增。正因为看到了家人的辛苦之处，才想变得更强将来可以保护家人；越是想变得更强越是对现状不满，对自己不满；越是对自己不满就越是急切的想找到目标。然而我没有目标。因此愈发感到无比空虚。因此就尝试做很多事情，又因为本身学习能力并不差所以就学会很多事情，以此可以更好地消磨时间。</p>
+<p>我急切的需要摆脱这种现状，那么最好的办法我希望不再是定下长远的目标，而是短时间内先从眼前的事情做好。以前到时很瞧不起做计划之类的，总觉得“到时候总会有办法”，不过现在看前人的经验真的是正确无比，所谓摸着石头过河也是需要摸到下一个石头的位置，更长远的目标就是“对岸”。重新来过的这一年，我仍不希望自己空虚，那么就尝试换成另外一种方法填满自己算了。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>fcitx5尝鲜(另付fcitx5输入法皮肤摸索)</title>
     <url>/posts/14466.html</url>
     <content><![CDATA[<p>原本搜狗输入法确实是真香的，但是架不住它总不更新问题一大堆。</p>
@@ -376,6 +376,36 @@
         <tag>archlinux</tag>
         <tag>fcitx</tag>
         <tag>fcitx5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ArchLinux + Windows10 双系统固态硬盘迁移</title>
+    <url>/posts/25676.html</url>
+    <content><![CDATA[<p>盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。</p>
+<a id="more"></a>
+<p>既然固态硬盘体验这么好，那为啥以前非要买那么写机械？因为我是仓鼠症患者，买的硬盘全部拿去存电影了…….</p>
+<p>那到固态以后其实就没什么好说的，之前光驱位以及主硬盘位都有机械硬盘，光驱位上的盘作为纯粹的数据盘挂载在 Arch 下面。所以就算单独拿下来去给 NAS 挂着也没什么大问题。那么最终就还是主硬盘位的机械硬盘去了光驱位，新买的固态上了主硬盘位。</p>
+<p>其实在迁移前我很纠结要不要重装windows，本意上是不想重新安装的，一大堆专业软件和自己配置的环境重新弄起来费时费力而且真的要命。那么就还是决定使用软件做系统迁移。先把最麻烦的windows的部分解决。Linux 反而是一向最容易迁移的了。</p>
+<h2 id="迁移windows10"><a href="#迁移windows10" class="headerlink" title="迁移windows10"></a>迁移windows10</h2><p>下载 aomei 无损分区助手PE版本，配合wepe做好系统迁移，这个时候会一并把esp分区迁移过来，所以 linux 下就不需要重建了。有的电脑可能会遇到说是内存不足，那就老老实实重装吧。</p>
+<h2 id="迁移ArchLinux"><a href="#迁移ArchLinux" class="headerlink" title="迁移ArchLinux"></a>迁移ArchLinux</h2><p>在windows下面如果没有了 Aomei这样的工具，那么迁移起来说实在说的是极其痛苦的，尤其现在ghost还不能用。Arch就要轻松很多。只需要用到 <code>rsync</code> 即可。</p>
+<p>在旧的Arch下面给新硬盘剩余空间分好区，然后直接把新的根分区挂载在 <code>/mnt</code> 其余比如 <code>/home</code> <code>/boo/efi</code> 也依次挂载好。终端中执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* /mnt/. --exclude=&#123;/dev/*,/proc/*,/sys/*,/tmp/*,/var/tmp/*,/run/*,/mnt/*,/home/*,/media/*,/lost+found,/boot/*&#125;</span><br></pre></td></tr></table></figure>
+<p>命令参数详情请参阅 <code>rsync</code> 的手册部分。然后排除掉 “运行态”的部分，对所有目录进行重建，文件按照归档进行迁移。执行以后大功告成一半。</p>
+<p>由于我需要将原来的根分区删掉分给 home , 因此进入 Livecd 对旧分区进行删除操作，然后将分区移动到空间头部。完成后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure>
+<p>参照当初安装 Arch 的步骤进行，执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi/ --recheck</span><br></pre></td></tr></table></figure>
+<p>重新安装grub。并配置grub：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
+<p>在此之前记得删除掉旧的esp分区。至此基本大功告成。最后记得检查一下 <code>/etc/fstab</code> 以免启动时出现问题。</p>
+<p>耗时4个小时两个系统迁移完毕，windows用了三个多小时，Arch用了40分钟不到。</p>
+]]></content>
+      <categories>
+        <category>archlinux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>系统迁移</tag>
       </tags>
   </entry>
   <entry>
@@ -425,36 +455,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ArchLinux + Windows10 双系统固态硬盘迁移</title>
-    <url>/posts/25676.html</url>
-    <content><![CDATA[<p>盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。</p>
-<a id="more"></a>
-<p>既然固态硬盘体验这么好，那为啥以前非要买那么写机械？因为我是仓鼠症患者，买的硬盘全部拿去存电影了…….</p>
-<p>那到固态以后其实就没什么好说的，之前光驱位以及主硬盘位都有机械硬盘，光驱位上的盘作为纯粹的数据盘挂载在 Arch 下面。所以就算单独拿下来去给 NAS 挂着也没什么大问题。那么最终就还是主硬盘位的机械硬盘去了光驱位，新买的固态上了主硬盘位。</p>
-<p>其实在迁移前我很纠结要不要重装windows，本意上是不想重新安装的，一大堆专业软件和自己配置的环境重新弄起来费时费力而且真的要命。那么就还是决定使用软件做系统迁移。先把最麻烦的windows的部分解决。Linux 反而是一向最容易迁移的了。</p>
-<h2 id="迁移windows10"><a href="#迁移windows10" class="headerlink" title="迁移windows10"></a>迁移windows10</h2><p>下载 aomei 无损分区助手PE版本，配合wepe做好系统迁移，这个时候会一并把esp分区迁移过来，所以 linux 下就不需要重建了。有的电脑可能会遇到说是内存不足，那就老老实实重装吧。</p>
-<h2 id="迁移ArchLinux"><a href="#迁移ArchLinux" class="headerlink" title="迁移ArchLinux"></a>迁移ArchLinux</h2><p>在windows下面如果没有了 Aomei这样的工具，那么迁移起来说实在说的是极其痛苦的，尤其现在ghost还不能用。Arch就要轻松很多。只需要用到 <code>rsync</code> 即可。</p>
-<p>在旧的Arch下面给新硬盘剩余空间分好区，然后直接把新的根分区挂载在 <code>/mnt</code> 其余比如 <code>/home</code> <code>/boo/efi</code> 也依次挂载好。终端中执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* /mnt/. --exclude=&#123;/dev/*,/proc/*,/sys/*,/tmp/*,/var/tmp/*,/run/*,/mnt/*,/home/*,/media/*,/lost+found,/boot/*&#125;</span><br></pre></td></tr></table></figure>
-<p>命令参数详情请参阅 <code>rsync</code> 的手册部分。然后排除掉 “运行态”的部分，对所有目录进行重建，文件按照归档进行迁移。执行以后大功告成一半。</p>
-<p>由于我需要将原来的根分区删掉分给 home , 因此进入 Livecd 对旧分区进行删除操作，然后将分区移动到空间头部。完成后执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arch-chroot /mnt</span><br></pre></td></tr></table></figure>
-<p>参照当初安装 Arch 的步骤进行，执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi/ --recheck</span><br></pre></td></tr></table></figure>
-<p>重新安装grub。并配置grub：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
-<p>在此之前记得删除掉旧的esp分区。至此基本大功告成。最后记得检查一下 <code>/etc/fstab</code> 以免启动时出现问题。</p>
-<p>耗时4个小时两个系统迁移完毕，windows用了三个多小时，Arch用了40分钟不到。</p>
-]]></content>
-      <categories>
-        <category>archlinux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-        <tag>系统迁移</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一言 20200319</title>
     <url>/posts/3498.html</url>
     <content><![CDATA[<p>人完全可以为自己的愤怒而感到庆幸，因为它维系了自己的价值观。</p>
@@ -464,28 +464,6 @@
       </categories>
       <tags>
         <tag>一言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>夜食食谱</title>
-    <url>/posts/1552.html</url>
-    <content><![CDATA[<p>最近晚上很容易饿，就自己摸索了一点简单的食谱出来。</p>
-<a id="more"></a>
-<p>可能是北方最近结束供暖的缘故，地气很凉，然后为了保持体温之前供暖那段时间的不大的饭量转化为热可能就没剩下多少了。有时候夜里也爱到处寻找食物，但是 … 毕竟宵夜不能总吃而且对身体不好，晚饭在家里又只有我一个人吃，那就不如晚饭做一点容易暖和起来的更容易有饱腹感的食物。(在家不吃肉，所以肉是不存在的.jpg)</p>
-<p>大概参考了日式杂烩饭的做法，稍稍改造了一下，食谱如下：</p>
-<blockquote>
-<p>原料： 大米（看量杯就可以，一般一小杯是一人一碗半的量）、胡萝卜、生姜。如果有吃剩下的蘑菇也可以加一点进去</p>
-<p>调料：酱油、白酒、砂糖</p>
-</blockquote>
-<p>没了，就这么简单。煮个大米饭也没什么要点。无非是控制好水不要太多，把手指插入米中差不多水面比大米高出一个指关节高度。然后酱油用生抽就好，如果能买到日式酱油当然更棒，酒 + 砂糖这个组合是为了替代味淋（本来早打算再买一点，但是卖这些的店这几天才重新开起来了），砂糖不用很多，刚好似有似无甜味的程度就可以了，得自己慢慢试着来。整个饭的亮点感觉在于生姜，给饭增添了非常棒的风味。如果是用南方的籼米做的话可以在出国后少淋一点芝麻油，当然东北大米就不需要了，油水很足，干吃都非常香。</p>
-<p>以前也试着用咖喱粉+鸡蛋简单调一个蛋糊做调味饭，但是还是觉得自己更喜欢偏向日餐韩餐的风味，贴近锅边的地方会有一点点锅巴，很让人满足。</p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
-        <tag>食谱</tag>
       </tags>
   </entry>
   <entry>
@@ -513,6 +491,62 @@
         <tag>路由器</tag>
         <tag>Redmi</tag>
         <tag>小米</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>夜食食谱</title>
+    <url>/posts/1552.html</url>
+    <content><![CDATA[<p>最近晚上很容易饿，就自己摸索了一点简单的食谱出来。</p>
+<a id="more"></a>
+<p>可能是北方最近结束供暖的缘故，地气很凉，然后为了保持体温之前供暖那段时间的不大的饭量转化为热可能就没剩下多少了。有时候夜里也爱到处寻找食物，但是 … 毕竟宵夜不能总吃而且对身体不好，晚饭在家里又只有我一个人吃，那就不如晚饭做一点容易暖和起来的更容易有饱腹感的食物。(在家不吃肉，所以肉是不存在的.jpg)</p>
+<p>大概参考了日式杂烩饭的做法，稍稍改造了一下，食谱如下：</p>
+<blockquote>
+<p>原料： 大米（看量杯就可以，一般一小杯是一人一碗半的量）、胡萝卜、生姜。如果有吃剩下的蘑菇也可以加一点进去</p>
+<p>调料：酱油、白酒、砂糖</p>
+</blockquote>
+<p>没了，就这么简单。煮个大米饭也没什么要点。无非是控制好水不要太多，把手指插入米中差不多水面比大米高出一个指关节高度。然后酱油用生抽就好，如果能买到日式酱油当然更棒，酒 + 砂糖这个组合是为了替代味淋（本来早打算再买一点，但是卖这些的店这几天才重新开起来了），砂糖不用很多，刚好似有似无甜味的程度就可以了，得自己慢慢试着来。整个饭的亮点感觉在于生姜，给饭增添了非常棒的风味。如果是用南方的籼米做的话可以在出国后少淋一点芝麻油，当然东北大米就不需要了，油水很足，干吃都非常香。</p>
+<p>以前也试着用咖喱粉+鸡蛋简单调一个蛋糊做调味饭，但是还是觉得自己更喜欢偏向日餐韩餐的风味，贴近锅边的地方会有一点点锅巴，很让人满足。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+        <tag>食谱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redmi K30 Pro 简评</title>
+    <url>/posts/155.html</url>
+    <content><![CDATA[<p>今年换手机这个时间节点卡的非常不好，早一点有最末代 4G 旗舰机纷纷大降价，晚一点可能还有 5G 手机集体跳水。但是买了就买了。鄙人第三部纯小米家搭载 MIUI 的设备。</p>
+<a id="more"></a>
+<p>我的上一部设备：HTC U Ultra，HTC U系列的开山之作，也可能说是 U 系列最失败的作品。你问我当时后不后悔在 18 年年初买了一款 17 年初的产品，我的回答是不后悔：放在今天依然不为过时的机身设计、2K LCD 屏幕、强悍的双扬声器、主动降噪耳机以及 HIFI 都带来了非常极致的视觉听觉盛宴，当时最为彪悍的影像系统也使得这部设备在服役期间让我体会到了它的强大。可惜就可惜在这么看起来很强大的设备搭载的是高通有着火龙之称的 SOC 821，而且还是阉割版。如果是放在17年年初这款设备的运存性能什么的也都够用，但是一跨入19年立刻体现出了短板，并且仅仅3000毫安时外加极为激进的调度让我不得不时时刻刻准备着充电宝，但是仍有可能在剩余百分之十几电量时突然自动关机。</p>
+<p>上学期好信儿测了一个月电池损耗，两年使用时间实际损耗不到百分之10倒是体现了 HTC 到底还是在用料上花了钱，遂换了块电池觉得能够继续服役。但是没能料到年后续航直接从刚换电池那会儿近乎腰斩，外加4GB 运行内存不怎么够用，所以还是准备更换手机。</p>
+<p>要知道今年可以更换的手机真的是选择少之又少，尤其是 5G 手机，各家纷纷将高刷新率作为卖点的同时外加物料人工成本疯狂上涨，价格是直接翻了一番。因为考虑到后期可能需要使用 GMS（我对GMS重度依赖，没办法，从13年开始自己选择的），华为系手机不得已全部不能选择，很可惜。 那么能够选择的只剩下小米、OPPO、VIVO、Realme、一加这几个选项。俗话说得好：一朝被蛇咬十年怕井绳，看了大量网友的评测以后决定放弃续航稍差的 Realme X50 Pro，OPPO的机器因为价格也不得不放弃，一加在考虑了售后以后放弃，VIVO 因为系统原因放弃。只剩下小米10和 Redmi K30 Pro 这两个选项。不买中端机的原因也很简单，旗舰的配置可以在某种程度上将使用年限拉长并且体验更好。最终还是考虑了续航的情况下选择了红米 K30 Pro。</p>
+<p>说了这么多，这台机器有什么卖点？是续航，还是所谓真全面屏？在我看来这些都不能算是卖点，高通 865 一套打包拿来就是那么些东西，各家标配。没有的高刷新率的屏幕虽然本身不错但是今年却意外的成为了各路网友疯狂吐槽的地方。于我个人而言，这台机器总体体验对比 U Ultra 是升级的，要不换手机是换了个什么呢？但是总体体验依旧降级：</p>
+<ul>
+<li>1080p 屏幕，等效330 ppi。对比 U Ultra 的“标准”2560×1440的屏幕 ppi 440（虽然米10等效ppi也很低）</li>
+<li>单扬声器。从双扬声器缓过来不是不能适应，但是还是觉得并不舒服。</li>
+<li>Type-C 接口数字信号音频输出功率小。自带 DAC 的转接线几乎就是推不动。</li>
+<li>重量。重量来到了228g，用一年下来应该就成麒麟臂了，带壳贴膜妥妥“米半斤”</li>
+</ul>
+<p>那么也有一定的优势：</p>
+<ul>
+<li>续航。变态级别的续航，轻松日用亮屏10小时以上，充一次电使用时间20小时起步（前提是自己改一改省电策略）</li>
+<li>还算不错的屏幕色彩。虽然 PPI 大打折扣但是屏幕色彩确实还可以。</li>
+<li>还算不错的影像系统。虽然是打包出售的 imx686，但是体验下来整体体验确实不错。</li>
+</ul>
+<p>一个优点顶十个缺点。最起码换机的原因之一：续航这个痛点是完美解决了。</p>
+<p>（未完待续）</p>
+]]></content>
+      <categories>
+        <category>玩赏</category>
+      </categories>
+      <tags>
+        <tag>小米</tag>
+        <tag>redmi</tag>
+        <tag>红米 k30 pro</tag>
+        <tag>电量焦虑</tag>
       </tags>
   </entry>
   <entry>
@@ -575,46 +609,6 @@
       <tags>
         <tag>待修改</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>redmi K30 Pro 简评</title>
-    <url>/posts/155.html</url>
-    <content><![CDATA[<p>今年换手机这个时间节点卡的非常不好，早一点有最末代 4G 旗舰机纷纷大降价，晚一点可能还有 5G 手机集体跳水。但是买了就买了。鄙人第三部纯小米家搭载 MIUI 的设备。</p>
-<a id="more"></a>
-<p>我的上一部设备：HTC U Ultra，HTC U系列的开山之作，也可能说是 U 系列最失败的作品。你问我当时后不后悔在 18 年年初买了一款 17 年初的产品，我的回答是不后悔：放在今天依然不为过时的机身设计、2K LCD 屏幕、强悍的双扬声器、主动降噪耳机以及 HIFI 都带来了非常极致的视觉听觉盛宴，当时最为彪悍的影像系统也使得这部设备在服役期间让我体会到了它的强大。可惜就可惜在这么看起来很强大的设备搭载的是高通有着火龙之称的 SOC 821，而且还是阉割版。如果是放在17年年初这款设备的运存性能什么的也都够用，但是一跨入19年立刻体现出了短板，并且仅仅3000毫安时外加极为激进的调度让我不得不时时刻刻准备着充电宝，但是仍有可能在剩余百分之十几电量时突然自动关机。</p>
-<p>上学期好信儿测了一个月电池损耗，两年使用时间实际损耗不到百分之10倒是体现了 HTC 到底还是在用料上花了钱，遂换了块电池觉得能够继续服役。但是没能料到年后续航直接从刚换电池那会儿近乎腰斩，外加4GB 运行内存不怎么够用，所以还是准备更换手机。</p>
-<p>要知道今年可以更换的手机真的是选择少之又少，尤其是 5G 手机，各家纷纷将高刷新率作为卖点的同时外加物料人工成本疯狂上涨，价格是直接翻了一番。因为考虑到后期可能需要使用 GMS（我对GMS重度依赖，没办法，从13年开始自己选择的），华为系手机不得已全部不能选择，很可惜。 那么能够选择的只剩下小米、OPPO、VIVO、Realme、一加这几个选项。俗话说得好：一朝被蛇咬十年怕井绳，看了大量网友的评测以后决定放弃续航稍差的 Realme X50 Pro，OPPO的机器因为价格也不得不放弃，一加在考虑了售后以后放弃，VIVO 因为系统原因放弃。只剩下小米10和 Redmi K30 Pro 这两个选项。不买中端机的原因也很简单，旗舰的配置可以在某种程度上将使用年限拉长并且体验更好。最终还是考虑了续航的情况下选择了红米 K30 Pro。</p>
-<p>说了这么多，这台机器有什么卖点？是续航，还是所谓真全面屏？在我看来这些都不能算是卖点，高通 865 一套打包拿来就是那么些东西，各家标配。没有的高刷新率的屏幕虽然本身不错但是今年却意外的成为了各路网友疯狂吐槽的地方。于我个人而言，这台机器总体体验对比 U Ultra 是升级的，要不换手机是换了个什么呢？但是总体体验依旧降级：</p>
-<ul>
-<li>1080p 屏幕，等效330 ppi。对比 U Ultra 的“标准”2560×1440的屏幕 ppi 440（虽然米10等效ppi也很低）</li>
-<li>单扬声器。从双扬声器缓过来不是不能适应，但是还是觉得并不舒服。</li>
-<li>Type-C 接口数字信号音频输出功率小。自带 DAC 的转接线几乎就是推不动。</li>
-<li>重量。重量来到了228g，用一年下来应该就成麒麟臂了，带壳贴膜妥妥“米半斤”</li>
-</ul>
-<p>那么也有一定的优势：</p>
-<ul>
-<li>续航。变态级别的续航，轻松日用亮屏10小时以上，充一次电使用时间20小时起步（前提是自己改一改省电策略）</li>
-<li>还算不错的屏幕色彩。虽然 PPI 大打折扣但是屏幕色彩确实还可以。</li>
-<li>还算不错的影像系统。虽然是打包出售的 imx686，但是体验下来整体体验确实不错。</li>
-</ul>
-<p>一个优点顶十个缺点。最起码换机的原因之一：续航这个痛点是完美解决了。</p>
-<p>（未完待续）</p>
-]]></content>
-      <categories>
-        <category>玩赏</category>
-      </categories>
-      <tags>
-        <tag>小米</tag>
-        <tag>redmi</tag>
-        <tag>红米 k30 pro</tag>
-        <tag>电量焦虑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Webhook 自动部署博客到服务器</title>
-    <url>/posts/49037.html</url>
-    <content><![CDATA[<p>for test now</p>
-]]></content>
   </entry>
   <entry>
     <title>[划水文] 给NAS的Ubuntu Server升级</title>
@@ -681,6 +675,12 @@
       <tags>
         <tag>drcom</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>使用 Webhook 自动部署博客到服务器</title>
+    <url>/posts/49037.html</url>
+    <content><![CDATA[<p>for test now<br>does it work now?</p>
+]]></content>
   </entry>
   <entry>
     <title>archlinux安装配置(2)</title>
@@ -891,6 +891,42 @@
       </tags>
   </entry>
   <entry>
+    <title>编译安装gcc6.1</title>
+    <url>/posts/51180.html</url>
+    <content><![CDATA[<p>俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。</p>
+<a id="more"></a>
+<h2 id="源码获取"><a href="#源码获取" class="headerlink" title="源码获取"></a>源码获取</h2><p>这个应该是最简单的了，只要你能找到个镜像站，里面镜像列表都差不多有GNU，里面有诸多项目的源代码，gcc源码也不例外。怎么获取，请自己看着办。</p>
+<h2 id="展开源码"><a href="#展开源码" class="headerlink" title="展开源码"></a>展开源码</h2><p>正常操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar xvf gcc6.1.tar.xz</span><br></pre></td></tr></table></figure>
+<h2 id="定位到源码目录"><a href="#定位到源码目录" class="headerlink" title="定位到源码目录"></a>定位到源码目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> gcc6.1/</span><br></pre></td></tr></table></figure>
+<p>建立编译的工作目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">makedir build</span><br></pre></td></tr></table></figure>
+<p>建立工作目录的好处是可以避免编译过程中的中间文件污染源码（大概）。</p>
+<h2 id="查看编译选项"><a href="#查看编译选项" class="headerlink" title="查看编译选项"></a>查看编译选项</h2><p>先简单观察一下Archlinux的gcc编译选项</p>
+<blockquote>
+<p>gcc 8.2.1</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/lto-wrapper</span><br><span class="line">目标：x86_64-pc-linux-gnu</span><br><span class="line">配置为：/build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --<span class="built_in">enable</span>-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-threads=posix --<span class="built_in">enable</span>-libmpx --with-system-zlib --with-isl --<span class="built_in">enable</span>-__cxa_atexit --<span class="built_in">disable</span>-libunwind-exceptions --<span class="built_in">enable</span>-clocale=gnu --<span class="built_in">disable</span>-libstdcxx-pch --<span class="built_in">disable</span>-libssp --<span class="built_in">enable</span>-gnu-unique-object --<span class="built_in">enable</span>-linker-build-id --<span class="built_in">enable</span>-lto --<span class="built_in">enable</span>-plugin --<span class="built_in">enable</span>-install-libiberty --with-linker-hash-style=gnu --<span class="built_in">enable</span>-gnu-indirect-function --<span class="built_in">enable</span>-multilib --<span class="built_in">disable</span>-werror --<span class="built_in">enable</span>-checking=release --<span class="built_in">enable</span>-default-pie --<span class="built_in">enable</span>-default-ssp --<span class="built_in">enable</span>-cet=auto</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 8.2.1 20181127 (GCC)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>gcc 7.4.1</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc-7</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1/lto-wrapper</span><br><span class="line">目标：x86_64-pc-linux-gnu</span><br><span class="line">配置为：/build/gcc7/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --<span class="built_in">enable</span>-languages=c,c++,lto --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-threads=posix --<span class="built_in">enable</span>-libmpx --with-system-zlib --with-isl --<span class="built_in">enable</span>-__cxa_atexit --<span class="built_in">disable</span>-libunwind-exceptions --<span class="built_in">enable</span>-clocale=gnu --<span class="built_in">disable</span>-libstdcxx-pch --<span class="built_in">disable</span>-libssp --<span class="built_in">enable</span>-gnu-unique-object --<span class="built_in">enable</span>-linker-build-id --<span class="built_in">enable</span>-lto --<span class="built_in">enable</span>-plugin --<span class="built_in">enable</span>-install-libiberty --with-linker-hash-style=gnu --<span class="built_in">enable</span>-gnu-indirect-function --<span class="built_in">disable</span>-werror --<span class="built_in">enable</span>-checking=release --<span class="built_in">enable</span>-default-pie --<span class="built_in">enable</span>-default-ssp --program-suffix=-7 --<span class="built_in">enable</span>-version-specific-runtime-libs</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 7.4.1 20181207 (GCC)</span><br></pre></td></tr></table></figure>
+<p>前面部分是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/</span><br></pre></td></tr></table></figure>
+<p>比较有用的部分只有 –prefix 选项。大致都可以看懂：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=一级目录 --libdir=二级目录1 --libexecdir=二级目录2 --mandir=二级目录3 --infodir=二级目录4 --with-bugurl=URL</span><br></pre></td></tr></table></figure>
+<p>对于已经有了内置GCC的发行版，如果照搬选项则不是明智之举，因此按照个人需求将此处选项改为只定义一级目录即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=<span class="variable">$HOME</span>/GCC-6.1</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>archlinux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>archlinux安装配置(1)</title>
     <url>/posts/7521.html</url>
     <content><![CDATA[<h1 id="安装之前"><a href="#安装之前" class="headerlink" title="安装之前"></a>安装之前</h1><p>请确认：</p>
@@ -966,42 +1002,6 @@
       </tags>
   </entry>
   <entry>
-    <title>编译安装gcc6.1</title>
-    <url>/posts/51180.html</url>
-    <content><![CDATA[<p>俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。</p>
-<a id="more"></a>
-<h2 id="源码获取"><a href="#源码获取" class="headerlink" title="源码获取"></a>源码获取</h2><p>这个应该是最简单的了，只要你能找到个镜像站，里面镜像列表都差不多有GNU，里面有诸多项目的源代码，gcc源码也不例外。怎么获取，请自己看着办。</p>
-<h2 id="展开源码"><a href="#展开源码" class="headerlink" title="展开源码"></a>展开源码</h2><p>正常操作</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar xvf gcc6.1.tar.xz</span><br></pre></td></tr></table></figure>
-<h2 id="定位到源码目录"><a href="#定位到源码目录" class="headerlink" title="定位到源码目录"></a>定位到源码目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> gcc6.1/</span><br></pre></td></tr></table></figure>
-<p>建立编译的工作目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">makedir build</span><br></pre></td></tr></table></figure>
-<p>建立工作目录的好处是可以避免编译过程中的中间文件污染源码（大概）。</p>
-<h2 id="查看编译选项"><a href="#查看编译选项" class="headerlink" title="查看编译选项"></a>查看编译选项</h2><p>先简单观察一下Archlinux的gcc编译选项</p>
-<blockquote>
-<p>gcc 8.2.1</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/lto-wrapper</span><br><span class="line">目标：x86_64-pc-linux-gnu</span><br><span class="line">配置为：/build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --<span class="built_in">enable</span>-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-threads=posix --<span class="built_in">enable</span>-libmpx --with-system-zlib --with-isl --<span class="built_in">enable</span>-__cxa_atexit --<span class="built_in">disable</span>-libunwind-exceptions --<span class="built_in">enable</span>-clocale=gnu --<span class="built_in">disable</span>-libstdcxx-pch --<span class="built_in">disable</span>-libssp --<span class="built_in">enable</span>-gnu-unique-object --<span class="built_in">enable</span>-linker-build-id --<span class="built_in">enable</span>-lto --<span class="built_in">enable</span>-plugin --<span class="built_in">enable</span>-install-libiberty --with-linker-hash-style=gnu --<span class="built_in">enable</span>-gnu-indirect-function --<span class="built_in">enable</span>-multilib --<span class="built_in">disable</span>-werror --<span class="built_in">enable</span>-checking=release --<span class="built_in">enable</span>-default-pie --<span class="built_in">enable</span>-default-ssp --<span class="built_in">enable</span>-cet=auto</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 8.2.1 20181127 (GCC)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>gcc 7.4.1</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">使用内建 specs。</span><br><span class="line">COLLECT_GCC=gcc-7</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1/lto-wrapper</span><br><span class="line">目标：x86_64-pc-linux-gnu</span><br><span class="line">配置为：/build/gcc7/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --<span class="built_in">enable</span>-languages=c,c++,lto --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-threads=posix --<span class="built_in">enable</span>-libmpx --with-system-zlib --with-isl --<span class="built_in">enable</span>-__cxa_atexit --<span class="built_in">disable</span>-libunwind-exceptions --<span class="built_in">enable</span>-clocale=gnu --<span class="built_in">disable</span>-libstdcxx-pch --<span class="built_in">disable</span>-libssp --<span class="built_in">enable</span>-gnu-unique-object --<span class="built_in">enable</span>-linker-build-id --<span class="built_in">enable</span>-lto --<span class="built_in">enable</span>-plugin --<span class="built_in">enable</span>-install-libiberty --with-linker-hash-style=gnu --<span class="built_in">enable</span>-gnu-indirect-function --<span class="built_in">disable</span>-werror --<span class="built_in">enable</span>-checking=release --<span class="built_in">enable</span>-default-pie --<span class="built_in">enable</span>-default-ssp --program-suffix=-7 --<span class="built_in">enable</span>-version-specific-runtime-libs</span><br><span class="line">线程模型：posix</span><br><span class="line">gcc 版本 7.4.1 20181207 (GCC)</span><br></pre></td></tr></table></figure>
-<p>前面部分是：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/</span><br></pre></td></tr></table></figure>
-<p>比较有用的部分只有 –prefix 选项。大致都可以看懂：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=一级目录 --libdir=二级目录1 --libexecdir=二级目录2 --mandir=二级目录3 --infodir=二级目录4 --with-bugurl=URL</span><br></pre></td></tr></table></figure>
-<p>对于已经有了内置GCC的发行版，如果照搬选项则不是明智之举，因此按照个人需求将此处选项改为只定义一级目录即可。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--prefix=<span class="variable">$HOME</span>/GCC-6.1</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>archlinux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>狂欢之夜，似乎内心也有些苦涩</title>
     <url>/posts/34170.html</url>
     <content><![CDATA[<p>今天不来谈技术，我们来说些柔软的东西。<br><a id="more"></a></p>
@@ -1021,38 +1021,6 @@
       </categories>
       <tags>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新年折腾记---从Manjaro迁移到Arch</title>
-    <url>/posts/30549.html</url>
-    <content><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p>
-<a id="more"></a>
-<p>在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。</p>
-<p>准备迁移过程中考虑了两个问题：</p>
-<ol>
-<li>我那快1800个软件包要怎么办</li>
-<li>最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装</li>
-</ol>
-<p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…</p>
-<p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list" target="_blank" rel="noopener">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p>
-<p>因此在原有系统中执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span></span><br><span class="line">pacman -Qqen &gt; listQqen.txt </span><br><span class="line"><span class="comment">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span></span><br><span class="line">pacman -Qqem &gt; listQqem.txt</span><br></pre></td></tr></table></figure>
-<p>这两个列表保存在主目录就好，之后会用到。</p>
-<p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p>
-<p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p>
-<p>然后执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取arch中的存在的包</span></span><br><span class="line">pacman -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort listQqen.txt))</span><br><span class="line"><span class="comment">#获取aur里的包</span></span><br><span class="line">yaourt  -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort Qqem.txt))</span><br></pre></td></tr></table></figure>
-<p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups" target="_blank" rel="noopener">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p>
-<p>后记：</p>
-<p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>
-]]></content>
-      <categories>
-        <category>archlinux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1119,6 +1087,62 @@
       </tags>
   </entry>
   <entry>
+    <title>manjaro下生存报告</title>
+    <url>/posts/35108.html</url>
+    <content><![CDATA[<p>今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就<a id="more"></a>只好做做本地化工作了。传送门：<a href="http://l10n.gnome.org/teams/" target="_blank" rel="noopener">gnome翻译组</a><br>其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。<img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro1.png" alt="manjaro"><br>上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．．<br>于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：<a href="https://weearc.github.io/2018/04/25/manjaro-linux-kde-edition%E8%B0%83%E6%95%99%E8%AE%B0%E5%BD%95/" target="_blank" rel="noopener">manjaro linux kde edition调教记录</a>效果图如下:<br><img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro/2.png" alt="manjaro"></p>
+<h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><p>其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。
+　</p>
+<blockquote>
+<p>“那我为什么又说无法反驳？”</p>
+</blockquote>
+<p>我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。</p>
+<blockquote>
+<p>但是使用体验仍然不够好。</p>
+</blockquote>
+<p>就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件…使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。</p>
+<blockquote>
+<p>“你这家伙是闭源商业狗”</p>
+</blockquote>
+<p>如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？</p>
+<blockquote>
+<p>那为什么现在我又不愿意离开？</p>
+</blockquote>
+<p>我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。<br>老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。</p>
+<h3 id="开源与闭源，我的个人经历"><a href="#开源与闭源，我的个人经历" class="headerlink" title="开源与闭源，我的个人经历"></a>开源与闭源，我的个人经历</h3><h4 id="开源与开源组织；闭源与商业化组织"><a href="#开源与开源组织；闭源与商业化组织" class="headerlink" title="开源与开源组织；闭源与商业化组织"></a>开源与开源组织；闭源与商业化组织</h4><h4 id="开源的好处，弊端；为什么仍有人选择开源作品"><a href="#开源的好处，弊端；为什么仍有人选择开源作品" class="headerlink" title="开源的好处，弊端；为什么仍有人选择开源作品"></a>开源的好处，弊端；为什么仍有人选择开源作品</h4><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
+      <categories>
+        <category>待填坑</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>manjaro</tag>
+        <tag>生存记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怀念，甚想念，无法想念其一</title>
+    <url>/posts/32312.html</url>
+    <content><![CDATA[<p>春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。</p>
+<a id="more"></a>
+<p>第一篇按照习惯我也不会谈技术反正就我那点知识也没有什么好拿出来讲的。因此今天还是打算随意写一写，毕竟写的开心就完事了。</p>
+<p>然后呢…不知道大家有没有接到过类似的短信：</p>
+<blockquote>
+<p>温馨提示:为守护三亚的蓝天白云，三亚全市严禁露天焚烧秸杆垃圾，三亚主城区及学校、医院、住宅小区等重点区域严禁燃放烟花爆竹，主城区公共场所严禁露天烧烤和祭祀烧纸，寺庙道观严禁燃烧高香。违者将予以处罚。请自觉遵守，共建生态文明三亚。—三亚市人民政府</p>
+</blockquote>
+<p>嘛，倒是一下子透露了我过年的地点，不过呢，倒是也接到重庆市政府类似的短信。保护环境嘛，没办法的事。可是仔细想一想，好像没像小时候那样过年有些时日了。</p>
+<p>回想小时候，每年必定是过年的前几天开始，采买、打扫、准备过年需要用到的一些小玩意儿这些一样没少过。也在过年前几天把家里的窗帘全部卸下然后清洗，再一个个装回去。也曾学着用五洁粉然后对着白色人造石的窗台一顿猛擦直到全部都变亮变白位置……虽然看着麻烦实际也确实麻烦，但是却是在多少年以后的今天令人感觉还能感受到年味的那些回忆。等到春节当天，中午出门去祖父母家，和兄长姐姐一起玩，去放点小鞭儿，冰天雪地的把自己裹成肉丸子到楼下的大平台上去“作妖儿”，往垃圾道里扔二踢脚什么的也是没少干。回来吃年夜饭，年年都是那几个菜色不变样却也是吃不腻，挺奇怪的。而后回家包饺子，看看电视。</p>
+<p>那个时候赵本山老师还是春晚的红人，小品也不像现在这么尬，动不动就煽情动不动就歌颂。过去春晚创造了不少梗，歌手们也都是真实的实力派，每一样节目都让人觉得不会看腻，就连后半夜的节目都非常有意思。如果现在春晚都为了挽救收视率而接着一些东风并且请一些实力派的歌手也好演员也好回到那个舞台，就算看到那那些熟悉的面孔我也是觉得没有必要再看下去了，尬得要死的东西我为什么不做点自己觉得有意义的事情而非要和春晚死磕呢？</p>
+<p>我确实是相当恋旧，也知道所有东西不可能一成不变，不过还是觉得以前那种有过年气氛的过年只能活在记忆中实在是太可惜了。家里人都分散开了，今年也没能回去看祖母，祖父已经不在人世，很多事情不停地在变。越是想抓住想将那个那些个美好的时光据为己有，越是在发现它在眼前不断地消散的同时感觉心如刀绞。过去已经回不去了，一般都会在这个时间说“应该勇敢的面对未来”吧？但是老实说越是长大就越觉得一些事情不可思议，越觉得害怕面对未来，越想仅仅活在回忆中哪怕知道那些已经是梦，已经不可能在实现了。那么就没有办法了，总不能停下，未规划好的将来也需要考虑——不过不是出于个人意愿，而是出于“对自己负责”的责任。背负了那么多期望以及责任，既然已经背负起来了就不可能轻易地在将那些卸下去。责任就是责任，烙印一般的东西。</p>
+<p>新的一年，愿各位身体健康，家庭和睦，工作顺利，学习进步。如果看完了我这么多牢骚话还没厌烦的话可以期待一下下一篇，不是牢骚也不是随笔，既然是技术博客那么技术类的不能少。新的一年希望自己能把坑填完，开个新坑，把日语复习一下最重要的是挂科的那几科一定要考过，真的不想再重修遭受那个罪了orz。</p>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>android课设-蓝牙助手</title>
     <url>/posts/37370.html</url>
     <content><![CDATA[<p>课设制作思路非常简单，就是制作一个蓝牙助手<br><a id="more"></a></p>
@@ -1173,58 +1197,6 @@
       </tags>
   </entry>
   <entry>
-    <title>manjaro下生存报告</title>
-    <url>/posts/35108.html</url>
-    <content><![CDATA[<p>今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就<a id="more"></a>只好做做本地化工作了。传送门：<a href="http://l10n.gnome.org/teams/" target="_blank" rel="noopener">gnome翻译组</a><br>其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。<img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro1.png" alt="manjaro"><br>上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．．<br>于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：<a href="https://weearc.github.io/2018/04/25/manjaro-linux-kde-edition%E8%B0%83%E6%95%99%E8%AE%B0%E5%BD%95/" target="_blank" rel="noopener">manjaro linux kde edition调教记录</a>效果图如下:<br><img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro/2.png" alt="manjaro"></p>
-<h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><p>其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。
-　</p>
-<blockquote>
-<p>“那我为什么又说无法反驳？”</p>
-</blockquote>
-<p>我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。</p>
-<blockquote>
-<p>但是使用体验仍然不够好。</p>
-</blockquote>
-<p>就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件…使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。</p>
-<blockquote>
-<p>“你这家伙是闭源商业狗”</p>
-</blockquote>
-<p>如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？</p>
-<blockquote>
-<p>那为什么现在我又不愿意离开？</p>
-</blockquote>
-<p>我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。<br>老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。</p>
-<h3 id="开源与闭源，我的个人经历"><a href="#开源与闭源，我的个人经历" class="headerlink" title="开源与闭源，我的个人经历"></a>开源与闭源，我的个人经历</h3><h4 id="开源与开源组织；闭源与商业化组织"><a href="#开源与开源组织；闭源与商业化组织" class="headerlink" title="开源与开源组织；闭源与商业化组织"></a>开源与开源组织；闭源与商业化组织</h4><h4 id="开源的好处，弊端；为什么仍有人选择开源作品"><a href="#开源的好处，弊端；为什么仍有人选择开源作品" class="headerlink" title="开源的好处，弊端；为什么仍有人选择开源作品"></a>开源的好处，弊端；为什么仍有人选择开源作品</h4><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
-      <categories>
-        <category>待填坑</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>manjaro</tag>
-        <tag>生存记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php入门到入土1</title>
-    <url>/posts/33109.html</url>
-    <content><![CDATA[<p>入土是不可能入土的<br><a id="more"></a></p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><p>首先先安装PHP，php-fpm以及nginx。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S php php-fpm nginx</span><br></pre></td></tr></table></figure></p>
-<p>安装完成以后，记得配置好vscode对应的相关插件</p>
-<blockquote>
-<p>注意一点，arch系的nginx配置虽然与其他发行版大同小异，但是初始可写目录不同。即初始化的目录虽然在/usr/share/nginx/html，但是实际上可写可读目录为/srv/nginx</p>
-</blockquote>
-<h3 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h3><p>安装完必要工具，修改配置文件。<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment">#位置/etc/nginx</span></span><br><span class="line"><span class="attribute">user</span> http http;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">event</span> &#123;</span><br><span class="line">        <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">        <span class="attribute">include</span>             mime.type;</span><br><span class="line">        <span class="attribute">default_type</span>    application/octet-stream;</span><br><span class="line">        <span class="attribute">sendfile</span>            <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">keepalive_timeout</span>   <span class="number">65</span>;</span><br><span class="line">        <span class="section">server</span> &#123;</span><br><span class="line">                <span class="attribute">listen</span>          <span class="number">80</span>;</span><br><span class="line">                <span class="attribute">server_name</span>     localhost;</span><br><span class="line">                <span class="attribute">root</span>                   /srv/nginx;</span><br><span class="line">                <span class="attribute">location</span>    /   &#123;</span><br><span class="line">                        <span class="attribute">index</span>   index.html  index.htm   index.php;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">error_page</span>      <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">                <span class="attribute">location</span>    =   /50x.html   &#123;</span><br><span class="line">                        <span class="attribute">root</span>        /usr/share/nginx/html;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">loaction</span>    <span class="regexp">~   \.php$</span>  &#123;</span><br><span class="line">                        <span class="attribute">fastcgi_pass</span>    unix:/run/php-fpm/php-fpm.sock;</span><br><span class="line">                        <span class="attribute">fastcgi_index</span>   index.php;</span><br><span class="line">                        <span class="attribute">include</span>             fastcgi.conf;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-        <tag>php</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建私人图床并使用</title>
     <url>/posts/61150.html</url>
     <content><![CDATA[<p>其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。</p>
@@ -1255,15 +1227,35 @@
       </tags>
   </entry>
   <entry>
-    <title>生活好了，但是我想回到以前</title>
-    <url>/posts/21989.html</url>
-    <content><![CDATA[<h4 id="睡前聊一聊"><a href="#睡前聊一聊" class="headerlink" title="睡前聊一聊"></a>睡前聊一聊</h4><p>上次像这样写文章大概是很久以前的事情了，那我为何突然想起来这些？用我自己的话来讲，现在我才一点点感觉到，越是接触新技术、新产品，愈是变得更孤独。当然了，学技术可以当做一个例外，但是，如果可以不与这些新玩意儿接触，从某种角度上讲确实不想接触。</p>
+    <title>新年折腾记---从Manjaro迁移到Arch</title>
+    <url>/posts/30549.html</url>
+    <content><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p>
+<a id="more"></a>
+<p>在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。</p>
+<p>准备迁移过程中考虑了两个问题：</p>
+<ol>
+<li>我那快1800个软件包要怎么办</li>
+<li>最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装</li>
+</ol>
+<p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…</p>
+<p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list" target="_blank" rel="noopener">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p>
+<p>因此在原有系统中执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span></span><br><span class="line">pacman -Qqen &gt; listQqen.txt </span><br><span class="line"><span class="comment">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span></span><br><span class="line">pacman -Qqem &gt; listQqem.txt</span><br></pre></td></tr></table></figure>
+<p>这两个列表保存在主目录就好，之后会用到。</p>
+<p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p>
+<p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p>
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取arch中的存在的包</span></span><br><span class="line">pacman -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort listQqen.txt))</span><br><span class="line"><span class="comment">#获取aur里的包</span></span><br><span class="line">yaourt  -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort Qqem.txt))</span><br></pre></td></tr></table></figure>
+<p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups" target="_blank" rel="noopener">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p>
+<p>后记：</p>
+<p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>archlinux</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
+        <tag>archlinux</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1316,6 +1308,37 @@
       </tags>
   </entry>
   <entry>
+    <title>生活好了，但是我想回到以前</title>
+    <url>/posts/21989.html</url>
+    <content><![CDATA[<h4 id="睡前聊一聊"><a href="#睡前聊一聊" class="headerlink" title="睡前聊一聊"></a>睡前聊一聊</h4><p>上次像这样写文章大概是很久以前的事情了，那我为何突然想起来这些？用我自己的话来讲，现在我才一点点感觉到，越是接触新技术、新产品，愈是变得更孤独。当然了，学技术可以当做一个例外，但是，如果可以不与这些新玩意儿接触，从某种角度上讲确实不想接触。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php入门到入土1</title>
+    <url>/posts/33109.html</url>
+    <content><![CDATA[<p>入土是不可能入土的<br><a id="more"></a></p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><p>首先先安装PHP，php-fpm以及nginx。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S php php-fpm nginx</span><br></pre></td></tr></table></figure></p>
+<p>安装完成以后，记得配置好vscode对应的相关插件</p>
+<blockquote>
+<p>注意一点，arch系的nginx配置虽然与其他发行版大同小异，但是初始可写目录不同。即初始化的目录虽然在/usr/share/nginx/html，但是实际上可写可读目录为/srv/nginx</p>
+</blockquote>
+<h3 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h3><p>安装完必要工具，修改配置文件。<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment">#位置/etc/nginx</span></span><br><span class="line"><span class="attribute">user</span> http http;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">event</span> &#123;</span><br><span class="line">        <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">        <span class="attribute">include</span>             mime.type;</span><br><span class="line">        <span class="attribute">default_type</span>    application/octet-stream;</span><br><span class="line">        <span class="attribute">sendfile</span>            <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">keepalive_timeout</span>   <span class="number">65</span>;</span><br><span class="line">        <span class="section">server</span> &#123;</span><br><span class="line">                <span class="attribute">listen</span>          <span class="number">80</span>;</span><br><span class="line">                <span class="attribute">server_name</span>     localhost;</span><br><span class="line">                <span class="attribute">root</span>                   /srv/nginx;</span><br><span class="line">                <span class="attribute">location</span>    /   &#123;</span><br><span class="line">                        <span class="attribute">index</span>   index.html  index.htm   index.php;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">error_page</span>      <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">                <span class="attribute">location</span>    =   /50x.html   &#123;</span><br><span class="line">                        <span class="attribute">root</span>        /usr/share/nginx/html;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">loaction</span>    <span class="regexp">~   \.php$</span>  &#123;</span><br><span class="line">                        <span class="attribute">fastcgi_pass</span>    unix:/run/php-fpm/php-fpm.sock;</span><br><span class="line">                        <span class="attribute">fastcgi_index</span>   index.php;</span><br><span class="line">                        <span class="attribute">include</span>             fastcgi.conf;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>youtuber木下ゆうか篇（一）</title>
     <url>/posts/30769.html</url>
     <content><![CDATA[<p>又一篇由于图床挂掉丧失乐趣的文章，但是不嫌弃的话，还是看看呗？<br><a id="more"></a><br>这张图可是做了很久，但是想拿去的话help yourself!（反正我也没有备份了）</p>
@@ -1353,29 +1376,6 @@
         <tag>结城友奈是勇者</tag>
         <tag>魔法少女</tag>
         <tag>泪腺崩坏</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>怀念，甚想念，无法想念其一</title>
-    <url>/posts/32312.html</url>
-    <content><![CDATA[<p>春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。</p>
-<a id="more"></a>
-<p>第一篇按照习惯我也不会谈技术反正就我那点知识也没有什么好拿出来讲的。因此今天还是打算随意写一写，毕竟写的开心就完事了。</p>
-<p>然后呢…不知道大家有没有接到过类似的短信：</p>
-<blockquote>
-<p>温馨提示:为守护三亚的蓝天白云，三亚全市严禁露天焚烧秸杆垃圾，三亚主城区及学校、医院、住宅小区等重点区域严禁燃放烟花爆竹，主城区公共场所严禁露天烧烤和祭祀烧纸，寺庙道观严禁燃烧高香。违者将予以处罚。请自觉遵守，共建生态文明三亚。—三亚市人民政府</p>
-</blockquote>
-<p>嘛，倒是一下子透露了我过年的地点，不过呢，倒是也接到重庆市政府类似的短信。保护环境嘛，没办法的事。可是仔细想一想，好像没像小时候那样过年有些时日了。</p>
-<p>回想小时候，每年必定是过年的前几天开始，采买、打扫、准备过年需要用到的一些小玩意儿这些一样没少过。也在过年前几天把家里的窗帘全部卸下然后清洗，再一个个装回去。也曾学着用五洁粉然后对着白色人造石的窗台一顿猛擦直到全部都变亮变白位置……虽然看着麻烦实际也确实麻烦，但是却是在多少年以后的今天令人感觉还能感受到年味的那些回忆。等到春节当天，中午出门去祖父母家，和兄长姐姐一起玩，去放点小鞭儿，冰天雪地的把自己裹成肉丸子到楼下的大平台上去“作妖儿”，往垃圾道里扔二踢脚什么的也是没少干。回来吃年夜饭，年年都是那几个菜色不变样却也是吃不腻，挺奇怪的。而后回家包饺子，看看电视。</p>
-<p>那个时候赵本山老师还是春晚的红人，小品也不像现在这么尬，动不动就煽情动不动就歌颂。过去春晚创造了不少梗，歌手们也都是真实的实力派，每一样节目都让人觉得不会看腻，就连后半夜的节目都非常有意思。如果现在春晚都为了挽救收视率而接着一些东风并且请一些实力派的歌手也好演员也好回到那个舞台，就算看到那那些熟悉的面孔我也是觉得没有必要再看下去了，尬得要死的东西我为什么不做点自己觉得有意义的事情而非要和春晚死磕呢？</p>
-<p>我确实是相当恋旧，也知道所有东西不可能一成不变，不过还是觉得以前那种有过年气氛的过年只能活在记忆中实在是太可惜了。家里人都分散开了，今年也没能回去看祖母，祖父已经不在人世，很多事情不停地在变。越是想抓住想将那个那些个美好的时光据为己有，越是在发现它在眼前不断地消散的同时感觉心如刀绞。过去已经回不去了，一般都会在这个时间说“应该勇敢的面对未来”吧？但是老实说越是长大就越觉得一些事情不可思议，越觉得害怕面对未来，越想仅仅活在回忆中哪怕知道那些已经是梦，已经不可能在实现了。那么就没有办法了，总不能停下，未规划好的将来也需要考虑——不过不是出于个人意愿，而是出于“对自己负责”的责任。背负了那么多期望以及责任，既然已经背负起来了就不可能轻易地在将那些卸下去。责任就是责任，烙印一般的东西。</p>
-<p>新的一年，愿各位身体健康，家庭和睦，工作顺利，学习进步。如果看完了我这么多牢骚话还没厌烦的话可以期待一下下一篇，不是牢骚也不是随笔，既然是技术博客那么技术类的不能少。新的一年希望自己能把坑填完，开个新坑，把日语复习一下最重要的是挂科的那几科一定要考过，真的不想再重修遭受那个罪了orz。</p>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
