@@ -18,3 +18,4 @@ Disallow: /*.jpeg$
 Disallow: /*.png$
 Disallow: /*.gif$
 Disallow: /*.bmp$
+Disallow: /.github/
