@@ -76,14 +76,15 @@
   display: inline-block;
   font-size: 2vh;
   margin: 0 0;
-  position: relative;
+  z-index: 999;
   float: right;
-  background-color: #efefef; }
+  background-color: #efefef;
+  box-shadow: none;
+  outline: none; }
 
 .codecopy-btn:hover {
   background-color: #b6b6b6;
   text-decoration-color: #1b1f23; }
 
-div.code-hightlight {
-  color: #efefef;
-  position-z-index: 1; }
+.code-hightlight {
+  position: relative; }
