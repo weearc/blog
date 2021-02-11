@@ -11,7 +11,6 @@ When setting the primary font stack, apply it to the Pure grid units along
 with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
 specific font stacks to ensure the greatest OS/browser compatibility.
 */
-@import url(fontawsome-all.min.css);
 html,
 button,
 input,
@@ -833,7 +832,7 @@ figure.highlight .gutter,
 
 figure.highlight .code,
 .codeblock .code {
-  padding: 2vh 15px 2vh 1em;
+  padding: 0vh 15px 0vh 1em;
   width: 100%; }
 
 figure.highlight .code pre,
@@ -1691,3 +1690,20 @@ em.search-keyword {
 
 .tooltipped-s::after {
   transform: translateX(50%); }
+
+.codecopy-btn {
+  border: none;
+  display: inline-block;
+  font-size: 2vh;
+  margin: 0 0;
+  position: relative;
+  float: right;
+  background-color: #efefef; }
+
+.codecopy-btn:hover {
+  background-color: #b6b6b6;
+  text-decoration-color: #1b1f23; }
+
+div.code-hightlight {
+  color: #efefef;
+  position-z-index: 1; }

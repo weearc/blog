@@ -1,4 +1,3 @@
-@import url(fontawsome-all.min.css);
 .tooltipped {
   position: relative; }
 
@@ -71,3 +70,20 @@
 
 .tooltipped-s::after {
   transform: translateX(50%); }
+
+.codecopy-btn {
+  border: none;
+  display: inline-block;
+  font-size: 2vh;
+  margin: 0 0;
+  position: relative;
+  float: right;
+  background-color: #efefef; }
+
+.codecopy-btn:hover {
+  background-color: #b6b6b6;
+  text-decoration-color: #1b1f23; }
+
+div.code-hightlight {
+  color: #efefef;
+  position-z-index: 1; }
