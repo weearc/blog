@@ -4,7 +4,7 @@ $(function() {
     var htmlCopyButton = `
     <span id="code-lang-title"></span>
     <button class="codecopy-btn tooltipped tooltipped-sw" aria-label="Copy to clipboard">
-      <span class="far fa-copy" aria-hidden="true"></span>
+      <span class="fa fa-copy" aria-hidden="true"></span>
     clip to copy
     </button>`;
 
