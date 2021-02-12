@@ -1202,36 +1202,6 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建私人图床并使用</title>
-    <url>/posts/61150.html</url>
-    <content><![CDATA[<p>其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。</p>
-<a id="more"></a>
-<p><img src="http://picb.weearc.top/images/2019/02/02/0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg" alt="0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg"></p>
-<p>如图所见！锵锵锵，自建了一个新图床。至于为什么这么做，主要还是因为腾讯云更改了收费及免费的条款，并且已有的vps不好好利用的话实在是资源浪费，所以决定自己建立一个算了。</p>
-<h2 id="VPS准备"><a href="#VPS准备" class="headerlink" title="VPS准备"></a>VPS准备</h2><p>因为是要用作图库的VPS所以建议还是选择一个靠谱一些的服务商比较好，国内阿里云以及腾讯云都可以（毕竟学生优惠www）。如果可以的话建议选择storge instance之类的类型，特点是价格便宜并且硬盘空间很大。构架建议选择KVM，极度不推荐openVZ的机器。系统选择任意linux发行版都可以，既然都有能力弄主机，就别说连基础linux的操作都不会。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>由于我们要使用的图床程序是<a href="https://chevereto.com/" target="_blank" rel="noopener">chevereto</a> ,按照<a href="https://chevereto.com/docs/requirements" target="_blank" rel="noopener">官方文档</a>的说明，使用LNMP是比较合适的。<a href="http://picb.weearc.top/image/Wah" target="_blank" rel="noopener"><img src="http://picb.weearc.top/images/2019/02/03/261b794faf0d9cee7a8b90c41d544ab7.png" alt="261b794faf0d9cee7a8b90c41d544ab7.png"></a></p>
-<p>这里选择<a href="https://lnmp.org/download.html" target="_blank" rel="noopener">LNMP一键包</a>（其实也是我懒了）。LNMP那么容易配置就不细讲述了。主要需要注意的是<a href="https://www.phpmyadmin.net/" target="_blank" rel="noopener">phpMyAdmin</a>的一些坑。</p>
-<p><a href="http://picb.weearc.top/image/gdo" target="_blank" rel="noopener"><img src="http://picb.weearc.top/images/2019/02/03/e865198482f4b22ae431bdc369ab3e79.md.png" alt="e865198482f4b22ae431bdc369ab3e79.md.png"></a></p>
-<p>这个地方如果未选择相匹配的MySQL版本会导致无法远程连接到phpMyAdmin。因此请在选择版本时多加注意。<strong><em>另外安装完成时记得把/home/wwwroot/default/下的几个文件备份并清除。</em></strong></p>
-<h2 id="安装chevereto"><a href="#安装chevereto" class="headerlink" title="安装chevereto"></a>安装chevereto</h2><p>这里我使用的是脚本安装方式，仍然是将脚本放到网站根目录即可。</p>
-<blockquote>
-<p>注意：记得检查脚本的所有者以及权限</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -lash </span><br><span class="line">chmod a+x index.php</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果正常的话你会得到index.php的所有者和组为<strong>www</strong>，权限为775或者777。</p>
-</blockquote>
-<p>所有步骤跟着向导就好，没有需要特殊注意的地方。</p>
-<p>但是有一个地方需要注意以下，在新建mysql账户时请选择本机域（大概是这个，是localhost）这个地方以前在部署owncloud时就踩过，到现在才弄得比较明白。至此站点部署完毕。</p>
-]]></content>
-      <categories>
-        <category>博客配套</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>怀念，甚想念，无法想念其一</title>
     <url>/posts/32312.html</url>
     <content><![CDATA[<p>春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。</p>
@@ -1255,22 +1225,35 @@
       </tags>
   </entry>
   <entry>
-    <title>php入门到入土1</title>
-    <url>/posts/33109.html</url>
-    <content><![CDATA[<p>入土是不可能入土的<br><a id="more"></a></p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><p>首先先安装PHP，php-fpm以及nginx。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S php php-fpm nginx</span><br></pre></td></tr></table></figure></p>
-<p>安装完成以后，记得配置好vscode对应的相关插件</p>
-<blockquote>
-<p>注意一点，arch系的nginx配置虽然与其他发行版大同小异，但是初始可写目录不同。即初始化的目录虽然在/usr/share/nginx/html，但是实际上可写可读目录为/srv/nginx</p>
-</blockquote>
-<h3 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h3><p>安装完必要工具，修改配置文件。<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment">#位置/etc/nginx</span></span><br><span class="line"><span class="attribute">user</span> http http;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">event</span> &#123;</span><br><span class="line">        <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">        <span class="attribute">include</span>             mime.type;</span><br><span class="line">        <span class="attribute">default_type</span>    application/octet-stream;</span><br><span class="line">        <span class="attribute">sendfile</span>            <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">keepalive_timeout</span>   <span class="number">65</span>;</span><br><span class="line">        <span class="section">server</span> &#123;</span><br><span class="line">                <span class="attribute">listen</span>          <span class="number">80</span>;</span><br><span class="line">                <span class="attribute">server_name</span>     localhost;</span><br><span class="line">                <span class="attribute">root</span>                   /srv/nginx;</span><br><span class="line">                <span class="attribute">location</span>    /   &#123;</span><br><span class="line">                        <span class="attribute">index</span>   index.html  index.htm   index.php;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">error_page</span>      <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">                <span class="attribute">location</span>    =   /50x.html   &#123;</span><br><span class="line">                        <span class="attribute">root</span>        /usr/share/nginx/html;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">loaction</span>    <span class="regexp">~   \.php$</span>  &#123;</span><br><span class="line">                        <span class="attribute">fastcgi_pass</span>    unix:/run/php-fpm/php-fpm.sock;</span><br><span class="line">                        <span class="attribute">fastcgi_index</span>   index.php;</span><br><span class="line">                        <span class="attribute">include</span>             fastcgi.conf;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+    <title>新年折腾记---从Manjaro迁移到Arch</title>
+    <url>/posts/30549.html</url>
+    <content><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p>
+<a id="more"></a>
+<p>在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。</p>
+<p>准备迁移过程中考虑了两个问题：</p>
+<ol>
+<li>我那快1800个软件包要怎么办</li>
+<li>最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装</li>
+</ol>
+<p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…</p>
+<p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list" target="_blank" rel="noopener">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p>
+<p>因此在原有系统中执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span></span><br><span class="line">pacman -Qqen &gt; listQqen.txt </span><br><span class="line"><span class="comment">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span></span><br><span class="line">pacman -Qqem &gt; listQqem.txt</span><br></pre></td></tr></table></figure>
+<p>这两个列表保存在主目录就好，之后会用到。</p>
+<p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p>
+<p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p>
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取arch中的存在的包</span></span><br><span class="line">pacman -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort listQqen.txt))</span><br><span class="line"><span class="comment">#获取aur里的包</span></span><br><span class="line">yaourt  -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort Qqem.txt))</span><br></pre></td></tr></table></figure>
+<p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups" target="_blank" rel="noopener">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p>
+<p>后记：</p>
+<p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>
 ]]></content>
       <categories>
-        <category>php</category>
+        <category>archlinux</category>
       </categories>
       <tags>
         <tag>archlinux</tag>
-        <tag>php</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1375,35 +1358,52 @@
       </tags>
   </entry>
   <entry>
-    <title>新年折腾记---从Manjaro迁移到Arch</title>
-    <url>/posts/30549.html</url>
-    <content><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p>
+    <title>搭建私人图床并使用</title>
+    <url>/posts/61150.html</url>
+    <content><![CDATA[<p>其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。</p>
 <a id="more"></a>
-<p>在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。</p>
-<p>准备迁移过程中考虑了两个问题：</p>
-<ol>
-<li>我那快1800个软件包要怎么办</li>
-<li>最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装</li>
-</ol>
-<p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…</p>
-<p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list" target="_blank" rel="noopener">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p>
-<p>因此在原有系统中执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span></span><br><span class="line">pacman -Qqen &gt; listQqen.txt </span><br><span class="line"><span class="comment">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span></span><br><span class="line">pacman -Qqem &gt; listQqem.txt</span><br></pre></td></tr></table></figure>
-<p>这两个列表保存在主目录就好，之后会用到。</p>
-<p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p>
-<p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p>
-<p>然后执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取arch中的存在的包</span></span><br><span class="line">pacman -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort listQqen.txt))</span><br><span class="line"><span class="comment">#获取aur里的包</span></span><br><span class="line">yaourt  -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort Qqem.txt))</span><br></pre></td></tr></table></figure>
-<p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups" target="_blank" rel="noopener">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p>
-<p>后记：</p>
-<p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>
+<p><img src="http://picb.weearc.top/images/2019/02/02/0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg" alt="0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg"></p>
+<p>如图所见！锵锵锵，自建了一个新图床。至于为什么这么做，主要还是因为腾讯云更改了收费及免费的条款，并且已有的vps不好好利用的话实在是资源浪费，所以决定自己建立一个算了。</p>
+<h2 id="VPS准备"><a href="#VPS准备" class="headerlink" title="VPS准备"></a>VPS准备</h2><p>因为是要用作图库的VPS所以建议还是选择一个靠谱一些的服务商比较好，国内阿里云以及腾讯云都可以（毕竟学生优惠www）。如果可以的话建议选择storge instance之类的类型，特点是价格便宜并且硬盘空间很大。构架建议选择KVM，极度不推荐openVZ的机器。系统选择任意linux发行版都可以，既然都有能力弄主机，就别说连基础linux的操作都不会。</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>由于我们要使用的图床程序是<a href="https://chevereto.com/" target="_blank" rel="noopener">chevereto</a> ,按照<a href="https://chevereto.com/docs/requirements" target="_blank" rel="noopener">官方文档</a>的说明，使用LNMP是比较合适的。<a href="http://picb.weearc.top/image/Wah" target="_blank" rel="noopener"><img src="http://picb.weearc.top/images/2019/02/03/261b794faf0d9cee7a8b90c41d544ab7.png" alt="261b794faf0d9cee7a8b90c41d544ab7.png"></a></p>
+<p>这里选择<a href="https://lnmp.org/download.html" target="_blank" rel="noopener">LNMP一键包</a>（其实也是我懒了）。LNMP那么容易配置就不细讲述了。主要需要注意的是<a href="https://www.phpmyadmin.net/" target="_blank" rel="noopener">phpMyAdmin</a>的一些坑。</p>
+<p><a href="http://picb.weearc.top/image/gdo" target="_blank" rel="noopener"><img src="http://picb.weearc.top/images/2019/02/03/e865198482f4b22ae431bdc369ab3e79.md.png" alt="e865198482f4b22ae431bdc369ab3e79.md.png"></a></p>
+<p>这个地方如果未选择相匹配的MySQL版本会导致无法远程连接到phpMyAdmin。因此请在选择版本时多加注意。<strong><em>另外安装完成时记得把/home/wwwroot/default/下的几个文件备份并清除。</em></strong></p>
+<h2 id="安装chevereto"><a href="#安装chevereto" class="headerlink" title="安装chevereto"></a>安装chevereto</h2><p>这里我使用的是脚本安装方式，仍然是将脚本放到网站根目录即可。</p>
+<blockquote>
+<p>注意：记得检查脚本的所有者以及权限</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -lash </span><br><span class="line">chmod a+x index.php</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果正常的话你会得到index.php的所有者和组为<strong>www</strong>，权限为775或者777。</p>
+</blockquote>
+<p>所有步骤跟着向导就好，没有需要特殊注意的地方。</p>
+<p>但是有一个地方需要注意以下，在新建mysql账户时请选择本机域（大概是这个，是localhost）这个地方以前在部署owncloud时就踩过，到现在才弄得比较明白。至此站点部署完毕。</p>
 ]]></content>
       <categories>
-        <category>archlinux</category>
+        <category>博客配套</category>
       </categories>
       <tags>
         <tag>archlinux</tag>
-        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php入门到入土1</title>
+    <url>/posts/33109.html</url>
+    <content><![CDATA[<p>入土是不可能入土的<br><a id="more"></a></p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><p>首先先安装PHP，php-fpm以及nginx。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pacman -S php php-fpm nginx</span><br></pre></td></tr></table></figure></p>
+<p>安装完成以后，记得配置好vscode对应的相关插件</p>
+<blockquote>
+<p>注意一点，arch系的nginx配置虽然与其他发行版大同小异，但是初始可写目录不同。即初始化的目录虽然在/usr/share/nginx/html，但是实际上可写可读目录为/srv/nginx</p>
+</blockquote>
+<h3 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h3><p>安装完必要工具，修改配置文件。<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment">#位置/etc/nginx</span></span><br><span class="line"><span class="attribute">user</span> http http;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">event</span> &#123;</span><br><span class="line">        <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">        <span class="attribute">include</span>             mime.type;</span><br><span class="line">        <span class="attribute">default_type</span>    application/octet-stream;</span><br><span class="line">        <span class="attribute">sendfile</span>            <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">keepalive_timeout</span>   <span class="number">65</span>;</span><br><span class="line">        <span class="section">server</span> &#123;</span><br><span class="line">                <span class="attribute">listen</span>          <span class="number">80</span>;</span><br><span class="line">                <span class="attribute">server_name</span>     localhost;</span><br><span class="line">                <span class="attribute">root</span>                   /srv/nginx;</span><br><span class="line">                <span class="attribute">location</span>    /   &#123;</span><br><span class="line">                        <span class="attribute">index</span>   index.html  index.htm   index.php;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">error_page</span>      <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">                <span class="attribute">location</span>    =   /50x.html   &#123;</span><br><span class="line">                        <span class="attribute">root</span>        /usr/share/nginx/html;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="attribute">loaction</span>    <span class="regexp">~   \.php$</span>  &#123;</span><br><span class="line">                        <span class="attribute">fastcgi_pass</span>    unix:/run/php-fpm/php-fpm.sock;</span><br><span class="line">                        <span class="attribute">fastcgi_index</span>   index.php;</span><br><span class="line">                        <span class="attribute">include</span>             fastcgi.conf;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>php</tag>
       </tags>
   </entry>
 </search>

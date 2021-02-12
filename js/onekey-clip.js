@@ -2,11 +2,14 @@ $(function() {
     // ref: https://github.com/zenorocha/codecopy/blob/master/src/scripts/main.js
     var snippets = document.querySelectorAll('figure.highlight');
     var htmlCopyButton = `
-    <span id="code-lang-title"></span>
-    <button class="codecopy-btn tooltipped tooltipped-sw" aria-label="Copy to clipboard">
-      <span class="fa fa-copy" aria-hidden="true"></span>
-    clip to copy
-    </button>`;
+    <div id="codeblock-titlebar">
+        <span id="lang-title" style="font-size: 5px"></span>
+        <button class="codecopy-btn tooltipped tooltipped-sw" aria-label="Copy to clipboard">
+            <span class="fa fa-copy" aria-hidden="true"></span>
+            click to copy
+        </button>
+    </div>
+    `;
 
     snippets.forEach(snippet => {
         var parent = snippet.parentNode;
@@ -20,9 +23,7 @@ $(function() {
 
         var lang = (snippet.classList[1] || 'code').toUpperCase();
         wrapper.setAttribute('data-lang', lang);
-        // document.getElementById('code-lang-title').html(lang);
     });
-
 
     // Add copy to clipboard functionality and user feedback
     var clipboard = new ClipboardJS('.codecopy-btn', {
