@@ -28,8 +28,9 @@ $(function() {
     // Add copy to clipboard functionality and user feedback
     var clipboard = new ClipboardJS('.codecopy-btn', {
         target: function(trigger) {
-            var copytext = trigger.nextSibling.querySelector('.code');
+            var copytext = trigger.nextSibling.parentElement.nextElementSibling.querySelector('.code');
             return copytext;
+            // console.log(copytext);
         }
     });
 
