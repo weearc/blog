@@ -1,5 +1,4 @@
 $(function() {
-    // ref: https://github.com/zenorocha/codecopy/blob/master/src/scripts/main.js
     var snippets = document.querySelectorAll('figure.highlight');
     var htmlCopyButton = `
     <div id="codeblock-titlebar">
