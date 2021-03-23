@@ -11,155 +11,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用pandoc撰写论文</title>
-    <url>/posts/1448.html</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>谁又说不可以呢？</p>
-<a id="more"></a>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>一般论文写作等会有如下痛点，包含：</p>
-<ul>
-<li>数学公式</li>
-<li>图片处理</li>
-<li>交叉引用、脚注、尾注</li>
-<li>参考文献的文献库处理</li>
-</ul>
-<p>当然大名鼎鼎的Microsoft Office当然能处理这些问题，但是与其说是能处理，不如说是处理的不当就会变得麻烦起来。在这些方面处理的最好的应该是LaTeX，但是由于其语法学习曲线非常陡峭，那么支持部分LaTeX特性的Markdown将是比较好的选择，处理得当时将包含如下特性：</p>
-<ul>
-<li>基于自然语言的数学公式处理</li>
-<li>HTML支持，意味着markdown的写作可以很灵活多变</li>
-<li>插件扩展的的流程图、甘特图、美人鱼图支持</li>
-<li>交叉引用、脚注、尾注、文献自动插入</li>
-<li>目录自动生成</li>
-</ul>
-<p>那么本文将简要的介绍下如何使用markdown来进行基本的写作。</p>
-<p>注：本文内容相对较多，但是请相信看完之后收获会是巨大的。</p>
-<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><blockquote>
-<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br>Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。[^2][@noauthor_markdown__nodate]</p>
-</blockquote>
-<p>看到这里很懵是不是？但是如果换种说法：DOC格式和markdown本是同根生，是不是就容易多了？DOC所有关键信息等均使用XML格式，而这个格式和markdown其实本质类似。区别是：</p>
-<p>（图片）</p>
-<p>哪个易读性更好一看便知。用markdown你能做什么？</p>
-<ul>
-<li>记笔记</li>
-<li>写网页</li>
-<li>其他</li>
-</ul>
-<h3 id="markdown编辑器推荐"><a href="#markdown编辑器推荐" class="headerlink" title="markdown编辑器推荐"></a>markdown编辑器推荐</h3><h4 id="Typora（全平台）"><a href="#Typora（全平台）" class="headerlink" title="Typora（全平台）"></a>Typora（全平台）</h4><p>所见即所得，只有用过的才知道多好用。功能最全。但是不能进行扩展。其实已有的功能已经非常够用了。</p>
-<h4 id="Mu（Mac-OS）"><a href="#Mu（Mac-OS）" class="headerlink" title="Mu（Mac OS）"></a>Mu（Mac OS）</h4><p>同样所见即所得，但是功能性比Typora弱。</p>
-<h4 id="Atom-或者-Visual-Studio-Code（全平台）"><a href="#Atom-或者-Visual-Studio-Code（全平台）" class="headerlink" title="Atom 或者 Visual Studio Code（全平台）"></a>Atom 或者 Visual Studio Code（全平台）</h4><p>伪装成IDE的文本编辑器，一般程序员以及编程爱好者无人不知，有巨量的插件扩展。能玩游戏看B站听歌聊QQ微信微博。摸鱼神器。</p>
-<h2 id="pandoc"><a href="#pandoc" class="headerlink" title="pandoc"></a>pandoc</h2><blockquote>
-<p>Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc使用Haskell语言编写，以命令行形式实现与用户的交互，可支持多种操作系统。[^3][@noauthor_pandoc_2017]</p>
-</blockquote>
-<p>那么它能处理的格式到底有多少种：</p>
-<p>（图片）</p>
-<p>图片上一个节点代表它能处理的一种格式。</p>
-<h2 id="富文本"><a href="#富文本" class="headerlink" title="富文本"></a>富文本</h2><blockquote>
-<p>富文本格式（Rich Text Format, 一般简称为RTF）是由微软公司开发的跨平台文档格式。一般的格式设置，比如字体和段落设置，页面设置等等信息都可以存在RTF格式中。[^1][@noauthor___nodate]</p>
-</blockquote>
-<p>这是狭义上的富文本，那么广义上的富文本是什么呢？就是所谓的当你编辑时所见即所得。没有谁希望编辑一个文件时还需要像二十年前一样还需要修修改源代码的吧？因此富文本及富文本编辑器的发明是非常重要的革新。但是这是不是意味着纯文本会消失呢？并不。富文本有着富文本的易用，纯文本有着纯文本的轻便。至少来讲，我可不希望在写作前写作后还需要花费大量时间插入参考资料或者调整文本的排版字体大小还是怎样。尤其在写作中如果遇到需要处理的图片，大部分人应该是相当头痛的——既需要照顾排版又不不希望切断思路。那么对于大多数只用到了Microsoft Office Word以及OneNote基础功能的人来说无论使用什么来编辑文档其实都差不了多少。</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="Markdown基础"><a href="#Markdown基础" class="headerlink" title="Markdown基础"></a>Markdown基础</h2><p>请不要把markdown视为非常可怕的东西。其实它非常容易掌握，而且对于使用者很友好——因为你在写作时的思路不会被打断，所有格式使用的语法非常简洁并全部可以通过一些文本实现。</p>
-<p>在使用之前，为了方便书写请确保你的输入法是处于半角状态（搜狗上是月牙和圆点，月牙为半角；微软拼音在设置里调整），使用半角输入会将你的输入速度无论是在是用什么都会提高一个等级。</p>
-<h3 id="标题类"><a href="#标题类" class="headerlink" title="标题类"></a>标题类</h3><p>Markdown的标题很容易表示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这时二级标题</span><br><span class="line">### 这是三级标题</span><br></pre></td></tr></table></figure>
-<p>每多一级标题就可以增加一个“#”。具体支持到哪级目录需要看渲染工具的支持，理论上无限。</p>
-<p><strong>注意：为了使格式生效请在“#”后记得加个空格</strong></p>
-<h3 id="标注类"><a href="#标注类" class="headerlink" title="标注类"></a>标注类</h3><h4 id="文本上的标注"><a href="#文本上的标注" class="headerlink" title="文本上的标注"></a>文本上的标注</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体*</span>			</span><br><span class="line"><span class="strong">**加粗**</span></span><br><span class="line"><span class="strong">***加粗的斜体**</span>*</span><br><span class="line">&lt;u&gt;下划线&lt;/u&gt;</span><br></pre></td></tr></table></figure>
-<p>当然你也可以使用下划线替换“*”，效果是一样的。</p>
-<h4 id="文内引用"><a href="#文内引用" class="headerlink" title="文内引用"></a>文内引用</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">代码：</span><br><span class="line">​<span class="code">```</span>你的代码语言</span><br><span class="line">echo helloworld;</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-<p>脚注：<br>这是一段实例文字。[^1]<br>[^1]: 这是实例文字的脚注，在生成的Word文档中会自动放置</p>
-<p>尾注：<br>这是一段实例文字。[@example P33 Weearc]<br>Reference:<br>(自动生成，不需要动它)</p>
-<p>下标：<br>~下标~</p>
-<p>段落引用：</p>
-<blockquote>
-<p>你要引用的段落</p>
-</blockquote>
-<p>说明：引用完成时请多加一个回车（换行符），引用时尖括号后需要空格<br><figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">以上是Markdown的基础语法部分，和普通六级专八词汇相比应该是简单的不是一星半点吧。</span><br><span class="line"></span><br><span class="line">### 链接类</span><br><span class="line"></span><br><span class="line">#### 图片</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line">![图片的说明](图片位置)</span><br></pre></td></tr></table></figure></p>
-<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">链接的说明文字</span>](<span class="link">链接</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="markdown进阶"><a href="#markdown进阶" class="headerlink" title="markdown进阶"></a>markdown进阶</h2><h3 id="表格类"><a href="#表格类" class="headerlink" title="表格类"></a>表格类</h3><h5 id="基本表格（不含单元格合并）"><a href="#基本表格（不含单元格合并）" class="headerlink" title="基本表格（不含单元格合并）"></a>基本表格（不含单元格合并）</h5><p>基本的一个三乘三表格</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|title1|title2|title3|</span><br><span class="line">|:-----|:----:|-----:|</span><br><span class="line">|左侧对齐|居中|右侧对齐|</span><br><span class="line">|x|y|z|</span><br></pre></td></tr></table></figure>
-<p>生成效果如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">title1</th>
-<th style="text-align:center">title2</th>
-<th style="text-align:right">title3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">左侧对齐</td>
-<td style="text-align:center">居中</td>
-<td style="text-align:right">右侧对齐</td>
-</tr>
-<tr>
-<td style="text-align:left">x</td>
-<td style="text-align:center">y</td>
-<td style="text-align:right">z</td>
-</tr>
-</tbody>
-</table>
-<h5 id="HTML表格（包含单元格合并的）"><a href="#HTML表格（包含单元格合并的）" class="headerlink" title="HTML表格（包含单元格合并的）"></a>HTML表格（包含单元格合并的）</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列一<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>合并行<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列一<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>合并列<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> &gt;</span>行二列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> &gt;</span>行三列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果：</p>
-<table><br>    <tr><br>        <td>列一</td><br>        <td>列二</td><br>   </tr><br>   <tr><br>        <td colspan="2">合并行</td><br>   </tr><br>   <tr><br>        <td>列一</td><br>        <td>列二</td><br>   </tr><br>    <tr><br>        <td rowspan="2">合并列</td><br>        <td>行二列二</td><br>    </tr><br>    <tr><br>        <td>行三列二</td><br>    </tr><br></table>
-
-<h3 id="公式类"><a href="#公式类" class="headerlink" title="公式类"></a>公式类</h3><p>此节主要包含数学公式，使用LaTeX数学公式语法。</p>
-<h5 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">x^n</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>生成为：$x^n$</p>
-<h5 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">C^2_3</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>选择数： $C^2_3$</p>
-<h5 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h5><p>一个不包含tag的多项式</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">T(n)=\begin&#123;cases&#125;</span><br><span class="line">\Theta(1)\quad n=1\\</span><br><span class="line">T(n-q)+\Theta(n) \quad n&gt;1</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>那么生成的公式如下：</p>
-<p>$T(n)=\begin{cases}<br>\Theta(1)\quad n=1\<br>T(n-q)+\Theta(n) \quad n&gt;1<br>\end{cases}$</p>
-<h5 id="矩阵及行列式"><a href="#矩阵及行列式" class="headerlink" title="矩阵及行列式"></a>矩阵及行列式</h5><p>一个包含tag的矩阵[@noauthor_markdown_nodate-1]</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line"> \begin&#123;bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;bmatrix&#125; \tag&#123;1&#125;</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>$$<br>\begin{bmatrix}<br>   1 &amp; 2 &amp; 3 \<br>   4 &amp; 5 &amp; 6 \<br>   7 &amp; 8 &amp; 9 \<br>  \end{bmatrix} \tag{1}<br>$$</p>
-<h5 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">J(\theta) = \frac&#123;1&#125;&#123;2m&#125;\sum_&#123;i=0&#125;^m(y^i - h_\theta(x^i))^2</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>生成的均方差公式为：</p>
-<p>$J(\theta) = \frac{1}{2m}\sum_{i=0}^m(y^i - h_\theta(x^i))^2$</p>
-<h5 id="还有很多…"><a href="#还有很多…" class="headerlink" title="还有很多…"></a>还有很多…</h5><p>LaTeX的数学公式异常灵活，其余语法可以自行查阅。</p>
-<h3 id="信息类"><a href="#信息类" class="headerlink" title="信息类"></a>信息类</h3><h4 id="YAML样式的信息"><a href="#YAML样式的信息" class="headerlink" title="YAML样式的信息"></a>YAML样式的信息</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 这是一个标题</span><br><span class="line">time: 2019</span><br><span class="line">TOC: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>那么将生成自动目录以及包含时间信息的文章标题部分。</p>
-<h4 id="XML样式信息"><a href="#XML样式信息" class="headerlink" title="XML样式信息"></a>XML样式信息</h4><p>如果你更熟悉XML，直接上吧骚年！</p>
-<h3 id="导图类"><a href="#导图类" class="headerlink" title="导图类"></a>导图类</h3><p>使用markdown可以通过公式方式扩展来写流程图等。[@noauthor_typora__nodate]</p>
-<h4 id="甘特图-时序图"><a href="#甘特图-时序图" class="headerlink" title="甘特图(时序图)"></a>甘特图(时序图)</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">​<span class="code">```</span>mermaid</span><br><span class="line">  sequenceDiagram</span><br><span class="line"><span class="code">    participant 张三</span></span><br><span class="line"><span class="code">    participant 李四</span></span><br><span class="line"><span class="code">    张三-&gt;王五: 王五你好吗？</span></span><br><span class="line"><span class="code">    loop 健康检查</span></span><br><span class="line"><span class="code">        王五-&gt;王五: 与疾病战斗</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...</span></span><br><span class="line"><span class="code">    李四--&gt;&gt;张三: 很好!</span></span><br><span class="line"><span class="code">    王五-&gt;李四: 你怎么样?</span></span><br><span class="line"><span class="code">    李四--&gt;王五: 很好!</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```mermaid</span><br><span class="line"></span><br><span class="line">%% 时序图例子,-&gt; 直线，--&gt;虚线，-&gt;&gt;实线箭头</span><br><span class="line"></span><br><span class="line">  sequenceDiagram</span><br><span class="line"></span><br><span class="line">    participant 张三</span><br><span class="line"></span><br><span class="line">    participant 李四</span><br><span class="line"></span><br><span class="line">    张三-&gt;王五: 王五你好吗？</span><br><span class="line"></span><br><span class="line">    loop 健康检查</span><br><span class="line"></span><br><span class="line">        王五-&gt;王五: 与疾病战斗</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...</span><br><span class="line"></span><br><span class="line">    李四--&gt;&gt;张三: 很好!</span><br><span class="line"></span><br><span class="line">    王五-&gt;李四: 你怎么样?</span><br><span class="line"></span><br><span class="line">    李四--&gt;王五: 很好!</span><br></pre></td></tr></table></figure>
-<h4 id="美人鱼图"><a href="#美人鱼图" class="headerlink" title="美人鱼图"></a>美人鱼图</h4><p>一个示例的美人鱼图：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">​<span class="code">```</span>mermaid</span><br><span class="line">graph TD</span><br><span class="line">client1--&gt;|read / write|SVN((SVN server))</span><br><span class="line">client2--&gt;|read only|SVN</span><br><span class="line">client3--&gt;|read / write|SVN</span><br><span class="line">client4--&gt;|read only|SVN</span><br><span class="line">client5(...)--&gt;SVN</span><br><span class="line">SVN---|store the data|sharedrive</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">```mermaid</span><br><span class="line">graph TD</span><br><span class="line">client1--&gt;|<span class="type">read</span> / write|<span class="type">SVN</span>((SVN server))</span><br><span class="line">client2--&gt;|<span class="type">read</span> only|<span class="type">SVN</span></span><br><span class="line">client3--&gt;|<span class="type">read</span> / write|<span class="type">SVN</span></span><br><span class="line">client4--&gt;|<span class="type">read</span> only|<span class="type">SVN</span></span><br><span class="line">client5(...)--&gt;SVN</span><br><span class="line">SVN---|<span class="type">store</span> the data|<span class="type">sharedrive</span></span><br></pre></td></tr></table></figure>
-<p>此处参考</p>
-<h1 id="与文献管理工具互动"><a href="#与文献管理工具互动" class="headerlink" title="与文献管理工具互动"></a>与文献管理工具互动</h1><p>为什么不推荐使用word自带的文献管理器，因为Zotero以及Mandelay等文献管理器更加强大而且易用，包含比如PDF阅读、文献检索、文献关联设置、关键词等。</p>
-<p>这里只对zotero文献管理器与markdown论文撰写的互动进行说明。</p>
-<h2 id="Zotero"><a href="#Zotero" class="headerlink" title="Zotero"></a>Zotero</h2><p>首先到Zotero官网下载软件本体进行安装，然后按照提示安装浏览器插件。使用如下图：</p>
-<p>（gif）</p>
-<p>之后你可以在Zotero导出参考文献。导出时请选择Bibtex格式。需要生成参考文献时直接将导出的文件用文本编辑器打开并进行如下操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#一个实例的bib文件内容</span><br><span class="line">@misc&#123;noauthor_britains_nodate,</span><br><span class="line">        title = &#123;Britain’s imperial fantasies have given us &#123;Brexit&#125; &#123;\textbar&#125; &#123;Gary&#125; &#123;Younge&#125; &#123;\textbar&#125; &#123;Opinion&#125; &#123;\textbar&#125; &#123;The&#125; &#123;Guardian&#125;&#125;,</span><br><span class="line">        url = &#123;https://www.theguardian.com/commentisfree/2018/feb/03/imperial-fantasies-brexit-theresa-may&#125;,</span><br><span class="line">        urldate = &#123;2019-04-29&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这里引用了参考[@noauthor<span class="emphasis">_britains_</span>nodate]</span><br></pre></td></tr></table></figure>
-<p>即将包含“@misc”行行首大括号后内容前加“@”用中括号“[]”包裹放在需要引用的位置。生成文件时会自动在文末添加参考文献。[@noauthor_markdown_nodate]</p>
-<h1 id="使用pandoc生成（最后一步了）"><a href="#使用pandoc生成（最后一步了）" class="headerlink" title="使用pandoc生成（最后一步了）"></a>使用pandoc生成（最后一步了）</h1><h2 id="pandoc安装"><a href="#pandoc安装" class="headerlink" title="pandoc安装"></a>pandoc安装</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>Windows用户可以再官网下载EXE文件进行安装，并安装Python3使用pip安装pandoc的其他扩展。</p>
-<h3 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h3><p>Mac用户可以使用brew来安装pandoc，并使用pip来添加扩展</p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>重点说一下Linux，以证明使用Linux同样可以撰写论文。</p>
-<p>大多数Linux发行版的仓库内包含pandoc，并默认有pip。使用pip可安装扩展。</p>
-<h4 id="对于Arch-Linux"><a href="#对于Arch-Linux" class="headerlink" title="对于Arch Linux"></a>对于Arch Linux</h4><p>Arch Linux仓库中为pandoc以及LaTeX全部扩展进行了打包，直接安装，舒适便捷。</p>
-<h2 id="生成方式"><a href="#生成方式" class="headerlink" title="生成方式"></a>生成方式</h2><p>在此文中，我们需要使用的插件为：pandoc-citeproc。</p>
-<p>那么使用如下指令生成：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pandoc --filter pandoc-citeproc --bibliography=你的文献库.bib --csl=chinese-gb7714-2005-numeric.csl  你的markdown文件.md -o  你的生成文件.docx</span><br></pre></td></tr></table></figure>
-<p>其中“–csl”选项为需要生成参考文献的具体格式标准。</p>
-<p>如果你单单只使用：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pandoc  markdown文件.md -o  生成的文件</span><br></pre></td></tr></table></figure>
-<p>将只进行最基础的文件渲染，比如转换为PDF格式。</p>
-<h1 id="参考文献（示例）"><a href="#参考文献（示例）" class="headerlink" title="参考文献（示例）"></a>参考文献（示例）</h1><p>[^1]: <a href="https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin</a> 富文本格式<br>[^2]: <a href="https://baike.baidu.com/item/markdown/3245829?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/markdown/3245829?fr=aladdin</a> markdown<br>[^3]: <a href="https://zh.wikipedia.org/wiki/Pandoc" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Pandoc</a> Pandoc</p>
-]]></content>
-      <categories>
-        <category>实用工具</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>pandoc</tag>
-        <tag>zotero</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo主题迁移and折腾记</title>
     <url>/posts/6009.html</url>
     <content><![CDATA[<p>老实说，其实为什么突然又开始折腾折腾主题了呢…….因为<strong><em>用NexT的人实在太多了</em></strong>。而我又不想让别人打开发现“和某个某个人的很像”。那样就失去了折腾的必要。因此我决定切换主题。另：本文在调整的相对安逸之前会持续更新。</p>
@@ -212,6 +63,16 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用nodejs+shellscript实现github-webhook</title>
+    <url>/posts/41471.html</url>
+    <content><![CDATA[<a id="more"></a>]]></content>
+      <tags>
+        <tag>webhook</tag>
+        <tag>nodejs</tag>
+        <tag>自动化流程</tag>
       </tags>
   </entry>
   <entry>
@@ -325,6 +186,174 @@
       </tags>
   </entry>
   <entry>
+    <title>使用pandoc撰写论文</title>
+    <url>/posts/1448.html</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>谁又说不可以呢？</p>
+<a id="more"></a>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>一般论文写作等会有如下痛点，包含：</p>
+<ul>
+<li>数学公式</li>
+<li>图片处理</li>
+<li>交叉引用、脚注、尾注</li>
+<li>参考文献的文献库处理</li>
+</ul>
+<p>当然大名鼎鼎的Microsoft Office当然能处理这些问题，但是与其说是能处理，不如说是处理的不当就会变得麻烦起来。在这些方面处理的最好的应该是LaTeX，但是由于其语法学习曲线非常陡峭，那么支持部分LaTeX特性的Markdown将是比较好的选择，处理得当时将包含如下特性：</p>
+<ul>
+<li>基于自然语言的数学公式处理</li>
+<li>HTML支持，意味着markdown的写作可以很灵活多变</li>
+<li>插件扩展的的流程图、甘特图、美人鱼图支持</li>
+<li>交叉引用、脚注、尾注、文献自动插入</li>
+<li>目录自动生成</li>
+</ul>
+<p>那么本文将简要的介绍下如何使用markdown来进行基本的写作。</p>
+<p>注：本文内容相对较多，但是请相信看完之后收获会是巨大的。</p>
+<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><blockquote>
+<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。<br>Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。[^2][@noauthor_markdown__nodate]</p>
+</blockquote>
+<p>看到这里很懵是不是？但是如果换种说法：DOC格式和markdown本是同根生，是不是就容易多了？DOC所有关键信息等均使用XML格式，而这个格式和markdown其实本质类似。区别是：</p>
+<p>（图片）</p>
+<p>哪个易读性更好一看便知。用markdown你能做什么？</p>
+<ul>
+<li>记笔记</li>
+<li>写网页</li>
+<li>其他</li>
+</ul>
+<h3 id="markdown编辑器推荐"><a href="#markdown编辑器推荐" class="headerlink" title="markdown编辑器推荐"></a>markdown编辑器推荐</h3><h4 id="Typora（全平台）"><a href="#Typora（全平台）" class="headerlink" title="Typora（全平台）"></a>Typora（全平台）</h4><p>所见即所得，只有用过的才知道多好用。功能最全。但是不能进行扩展。其实已有的功能已经非常够用了。</p>
+<h4 id="Mu（Mac-OS）"><a href="#Mu（Mac-OS）" class="headerlink" title="Mu（Mac OS）"></a>Mu（Mac OS）</h4><p>同样所见即所得，但是功能性比Typora弱。</p>
+<h4 id="Atom-或者-Visual-Studio-Code（全平台）"><a href="#Atom-或者-Visual-Studio-Code（全平台）" class="headerlink" title="Atom 或者 Visual Studio Code（全平台）"></a>Atom 或者 Visual Studio Code（全平台）</h4><p>伪装成IDE的文本编辑器，一般程序员以及编程爱好者无人不知，有巨量的插件扩展。能玩游戏看B站听歌聊QQ微信微博。摸鱼神器。</p>
+<h2 id="pandoc"><a href="#pandoc" class="headerlink" title="pandoc"></a>pandoc</h2><blockquote>
+<p>Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc使用Haskell语言编写，以命令行形式实现与用户的交互，可支持多种操作系统。[^3][@noauthor_pandoc_2017]</p>
+</blockquote>
+<p>那么它能处理的格式到底有多少种：</p>
+<p>（图片）</p>
+<p>图片上一个节点代表它能处理的一种格式。</p>
+<h2 id="富文本"><a href="#富文本" class="headerlink" title="富文本"></a>富文本</h2><blockquote>
+<p>富文本格式（Rich Text Format, 一般简称为RTF）是由微软公司开发的跨平台文档格式。一般的格式设置，比如字体和段落设置，页面设置等等信息都可以存在RTF格式中。[^1][@noauthor___nodate]</p>
+</blockquote>
+<p>这是狭义上的富文本，那么广义上的富文本是什么呢？就是所谓的当你编辑时所见即所得。没有谁希望编辑一个文件时还需要像二十年前一样还需要修修改源代码的吧？因此富文本及富文本编辑器的发明是非常重要的革新。但是这是不是意味着纯文本会消失呢？并不。富文本有着富文本的易用，纯文本有着纯文本的轻便。至少来讲，我可不希望在写作前写作后还需要花费大量时间插入参考资料或者调整文本的排版字体大小还是怎样。尤其在写作中如果遇到需要处理的图片，大部分人应该是相当头痛的——既需要照顾排版又不不希望切断思路。那么对于大多数只用到了Microsoft Office Word以及OneNote基础功能的人来说无论使用什么来编辑文档其实都差不了多少。</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="Markdown基础"><a href="#Markdown基础" class="headerlink" title="Markdown基础"></a>Markdown基础</h2><p>请不要把markdown视为非常可怕的东西。其实它非常容易掌握，而且对于使用者很友好——因为你在写作时的思路不会被打断，所有格式使用的语法非常简洁并全部可以通过一些文本实现。</p>
+<p>在使用之前，为了方便书写请确保你的输入法是处于半角状态（搜狗上是月牙和圆点，月牙为半角；微软拼音在设置里调整），使用半角输入会将你的输入速度无论是在是用什么都会提高一个等级。</p>
+<h3 id="标题类"><a href="#标题类" class="headerlink" title="标题类"></a>标题类</h3><p>Markdown的标题很容易表示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这时二级标题</span><br><span class="line">### 这是三级标题</span><br></pre></td></tr></table></figure>
+<p>每多一级标题就可以增加一个“#”。具体支持到哪级目录需要看渲染工具的支持，理论上无限。</p>
+<p><strong>注意：为了使格式生效请在“#”后记得加个空格</strong></p>
+<h3 id="标注类"><a href="#标注类" class="headerlink" title="标注类"></a>标注类</h3><h4 id="文本上的标注"><a href="#文本上的标注" class="headerlink" title="文本上的标注"></a>文本上的标注</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*斜体*</span>			</span><br><span class="line"><span class="strong">**加粗**</span></span><br><span class="line"><span class="strong">***加粗的斜体**</span>*</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">u</span>&gt;</span></span>下划线<span class="xml"><span class="tag">&lt;/<span class="name">u</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>当然你也可以使用下划线替换“*”，效果是一样的。</p>
+<h4 id="文内引用"><a href="#文内引用" class="headerlink" title="文内引用"></a>文内引用</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">代码：</span><br><span class="line">​<span class="code">```</span>你的代码语言</span><br><span class="line">echo helloworld;</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+<p>脚注：<br>这是一段实例文字。[^1]<br>[^1]: 这是实例文字的脚注，在生成的Word文档中会自动放置</p>
+<p>尾注：<br>这是一段实例文字。[@example P33 Weearc]<br>Reference:<br>(自动生成，不需要动它)</p>
+<p>下标：<br>~下标~</p>
+<p>段落引用：</p>
+<blockquote>
+<p>你要引用的段落</p>
+</blockquote>
+<p>说明：引用完成时请多加一个回车（换行符），引用时尖括号后需要空格<br><figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">以上是Markdown的基础语法部分，和普通六级专八词汇相比应该是简单的不是一星半点吧。</span><br><span class="line"></span><br><span class="line">### 链接类</span><br><span class="line"></span><br><span class="line">#### 图片</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line">![图片的说明](图片位置)</span><br></pre></td></tr></table></figure></p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">链接的说明文字</span>](<span class="link">链接</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="markdown进阶"><a href="#markdown进阶" class="headerlink" title="markdown进阶"></a>markdown进阶</h2><h3 id="表格类"><a href="#表格类" class="headerlink" title="表格类"></a>表格类</h3><h5 id="基本表格（不含单元格合并）"><a href="#基本表格（不含单元格合并）" class="headerlink" title="基本表格（不含单元格合并）"></a>基本表格（不含单元格合并）</h5><p>基本的一个三乘三表格</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|title1|title2|title3|</span><br><span class="line">|:-----|:----:|-----:|</span><br><span class="line">|左侧对齐|居中|右侧对齐|</span><br><span class="line">|x|y|z|</span><br></pre></td></tr></table></figure>
+<p>生成效果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">title1</th>
+<th style="text-align:center">title2</th>
+<th style="text-align:right">title3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">左侧对齐</td>
+<td style="text-align:center">居中</td>
+<td style="text-align:right">右侧对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:center">y</td>
+<td style="text-align:right">z</td>
+</tr>
+</tbody>
+</table>
+<h5 id="HTML表格（包含单元格合并的）"><a href="#HTML表格（包含单元格合并的）" class="headerlink" title="HTML表格（包含单元格合并的）"></a>HTML表格（包含单元格合并的）</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列一<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>合并行<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列一<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>合并列<span class="tag">&lt;/<span class="name">td</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> &gt;</span>行二列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> &gt;</span>行三列二<span class="tag">&lt;/<span class="name">td</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<table><br>    <tr><br>        <td>列一</td><br>        <td>列二</td><br>   </tr><br>   <tr><br>        <td colspan="2">合并行</td><br>   </tr><br>   <tr><br>        <td>列一</td><br>        <td>列二</td><br>   </tr><br>    <tr><br>        <td rowspan="2">合并列</td><br>        <td>行二列二</td><br>    </tr><br>    <tr><br>        <td>行三列二</td><br>    </tr><br></table>
+
+<h3 id="公式类"><a href="#公式类" class="headerlink" title="公式类"></a>公式类</h3><p>此节主要包含数学公式，使用LaTeX数学公式语法。</p>
+<h5 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">x^n</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>生成为：$x^n$</p>
+<h5 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">C^2_3</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>选择数： $C^2_3$</p>
+<h5 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h5><p>一个不包含tag的多项式</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">T(n)=\begin&#123;cases&#125;</span><br><span class="line">\Theta(1)\quad n=1\\</span><br><span class="line">T(n-q)+\Theta(n) \quad n&gt;1</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>那么生成的公式如下：</p>
+<p>$T(n)=\begin{cases}<br>\Theta(1)\quad n=1\<br>T(n-q)+\Theta(n) \quad n&gt;1<br>\end{cases}$</p>
+<h5 id="矩阵及行列式"><a href="#矩阵及行列式" class="headerlink" title="矩阵及行列式"></a>矩阵及行列式</h5><p>一个包含tag的矩阵[@noauthor_markdown_nodate-1]</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line"> \begin&#123;bmatrix&#125;</span><br><span class="line">   1 &amp; 2 &amp; 3 \\</span><br><span class="line">   4 &amp; 5 &amp; 6 \\</span><br><span class="line">   7 &amp; 8 &amp; 9</span><br><span class="line">  \end&#123;bmatrix&#125; \tag&#123;1&#125;</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{bmatrix}<br>   1 &amp; 2 &amp; 3 \<br>   4 &amp; 5 &amp; 6 \<br>   7 &amp; 8 &amp; 9 \<br>  \end{bmatrix} \tag{1}<br>$$</p>
+<h5 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$</span><br><span class="line">J(\theta) = \frac&#123;1&#125;&#123;2m&#125;\sum_&#123;i=0&#125;^m(y^i - h_\theta(x^i))^2</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>生成的均方差公式为：</p>
+<p>$J(\theta) = \frac{1}{2m}\sum_{i=0}^m(y^i - h_\theta(x^i))^2$</p>
+<h5 id="还有很多…"><a href="#还有很多…" class="headerlink" title="还有很多…"></a>还有很多…</h5><p>LaTeX的数学公式异常灵活，其余语法可以自行查阅。</p>
+<h3 id="信息类"><a href="#信息类" class="headerlink" title="信息类"></a>信息类</h3><h4 id="YAML样式的信息"><a href="#YAML样式的信息" class="headerlink" title="YAML样式的信息"></a>YAML样式的信息</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 这是一个标题</span><br><span class="line">time: 2019</span><br><span class="line">TOC: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>那么将生成自动目录以及包含时间信息的文章标题部分。</p>
+<h4 id="XML样式信息"><a href="#XML样式信息" class="headerlink" title="XML样式信息"></a>XML样式信息</h4><p>如果你更熟悉XML，直接上吧骚年！</p>
+<h3 id="导图类"><a href="#导图类" class="headerlink" title="导图类"></a>导图类</h3><p>使用markdown可以通过公式方式扩展来写流程图等。[@noauthor_typora__nodate]</p>
+<h4 id="甘特图-时序图"><a href="#甘特图-时序图" class="headerlink" title="甘特图(时序图)"></a>甘特图(时序图)</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">​<span class="code">```</span>mermaid</span><br><span class="line">  sequenceDiagram</span><br><span class="line"><span class="code">    participant 张三</span></span><br><span class="line"><span class="code">    participant 李四</span></span><br><span class="line"><span class="code">    张三-&gt;王五: 王五你好吗？</span></span><br><span class="line"><span class="code">    loop 健康检查</span></span><br><span class="line"><span class="code">        王五-&gt;王五: 与疾病战斗</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...</span></span><br><span class="line"><span class="code">    李四--&gt;&gt;张三: 很好!</span></span><br><span class="line"><span class="code">    王五-&gt;李四: 你怎么样?</span></span><br><span class="line"><span class="code">    李四--&gt;王五: 很好!</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```mermaid</span><br><span class="line"></span><br><span class="line">%% 时序图例子,-&gt; 直线，--&gt;虚线，-&gt;&gt;实线箭头</span><br><span class="line"></span><br><span class="line">  sequenceDiagram</span><br><span class="line"></span><br><span class="line">    participant 张三</span><br><span class="line"></span><br><span class="line">    participant 李四</span><br><span class="line"></span><br><span class="line">    张三-&gt;王五: 王五你好吗？</span><br><span class="line"></span><br><span class="line">    loop 健康检查</span><br><span class="line"></span><br><span class="line">        王五-&gt;王五: 与疾病战斗</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...</span><br><span class="line"></span><br><span class="line">    李四--&gt;&gt;张三: 很好!</span><br><span class="line"></span><br><span class="line">    王五-&gt;李四: 你怎么样?</span><br><span class="line"></span><br><span class="line">    李四--&gt;王五: 很好!</span><br></pre></td></tr></table></figure>
+<h4 id="美人鱼图"><a href="#美人鱼图" class="headerlink" title="美人鱼图"></a>美人鱼图</h4><p>一个示例的美人鱼图：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">​<span class="code">```</span>mermaid</span><br><span class="line">graph TD</span><br><span class="line">client1--&gt;|read / write|SVN((SVN server))</span><br><span class="line">client2--&gt;|read only|SVN</span><br><span class="line">client3--&gt;|read / write|SVN</span><br><span class="line">client4--&gt;|read only|SVN</span><br><span class="line">client5(...)--&gt;SVN</span><br><span class="line">SVN---|store the data|sharedrive</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">```mermaid</span><br><span class="line">graph TD</span><br><span class="line">client1--&gt;|<span class="type">read</span> / write|<span class="type">SVN</span>((SVN server))</span><br><span class="line">client2--&gt;|<span class="type">read</span> only|<span class="type">SVN</span></span><br><span class="line">client3--&gt;|<span class="type">read</span> / write|<span class="type">SVN</span></span><br><span class="line">client4--&gt;|<span class="type">read</span> only|<span class="type">SVN</span></span><br><span class="line">client5(...)--&gt;SVN</span><br><span class="line">SVN---|<span class="type">store</span> the data|<span class="type">sharedrive</span></span><br></pre></td></tr></table></figure>
+<p>此处参考</p>
+<h1 id="与文献管理工具互动"><a href="#与文献管理工具互动" class="headerlink" title="与文献管理工具互动"></a>与文献管理工具互动</h1><p>为什么不推荐使用word自带的文献管理器，因为Zotero以及Mandelay等文献管理器更加强大而且易用，包含比如PDF阅读、文献检索、文献关联设置、关键词等。</p>
+<p>这里只对zotero文献管理器与markdown论文撰写的互动进行说明。</p>
+<h2 id="Zotero"><a href="#Zotero" class="headerlink" title="Zotero"></a>Zotero</h2><p>首先到Zotero官网下载软件本体进行安装，然后按照提示安装浏览器插件。使用如下图：</p>
+<p>（gif）</p>
+<p>之后你可以在Zotero导出参考文献。导出时请选择Bibtex格式。需要生成参考文献时直接将导出的文件用文本编辑器打开并进行如下操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#一个实例的bib文件内容</span><br><span class="line">@misc&#123;noauthor_britains_nodate,</span><br><span class="line">        title = &#123;Britain’s imperial fantasies have given us &#123;Brexit&#125; &#123;\textbar&#125; &#123;Gary&#125; &#123;Younge&#125; &#123;\textbar&#125; &#123;Opinion&#125; &#123;\textbar&#125; &#123;The&#125; &#123;Guardian&#125;&#125;,</span><br><span class="line">        url = &#123;https://www.theguardian.com/commentisfree/2018/feb/03/imperial-fantasies-brexit-theresa-may&#125;,</span><br><span class="line">        urldate = &#123;2019-04-29&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这里引用了参考[@noauthor<span class="emphasis">_britains_</span>nodate]</span><br></pre></td></tr></table></figure>
+<p>即将包含“@misc”行行首大括号后内容前加“@”用中括号“[]”包裹放在需要引用的位置。生成文件时会自动在文末添加参考文献。[@noauthor_markdown_nodate]</p>
+<h1 id="使用pandoc生成（最后一步了）"><a href="#使用pandoc生成（最后一步了）" class="headerlink" title="使用pandoc生成（最后一步了）"></a>使用pandoc生成（最后一步了）</h1><h2 id="pandoc安装"><a href="#pandoc安装" class="headerlink" title="pandoc安装"></a>pandoc安装</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>Windows用户可以再官网下载EXE文件进行安装，并安装Python3使用pip安装pandoc的其他扩展。</p>
+<h3 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h3><p>Mac用户可以使用brew来安装pandoc，并使用pip来添加扩展</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>重点说一下Linux，以证明使用Linux同样可以撰写论文。</p>
+<p>大多数Linux发行版的仓库内包含pandoc，并默认有pip。使用pip可安装扩展。</p>
+<h4 id="对于Arch-Linux"><a href="#对于Arch-Linux" class="headerlink" title="对于Arch Linux"></a>对于Arch Linux</h4><p>Arch Linux仓库中为pandoc以及LaTeX全部扩展进行了打包，直接安装，舒适便捷。</p>
+<h2 id="生成方式"><a href="#生成方式" class="headerlink" title="生成方式"></a>生成方式</h2><p>在此文中，我们需要使用的插件为：pandoc-citeproc。</p>
+<p>那么使用如下指令生成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pandoc --filter pandoc-citeproc --bibliography=你的文献库.bib --csl=chinese-gb7714-2005-numeric.csl  你的markdown文件.md -o  你的生成文件.docx</span><br></pre></td></tr></table></figure>
+<p>其中“–csl”选项为需要生成参考文献的具体格式标准。</p>
+<p>如果你单单只使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pandoc  markdown文件.md -o  生成的文件</span><br></pre></td></tr></table></figure>
+<p>将只进行最基础的文件渲染，比如转换为PDF格式。</p>
+<h1 id="参考文献（示例）"><a href="#参考文献（示例）" class="headerlink" title="参考文献（示例）"></a>参考文献（示例）</h1><p>[^1]: <a href="https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin</a> 富文本格式<br>[^2]: <a href="https://baike.baidu.com/item/markdown/3245829?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/markdown/3245829?fr=aladdin</a> markdown<br>[^3]: <a href="https://zh.wikipedia.org/wiki/Pandoc" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Pandoc</a> Pandoc</p>
+]]></content>
+      <categories>
+        <category>实用工具</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>pandoc</tag>
+        <tag>zotero</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>杂谈</title>
+    <url>/posts/12326.html</url>
+    <content><![CDATA[<p>人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。</p>
+<a id="more"></a>
+<p>近两年的个人状态可以说是非常奇怪了。总结下来也无非是开头那句话。正因为害怕空虚所以去做各种事情，将自己的时间填满。不过，就算空着的时间都填满了，难道就会感到满足了吗？我不以为意。反而感觉更加的空虚。说白了，这种因为空虚所以选择让自己看起来很忙的行为无异于饮鸩止渴，逞一时之快后患无穷。究其原因还是因为少了方向感。</p>
+<p>高考前之所以能稳住拼尽全力，也无非是因为只需要考虑怎么答题就对了，脑子里什么都不需要想。拼命学了三年需要有一个突破口，一个来发泄的点。然后进入了大学，不再如同高中，可以考虑可以尝试的东西极大丰富，本来就患有选择困难的我人生第一次感到如此迷茫。专业不是我喜欢的、但是成绩又不是最好的、喜欢的东西在侵占我的时间、但是不喜欢的东西却本需要大把时间。越是想逃离就越是逃不掉，最后深陷其中。坦然接受现状虽然是最佳选择，不过，我又浪费掉了一年。确实可以有很多，但是似乎在前途面前都是苍白无力。每次回家看到父母日渐衰老，家事变化也不由得暗自落泪。</p>
+<p>家人倒也不像是其他人说的那样对我寄予厚望，到时自己越是给说一般般平平常常就可以越是感到压力倍增。正因为看到了家人的辛苦之处，才想变得更强将来可以保护家人；越是想变得更强越是对现状不满，对自己不满；越是对自己不满就越是急切的想找到目标。然而我没有目标。因此愈发感到无比空虚。因此就尝试做很多事情，又因为本身学习能力并不差所以就学会很多事情，以此可以更好地消磨时间。</p>
+<p>我急切的需要摆脱这种现状，那么最好的办法我希望不再是定下长远的目标，而是短时间内先从眼前的事情做好。以前到时很瞧不起做计划之类的，总觉得“到时候总会有办法”，不过现在看前人的经验真的是正确无比，所谓摸着石头过河也是需要摸到下一个石头的位置，更长远的目标就是“对岸”。重新来过的这一年，我仍不希望自己空虚，那么就尝试换成另外一种方法填满自己算了。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo主题模版改造记录</title>
     <url>/posts/31380.html</url>
     <content><![CDATA[<p>有时候就是心血来潮才想搞一些好玩的，假期一旦懒下来人就待完了。</p>
@@ -426,6 +455,18 @@
       </tags>
   </entry>
   <entry>
+    <title>一言 20200319</title>
+    <url>/posts/3498.html</url>
+    <content><![CDATA[<p>人完全可以为自己的愤怒而感到庆幸，因为它维系了自己的价值观。</p>
+]]></content>
+      <categories>
+        <category>一言</category>
+      </categories>
+      <tags>
+        <tag>一言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>有失公允？ 红米AC2100路由器体验</title>
     <url>/posts/32494.html</url>
     <content><![CDATA[<p>往年这个时间就已经回到学校了，今年算是个例外也正好给家里换一下老旧设备。</p>
@@ -450,18 +491,6 @@
         <tag>路由器</tag>
         <tag>Redmi</tag>
         <tag>小米</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一言 20200319</title>
-    <url>/posts/3498.html</url>
-    <content><![CDATA[<p>人完全可以为自己的愤怒而感到庆幸，因为它维系了自己的价值观。</p>
-]]></content>
-      <categories>
-        <category>一言</category>
-      </categories>
-      <tags>
-        <tag>一言</tag>
       </tags>
   </entry>
   <entry>
@@ -718,10 +747,27 @@
       </tags>
   </entry>
   <entry>
+    <title>Redmi K30 pro 完整体验(后篇)</title>
+    <url>/posts/34801.html</url>
+    <content><![CDATA[<p>上一篇：<a href="https://blog.weearc.top/posts/155.html">redmi K30 Pro 简评</a></p>
+<p>曾经的我虽然高高兴兴的用着类原生，但中午就得赶快回去充电否则下午晚上直接“人间蒸发”；曾经的我高高兴兴看着 2K 分辨率的顶级 LCD 屏幕，听着超强的双扬声器播放的歌曲，但是机器却时刻可能因为过热直接关机 … 这样的生活似乎已经结束，至少现在，我不必因为全天任何时间点不充电导致自己彻底失联，我也不用因为过热关机导致许多尴尬事情。但是相对的，我逐渐习惯了 1080P 分辨率的屏幕，我逐渐适应了尽管只有类 DC 调光的显示，也适应了原本听上去就感觉极度不适的单扬声器。</p>
+<p>仔细想了一想可能不是因为手机换了我才如此“佛系”，周围的环境、自己的心理状况也多少变得不那么急功近利了，以至于最近在和老妈打电话的时候她直言我变得成熟，又恢复以前的健康的状态了。曾经的我因为高中出来也算是年级相当顶尖的选手，到大学却颇感力不从心，第一次中期考试的不及格更是雪上加霜。所谓心态爆炸大概就是说的那个时候的我。负面情绪占据了自己，自己也躲在尖刺之后，悄悄地舔舐伤口却又渴望他人带来的救赎，然而最终我也没能等到。自己还是要靠自己，所以我选择了逃避一年，无论付出了什么代价自己都要去承受，好朋友都变成了学长，学着更难以理解的课程，更换校区后更是有了新的交际圈，曾经一度以为我可能就这么被遗忘了。但毕竟是自己的选择，就算是狗屎也得忍着。</p>
+<p>（没写完）</p>
+]]></content>
+      <categories>
+        <category>玩赏</category>
+      </categories>
+      <tags>
+        <tag>小米</tag>
+        <tag>redmi</tag>
+        <tag>红米 k30 pro</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/posts/16107.html</url>
     <content><![CDATA[<h1 id="Hello-World！"><a href="#Hello-World！" class="headerlink" title="Hello World！"></a>Hello World！</h1><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<details><summary>hello world 原文</summary><br><h1>Quick Start</h1><br><h2>Create a new post</h2><br><figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a><br><h2>Run server</h2><br><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a><br><h2>Generate static files</h2><br><figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">generate</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a><br><h2>Deploy to remote sites</h2><br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo deploy</span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a><br><br>PS:你可知道为了书写折叠区域的艰辛…结果发现就是如下一些代码结果我连next都升级了…配置文件全部需要重新搞。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">details</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">summary</span>&gt;</span><span class="comment">&lt;!--折叠区域的提示词--&gt;</span><span class="tag">&lt;/<span class="name">summary</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--折叠的内容--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">details</span>&gt;</span></span><br></pre></td></tr></table></figure><br><br>这段原文当然是没有的啊混蛋！！<br></details>
+<details><summary>hello world 原文</summary><br><h1>Quick Start</h1><br><h2>Create a new post</h2><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a><br><h2>Run server</h2><br><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a><br><h2>Generate static files</h2><br><figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">$ hexo <span class="keyword">generate</span></span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a><br><h2>Deploy to remote sites</h2><br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo deploy</span><br></pre></td></tr></table></figure><br><br>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a><br><br>PS:你可知道为了书写折叠区域的艰辛…结果发现就是如下一些代码结果我连next都升级了…配置文件全部需要重新搞。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">details</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">summary</span>&gt;</span><span class="comment">&lt;!--折叠区域的提示词--&gt;</span><span class="tag">&lt;/<span class="name">summary</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--折叠的内容--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">details</span>&gt;</span></span><br></pre></td></tr></table></figure><br><br>这段原文当然是没有的啊混蛋！！<br></details>
 
 <h1 id="hello-again"><a href="#hello-again" class="headerlink" title="hello, again"></a>hello, again</h1><h2 id="hello-hexo！"><a href="#hello-hexo！" class="headerlink" title="hello hexo！"></a>hello hexo！</h2><p>想了一想。还是打算把hello world.md搞回来。一来是一个项目（虽然称不上是项目）没有了hello world感觉很是让人失落；二来是想记录下自己创建博客的心路历程。参考了<a href="https://purefkh.xyz/about/" target="_blank" rel="noopener">这篇</a>以及<a href="http://aoaoao.me/2018/04/15/hello-world/#%E4%BF%9D%E7%95%99%E7%9A%84%E5%86%85%E5%AE%B9" target="_blank" rel="noopener">这篇</a>以后决定好好写一写这篇文章，改造一下hello world。</p>
 <p>如果各位看的比较仔细的话会发现这篇文章的日期与我的第一篇文章创建日期刚好隔了一年时间。这一年时间，说长不长说短不短，只是一直感觉少了些什么。让人颇为失落。</p>
@@ -743,6 +789,16 @@
       </categories>
       <tags>
         <tag>hello-word</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>drcom-python CQU-HX</title>
+    <url>/posts/2868.html</url>
+    <content><![CDATA[<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><h2 id="转载信息：这个文件是在drcom-python版本基础上进行制作的"><a href="#转载信息：这个文件是在drcom-python版本基础上进行制作的" class="headerlink" title="转载信息：这个文件是在drcom-python版本基础上进行制作的"></a>转载信息：这个文件是在drcom-python版本基础上进行制作的</h2><h2 id="使用时请严格按照说明来操作否则出现问题概不负责"><a href="#使用时请严格按照说明来操作否则出现问题概不负责" class="headerlink" title="使用时请严格按照说明来操作否则出现问题概不负责"></a>使用时请严格按照说明来操作否则出现问题概不负责</h2><h4 id="请勿用作商业用途"><a href="#请勿用作商业用途" class="headerlink" title="请勿用作商业用途"></a>请勿用作商业用途</h4><a id="more"></a>
+<h1 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h1><h2 id="请先搜索并安装python2-7-x版本"><a href="#请先搜索并安装python2-7-x版本" class="headerlink" title="请先搜索并安装python2.7.x版本"></a>请先搜索并安装python2.7.x版本</h2><p>传送门（ <a href="https://www.python.org/downloads/release/python-2714/" target="_blank" rel="noopener">python2.7.14</a>）</p>
+<h2 id="然后根据您的操作系统选择安装"><a href="#然后根据您的操作系统选择安装" class="headerlink" title="然后根据您的操作系统选择安装"></a>然后根据您的操作系统选择安装</h2><h2 id="然后打开python文件就是-link-py-，配置校园网用户名和密码"><a href="#然后打开python文件就是-link-py-，配置校园网用户名和密码" class="headerlink" title="然后打开python文件就是 link.py ，配置校园网用户名和密码"></a>然后打开python文件就是 link.py ，配置校园网用户名和密码</h2><h2 id="再把它放到个人文件夹（比如Administrator）下这样就完成了！！！"><a href="#再把它放到个人文件夹（比如Administrator）下这样就完成了！！！" class="headerlink" title="再把它放到个人文件夹（比如Administrator）下这样就完成了！！！"></a>再把它放到个人文件夹（比如Administrator）下这样就完成了！！！</h2><h3 id="如果嫌麻烦，把我提供的-link-bat-也放到个人文件夹下然后每次只要双击link-bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋"><a href="#如果嫌麻烦，把我提供的-link-bat-也放到个人文件夹下然后每次只要双击link-bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋" class="headerlink" title="如果嫌麻烦，把我提供的 link.bat 也放到个人文件夹下然后每次只要双击link.bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋"></a>如果嫌麻烦，把我提供的 link.bat 也放到个人文件夹下然后每次只要双击link.bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋</h3><h2 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a><a href="https://github.com/weearc/drcom-pyFor-CQU-HX.git" target="_blank" rel="noopener">github</a>地址</h2>]]></content>
+      <tags>
+        <tag>drcom</tag>
       </tags>
   </entry>
   <entry>
@@ -891,16 +947,6 @@
         <tag>js</tag>
         <tag>教程</tag>
         <tag>转载文章</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>drcom-python CQU-HX</title>
-    <url>/posts/2868.html</url>
-    <content><![CDATA[<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><h2 id="转载信息：这个文件是在drcom-python版本基础上进行制作的"><a href="#转载信息：这个文件是在drcom-python版本基础上进行制作的" class="headerlink" title="转载信息：这个文件是在drcom-python版本基础上进行制作的"></a>转载信息：这个文件是在drcom-python版本基础上进行制作的</h2><h2 id="使用时请严格按照说明来操作否则出现问题概不负责"><a href="#使用时请严格按照说明来操作否则出现问题概不负责" class="headerlink" title="使用时请严格按照说明来操作否则出现问题概不负责"></a>使用时请严格按照说明来操作否则出现问题概不负责</h2><h4 id="请勿用作商业用途"><a href="#请勿用作商业用途" class="headerlink" title="请勿用作商业用途"></a>请勿用作商业用途</h4><a id="more"></a>
-<h1 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h1><h2 id="请先搜索并安装python2-7-x版本"><a href="#请先搜索并安装python2-7-x版本" class="headerlink" title="请先搜索并安装python2.7.x版本"></a>请先搜索并安装python2.7.x版本</h2><p>传送门（ <a href="https://www.python.org/downloads/release/python-2714/" target="_blank" rel="noopener">python2.7.14</a>）</p>
-<h2 id="然后根据您的操作系统选择安装"><a href="#然后根据您的操作系统选择安装" class="headerlink" title="然后根据您的操作系统选择安装"></a>然后根据您的操作系统选择安装</h2><h2 id="然后打开python文件就是-link-py-，配置校园网用户名和密码"><a href="#然后打开python文件就是-link-py-，配置校园网用户名和密码" class="headerlink" title="然后打开python文件就是 link.py ，配置校园网用户名和密码"></a>然后打开python文件就是 link.py ，配置校园网用户名和密码</h2><h2 id="再把它放到个人文件夹（比如Administrator）下这样就完成了！！！"><a href="#再把它放到个人文件夹（比如Administrator）下这样就完成了！！！" class="headerlink" title="再把它放到个人文件夹（比如Administrator）下这样就完成了！！！"></a>再把它放到个人文件夹（比如Administrator）下这样就完成了！！！</h2><h3 id="如果嫌麻烦，把我提供的-link-bat-也放到个人文件夹下然后每次只要双击link-bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋"><a href="#如果嫌麻烦，把我提供的-link-bat-也放到个人文件夹下然后每次只要双击link-bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋" class="headerlink" title="如果嫌麻烦，把我提供的 link.bat 也放到个人文件夹下然后每次只要双击link.bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋"></a>如果嫌麻烦，把我提供的 link.bat 也放到个人文件夹下然后每次只要双击link.bat就可以了！！！用这个方法可以避开开热点的检测，超好用，配合win10的开热点工具简直美滋滋</h3><h2 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a><a href="https://github.com/weearc/drcom-pyFor-CQU-HX.git" target="_blank" rel="noopener">github</a>地址</h2>]]></content>
-      <tags>
-        <tag>drcom</tag>
       </tags>
   </entry>
   <entry>
@@ -1214,62 +1260,6 @@
       </tags>
   </entry>
   <entry>
-    <title>manjaro下生存报告</title>
-    <url>/posts/35108.html</url>
-    <content><![CDATA[<p>今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就<a id="more"></a>只好做做本地化工作了。传送门：<a href="http://l10n.gnome.org/teams/" target="_blank" rel="noopener">gnome翻译组</a><br>其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。<img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro1.png" alt="manjaro"><br>上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．．<br>于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：<a href="https://weearc.github.io/2018/04/25/manjaro-linux-kde-edition%E8%B0%83%E6%95%99%E8%AE%B0%E5%BD%95/" target="_blank" rel="noopener">manjaro linux kde edition调教记录</a>效果图如下:<br><img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro/2.png" alt="manjaro"></p>
-<h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><p>其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。
-　</p>
-<blockquote>
-<p>“那我为什么又说无法反驳？”</p>
-</blockquote>
-<p>我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。</p>
-<blockquote>
-<p>但是使用体验仍然不够好。</p>
-</blockquote>
-<p>就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件…使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。</p>
-<blockquote>
-<p>“你这家伙是闭源商业狗”</p>
-</blockquote>
-<p>如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？</p>
-<blockquote>
-<p>那为什么现在我又不愿意离开？</p>
-</blockquote>
-<p>我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。<br>老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。</p>
-<h3 id="开源与闭源，我的个人经历"><a href="#开源与闭源，我的个人经历" class="headerlink" title="开源与闭源，我的个人经历"></a>开源与闭源，我的个人经历</h3><h4 id="开源与开源组织；闭源与商业化组织"><a href="#开源与开源组织；闭源与商业化组织" class="headerlink" title="开源与开源组织；闭源与商业化组织"></a>开源与开源组织；闭源与商业化组织</h4><h4 id="开源的好处，弊端；为什么仍有人选择开源作品"><a href="#开源的好处，弊端；为什么仍有人选择开源作品" class="headerlink" title="开源的好处，弊端；为什么仍有人选择开源作品"></a>开源的好处，弊端；为什么仍有人选择开源作品</h4><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
-      <categories>
-        <category>待填坑</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>manjaro</tag>
-        <tag>生存记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>怀念，甚想念，无法想念其一</title>
-    <url>/posts/32312.html</url>
-    <content><![CDATA[<p>春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。</p>
-<a id="more"></a>
-<p>第一篇按照习惯我也不会谈技术反正就我那点知识也没有什么好拿出来讲的。因此今天还是打算随意写一写，毕竟写的开心就完事了。</p>
-<p>然后呢…不知道大家有没有接到过类似的短信：</p>
-<blockquote>
-<p>温馨提示:为守护三亚的蓝天白云，三亚全市严禁露天焚烧秸杆垃圾，三亚主城区及学校、医院、住宅小区等重点区域严禁燃放烟花爆竹，主城区公共场所严禁露天烧烤和祭祀烧纸，寺庙道观严禁燃烧高香。违者将予以处罚。请自觉遵守，共建生态文明三亚。—三亚市人民政府</p>
-</blockquote>
-<p>嘛，倒是一下子透露了我过年的地点，不过呢，倒是也接到重庆市政府类似的短信。保护环境嘛，没办法的事。可是仔细想一想，好像没像小时候那样过年有些时日了。</p>
-<p>回想小时候，每年必定是过年的前几天开始，采买、打扫、准备过年需要用到的一些小玩意儿这些一样没少过。也在过年前几天把家里的窗帘全部卸下然后清洗，再一个个装回去。也曾学着用五洁粉然后对着白色人造石的窗台一顿猛擦直到全部都变亮变白位置……虽然看着麻烦实际也确实麻烦，但是却是在多少年以后的今天令人感觉还能感受到年味的那些回忆。等到春节当天，中午出门去祖父母家，和兄长姐姐一起玩，去放点小鞭儿，冰天雪地的把自己裹成肉丸子到楼下的大平台上去“作妖儿”，往垃圾道里扔二踢脚什么的也是没少干。回来吃年夜饭，年年都是那几个菜色不变样却也是吃不腻，挺奇怪的。而后回家包饺子，看看电视。</p>
-<p>那个时候赵本山老师还是春晚的红人，小品也不像现在这么尬，动不动就煽情动不动就歌颂。过去春晚创造了不少梗，歌手们也都是真实的实力派，每一样节目都让人觉得不会看腻，就连后半夜的节目都非常有意思。如果现在春晚都为了挽救收视率而接着一些东风并且请一些实力派的歌手也好演员也好回到那个舞台，就算看到那那些熟悉的面孔我也是觉得没有必要再看下去了，尬得要死的东西我为什么不做点自己觉得有意义的事情而非要和春晚死磕呢？</p>
-<p>我确实是相当恋旧，也知道所有东西不可能一成不变，不过还是觉得以前那种有过年气氛的过年只能活在记忆中实在是太可惜了。家里人都分散开了，今年也没能回去看祖母，祖父已经不在人世，很多事情不停地在变。越是想抓住想将那个那些个美好的时光据为己有，越是在发现它在眼前不断地消散的同时感觉心如刀绞。过去已经回不去了，一般都会在这个时间说“应该勇敢的面对未来”吧？但是老实说越是长大就越觉得一些事情不可思议，越觉得害怕面对未来，越想仅仅活在回忆中哪怕知道那些已经是梦，已经不可能在实现了。那么就没有办法了，总不能停下，未规划好的将来也需要考虑——不过不是出于个人意愿，而是出于“对自己负责”的责任。背负了那么多期望以及责任，既然已经背负起来了就不可能轻易地在将那些卸下去。责任就是责任，烙印一般的东西。</p>
-<p>新的一年，愿各位身体健康，家庭和睦，工作顺利，学习进步。如果看完了我这么多牢骚话还没厌烦的话可以期待一下下一篇，不是牢骚也不是随笔，既然是技术博客那么技术类的不能少。新的一年希望自己能把坑填完，开个新坑，把日语复习一下最重要的是挂科的那几科一定要考过，真的不想再重修遭受那个罪了orz。</p>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>新年折腾记---从Manjaro迁移到Arch</title>
     <url>/posts/30549.html</url>
     <content><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p>
@@ -1299,6 +1289,29 @@
       <tags>
         <tag>archlinux</tag>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怀念，甚想念，无法想念其一</title>
+    <url>/posts/32312.html</url>
+    <content><![CDATA[<p>春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。</p>
+<a id="more"></a>
+<p>第一篇按照习惯我也不会谈技术反正就我那点知识也没有什么好拿出来讲的。因此今天还是打算随意写一写，毕竟写的开心就完事了。</p>
+<p>然后呢…不知道大家有没有接到过类似的短信：</p>
+<blockquote>
+<p>温馨提示:为守护三亚的蓝天白云，三亚全市严禁露天焚烧秸杆垃圾，三亚主城区及学校、医院、住宅小区等重点区域严禁燃放烟花爆竹，主城区公共场所严禁露天烧烤和祭祀烧纸，寺庙道观严禁燃烧高香。违者将予以处罚。请自觉遵守，共建生态文明三亚。—三亚市人民政府</p>
+</blockquote>
+<p>嘛，倒是一下子透露了我过年的地点，不过呢，倒是也接到重庆市政府类似的短信。保护环境嘛，没办法的事。可是仔细想一想，好像没像小时候那样过年有些时日了。</p>
+<p>回想小时候，每年必定是过年的前几天开始，采买、打扫、准备过年需要用到的一些小玩意儿这些一样没少过。也在过年前几天把家里的窗帘全部卸下然后清洗，再一个个装回去。也曾学着用五洁粉然后对着白色人造石的窗台一顿猛擦直到全部都变亮变白位置……虽然看着麻烦实际也确实麻烦，但是却是在多少年以后的今天令人感觉还能感受到年味的那些回忆。等到春节当天，中午出门去祖父母家，和兄长姐姐一起玩，去放点小鞭儿，冰天雪地的把自己裹成肉丸子到楼下的大平台上去“作妖儿”，往垃圾道里扔二踢脚什么的也是没少干。回来吃年夜饭，年年都是那几个菜色不变样却也是吃不腻，挺奇怪的。而后回家包饺子，看看电视。</p>
+<p>那个时候赵本山老师还是春晚的红人，小品也不像现在这么尬，动不动就煽情动不动就歌颂。过去春晚创造了不少梗，歌手们也都是真实的实力派，每一样节目都让人觉得不会看腻，就连后半夜的节目都非常有意思。如果现在春晚都为了挽救收视率而接着一些东风并且请一些实力派的歌手也好演员也好回到那个舞台，就算看到那那些熟悉的面孔我也是觉得没有必要再看下去了，尬得要死的东西我为什么不做点自己觉得有意义的事情而非要和春晚死磕呢？</p>
+<p>我确实是相当恋旧，也知道所有东西不可能一成不变，不过还是觉得以前那种有过年气氛的过年只能活在记忆中实在是太可惜了。家里人都分散开了，今年也没能回去看祖母，祖父已经不在人世，很多事情不停地在变。越是想抓住想将那个那些个美好的时光据为己有，越是在发现它在眼前不断地消散的同时感觉心如刀绞。过去已经回不去了，一般都会在这个时间说“应该勇敢的面对未来”吧？但是老实说越是长大就越觉得一些事情不可思议，越觉得害怕面对未来，越想仅仅活在回忆中哪怕知道那些已经是梦，已经不可能在实现了。那么就没有办法了，总不能停下，未规划好的将来也需要考虑——不过不是出于个人意愿，而是出于“对自己负责”的责任。背负了那么多期望以及责任，既然已经背负起来了就不可能轻易地在将那些卸下去。责任就是责任，烙印一般的东西。</p>
+<p>新的一年，愿各位身体健康，家庭和睦，工作顺利，学习进步。如果看完了我这么多牢骚话还没厌烦的话可以期待一下下一篇，不是牢骚也不是随笔，既然是技术博客那么技术类的不能少。新的一年希望自己能把坑填完，开个新坑，把日语复习一下最重要的是挂科的那几科一定要考过，真的不想再重修遭受那个罪了orz。</p>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -1452,32 +1465,36 @@
       </tags>
   </entry>
   <entry>
-    <title>使用nodejs+shellscript实现github-webhook</title>
-    <url>/posts/41471.html</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
-      <tags>
-        <tag>webhook</tag>
-        <tag>nodejs</tag>
-        <tag>自动化流程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>杂谈</title>
-    <url>/posts/12326.html</url>
-    <content><![CDATA[<p>人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。</p>
-<a id="more"></a>
-<p>近两年的个人状态可以说是非常奇怪了。总结下来也无非是开头那句话。正因为害怕空虚所以去做各种事情，将自己的时间填满。不过，就算空着的时间都填满了，难道就会感到满足了吗？我不以为意。反而感觉更加的空虚。说白了，这种因为空虚所以选择让自己看起来很忙的行为无异于饮鸩止渴，逞一时之快后患无穷。究其原因还是因为少了方向感。</p>
-<p>高考前之所以能稳住拼尽全力，也无非是因为只需要考虑怎么答题就对了，脑子里什么都不需要想。拼命学了三年需要有一个突破口，一个来发泄的点。然后进入了大学，不再如同高中，可以考虑可以尝试的东西极大丰富，本来就患有选择困难的我人生第一次感到如此迷茫。专业不是我喜欢的、但是成绩又不是最好的、喜欢的东西在侵占我的时间、但是不喜欢的东西却本需要大把时间。越是想逃离就越是逃不掉，最后深陷其中。坦然接受现状虽然是最佳选择，不过，我又浪费掉了一年。确实可以有很多，但是似乎在前途面前都是苍白无力。每次回家看到父母日渐衰老，家事变化也不由得暗自落泪。</p>
-<p>家人倒也不像是其他人说的那样对我寄予厚望，到时自己越是给说一般般平平常常就可以越是感到压力倍增。正因为看到了家人的辛苦之处，才想变得更强将来可以保护家人；越是想变得更强越是对现状不满，对自己不满；越是对自己不满就越是急切的想找到目标。然而我没有目标。因此愈发感到无比空虚。因此就尝试做很多事情，又因为本身学习能力并不差所以就学会很多事情，以此可以更好地消磨时间。</p>
-<p>我急切的需要摆脱这种现状，那么最好的办法我希望不再是定下长远的目标，而是短时间内先从眼前的事情做好。以前到时很瞧不起做计划之类的，总觉得“到时候总会有办法”，不过现在看前人的经验真的是正确无比，所谓摸着石头过河也是需要摸到下一个石头的位置，更长远的目标就是“对岸”。重新来过的这一年，我仍不希望自己空虚，那么就尝试换成另外一种方法填满自己算了。</p>
-]]></content>
+    <title>manjaro下生存报告</title>
+    <url>/posts/35108.html</url>
+    <content><![CDATA[<p>今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就<a id="more"></a>只好做做本地化工作了。传送门：<a href="http://l10n.gnome.org/teams/" target="_blank" rel="noopener">gnome翻译组</a><br>其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。<img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro1.png" alt="manjaro"><br>上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．．<br>于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：<a href="https://weearc.github.io/2018/04/25/manjaro-linux-kde-edition%E8%B0%83%E6%95%99%E8%AE%B0%E5%BD%95/" target="_blank" rel="noopener">manjaro linux kde edition调教记录</a>效果图如下:<br><img src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro/2.png" alt="manjaro"></p>
+<h3 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h3><p>其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。
+　</p>
+<blockquote>
+<p>“那我为什么又说无法反驳？”</p>
+</blockquote>
+<p>我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。</p>
+<blockquote>
+<p>但是使用体验仍然不够好。</p>
+</blockquote>
+<p>就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件…使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。</p>
+<blockquote>
+<p>“你这家伙是闭源商业狗”</p>
+</blockquote>
+<p>如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？</p>
+<blockquote>
+<p>那为什么现在我又不愿意离开？</p>
+</blockquote>
+<p>我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。<br>老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。</p>
+<h3 id="开源与闭源，我的个人经历"><a href="#开源与闭源，我的个人经历" class="headerlink" title="开源与闭源，我的个人经历"></a>开源与闭源，我的个人经历</h3><h4 id="开源与开源组织；闭源与商业化组织"><a href="#开源与开源组织；闭源与商业化组织" class="headerlink" title="开源与开源组织；闭源与商业化组织"></a>开源与开源组织；闭源与商业化组织</h4><h4 id="开源的好处，弊端；为什么仍有人选择开源作品"><a href="#开源的好处，弊端；为什么仍有人选择开源作品" class="headerlink" title="开源的好处，弊端；为什么仍有人选择开源作品"></a>开源的好处，弊端；为什么仍有人选择开源作品</h4><h3 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h3>]]></content>
       <categories>
-        <category>随笔</category>
-        <category>杂记</category>
+        <category>待填坑</category>
       </categories>
       <tags>
-        <tag>杂记</tag>
-        <tag>随笔</tag>
+        <tag>linux</tag>
+        <tag>manjaro</tag>
+        <tag>生存记录</tag>
       </tags>
   </entry>
 </search>
