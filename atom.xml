@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weearc.top/"/>
-  <updated>2021-03-23T16:40:05.529Z</updated>
+  <updated>2021-08-02T10:44:06.185Z</updated>
   <id>https://blog.weearc.top/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决 Fish 不认 history 的问题</title>
+    <link href="https://blog.weearc.top/posts/53128.html"/>
+    <id>https://blog.weearc.top/posts/53128.html</id>
+    <published>2021-08-02T10:29:31.000Z</published>
+    <updated>2021-08-02T10:44:06.185Z</updated>
+    
+    <content type="html"><![CDATA[<p>原本 fish shell 用的好好的，及其方便的设置和高度可自定义的选项和快速的智能补全让它成为懒人的不二之选，但是某天更新过后却出现了无法调用历史的情况，这显然不正常。而我又高度依赖与 fish 的自动补全，尤其对于管理服务器而言是非常之方便的。那肯定就需要搞清楚到底出现了什么问题了。</p><p>首先大概查了一下发现大多是隐私需要删除历史的，这个与我无关。然后翻了一下 fish 的 <a href="https://fishshell.com/docs/current/cmds/history.html" target="_blank" rel="noopener">文档</a> ，里面关于 history 的描述有这么一段比较令人在意的：</p><blockquote><p><strong>merge</strong> immediately incorporates history changes from other sessions. Ordinarily fish ignores history changes from sessions started after the current one. This command applies those changes immediately.</p></blockquote><p>于是首先先确认一下历史文件是否正常：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我的历史文件等保存在默认位置</span></span><br><span class="line">ls ~/.<span class="built_in">local</span>/share/fish/</span><br></pre></td></tr></table></figure><p>然后返回了：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fish_history  fish_read_history  generated_completions</span><br></pre></td></tr></table></figure><p>证明历史文件还在，查看了一下内容，10 万行左右，基本没啥问题，还都在。然后尝试合并历史到当前会话：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span> --merge</span><br></pre></td></tr></table></figure><p>退出当前会话并查看发现恢复如初，这就很迷惑了…因为我加载 fish 的方式是 konsole 启动时才加载 fish ，所以理应在启动时自动合并。因此为了以防万一可以在 fish 配置文件里加一句让它每次启动自动合并历史。算是暂时解决了这个问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      谁能想到用着用着就故障了呢...
+    
+    </summary>
+    
+      <category term="archlinux" scheme="https://blog.weearc.top/categories/archlinux/"/>
+    
+    
+      <category term="linux" scheme="https://blog.weearc.top/tags/linux/"/>
+    
+      <category term="fish shell" scheme="https://blog.weearc.top/tags/fish-shell/"/>
+    
+      <category term="history file" scheme="https://blog.weearc.top/tags/history-file/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Redmi K30 pro 完整体验(后篇)</title>
     <link href="https://blog.weearc.top/posts/34801.html"/>
     <id>https://blog.weearc.top/posts/34801.html</id>
     <published>2021-03-23T16:18:44.000Z</published>
-    <updated>2021-03-23T16:40:05.529Z</updated>
+    <updated>2021-03-23T16:41:28.589Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇：<a href="https://blog.weearc.top/posts/155.html">redmi K30 Pro 简评</a></p><p>曾经的我虽然高高兴兴的用着类原生，但中午就得赶快回去充电否则下午晚上直接“人间蒸发”；曾经的我高高兴兴看着 2K 分辨率的顶级 LCD 屏幕，听着超强的双扬声器播放的歌曲，但是机器却时刻可能因为过热直接关机 … 这样的生活似乎已经结束，至少现在，我不必因为全天任何时间点不充电导致自己彻底失联，我也不用因为过热关机导致许多尴尬事情。但是相对的，我逐渐习惯了 1080P 分辨率的屏幕，我逐渐适应了尽管只有类 DC 调光的显示，也适应了原本听上去就感觉极度不适的单扬声器。</p><p>仔细想了一想可能不是因为手机换了我才如此“佛系”，周围的环境、自己的心理状况也多少变得不那么急功近利了，以至于最近在和老妈打电话的时候她直言我变得成熟，又恢复以前的健康的状态了。曾经的我因为高中出来也算是年级相当顶尖的选手，到大学却颇感力不从心，第一次中期考试的不及格更是雪上加霜。所谓心态爆炸大概就是说的那个时候的我。负面情绪占据了自己，自己也躲在尖刺之后，悄悄地舔舐伤口却又渴望他人带来的救赎，然而最终我也没能等到。自己还是要靠自己，所以我选择了逃避一年，无论付出了什么代价自己都要去承受，好朋友都变成了学长，学着更难以理解的课程，更换校区后更是有了新的交际圈，曾经一度以为我可能就这么被遗忘了。但毕竟是自己的选择，就算是狗屎也得忍着。</p><p>（没写完）</p>]]></content>
     
@@ -86,9 +112,9 @@
       <category term="hexo" scheme="https://blog.weearc.top/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="https://blog.weearc.top/tags/hexo/"/>
-    
       <category term="完全配置" scheme="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="hexo" scheme="https://blog.weearc.top/tags/hexo/"/>
     
       <category term="Github Actions" scheme="https://blog.weearc.top/tags/Github-Actions/"/>
     
@@ -494,30 +520,6 @@
     
     
       <category term="hexo" scheme="https://blog.weearc.top/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新年折腾记---从Manjaro迁移到Arch</title>
-    <link href="https://blog.weearc.top/posts/30549.html"/>
-    <id>https://blog.weearc.top/posts/30549.html</id>
-    <published>2019-02-06T09:48:04.000Z</published>
-    <updated>2019-07-08T20:12:30.143Z</updated>
-    
-    <content type="html"><![CDATA[<p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….</p><a id="more"></a><p>在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。</p><p>准备迁移过程中考虑了两个问题：</p><ol><li>我那快1800个软件包要怎么办</li><li>最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装</li></ol><p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…</p><p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list" target="_blank" rel="noopener">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p><p>因此在原有系统中执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span></span><br><span class="line">pacman -Qqen &gt; listQqen.txt </span><br><span class="line"><span class="comment">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span></span><br><span class="line">pacman -Qqem &gt; listQqem.txt</span><br></pre></td></tr></table></figure><p>这两个列表保存在主目录就好，之后会用到。</p><p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p><p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p><p>然后执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取arch中的存在的包</span></span><br><span class="line">pacman -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort listQqen.txt))</span><br><span class="line"><span class="comment">#获取aur里的包</span></span><br><span class="line">yaourt  -S --needed $(comm -12 &lt;(pacman -Slq | sort) &lt;(sort Qqem.txt))</span><br></pre></td></tr></table></figure><p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups" target="_blank" rel="noopener">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p><p>后记：</p><p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;新的一年，热爱折腾的我当然是从折腾开始新的一年了….&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="archlinux" scheme="https://blog.weearc.top/categories/archlinux/"/>
-    
-    
-      <category term="archlinux" scheme="https://blog.weearc.top/tags/archlinux/"/>
-    
-      <category term="linux" scheme="https://blog.weearc.top/tags/linux/"/>
     
   </entry>
   
