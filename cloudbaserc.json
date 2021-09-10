@@ -1,0 +1,17 @@
+{
+    "version": "2.0",
+    "envId": "{{envId}}",
+    "framework": {
+        "name": "blogCI",
+        "plugins": {
+            "client": {
+                "use": "@cloudbase/framework-plugin-website",
+                "inputs": {
+                    "outputPath": "./",
+                    "ignore": [".git",".github","node_modules","cloudbaserc.json",".gitignore","./README.md"]
+                }
+            }
+        }
+    },
+    "region": "ap-shanghai"
+}
