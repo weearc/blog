@@ -8,7 +8,7 @@
                 "use": "@cloudbase/framework-plugin-website",
                 "inputs": {
                     "outputPath": "./",
-                    "ignore": [".git",".github","node_modules","cloudbaserc.json",".gitignore","./README.md"]
+                    "ignore": [".git",".github","cloudbaseenv.json","cloudbaserc.json",".gitignore","./README.md"]
                 }
             }
         }
