@@ -35,9 +35,9 @@
     <link href="https://blog.weearc.top/posts/4448.html"/>
     <id>https://blog.weearc.top/posts/4448.html</id>
     <published>2021-09-10T14:36:04.000Z</published>
-    <updated>2021-09-10T16:24:44.317Z</updated>
+    <updated>2021-09-11T01:39:24.476Z</updated>
     
-    <content type="html"><![CDATA[<p>最近事情有点多,待完善<br><a id="more"></a><br>桌面环境：KDE PLASMA<br>文字处理：Vim，WPS Office，Typora(markdown写作)，Kate<br>输入法：Fcitx5<br>视频播放：mpv<br>音乐播放：Clementine，QMMP（个人最喜欢，但是缩放有点问题）<br>终端：Yakuake，Konsole<br>开发：Pycharm，Webstorm，Visual Studio Code，Insomnia 等<br>Web 浏览：Google Chrome<br>虚拟机：KVM + Virtmanager<br>娱乐：Sabuki，Steam，Minecraft Java Edition<br>文件管理：Dolphin（很少用），pcmanfm-qt<br>拓补图绘制等：yED<br>思维导图：Xmind<br>图像处理：Krita，Inkspace（矢量图，绘制海报以及图标用），flameshot（截图使用），Xnconvert（图像处理）<br>即时通讯：微信（wine），QQ（虚拟机内）<br>下载工具：浏览器，aria2c（本地rpc server），wget，qbittorrent<br>文献整理：zotero<br>远程桌面：VNC Viewer<br>Shell：fish（自己用），zsh（root下用）<br>音视频处理等：ffmpeg，OBS，kdenlive</p>]]></content>
+    <content type="html"><![CDATA[<p>最近事情有点多,待完善<br><a id="more"></a><br>发行版：Arch Linux<br>AUR 管理器：yaourt<br>桌面环境：KDE PLASMA<br>文字处理：Vim，WPS Office，Typora(markdown写作)，Kate<br>输入法：Fcitx5<br>视频播放：mpv<br>音乐播放：Clementine，QMMP（个人最喜欢，但是缩放有点问题）<br>终端：Yakuake，Konsole<br>开发：Pycharm，Webstorm，Visual Studio Code，Insomnia 等<br>Web 浏览：Google Chrome<br>虚拟机：KVM + Virtmanager<br>娱乐：Sabuki，Steam，Minecraft Java Edition<br>文件管理：Dolphin（很少用），pcmanfm-qt<br>拓补图绘制等：yED<br>思维导图：Xmind<br>图像处理：Krita，Inkspace（矢量图，绘制海报以及图标用），flameshot（截图使用），Xnconvert（图像处理）<br>即时通讯：微信（wine），QQ（虚拟机内）<br>下载工具：浏览器，aria2c（本地rpc server），wget，qbittorrent<br>文献整理：zotero<br>远程桌面：VNC Viewer<br>Shell：fish（自己用），zsh（root下用）<br>音视频处理等：ffmpeg，OBS，kdenlive</p>]]></content>
     
     <summary type="html">
     
@@ -168,9 +168,9 @@
       <category term="hexo" scheme="https://blog.weearc.top/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="https://blog.weearc.top/tags/hexo/"/>
-    
       <category term="完全配置" scheme="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="hexo" scheme="https://blog.weearc.top/tags/hexo/"/>
     
       <category term="Github Actions" scheme="https://blog.weearc.top/tags/Github-Actions/"/>
     
