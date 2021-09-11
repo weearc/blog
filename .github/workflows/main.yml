@@ -1,22 +1,27 @@
-name: Deploy to cloudbase
+# This is a basic workflow to help you get started with Actions
 
-on:
+name: CloudBase CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on: 
   push:
-    branches: [ gh-pages ]
+    branches:
+      - gh-pages
 
-  workflow_dispatch:
-
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-deploy:
-
-    name: Deploy static website to Tencent CloudBase
+  # This workflow contains a single job called "build"
+   deploy:
     runs-on: ubuntu-latest
-
+    name: Tencent Cloudbase Github Action
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to Tencent CloudBase
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy static to Tencent CloudBase
+        id: deployStatic
         uses: TencentCloudBase/cloudbase-action@v2
         with:
-          secretId: ${{secrets.CLOUDBASE_SECRET_ID}}
-          secretKey: ${{secrets.CLOUDBASE_SECRET_KEY}}
-          envId: ${{secrets.CLOUDBASE_ENV_ID}}
+          secretId: ${{ secrets.SECRET_ID }}
+          secretKey: ${{ secrets.SECRET_KEY }}
+          envId: ${{ secrets.ENV_ID }}
