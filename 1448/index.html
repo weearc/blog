@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用pandoc撰写论文 | weearc 的个人博客</title>
+<meta name="keywords" content="markdown, pandoc, zotero">
+<meta name="description" content="前言
+谁又说不可以呢？">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/1448/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d918aa2b3672274a508449848c9e6fcc030030e995cea61623654add81dfe9a7.css" integrity="sha256-2RiqKzZyJ0pQhEmEjJ5vzAMAMOmVzqYWI2VK3YHf6ac=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="使用pandoc撰写论文" />
+<meta property="og:description" content="前言
+谁又说不可以呢？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/1448/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-05-02T20:45:10+00:00" />
+<meta property="article:modified_time" content="2019-05-02T20:45:10+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="使用pandoc撰写论文"/>
+<meta name="twitter:description" content="前言
+谁又说不可以呢？"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "使用pandoc撰写论文",
+      "item": "https://blog.weearc.top/1448/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用pandoc撰写论文",
+  "name": "使用pandoc撰写论文",
+  "description": "前言 谁又说不可以呢？\n",
+  "keywords": [
+    "markdown", "pandoc", "zotero"
+  ],
+  "articleBody": "前言 谁又说不可以呢？\n引言 一般论文写作等会有如下痛点，包含：\n数学公式 图片处理 交叉引用、脚注、尾注 参考文献的文献库处理 当然大名鼎鼎的Microsoft Office当然能处理这些问题，但是与其说是能处理，不如说是处理的不当就会变得麻烦起来。在这些方面处理的最好的应该是LaTeX，但是由于其语法学习曲线非常陡峭，那么支持部分LaTeX特性的Markdown将是比较好的选择，处理得当时将包含如下特性：\n基于自然语言的数学公式处理 HTML支持，意味着markdown的写作可以很灵活多变 插件扩展的的流程图、甘特图、美人鱼图支持 交叉引用、脚注、尾注、文献自动插入 目录自动生成 那么本文将简要的介绍下如何使用markdown来进行基本的写作。\n注：本文内容相对较多，但是请相信看完之后收获会是巨大的。\n相关概念 Markdown Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。1[@noauthor_markdown__nodate]\n看到这里很懵是不是？但是如果换种说法：DOC格式和markdown本是同根生，是不是就容易多了？DOC所有关键信息等均使用XML格式，而这个格式和markdown其实本质类似。区别是：\n（图片）\n哪个易读性更好一看便知。用markdown你能做什么？\n记笔记 写网页 其他 markdown编辑器推荐 Typora（全平台） 所见即所得，只有用过的才知道多好用。功能最全。但是不能进行扩展。其实已有的功能已经非常够用了。\nMu（Mac OS） 同样所见即所得，但是功能性比Typora弱。\nAtom 或者 Visual Studio Code（全平台） 伪装成IDE的文本编辑器，一般程序员以及编程爱好者无人不知，有巨量的插件扩展。能玩游戏看B站听歌聊QQ微信微博。摸鱼神器。\npandoc Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc使用Haskell语言编写，以命令行形式实现与用户的交互，可支持多种操作系统。2[@noauthor_pandoc_2017]\n那么它能处理的格式到底有多少种：\n（图片）\n图片上一个节点代表它能处理的一种格式。\n富文本 富文本格式（Rich Text Format, 一般简称为RTF）是由微软公司开发的跨平台文档格式。一般的格式设置，比如字体和段落设置，页面设置等等信息都可以存在RTF格式中。3[@noauthor___nodate]\n这是狭义上的富文本，那么广义上的富文本是什么呢？就是所谓的当你编辑时所见即所得。没有谁希望编辑一个文件时还需要像二十年前一样还需要修修改源代码的吧？因此富文本及富文本编辑器的发明是非常重要的革新。但是这是不是意味着纯文本会消失呢？并不。富文本有着富文本的易用，纯文本有着纯文本的轻便。至少来讲，我可不希望在写作前写作后还需要花费大量时间插入参考资料或者调整文本的排版字体大小还是怎样。尤其在写作中如果遇到需要处理的图片，大部分人应该是相当头痛的——既需要照顾排版又不不希望切断思路。那么对于大多数只用到了Microsoft Office Word以及OneNote基础功能的人来说无论使用什么来编辑文档其实都差不了多少。\n语法 Markdown基础 请不要把markdown视为非常可怕的东西。其实它非常容易掌握，而且对于使用者很友好——因为你在写作时的思路不会被打断，所有格式使用的语法非常简洁并全部可以通过一些文本实现。\n在使用之前，为了方便书写请确保你的输入法是处于半角状态（搜狗上是月牙和圆点，月牙为半角；微软拼音在设置里调整），使用半角输入会将你的输入速度无论是在是用什么都会提高一个等级。\n标题类 Markdown的标题很容易表示：\n# 这是一级标题 ## 这时二级标题 ### 这是三级标题 每多一级标题就可以增加一个“#”。具体支持到哪级目录需要看渲染工具的支持，理论上无限。\n注意：为了使格式生效请在“#”后记得加个空格\n标注类 文本上的标注 *斜体*\t**加粗** ***加粗的斜体*** \u003cu\u003e下划线\u003c/u\u003e 当然你也可以使用下划线替换“*”，效果是一样的。\n文内引用 代码： ​```你的代码语言 echo helloworld; ​``` 脚注： 这是一段实例文字。[^1] [^1]: 这是实例文字的脚注，在生成的Word文档中会自动放置 尾注： 这是一段实例文字。[@example P33 Weearc] Reference: (自动生成，不需要动它) 下标： ~下标~ 段落引用： \u003e 你要引用的段落 说明：引用完成时请多加一个回车（换行符），引用时尖括号后需要空格 以上是Markdown的基础语法部分，和普通六级专八词汇相比应该是简单的不是一星半点吧。\n链接类 图片 ![图片的说明](图片位置) 链接 ![链接的说明文字](链接) markdown进阶 表格类 基本表格（不含单元格合并） 基本的一个三乘三表格\n|title1|title2|title3| |:-----|:----:|-----:| |左侧对齐|居中|右侧对齐| |x|y|z| 生成效果如下：\ntitle1 title2 title3 左侧对齐 居中 右侧对齐 x y z HTML表格（包含单元格合并的） \u003ctable\u003e \u003ctr\u003e \u003ctd\u003e列一\u003c/td\u003e \u003ctd\u003e列二\u003c/td\u003e \u003c/tr\u003e \u003ctr\u003e \u003ctd colspan=\"2\"\u003e合并行\u003c/td\u003e \u003c/tr\u003e \u003ctr\u003e \u003ctd\u003e列一\u003c/td\u003e \u003ctd\u003e列二\u003c/td\u003e \u003c/tr\u003e \u003ctr\u003e \u003ctd rowspan=\"2\"\u003e合并列\u003c/td\u003e \u003ctd \u003e行二列二\u003c/td\u003e \u003c/tr\u003e \u003ctr\u003e \u003ctd \u003e行三列二\u003c/td\u003e \u003c/tr\u003e \u003c/table\u003e 效果：\n列一 列二 合并行 列一 列二 合并列 行二列二 行三列二 公式类 此节主要包含数学公式，使用LaTeX数学公式语法。\n上标 $ x^n $ 生成为：$x^n$\n下标 $ C^2_3 $ 选择数： $C^2_3$\n多项式 一个不包含tag的多项式\n$ T(n)=\\begin{cases} \\Theta(1)\\quad n=1\\\\ T(n-q)+\\Theta(n) \\quad n\u003e1 \\end{cases} $ 那么生成的公式如下：\n$T(n)=\\begin{cases} \\Theta(1)\\quad n=1\\ T(n-q)+\\Theta(n) \\quad n\u003e1 \\end{cases}$\n矩阵及行列式 一个包含tag的矩阵[@noauthor_markdown_nodate-1]\n$ \\begin{bmatrix} 1 \u0026 2 \u0026 3 \\\\ 4 \u0026 5 \u0026 6 \\\\ 7 \u0026 8 \u0026 9 \\end{bmatrix} \\tag{1} $ $$ \\begin{bmatrix} 1 \u0026 2 \u0026 3 \\ 4 \u0026 5 \u0026 6 \\ 7 \u0026 8 \u0026 9 \\ \\end{bmatrix} \\tag{1} $$\n公式 $ J(\\theta) = \\frac{1}{2m}\\sum_{i=0}^m(y^i - h_\\theta(x^i))^2 $ 生成的均方差公式为：\n$J(\\theta) = \\frac{1}{2m}\\sum_{i=0}^m(y^i - h_\\theta(x^i))^2$\n还有很多… LaTeX的数学公式异常灵活，其余语法可以自行查阅。\n信息类 YAML样式的信息 --- title: 这是一个标题 time: 2019 TOC: true --- 那么将生成自动目录以及包含时间信息的文章标题部分。\nXML样式信息 如果你更熟悉XML，直接上吧骚年！\n导图类 使用markdown可以通过公式方式扩展来写流程图等。[@noauthor_typora__nodate]\n甘特图(时序图) ​```mermaid sequenceDiagram participant 张三 participant 李四 张三-\u003e王五: 王五你好吗？ loop 健康检查 王五-\u003e王五: 与疾病战斗 end Note right of 王五: 合理 食物 \u003cbr/\u003e看医生... 李四--\u003e\u003e张三: 很好! 王五-\u003e李四: 你怎么样? 李四--\u003e王五: 很好! ​``` %% 时序图例子,-\u003e 直线，--\u003e虚线，-\u003e\u003e实线箭头 sequenceDiagram participant 张三 participant 李四 张三-\u003e王五: 王五你好吗？ loop 健康检查 王五-\u003e王五: 与疾病战斗 end Note right of 王五: 合理 食物 看医生... 李四--\u003e\u003e张三: 很好! 王五-\u003e李四: 你怎么样? 李四--\u003e王五: 很好! 美人鱼图 一个示例的美人鱼图：\n​```mermaid graph TD client1--\u003e|read / write|SVN((SVN server)) client2--\u003e|read only|SVN client3--\u003e|read / write|SVN client4--\u003e|read only|SVN client5(...)--\u003eSVN SVN---|store the data|sharedrive ​``` graph TD client1--\u003e|read / write|SVN((SVN server)) client2--\u003e|read only|SVN client3--\u003e|read / write|SVN client4--\u003e|read only|SVN client5(...)--\u003eSVN SVN---|store the data|sharedrive 此处参考\n与文献管理工具互动 为什么不推荐使用word自带的文献管理器，因为Zotero以及Mandelay等文献管理器更加强大而且易用，包含比如PDF阅读、文献检索、文献关联设置、关键词等。\n这里只对zotero文献管理器与markdown论文撰写的互动进行说明。\nZotero 首先到Zotero官网下载软件本体进行安装，然后按照提示安装浏览器插件。使用如下图：\n（gif）\n之后你可以在Zotero导出参考文献。导出时请选择Bibtex格式。需要生成参考文献时直接将导出的文件用文本编辑器打开并进行如下操作：\n#一个实例的bib文件内容 @misc{noauthor_britains_nodate, title = {Britain’s imperial fantasies have given us {Brexit} {\\textbar} {Gary} {Younge} {\\textbar} {Opinion} {\\textbar} {The} {Guardian}}, url = {https://www.theguardian.com/commentisfree/2018/feb/03/imperial-fantasies-brexit-theresa-may}, urldate = {2019-04-29} 这里引用了参考[@noauthor_britains_nodate] 即将包含“@misc”行行首大括号后内容前加“@”用中括号“[]”包裹放在需要引用的位置。生成文件时会自动在文末添加参考文献。[@noauthor_markdown_nodate]\n使用pandoc生成（最后一步了） pandoc安装 Windows Windows用户可以再官网下载EXE文件进行安装，并安装Python3使用pip安装pandoc的其他扩展。\nMac OS Mac用户可以使用brew来安装pandoc，并使用pip来添加扩展\nLinux 重点说一下Linux，以证明使用Linux同样可以撰写论文。\n大多数Linux发行版的仓库内包含pandoc，并默认有pip。使用pip可安装扩展。\n对于Arch Linux Arch Linux仓库中为pandoc以及LaTeX全部扩展进行了打包，直接安装，舒适便捷。\n生成方式 在此文中，我们需要使用的插件为：pandoc-citeproc。\n那么使用如下指令生成：\npandoc --filter pandoc-citeproc --bibliography=你的文献库.bib --csl=chinese-gb7714-2005-numeric.csl 你的markdown文件.md -o 你的生成文件.docx 其中“–csl”选项为需要生成参考文献的具体格式标准。\n如果你单单只使用：\npandoc markdown文件.md -o 生成的文件 将只进行最基础的文件渲染，比如转换为PDF格式。\n参考文献（示例） https://baike.baidu.com/item/markdown/3245829?fr=aladdin markdown ↩︎\nhttps://zh.wikipedia.org/wiki/Pandoc Pandoc ↩︎\nhttps://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin 富文本格式 ↩︎\n",
+  "wordCount" : "434",
+  "inLanguage": "en",
+  "datePublished": "2019-05-02T20:45:10Z",
+  "dateModified": "2019-05-02T20:45:10Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/1448/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友联">
+                    <span>友联</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">Home</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      使用pandoc撰写论文
+    </h1>
+    <div class="post-meta"><span title='2019-05-02 20:45:10 +0000 UTC'>May 2, 2019</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+                <li>
+                    <a href="#%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5" aria-label="相关概念">相关概念</a><ul>
+                        
+                <li>
+                    <a href="#markdown" aria-label="Markdown">Markdown</a><ul>
+                        
+                <li>
+                    <a href="#markdown%e7%bc%96%e8%be%91%e5%99%a8%e6%8e%a8%e8%8d%90" aria-label="markdown编辑器推荐">markdown编辑器推荐</a><ul>
+                        
+                <li>
+                    <a href="#typora%e5%85%a8%e5%b9%b3%e5%8f%b0" aria-label="Typora（全平台）">Typora（全平台）</a></li>
+                <li>
+                    <a href="#mumac-os" aria-label="Mu（Mac OS）">Mu（Mac OS）</a></li>
+                <li>
+                    <a href="#atom-%e6%88%96%e8%80%85-visual-studio-code%e5%85%a8%e5%b9%b3%e5%8f%b0" aria-label="Atom 或者 Visual Studio Code（全平台）">Atom 或者 Visual Studio Code（全平台）</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#pandoc" aria-label="pandoc">pandoc</a></li>
+                <li>
+                    <a href="#%e5%af%8c%e6%96%87%e6%9c%ac" aria-label="富文本">富文本</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%af%ad%e6%b3%95" aria-label="语法">语法</a><ul>
+                        
+                <li>
+                    <a href="#markdown%e5%9f%ba%e7%a1%80" aria-label="Markdown基础">Markdown基础</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a0%87%e9%a2%98%e7%b1%bb" aria-label="标题类">标题类</a></li>
+                <li>
+                    <a href="#%e6%a0%87%e6%b3%a8%e7%b1%bb" aria-label="标注类">标注类</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e6%9c%ac%e4%b8%8a%e7%9a%84%e6%a0%87%e6%b3%a8" aria-label="文本上的标注">文本上的标注</a></li>
+                <li>
+                    <a href="#%e6%96%87%e5%86%85%e5%bc%95%e7%94%a8" aria-label="文内引用">文内引用</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%93%be%e6%8e%a5%e7%b1%bb" aria-label="链接类">链接类</a><ul>
+                        
+                <li>
+                    <a href="#%e5%9b%be%e7%89%87" aria-label="图片">图片</a></li>
+                <li>
+                    <a href="#%e9%93%be%e6%8e%a5" aria-label="链接">链接</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#markdown%e8%bf%9b%e9%98%b6" aria-label="markdown进阶">markdown进阶</a><ul>
+                        
+                <li>
+                    <a href="#%e8%a1%a8%e6%a0%bc%e7%b1%bb" aria-label="表格类">表格类</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e8%a1%a8%e6%a0%bc%e4%b8%8d%e5%90%ab%e5%8d%95%e5%85%83%e6%a0%bc%e5%90%88%e5%b9%b6" aria-label="基本表格（不含单元格合并）">基本表格（不含单元格合并）</a></li>
+                <li>
+                    <a href="#html%e8%a1%a8%e6%a0%bc%e5%8c%85%e5%90%ab%e5%8d%95%e5%85%83%e6%a0%bc%e5%90%88%e5%b9%b6%e7%9a%84" aria-label="HTML表格（包含单元格合并的）">HTML表格（包含单元格合并的）</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ac%e5%bc%8f%e7%b1%bb" aria-label="公式类">公式类</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#%e4%b8%8a%e6%a0%87" aria-label="上标">上标</a></li>
+                <li>
+                    <a href="#%e4%b8%8b%e6%a0%87" aria-label="下标">下标</a></li>
+                <li>
+                    <a href="#%e5%a4%9a%e9%a1%b9%e5%bc%8f" aria-label="多项式">多项式</a></li>
+                <li>
+                    <a href="#%e7%9f%a9%e9%98%b5%e5%8f%8a%e8%a1%8c%e5%88%97%e5%bc%8f" aria-label="矩阵及行列式">矩阵及行列式</a></li>
+                <li>
+                    <a href="#%e5%85%ac%e5%bc%8f" aria-label="公式">公式</a></li>
+                <li>
+                    <a href="#%e8%bf%98%e6%9c%89%e5%be%88%e5%a4%9a" aria-label="还有很多&amp;hellip;">还有很多&hellip;</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#%e4%bf%a1%e6%81%af%e7%b1%bb" aria-label="信息类">信息类</a><ul>
+                        
+                <li>
+                    <a href="#yaml%e6%a0%b7%e5%bc%8f%e7%9a%84%e4%bf%a1%e6%81%af" aria-label="YAML样式的信息">YAML样式的信息</a></li>
+                <li>
+                    <a href="#xml%e6%a0%b7%e5%bc%8f%e4%bf%a1%e6%81%af" aria-label="XML样式信息">XML样式信息</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%af%bc%e5%9b%be%e7%b1%bb" aria-label="导图类">导图类</a><ul>
+                        
+                <li>
+                    <a href="#%e7%94%98%e7%89%b9%e5%9b%be%e6%97%b6%e5%ba%8f%e5%9b%be" aria-label="甘特图(时序图)">甘特图(时序图)</a></li>
+                <li>
+                    <a href="#%e7%be%8e%e4%ba%ba%e9%b1%bc%e5%9b%be" aria-label="美人鱼图">美人鱼图</a></li></ul>
+                </li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%8e%e6%96%87%e7%8c%ae%e7%ae%a1%e7%90%86%e5%b7%a5%e5%85%b7%e4%ba%92%e5%8a%a8" aria-label="与文献管理工具互动">与文献管理工具互动</a><ul>
+                        
+                <li>
+                    <a href="#zotero" aria-label="Zotero">Zotero</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bd%bf%e7%94%a8pandoc%e7%94%9f%e6%88%90%e6%9c%80%e5%90%8e%e4%b8%80%e6%ad%a5%e4%ba%86" aria-label="使用pandoc生成（最后一步了）">使用pandoc生成（最后一步了）</a><ul>
+                        
+                <li>
+                    <a href="#pandoc%e5%ae%89%e8%a3%85" aria-label="pandoc安装">pandoc安装</a><ul>
+                        
+                <li>
+                    <a href="#windows" aria-label="Windows">Windows</a></li>
+                <li>
+                    <a href="#mac-os" aria-label="Mac OS">Mac OS</a></li>
+                <li>
+                    <a href="#linux" aria-label="Linux">Linux</a><ul>
+                        
+                <li>
+                    <a href="#%e5%af%b9%e4%ba%8earch-linux" aria-label="对于Arch Linux">对于Arch Linux</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%94%9f%e6%88%90%e6%96%b9%e5%bc%8f" aria-label="生成方式">生成方式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae%e7%a4%ba%e4%be%8b" aria-label="参考文献（示例）">参考文献（示例）</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
+<p>谁又说不可以呢？</p>
+<h1 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h1>
+<p>一般论文写作等会有如下痛点，包含：</p>
+<ul>
+<li>数学公式</li>
+<li>图片处理</li>
+<li>交叉引用、脚注、尾注</li>
+<li>参考文献的文献库处理</li>
+</ul>
+<p>当然大名鼎鼎的Microsoft Office当然能处理这些问题，但是与其说是能处理，不如说是处理的不当就会变得麻烦起来。在这些方面处理的最好的应该是LaTeX，但是由于其语法学习曲线非常陡峭，那么支持部分LaTeX特性的Markdown将是比较好的选择，处理得当时将包含如下特性：</p>
+<ul>
+<li>基于自然语言的数学公式处理</li>
+<li>HTML支持，意味着markdown的写作可以很灵活多变</li>
+<li>插件扩展的的流程图、甘特图、美人鱼图支持</li>
+<li>交叉引用、脚注、尾注、文献自动插入</li>
+<li>目录自动生成</li>
+</ul>
+<p>那么本文将简要的介绍下如何使用markdown来进行基本的写作。</p>
+<p>注：本文内容相对较多，但是请相信看完之后收获会是巨大的。</p>
+<h1 id="相关概念">相关概念<a hidden class="anchor" aria-hidden="true" href="#相关概念">#</a></h1>
+<h2 id="markdown">Markdown<a hidden class="anchor" aria-hidden="true" href="#markdown">#</a></h2>
+<blockquote>
+<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>[@noauthor_markdown__nodate]</p>
+</blockquote>
+<p>看到这里很懵是不是？但是如果换种说法：DOC格式和markdown本是同根生，是不是就容易多了？DOC所有关键信息等均使用XML格式，而这个格式和markdown其实本质类似。区别是：</p>
+<p>（图片）</p>
+<p>哪个易读性更好一看便知。用markdown你能做什么？</p>
+<ul>
+<li>记笔记</li>
+<li>写网页</li>
+<li>其他</li>
+</ul>
+<h3 id="markdown编辑器推荐">markdown编辑器推荐<a hidden class="anchor" aria-hidden="true" href="#markdown编辑器推荐">#</a></h3>
+<h4 id="typora全平台">Typora（全平台）<a hidden class="anchor" aria-hidden="true" href="#typora全平台">#</a></h4>
+<p>所见即所得，只有用过的才知道多好用。功能最全。但是不能进行扩展。其实已有的功能已经非常够用了。</p>
+<h4 id="mumac-os">Mu（Mac OS）<a hidden class="anchor" aria-hidden="true" href="#mumac-os">#</a></h4>
+<p>同样所见即所得，但是功能性比Typora弱。</p>
+<h4 id="atom-或者-visual-studio-code全平台">Atom 或者 Visual Studio Code（全平台）<a hidden class="anchor" aria-hidden="true" href="#atom-或者-visual-studio-code全平台">#</a></h4>
+<p>伪装成IDE的文本编辑器，一般程序员以及编程爱好者无人不知，有巨量的插件扩展。能玩游戏看B站听歌聊QQ微信微博。摸鱼神器。</p>
+<h2 id="pandoc">pandoc<a hidden class="anchor" aria-hidden="true" href="#pandoc">#</a></h2>
+<blockquote>
+<p>Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc使用Haskell语言编写，以命令行形式实现与用户的交互，可支持多种操作系统。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>[@noauthor_pandoc_2017]</p>
+</blockquote>
+<p>那么它能处理的格式到底有多少种：</p>
+<p>（图片）</p>
+<p>图片上一个节点代表它能处理的一种格式。</p>
+<h2 id="富文本">富文本<a hidden class="anchor" aria-hidden="true" href="#富文本">#</a></h2>
+<blockquote>
+<p>富文本格式（Rich Text Format, 一般简称为RTF）是由微软公司开发的跨平台文档格式。一般的格式设置，比如字体和段落设置，页面设置等等信息都可以存在RTF格式中。<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>[@noauthor___nodate]</p>
+</blockquote>
+<p>这是狭义上的富文本，那么广义上的富文本是什么呢？就是所谓的当你编辑时所见即所得。没有谁希望编辑一个文件时还需要像二十年前一样还需要修修改源代码的吧？因此富文本及富文本编辑器的发明是非常重要的革新。但是这是不是意味着纯文本会消失呢？并不。富文本有着富文本的易用，纯文本有着纯文本的轻便。至少来讲，我可不希望在写作前写作后还需要花费大量时间插入参考资料或者调整文本的排版字体大小还是怎样。尤其在写作中如果遇到需要处理的图片，大部分人应该是相当头痛的&mdash;&mdash;既需要照顾排版又不不希望切断思路。那么对于大多数只用到了Microsoft Office Word以及OneNote基础功能的人来说无论使用什么来编辑文档其实都差不了多少。</p>
+<h1 id="语法">语法<a hidden class="anchor" aria-hidden="true" href="#语法">#</a></h1>
+<h2 id="markdown基础">Markdown基础<a hidden class="anchor" aria-hidden="true" href="#markdown基础">#</a></h2>
+<p>请不要把markdown视为非常可怕的东西。其实它非常容易掌握，而且对于使用者很友好&mdash;&mdash;因为你在写作时的思路不会被打断，所有格式使用的语法非常简洁并全部可以通过一些文本实现。</p>
+<p>在使用之前，为了方便书写请确保你的输入法是处于半角状态（搜狗上是月牙和圆点，月牙为半角；微软拼音在设置里调整），使用半角输入会将你的输入速度无论是在是用什么都会提高一个等级。</p>
+<h3 id="标题类">标题类<a hidden class="anchor" aria-hidden="true" href="#标题类">#</a></h3>
+<p>Markdown的标题很容易表示：</p>
+<pre tabindex="0"><code class="language-mark" data-lang="mark"># 这是一级标题
+## 这时二级标题
+### 这是三级标题
+</code></pre><p>每多一级标题就可以增加一个“#”。具体支持到哪级目录需要看渲染工具的支持，理论上无限。</p>
+<p><strong>注意：为了使格式生效请在“#”后记得加个空格</strong></p>
+<h3 id="标注类">标注类<a hidden class="anchor" aria-hidden="true" href="#标注类">#</a></h3>
+<h4 id="文本上的标注">文本上的标注<a hidden class="anchor" aria-hidden="true" href="#文本上的标注">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">*斜体*			
+</span></span><span class="line"><span class="cl"><span class="ge">**</span>加粗**
+</span></span><span class="line"><span class="cl"><span class="ge">**</span>*加粗的斜体***
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">u</span><span class="p">&gt;</span>下划线<span class="p">&lt;/</span><span class="nt">u</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>当然你也可以使用下划线替换“*”，效果是一样的。</p>
+<h4 id="文内引用">文内引用<a hidden class="anchor" aria-hidden="true" href="#文内引用">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">代码：
+</span></span><span class="line"><span class="cl">​```你的代码语言
+</span></span><span class="line"><span class="cl">echo helloworld;
+</span></span><span class="line"><span class="cl">​```
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">脚注：
+</span></span><span class="line"><span class="cl">这是一段实例文字。[^1]
+</span></span><span class="line"><span class="cl">[^1]: 这是实例文字的脚注，在生成的Word文档中会自动放置
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">尾注：
+</span></span><span class="line"><span class="cl">这是一段实例文字。[@example P33 Weearc]
+</span></span><span class="line"><span class="cl">Reference:
+</span></span><span class="line"><span class="cl">(自动生成，不需要动它)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">下标：
+</span></span><span class="line"><span class="cl">~下标~
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">段落引用：
+</span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">你要引用的段落
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span>
+</span></span><span class="line"><span class="cl">说明：引用完成时请多加一个回车（换行符），引用时尖括号后需要空格
+</span></span></code></pre></div><p>以上是Markdown的基础语法部分，和普通六级专八词汇相比应该是简单的不是一星半点吧。</p>
+<h3 id="链接类">链接类<a hidden class="anchor" aria-hidden="true" href="#链接类">#</a></h3>
+<h4 id="图片">图片<a hidden class="anchor" aria-hidden="true" href="#图片">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">图片的说明</span>](<span class="na">图片位置</span>)
+</span></span></code></pre></div><h4 id="链接">链接<a hidden class="anchor" aria-hidden="true" href="#链接">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">链接的说明文字</span>](<span class="na">链接</span>)
+</span></span></code></pre></div><h2 id="markdown进阶">markdown进阶<a hidden class="anchor" aria-hidden="true" href="#markdown进阶">#</a></h2>
+<h3 id="表格类">表格类<a hidden class="anchor" aria-hidden="true" href="#表格类">#</a></h3>
+<h5 id="基本表格不含单元格合并">基本表格（不含单元格合并）<a hidden class="anchor" aria-hidden="true" href="#基本表格不含单元格合并">#</a></h5>
+<p>基本的一个三乘三表格</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">|title1|title2|title3|
+</span></span><span class="line"><span class="cl">|:-----|:----:|-----:|
+</span></span><span class="line"><span class="cl">|左侧对齐|居中|右侧对齐|
+</span></span><span class="line"><span class="cl">|x|y|z|
+</span></span></code></pre></div><p>生成效果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">title1</th>
+<th style="text-align:center">title2</th>
+<th style="text-align:right">title3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">左侧对齐</td>
+<td style="text-align:center">居中</td>
+<td style="text-align:right">右侧对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:center">y</td>
+<td style="text-align:right">z</td>
+</tr>
+</tbody>
+</table>
+<h5 id="html表格包含单元格合并的">HTML表格（包含单元格合并的）<a hidden class="anchor" aria-hidden="true" href="#html表格包含单元格合并的">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>列一<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>列二<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&#34;2&#34;</span><span class="p">&gt;</span>合并行<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>    
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>列一<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>列二<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span> <span class="na">rowspan</span><span class="o">=</span><span class="s">&#34;2&#34;</span><span class="p">&gt;</span>合并列<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>    
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span> <span class="p">&gt;</span>行二列二<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">td</span> <span class="p">&gt;</span>行三列二<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>效果：</p>
+<table>
+    <tr>
+        <td>列一</td> 
+        <td>列二</td> 
+   </tr>
+   <tr>
+        <td colspan="2">合并行</td>    
+   </tr>
+   <tr>
+        <td>列一</td> 
+        <td>列二</td> 
+   </tr>
+    <tr>
+        <td rowspan="2">合并列</td>    
+        <td >行二列二</td>  
+    </tr>
+    <tr>
+        <td >行三列二</td>  
+    </tr>
+</table>
+<h3 id="公式类">公式类<a hidden class="anchor" aria-hidden="true" href="#公式类">#</a></h3>
+<p>此节主要包含数学公式，使用LaTeX数学公式语法。</p>
+<h5 id="上标">上标<a hidden class="anchor" aria-hidden="true" href="#上标">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="s">$</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">x^n
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="s">$</span>
+</span></span></code></pre></div><p>生成为：$x^n$</p>
+<h5 id="下标">下标<a hidden class="anchor" aria-hidden="true" href="#下标">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="s">$</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">C^</span><span class="m">2</span><span class="nb">_</span><span class="m">3</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="s">$</span>
+</span></span></code></pre></div><p>选择数： $C^2_3$</p>
+<h5 id="多项式">多项式<a hidden class="anchor" aria-hidden="true" href="#多项式">#</a></h5>
+<p>一个不包含tag的多项式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="s">$</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">T</span><span class="o">(</span><span class="nb">n</span><span class="o">)=</span><span class="nv">\begin</span><span class="nb">{cases}
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="nv">\Theta</span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="nv">\quad</span><span class="nb"> n</span><span class="o">=</span><span class="m">1</span><span class="nv">\\</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">T</span><span class="o">(</span><span class="nb">n</span><span class="o">-</span><span class="nb">q</span><span class="o">)+</span><span class="nv">\Theta</span><span class="o">(</span><span class="nb">n</span><span class="o">)</span><span class="nb"> </span><span class="nv">\quad</span><span class="nb"> n&gt;</span><span class="m">1</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="nv">\end</span><span class="nb">{cases}
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="s">$</span>
+</span></span></code></pre></div><p>那么生成的公式如下：</p>
+<p>$T(n)=\begin{cases}
+\Theta(1)\quad n=1\
+T(n-q)+\Theta(n) \quad n&gt;1
+\end{cases}$</p>
+<h5 id="矩阵及行列式">矩阵及行列式<a hidden class="anchor" aria-hidden="true" href="#矩阵及行列式">#</a></h5>
+<p>一个包含tag的矩阵[@noauthor_markdown_nodate-1]</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="s">$</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{bmatrix}
+</span></span></span><span class="line"><span class="cl"><span class="nb">   </span><span class="m">1</span><span class="nb"> &amp; </span><span class="m">2</span><span class="nb"> &amp; </span><span class="m">3</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">   </span><span class="m">4</span><span class="nb"> &amp; </span><span class="m">5</span><span class="nb"> &amp; </span><span class="m">6</span><span class="nb"> </span><span class="nv">\\</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">   </span><span class="m">7</span><span class="nb"> &amp; </span><span class="m">8</span><span class="nb"> &amp; </span><span class="m">9</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">  </span><span class="nv">\end</span><span class="nb">{bmatrix} </span><span class="nv">\tag</span><span class="nb">{</span><span class="m">1</span><span class="nb">}
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="s">$</span>
+</span></span></code></pre></div><p>$$
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \
+4 &amp; 5 &amp; 6 \
+7 &amp; 8 &amp; 9 \
+\end{bmatrix} \tag{1}
+$$</p>
+<h5 id="公式">公式<a hidden class="anchor" aria-hidden="true" href="#公式">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-LaTeX" data-lang="LaTeX"><span class="line"><span class="cl"><span class="s">$</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb">J</span><span class="o">(</span><span class="nv">\theta</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\frac</span><span class="nb">{</span><span class="m">1</span><span class="nb">}{</span><span class="m">2</span><span class="nb">m}</span><span class="nv">\sum</span><span class="nb">_{i</span><span class="o">=</span><span class="m">0</span><span class="nb">}^m</span><span class="o">(</span><span class="nb">y^i </span><span class="o">-</span><span class="nb"> h_</span><span class="nv">\theta</span><span class="o">(</span><span class="nb">x^i</span><span class="o">))</span><span class="nb">^</span><span class="m">2</span><span class="nb">
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="s">$</span>
+</span></span></code></pre></div><p>生成的均方差公式为：</p>
+<p>$J(\theta) = \frac{1}{2m}\sum_{i=0}^m(y^i - h_\theta(x^i))^2$</p>
+<h5 id="还有很多">还有很多&hellip;<a hidden class="anchor" aria-hidden="true" href="#还有很多">#</a></h5>
+<p>LaTeX的数学公式异常灵活，其余语法可以自行查阅。</p>
+<h3 id="信息类">信息类<a hidden class="anchor" aria-hidden="true" href="#信息类">#</a></h3>
+<h4 id="yaml样式的信息">YAML样式的信息<a hidden class="anchor" aria-hidden="true" href="#yaml样式的信息">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">title: 这是一个标题
+</span></span><span class="line"><span class="cl">time: 2019
+</span></span><span class="line"><span class="cl">TOC: true
+</span></span><span class="line"><span class="cl">---
+</span></span></code></pre></div><p>那么将生成自动目录以及包含时间信息的文章标题部分。</p>
+<h4 id="xml样式信息">XML样式信息<a hidden class="anchor" aria-hidden="true" href="#xml样式信息">#</a></h4>
+<p>如果你更熟悉XML，直接上吧骚年！</p>
+<h3 id="导图类">导图类<a hidden class="anchor" aria-hidden="true" href="#导图类">#</a></h3>
+<p>使用markdown可以通过公式方式扩展来写流程图等。[@noauthor_typora__nodate]</p>
+<h4 id="甘特图时序图">甘特图(时序图)<a hidden class="anchor" aria-hidden="true" href="#甘特图时序图">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">​```mermaid
+</span></span><span class="line"><span class="cl">  sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant 张三
+</span></span><span class="line"><span class="cl">    participant 李四
+</span></span><span class="line"><span class="cl">    张三-&gt;王五: 王五你好吗？
+</span></span><span class="line"><span class="cl">    loop 健康检查
+</span></span><span class="line"><span class="cl">        王五-&gt;王五: 与疾病战斗
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of 王五: 合理 食物 <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>看医生...
+</span></span><span class="line"><span class="cl">    李四--&gt;&gt;张三: 很好!
+</span></span><span class="line"><span class="cl">    王五-&gt;李四: 你怎么样?
+</span></span><span class="line"><span class="cl">    李四--&gt;王五: 很好!
+</span></span><span class="line"><span class="cl">​```
+</span></span></code></pre></div><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">
+%% 时序图例子,-&gt; 直线，--&gt;虚线，-&gt;&gt;实线箭头
+
+  sequenceDiagram
+
+    participant 张三
+
+    participant 李四
+
+    张三-&gt;王五: 王五你好吗？
+
+    loop 健康检查
+
+        王五-&gt;王五: 与疾病战斗
+
+    end
+
+    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...
+
+    李四--&gt;&gt;张三: 很好!
+
+    王五-&gt;李四: 你怎么样?
+
+    李四--&gt;王五: 很好!
+</code></pre><h4 id="美人鱼图">美人鱼图<a hidden class="anchor" aria-hidden="true" href="#美人鱼图">#</a></h4>
+<p>一个示例的美人鱼图：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">​```mermaid
+</span></span><span class="line"><span class="cl">graph TD
+</span></span><span class="line"><span class="cl">client1--&gt;|read / write|SVN((SVN server))
+</span></span><span class="line"><span class="cl">client2--&gt;|read only|SVN
+</span></span><span class="line"><span class="cl">client3--&gt;|read / write|SVN
+</span></span><span class="line"><span class="cl">client4--&gt;|read only|SVN
+</span></span><span class="line"><span class="cl">client5(...)--&gt;SVN
+</span></span><span class="line"><span class="cl">SVN---|store the data|sharedrive
+</span></span><span class="line"><span class="cl">​```
+</span></span></code></pre></div><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD
+client1--&gt;|read / write|SVN((SVN server))
+client2--&gt;|read only|SVN
+client3--&gt;|read / write|SVN
+client4--&gt;|read only|SVN
+client5(...)--&gt;SVN
+SVN---|store the data|sharedrive
+</code></pre><p>此处参考</p>
+<h1 id="与文献管理工具互动">与文献管理工具互动<a hidden class="anchor" aria-hidden="true" href="#与文献管理工具互动">#</a></h1>
+<p>为什么不推荐使用word自带的文献管理器，因为Zotero以及Mandelay等文献管理器更加强大而且易用，包含比如PDF阅读、文献检索、文献关联设置、关键词等。</p>
+<p>这里只对zotero文献管理器与markdown论文撰写的互动进行说明。</p>
+<h2 id="zotero">Zotero<a hidden class="anchor" aria-hidden="true" href="#zotero">#</a></h2>
+<p>首先到Zotero官网下载软件本体进行安装，然后按照提示安装浏览器插件。使用如下图：</p>
+<p>（gif）</p>
+<p>之后你可以在Zotero导出参考文献。导出时请选择Bibtex格式。需要生成参考文献时直接将导出的文件用文本编辑器打开并进行如下操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bibtex" data-lang="bibtex"><span class="line"><span class="cl"><span class="c">#一个实例的bib文件内容</span>
+</span></span><span class="line"><span class="cl"><span class="nc">@misc</span><span class="p">{</span><span class="nl">noauthor_britains_nodate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="na">title</span> <span class="p">=</span> <span class="s">{Britain’s imperial fantasies have given us {Brexit} {\textbar} {Gary} {Younge} {\textbar} {Opinion} {\textbar} {The} {Guardian}}</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="na">url</span> <span class="p">=</span> <span class="s">{https://www.theguardian.com/commentisfree/2018/feb/03/imperial-fantasies-brexit-theresa-may}</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="na">urldate</span> <span class="p">=</span> <span class="s">{2019-04-29}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">这里引用了参考[@noauthor_britains_nodate]
+</span></span></code></pre></div><p>即将包含“@misc”行行首大括号后内容前加“@”用中括号“[]”包裹放在需要引用的位置。生成文件时会自动在文末添加参考文献。[@noauthor_markdown_nodate]</p>
+<h1 id="使用pandoc生成最后一步了">使用pandoc生成（最后一步了）<a hidden class="anchor" aria-hidden="true" href="#使用pandoc生成最后一步了">#</a></h1>
+<h2 id="pandoc安装">pandoc安装<a hidden class="anchor" aria-hidden="true" href="#pandoc安装">#</a></h2>
+<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<p>Windows用户可以再官网下载EXE文件进行安装，并安装Python3使用pip安装pandoc的其他扩展。</p>
+<h3 id="mac-os">Mac OS<a hidden class="anchor" aria-hidden="true" href="#mac-os">#</a></h3>
+<p>Mac用户可以使用brew来安装pandoc，并使用pip来添加扩展</p>
+<h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
+<p>重点说一下Linux，以证明使用Linux同样可以撰写论文。</p>
+<p>大多数Linux发行版的仓库内包含pandoc，并默认有pip。使用pip可安装扩展。</p>
+<h4 id="对于arch-linux">对于Arch Linux<a hidden class="anchor" aria-hidden="true" href="#对于arch-linux">#</a></h4>
+<p>Arch Linux仓库中为pandoc以及LaTeX全部扩展进行了打包，直接安装，舒适便捷。</p>
+<h2 id="生成方式">生成方式<a hidden class="anchor" aria-hidden="true" href="#生成方式">#</a></h2>
+<p>在此文中，我们需要使用的插件为：pandoc-citeproc。</p>
+<p>那么使用如下指令生成：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pandoc --filter pandoc-citeproc --bibliography<span class="o">=</span>你的文献库.bib --csl<span class="o">=</span>chinese-gb7714-2005-numeric.csl  你的markdown文件.md -o  你的生成文件.docx
+</span></span></code></pre></div><p>其中“&ndash;csl”选项为需要生成参考文献的具体格式标准。</p>
+<p>如果你单单只使用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pandoc  markdown文件.md -o  生成的文件
+</span></span></code></pre></div><p>将只进行最基础的文件渲染，比如转换为PDF格式。</p>
+<h1 id="参考文献示例">参考文献（示例）<a hidden class="anchor" aria-hidden="true" href="#参考文献示例">#</a></h1>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://baike.baidu.com/item/markdown/3245829?fr=aladdin">https://baike.baidu.com/item/markdown/3245829?fr=aladdin</a> markdown&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://zh.wikipedia.org/wiki/Pandoc">https://zh.wikipedia.org/wiki/Pandoc</a> Pandoc&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin">https://baike.baidu.com/item/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F/1017816?fr=aladdin</a> 富文本格式&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/markdown/">markdown</a></li>
+      <li><a href="https://blog.weearc.top/tags/pandoc/">pandoc</a></li>
+      <li><a href="https://blog.weearc.top/tags/zotero/">zotero</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/12422/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>archlinux安装配置(3)</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/6009/">
+    <span class="title">Next »</span>
+    <br>
+    <span>hexo主题迁移and折腾记</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on twitter"
+        href="https://twitter.com/intent/tweet/?text=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87&amp;url=https%3a%2f%2fblog.weearc.top%2f1448%2f&amp;hashtags=markdown%2cpandoc%2czotero">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fblog.weearc.top%2f1448%2f&amp;title=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87&amp;summary=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87&amp;source=https%3a%2f%2fblog.weearc.top%2f1448%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fblog.weearc.top%2f1448%2f&title=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.weearc.top%2f1448%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on whatsapp"
+        href="https://api.whatsapp.com/send?text=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87%20-%20https%3a%2f%2fblog.weearc.top%2f1448%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 使用pandoc撰写论文 on telegram"
+        href="https://telegram.me/share/url?text=%e4%bd%bf%e7%94%a8pandoc%e6%92%b0%e5%86%99%e8%ae%ba%e6%96%87&amp;url=https%3a%2f%2fblog.weearc.top%2f1448%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just go go',
+            notify: 'false',
+            verify: 'false',
+            path: 'window.location.pathname',
+            avatar: 'mm',
+            meta: '[nick mail link]',
+            pageSize: '10',
+            lang: 'en',
+            visitor: 'false',
+            highlight: 'true',
+            avatarForce: 'false',
+            recordIP: 'false'
+        });
+    }
+
+    loadComments()
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

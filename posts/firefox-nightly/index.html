@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Firefox每夜构建食用指南 | weearc 的个人博客</title>
+<meta name="keywords" content="firefox, archlinux, linux, firefox-nightly">
+<meta name="description" content="可能和你想的不大一样，这是个不算完善的方法，但保证好用。">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/firefox-nightly/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d918aa2b3672274a508449848c9e6fcc030030e995cea61623654add81dfe9a7.css" integrity="sha256-2RiqKzZyJ0pQhEmEjJ5vzAMAMOmVzqYWI2VK3YHf6ac=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Firefox每夜构建食用指南" />
+<meta property="og:description" content="可能和你想的不大一样，这是个不算完善的方法，但保证好用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/firefox-nightly/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-08-25T16:04:16+00:00" />
+<meta property="article:modified_time" content="2018-08-25T16:04:16+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="Firefox每夜构建食用指南"/>
+<meta name="twitter:description" content="可能和你想的不大一样，这是个不算完善的方法，但保证好用。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Firefox每夜构建食用指南",
+      "item": "https://blog.weearc.top/posts/firefox-nightly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Firefox每夜构建食用指南",
+  "name": "Firefox每夜构建食用指南",
+  "description": "可能和你想的不大一样，这是个不算完善的方法，但保证好用。\n",
+  "keywords": [
+    "firefox", "archlinux", "linux", "firefox-nightly"
+  ],
+  "articleBody": "可能和你想的不大一样，这是个不算完善的方法，但保证好用。\nFirefox下载及”安装“ 首先说明一下，archlinuxCN repo里面有每夜构建版本的Firefox，而且是四种语言版本:简体中文，正體中文，日本語，English(US)。但是这是我事后才知道的。话说回来，就算是使用了Mozilla官方的版本其实还是一个不错的选择。毕竟是预编译可执行文件，位置随意放置，比如我就放到了 opt下面。如果熟悉.desktop文件编写的话只要自己写个启动器就好，简单明了。这点还是要感谢一下Mozilla的打包方式，解压后的文件名统一就是Firefox。因此也可以做到多个Firefox版本共存。 由于一些不可见光的原因，国内用户在百度搜索Firefox浏览器的时候会被redirect到火狐浏览器那里\n好了你看到了，我把Firefox与火狐作了区分\n为什么？因为你要是仔细观察就会发现不光是安装程序和协议，就连官网本身都并不相同（不只是语言），国内官网是被阉割过的。因此想要下载Mozilla软件请一定要认准Mozilla的官方地址，根据其性质是以org域名。传送门。Mozilla有CDN加持，国内访问速度尚可。 接下来就是直接将页面拖到最低端，选择 Beta、Nightly、Developer Edition然后找到那个非常酷炫的nightly图标，点进去进行下载。 Mozilla会在你进行下载的时候对系统进行判断，Linux下载后会得到一个以tar.bz2作为扩展名的归档文件。直接移动到/opt目录下面，获取root权限并解压：\ntar -xvf firefox-nightly-版本号.0a1.tar.bz2 我这里写版本号诸君都能看懂吧，不要傻乎乎地复制粘贴。解压后会自动生成目录Firefox，此时在家目录下建立Firefox-nightly.desktop文件并填入以下内容（遵循X11标准，部分是KDE标准，DBUS部分可以不用理会）\n[Desktop Entry] Comment[zh_CN]= Comment= Exec=/opt/firefox/firefox GenericName[zh_CN]= GenericName= Icon=/opt/firefox/browser/chrome/icons/default/default128.png MimeType= Name[zh_CN]=firefox nightly Name=firefox nightly Path= StartupNotify=true Terminal=false TerminalOptions= Type=Application X-DBUS-ServiceName= X-DBUS-StartupType= X-KDE-RunOnDiscreteGpu=false X-KDE-SubstituteUID=false X-KDE-Username= 这里需要注意一点就是我偷懒了，实际上的写法应该参考archlinuxCN的Firefox-nightly.desktop：\n[Desktop Entry] Name=Firefox Nightly GenericName=Web Browser Comment[zh_CN]=浏览互联网 Exec=firefox-nightly --class=FirefoxNightly %u Icon=firefox-nightly Terminal=false Type=Application MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https; StartupNotify=true StartupWMClass=FirefoxNightly Categories=Network;WebBrowser; Keywords=web;browser;internet; Actions=new-window;new-private-window; [Desktop Action new-window] Name=New Window Name[zh_CN]=新建窗口 Exec=firefox-nightly --class=FirefoxNightly --new-window %u [Desktop Action new-private-window] Name=New Private Window Name[en_US]=New Private Window Name[zh_CN]=新建隐私浏览窗口 Exec=firefox-nightly --class=FirefoxNightly --private-window %u 在这个写法中能够实现隐私窗口的调用，使得功能上更加完善。 至此Firefox-nightly安装完毕。你以为这就可以满足我了吗？才怪。\n自升级脚本编写 升级模块 下载模块 很简单，如果通过Firefox下载浏览器新版本的话能够直接看到下载的链接，形如：https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-59.0a1.zh-CN.linux-x86_64.tar.bz2 。 那么之后就只需要替换版本号就可以了。但是也存在一个问题，就是如果版本号写死了，那么之后的升级操作通过执行脚本就显得很困难，而且最多只能保持在某一版本号这短暂的生命周期内。因此结合以前学习archlinux的PKGBUILD编写时某贴吧大佬的提示，将版本号全部使用 $pkgver 代替。根据bash的语法。此变量的声明应该在头部进行而且使用$声明的变量应该是有前部程序输出的。但是毕竟本人能力有限还不能够写出能直接被识别的变量名称（毕竟web地址特殊字符不少）。 因此，思路是首先编写版本号文件pkgver.txt，在这个文件中输入版本号，借由cat命令执行输出并对之后变量的引用进行输入。 因此,整个过程简化为：\ncd /opt _pkgver=$(cat pkgver.txt) wget https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 tar -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 #解压时会自动覆盖 rm -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz 权限判断模块 上面我们讲了升级的基本操作：下载包，解压，删除。但是我们需要注意一点，我们在执行脚本时身份不是root，这样会容易造成麻烦。因此需要添加一个简单的身份验证模块,整个过程借由if语句:\nif [[ $EUID -eq 0 ]] then cd /opt _pkgver=$(cat pkgver.txt) wget https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 tar -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 #解压时会自动覆盖 rm -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz;else echo \"Please run it use sudo or as root user!\"; fi 提示一点，千万不要忘记bash中if对空格敏感…还有就是分号不要忘记。\n版本号模块 正常来说的话，我们手动下载新构建的nightly时，Firefox会自动调用函数向上游发出请求来判断是否需要更新，但是我们自己的话就没有办法是用这个。因此我们需要手动构建一个。 上面已经可以知道我们有一个名为 pkgver.txt 的额外的文件用来检测版本号。然后我们也很容易发现如果尝试下载旧版本的包时候会返回404。那么，这样思路就很明确了：\n使用curl来获取http_code 使用tail，利用管道获取上面的返回值并剪切 使用一个循环来不断调用版本号的函数 那么可以利用以下代码： 首先定义一个_link来存放链接\n_link=https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 然后使用curl来获取http_code\ncurl -I -s --connect-timeout 5 $_link -w %{http_code} 此时应该可以正常获取到网页或者该文件信息了。 使用管道：\ncurl -I -s --connect-timeout 5 $_link -w %{http_code} 定义到新的变量：\n$_httpcode=(curl -I -s --connect-timeout 5 $_link -w %{http_code}) 夜间定时检测任务添加 TODO：\n基础模块编写 发行版判断并可切换下载器 代理功能 [] 后续脚本优化 ",
+  "wordCount" : "188",
+  "inLanguage": "en",
+  "datePublished": "2018-08-25T16:04:16Z",
+  "dateModified": "2018-08-25T16:04:16Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/firefox-nightly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友联">
+                    <span>友联</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">Home</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Firefox每夜构建食用指南
+    </h1>
+    <div class="post-meta"><span title='2018-08-25 16:04:16 +0000 UTC'>August 25, 2018</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#firefox%e4%b8%8b%e8%bd%bd%e5%8f%8a%e5%ae%89%e8%a3%85" aria-label="Firefox下载及”安装“">Firefox下载及”安装“</a></li>
+                <li>
+                    <a href="#%e8%87%aa%e5%8d%87%e7%ba%a7%e8%84%9a%e6%9c%ac%e7%bc%96%e5%86%99" aria-label="自升级脚本编写">自升级脚本编写</a><ul>
+                        
+                <li>
+                    <a href="#%e5%8d%87%e7%ba%a7%e6%a8%a1%e5%9d%97" aria-label="升级模块">升级模块</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%8b%e8%bd%bd%e6%a8%a1%e5%9d%97" aria-label="下载模块">下载模块</a></li>
+                <li>
+                    <a href="#%e6%9d%83%e9%99%90%e5%88%a4%e6%96%ad%e6%a8%a1%e5%9d%97" aria-label="权限判断模块">权限判断模块</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%89%88%e6%9c%ac%e5%8f%b7%e6%a8%a1%e5%9d%97" aria-label="版本号模块">版本号模块</a></li>
+                <li>
+                    <a href="#%e5%a4%9c%e9%97%b4%e5%ae%9a%e6%97%b6%e6%a3%80%e6%b5%8b%e4%bb%bb%e5%8a%a1%e6%b7%bb%e5%8a%a0" aria-label="夜间定时检测任务添加">夜间定时检测任务添加</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>可能和你想的不大一样，这是个不算完善的方法，但保证好用。</p>
+<h1 id="firefox下载及安装">Firefox下载及”安装“<a hidden class="anchor" aria-hidden="true" href="#firefox下载及安装">#</a></h1>
+<p>首先说明一下，<a href="https://github.com/archlinuxcn/repo">archlinuxCN repo</a>里面有每夜构建版本的Firefox，而且是四种语言版本:简体中文，正體中文，日本語，English(US)。但是这是我事后才知道的。话说回来，就算是使用了Mozilla官方的版本其实还是一个不错的选择。毕竟是预编译可执行文件，位置随意放置，比如我就放到了 <strong>opt</strong>下面。如果熟悉.desktop文件编写的话只要自己写个启动器就好，简单明了。这点还是要感谢一下Mozilla的打包方式，解压后的文件名统一就是Firefox。因此也可以做到多个Firefox版本共存。
+由于一些不可见光的原因，国内用户在百度搜索Firefox浏览器的时候会被redirect到火狐浏览器那里</br></p>
+<blockquote>
+<p>好了你看到了，我把Firefox与火狐作了区分</p>
+</blockquote>
+<p>为什么？因为你要是仔细观察就会发现不光是安装程序和协议，就连官网本身都并不相同（不只是语言），国内官网是被阉割过的。因此想要下载Mozilla软件请一定要认准Mozilla的官方地址，根据其性质是以org域名。<a href="https://www.mozilla.org/zh-CN/firefox/">传送门</a>。Mozilla有CDN加持，国内访问速度尚可。
+接下来就是直接将页面拖到最低端，选择 <a href="https://www.mozilla.org/zh-CN/firefox/channel/desktop/"><strong>Beta、Nightly、Developer Edition</strong></a>然后找到那个非常酷炫的nightly图标，点进去进行下载。
+Mozilla会在你进行下载的时候对系统进行判断，Linux下载后会得到一个以tar.bz2作为扩展名的归档文件。直接移动到/opt目录下面，获取root权限并解压：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -xvf firefox-nightly-版本号.0a1.tar.bz2
+</span></span></code></pre></div><p>我这里写版本号诸君都能看懂吧，不要傻乎乎地复制粘贴。解压后会自动生成目录Firefox，此时在家目录下建立Firefox-nightly.desktop文件并填入以下内容（遵循X11标准，部分是KDE标准，DBUS部分可以不用理会）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Comment<span class="o">[</span>zh_CN<span class="o">]=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Comment</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>/opt/firefox/firefox
+</span></span><span class="line"><span class="cl">GenericName<span class="o">[</span>zh_CN<span class="o">]=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GenericName</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Icon</span><span class="o">=</span>/opt/firefox/browser/chrome/icons/default/default128.png
+</span></span><span class="line"><span class="cl"><span class="nv">MimeType</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">Name<span class="o">[</span>zh_CN<span class="o">]=</span>firefox nightly
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>firefox nightly
+</span></span><span class="line"><span class="cl"><span class="nv">Path</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TerminalOptions</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>Application
+</span></span><span class="line"><span class="cl">X-DBUS-ServiceName<span class="o">=</span>
+</span></span><span class="line"><span class="cl">X-DBUS-StartupType<span class="o">=</span>
+</span></span><span class="line"><span class="cl">X-KDE-RunOnDiscreteGpu<span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">X-KDE-SubstituteUID<span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl">X-KDE-Username<span class="o">=</span>
+</span></span></code></pre></div><p>这里需要注意一点就是我偷懒了，实际上的写法应该参考archlinuxCN的Firefox-nightly.desktop：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>Firefox Nightly
+</span></span><span class="line"><span class="cl"><span class="nv">GenericName</span><span class="o">=</span>Web Browser
+</span></span><span class="line"><span class="cl">Comment<span class="o">[</span>zh_CN<span class="o">]=</span>浏览互联网
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>firefox-nightly --class<span class="o">=</span>FirefoxNightly %u
+</span></span><span class="line"><span class="cl"><span class="nv">Icon</span><span class="o">=</span>firefox-nightly
+</span></span><span class="line"><span class="cl"><span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>Application
+</span></span><span class="line"><span class="cl"><span class="nv">MimeType</span><span class="o">=</span>text/html<span class="p">;</span>text/xml<span class="p">;</span>application/xhtml+xml<span class="p">;</span>application/vnd.mozilla.xul+xml<span class="p">;</span>text/mml<span class="p">;</span>x-scheme-handler/http<span class="p">;</span>x-scheme-handler/https<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">StartupWMClass</span><span class="o">=</span>FirefoxNightly
+</span></span><span class="line"><span class="cl"><span class="nv">Categories</span><span class="o">=</span>Network<span class="p">;</span>WebBrowser<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Keywords</span><span class="o">=</span>web<span class="p">;</span>browser<span class="p">;</span>internet<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Actions</span><span class="o">=</span>new-window<span class="p">;</span>new-private-window<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Desktop Action new-window<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>New Window
+</span></span><span class="line"><span class="cl">Name<span class="o">[</span>zh_CN<span class="o">]=</span>新建窗口
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>firefox-nightly --class<span class="o">=</span>FirefoxNightly --new-window %u
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Desktop Action new-private-window<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span><span class="o">=</span>New Private Window
+</span></span><span class="line"><span class="cl">Name<span class="o">[</span>en_US<span class="o">]=</span>New Private Window
+</span></span><span class="line"><span class="cl">Name<span class="o">[</span>zh_CN<span class="o">]=</span>新建隐私浏览窗口
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span><span class="o">=</span>firefox-nightly --class<span class="o">=</span>FirefoxNightly --private-window %u
+</span></span></code></pre></div><p>在这个写法中能够实现隐私窗口的调用，使得功能上更加完善。
+至此Firefox-nightly安装完毕。你以为这就可以满足我了吗？才怪。</p>
+<h1 id="自升级脚本编写">自升级脚本编写<a hidden class="anchor" aria-hidden="true" href="#自升级脚本编写">#</a></h1>
+<h2 id="升级模块">升级模块<a hidden class="anchor" aria-hidden="true" href="#升级模块">#</a></h2>
+<h3 id="下载模块">下载模块<a hidden class="anchor" aria-hidden="true" href="#下载模块">#</a></h3>
+<p>很简单，如果通过Firefox下载浏览器新版本的话能够直接看到下载的链接，形如：https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-59.0a1.zh-CN.linux-x86_64.tar.bz2 。 那么之后就只需要替换版本号就可以了。但是也存在一个问题，就是如果版本号写死了，那么之后的升级操作通过执行脚本就显得很困难，而且最多只能保持在某一版本号这短暂的生命周期内。因此结合以前学习archlinux的PKGBUILD编写时某贴吧大佬的提示，将版本号全部使用 <strong>$pkgver</strong> 代替。根据bash的语法。此变量的声明应该在头部进行而且使用$声明的变量应该是有前部程序输出的。但是毕竟本人能力有限还不能够写出能直接被识别的变量名称（毕竟web地址特殊字符不少）。</br>
+因此，思路是首先编写版本号文件pkgver.txt，在这个文件中输入版本号，借由cat命令执行输出并对之后变量的引用进行输入。
+因此,整个过程简化为：</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">cd /opt
+_pkgver=$(cat pkgver.txt)
+wget https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2
+tar -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 #解压时会自动覆盖
+rm -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz
+</code></pre><h3 id="权限判断模块">权限判断模块<a hidden class="anchor" aria-hidden="true" href="#权限判断模块">#</a></h3>
+<p>上面我们讲了升级的基本操作：下载包，解压，删除。但是我们需要注意一点，我们在执行脚本时身份不是root，这样会容易造成麻烦。因此需要添加一个简单的身份验证模块,整个过程借由if语句:</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">if [[ $EUID -eq 0 ]]
+then    cd /opt
+    _pkgver=$(cat pkgver.txt)
+    wget https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2
+    tar -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2 #解压时会自动覆盖
+    rm -xvf firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz;else
+    echo &#34;Please run it use sudo or as root user!&#34;;
+fi
+</code></pre><p>提示一点，千万不要忘记bash中if对空格敏感&hellip;还有就是分号不要忘记。</p>
+<h2 id="版本号模块">版本号模块<a hidden class="anchor" aria-hidden="true" href="#版本号模块">#</a></h2>
+<p>正常来说的话，我们手动下载新构建的nightly时，Firefox会自动调用函数向上游发出请求来判断是否需要更新，但是我们自己的话就没有办法是用这个。因此我们需要手动构建一个。
+上面已经可以知道我们有一个名为 <strong>pkgver.txt</strong> 的额外的文件用来检测版本号。然后我们也很容易发现如果尝试下载旧版本的包时候会返回404。那么，这样思路就很明确了：</p>
+<ul>
+<li>使用curl来获取http_code</li>
+<li>使用tail，利用管道获取上面的返回值并剪切</li>
+<li>使用一个循环来不断调用版本号的函数</li>
+</ul>
+<p>那么可以利用以下代码：
+首先定义一个_link来存放链接</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">_link=https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central-l10n/firefox-$_pkgver.0a1.zh-CN.linux-x86_64.tar.bz2
+</code></pre><p>然后使用curl来获取http_code</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">curl -I -s --connect-timeout 5 $_link -w %{http_code}
+</code></pre><p>此时应该可以正常获取到网页或者该文件信息了。
+使用管道：</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">curl -I -s --connect-timeout 5 $_link -w %{http_code}
+</code></pre><p>定义到新的变量：</p>
+<pre tabindex="0"><code class="language-@bash" data-lang="@bash">$_httpcode=(curl -I -s --connect-timeout 5 $_link -w %{http_code})
+</code></pre><h2 id="夜间定时检测任务添加">夜间定时检测任务添加<a hidden class="anchor" aria-hidden="true" href="#夜间定时检测任务添加">#</a></h2>
+<p>TODO：</br></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 基础模块编写</li>
+<li><input checked="" disabled="" type="checkbox"> 发行版判断并可切换下载器</li>
+<li><input checked="" disabled="" type="checkbox"> 代理功能</li>
+<li>[] 后续脚本优化</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/firefox/">firefox</a></li>
+      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
+      <li><a href="https://blog.weearc.top/tags/linux/">linux</a></li>
+      <li><a href="https://blog.weearc.top/tags/firefox-nightly/">firefox-nightly</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/php1/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>php入门到入土1</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/hello-world/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Hello World</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on twitter"
+        href="https://twitter.com/intent/tweet/?text=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f&amp;hashtags=firefox%2carchlinux%2clinux%2cfirefox-nightly">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f&amp;title=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97&amp;summary=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97&amp;source=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f&title=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on whatsapp"
+        href="https://api.whatsapp.com/send?text=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97%20-%20https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Firefox每夜构建食用指南 on telegram"
+        href="https://telegram.me/share/url?text=Firefox%e6%af%8f%e5%a4%9c%e6%9e%84%e5%bb%ba%e9%a3%9f%e7%94%a8%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2ffirefox-nightly%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just go go',
+            notify: 'false',
+            verify: 'false',
+            path: 'window.location.pathname',
+            avatar: 'mm',
+            meta: '[nick mail link]',
+            pageSize: '10',
+            lang: 'en',
+            visitor: 'false',
+            highlight: 'true',
+            avatarForce: 'false',
+            recordIP: 'false'
+        });
+    }
+
+    loadComments()
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

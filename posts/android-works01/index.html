@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>android课设-蓝牙助手 | weearc 的个人博客</title>
+<meta name="keywords" content="Android">
+<meta name="description" content="课设制作思路非常简单，就是制作一个蓝牙助手">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/android-works01/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d918aa2b3672274a508449848c9e6fcc030030e995cea61623654add81dfe9a7.css" integrity="sha256-2RiqKzZyJ0pQhEmEjJ5vzAMAMOmVzqYWI2VK3YHf6ac=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="android课设-蓝牙助手" />
+<meta property="og:description" content="课设制作思路非常简单，就是制作一个蓝牙助手" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/android-works01/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-12-13T20:41:19+00:00" />
+<meta property="article:modified_time" content="2018-12-13T20:41:19+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="android课设-蓝牙助手"/>
+<meta name="twitter:description" content="课设制作思路非常简单，就是制作一个蓝牙助手"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "android课设-蓝牙助手",
+      "item": "https://blog.weearc.top/posts/android-works01/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "android课设-蓝牙助手",
+  "name": "android课设-蓝牙助手",
+  "description": "课设制作思路非常简单，就是制作一个蓝牙助手\n",
+  "keywords": [
+    "Android"
+  ],
+  "articleBody": "课设制作思路非常简单，就是制作一个蓝牙助手\nBluetooth status helper课程设计 设计缘由 众所周知目前安卓机器都可以很简单的获取蓝牙状态。但是由于一些原因我所使用的HTC U Ultra在更新到了Android Oreo以后失去了查看蓝牙状态的功能。因此在本设计中打算借助外部方式实现这个功能\n初步分析 由于在使用Shizuku Manager时以及使用Brevent时发现可以通过扩展开发的方式调用部分系统API，这些API在一定程度上根据厂商的设计方式不同会无法直接调用或是被屏蔽掉。但是HTC在安卓5.0时代已经在系统中大量（完全）保留了原生Android的API，因此只要需要寻找这些接口的调用方式即可使用“被屏蔽”的功能。 在手机实际使用过程中发现缺失的功能如下：\n更改蓝牙可被发现状态 更改蓝牙可被发现状态的时长 (可选)查看的蓝牙列表 编写过程 蓝牙权限的获取 蓝牙权限的获取应该是整个项目最核心的部分。只有实现了能够检测蓝牙开启状态并请求蓝牙权限其余功能才能使用。 在阅读官方文档时发现，在Android Oreo中，想要获取蓝牙权限，应该由四个权限组成： 即两个位置权限，两个蓝牙权限。即：\n",
+  "wordCount" : "781",
+  "inLanguage": "en",
+  "datePublished": "2018-12-13T20:41:19Z",
+  "dateModified": "2018-12-13T20:41:19Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/android-works01/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友联">
+                    <span>友联</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">Home</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      android课设-蓝牙助手
+    </h1>
+    <div class="post-meta"><span title='2018-12-13 20:41:19 +0000 UTC'>December 13, 2018</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#bluetooth-status-helper%e8%af%be%e7%a8%8b%e8%ae%be%e8%ae%a1" aria-label="Bluetooth status helper课程设计">Bluetooth status helper课程设计</a><ul>
+                        
+                <li>
+                    <a href="#%e8%ae%be%e8%ae%a1%e7%bc%98%e7%94%b1" aria-label="设计缘由">设计缘由</a></li>
+                <li>
+                    <a href="#%e5%88%9d%e6%ad%a5%e5%88%86%e6%9e%90" aria-label="初步分析">初步分析</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e8%bf%87%e7%a8%8b" aria-label="编写过程">编写过程</a><ul>
+                        
+                <li>
+                    <a href="#%e8%93%9d%e7%89%99%e6%9d%83%e9%99%90%e7%9a%84%e8%8e%b7%e5%8f%96" aria-label="蓝牙权限的获取">蓝牙权限的获取</a></li>
+                <li>
+                    <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e8%93%9d%e7%89%99%e6%9d%83%e9%99%90" aria-label="初始化蓝牙权限">初始化蓝牙权限</a></li>
+                <li>
+                    <a href="#%e9%87%8d%e5%86%99onactivityresult" aria-label="重写OnActivityResult()">重写OnActivityResult()</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%8e%e4%b9%8b%e5%8c%b9%e9%85%8d%e7%9a%84contantsjava" aria-label="与之匹配的contants.java">与之匹配的contants.java</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%83%a8%e5%88%86%e5%8a%9f%e8%83%bd%e6%a8%a1%e5%9d%97%e7%bc%96%e5%86%99" aria-label="部分功能模块编写">部分功能模块编写</a><ul>
+                        
+                <li>
+                    <a href="#%e8%93%9d%e7%89%99%e5%bc%80%e5%85%b3" aria-label="蓝牙开关">蓝牙开关</a></li>
+                <li>
+                    <a href="#%e6%97%a5%e5%bf%97%e6%9f%a5%e7%9c%8b" aria-label="日志查看">日志查看</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a8%a1%e5%9d%97%e4%b8%bb%e4%bb%a3%e7%a0%81" aria-label="模块主代码">模块主代码</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e7%9c%8bactivity%e9%83%a8%e5%88%86%e4%bb%a3%e7%a0%81" aria-label="查看Activity部分代码">查看Activity部分代码</a></li>
+                <li>
+                    <a href="#%e4%bc%a0%e9%80%92log" aria-label="传递log">传递log</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%ae%be%e5%ae%9a%e5%8f%af%e8%a2%ab%e5%8f%91%e7%8e%b0%e6%97%b6%e9%97%b4" aria-label="设定可被发现时间">设定可被发现时间</a><ul>
+                        
+                <li>
+                    <a href="#%e6%97%b6%e9%97%b4%e9%ab%98%e4%ba%8e300%e7%a7%92%e6%97%b6%e6%96%b9%e6%b3%95%e9%87%8d%e5%86%99" aria-label="时间高于300秒时方法重写">时间高于300秒时方法重写</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%93%9d%e7%89%99%e6%89%ab%e6%8f%8f" aria-label="蓝牙扫描">蓝牙扫描</a></li>
+                <li>
+                    <a href="#%e5%8f%96%e6%b6%88%e6%89%ab%e6%8f%8f" aria-label="取消扫描">取消扫描</a></li>
+                <li>
+                    <a href="#%e5%8f%8c%e5%87%bb%e8%bf%94%e5%9b%9e%e9%94%ae%e9%80%80%e5%87%ba" aria-label="双击返回键退出">双击返回键退出</a></li></ul>
+                </li>
+                <li>
+                    <a href="#res%e9%83%a8%e5%88%86" aria-label="RES部分">RES部分</a></li>
+                <li>
+                    <a href="#%e9%a1%ba%e4%be%bf%e9%99%84%e4%b8%8a%e4%b8%bbactivity%e7%9a%84layout" aria-label="顺便附上主activity的layout">顺便附上主activity的layout</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>课设制作思路非常简单，就是制作一个蓝牙助手</p>
+<h1 id="bluetooth-status-helper课程设计">Bluetooth status helper课程设计<a hidden class="anchor" aria-hidden="true" href="#bluetooth-status-helper课程设计">#</a></h1>
+<h2 id="设计缘由">设计缘由<a hidden class="anchor" aria-hidden="true" href="#设计缘由">#</a></h2>
+<p>众所周知目前安卓机器都可以很简单的获取蓝牙状态。但是由于一些原因我所使用的HTC U Ultra在更新到了Android Oreo以后失去了查看蓝牙状态的功能。因此在本设计中打算借助外部方式实现这个功能</p>
+<h2 id="初步分析">初步分析<a hidden class="anchor" aria-hidden="true" href="#初步分析">#</a></h2>
+<p>由于在使用Shizuku Manager时以及使用Brevent时发现可以通过扩展开发的方式调用部分系统API，这些API在一定程度上根据厂商的设计方式不同会无法直接调用或是被屏蔽掉。但是HTC在安卓5.0时代已经在系统中大量（完全）保留了原生Android的API，因此只要需要寻找这些接口的调用方式即可使用“被屏蔽”的功能。
+在手机实际使用过程中发现缺失的功能如下：</p>
+<ul>
+<li>更改蓝牙可被发现状态</li>
+<li>更改蓝牙可被发现状态的时长</li>
+<li>(可选)查看的蓝牙列表</li>
+</ul>
+<h2 id="编写过程">编写过程<a hidden class="anchor" aria-hidden="true" href="#编写过程">#</a></h2>
+<h3 id="蓝牙权限的获取">蓝牙权限的获取<a hidden class="anchor" aria-hidden="true" href="#蓝牙权限的获取">#</a></h3>
+<p>蓝牙权限的获取应该是整个项目最核心的部分。只有实现了能够检测蓝牙开启状态并请求蓝牙权限其余功能才能使用。
+在阅读<a href="https://developer.android.com/guide/topics/connectivity/bluetooth">官方文档</a>时发现，在Android Oreo中，想要获取蓝牙权限，应该由四个权限组成：
+即两个位置权限，两个蓝牙权限。即：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--AndroidManifest.xml--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 添加蓝牙权限-开始 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.BLUETOOTH&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.BLUETOOTH_ADMIN&#34;</span> <span class="nt">/&gt;</span><span class="c">&lt;!--蓝牙权限--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.ACCESS_FINE_LOCATION&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.ACCESS_COARSE_LOCATION&#34;</span> <span class="nt">/&gt;</span><span class="c">&lt;!--Android位置权限&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">&lt;!--蓝牙权限添加-结束--&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>由于安卓新的安全机制，获取硬件的控制权限一般是视为危险行为（获取的权限为关键权限），因此需要动态调用权限申请以及权限的注册。</p>
+</blockquote>
+<h3 id="初始化蓝牙权限">初始化蓝牙权限<a hidden class="anchor" aria-hidden="true" href="#初始化蓝牙权限">#</a></h3>
+<p>这一段直接上代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">setTitle</span><span class="o">(</span><span class="s">&#34;蓝牙助手&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">savedInstanceState</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bltAdapter</span> <span class="o">=</span> <span class="o">((</span><span class="n">BluetoothManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">BLUETOOTH_SERVICE</span><span class="o">)).</span><span class="na">getAdapter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">//查看设备是否支持蓝牙功能
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">bltAdapter</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="c1">//查看蓝牙是否开启
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">if</span> <span class="o">(</span><span class="n">bltAdapter</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//若已经开启蓝牙则弹出一个提示已经开启
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">String</span> <span class="n">notification</span> <span class="o">=</span> <span class="s">&#34;蓝牙已经开启&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;蓝牙开启&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="n">notification</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span><span class="k">else</span>   <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//若未开启则弹出一个窗口请求开启权限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">Intent</span> <span class="n">enablebtIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_ENABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">enablebtIntent</span><span class="o">,</span> <span class="n">Constants</span><span class="o">.</span><span class="na">REQUEST_ENABLE_BT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//当设备不支持蓝牙功能的时候点击按钮退出程序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;注意&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">&#34;您的设备很可能不支持蓝牙功能&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder</span><span class="o">.</span><span class="na">setPositiveButton</span><span class="o">(</span><span class="s">&#34;确定&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">DialogInterface</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">DialogInterface</span> <span class="n">dialog</span><span class="o">,</span> <span class="kt">int</span> <span class="n">which</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">finish</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span></code></pre></div><p>关键点解释：</p>
+<ol>
+<li>传感器一般是通过相应的Adapter来获取使用权，因此先注册BluetoothAdapter，并且方式为getAdapter()，获取系统的BluetoothService；</li>
+<li>判断是否开启了蓝牙，如果未开启立即申请权限；</li>
+</ol>
+<h3 id="重写onactivityresult">重写OnActivityResult()<a hidden class="anchor" aria-hidden="true" href="#重写onactivityresult">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">,</span><span class="n">Intent</span> <span class="n">data</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span><span class="n">resultCode</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="o">(</span><span class="n">requestCode</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">Constants</span><span class="o">.</span><span class="na">REQUEST_ENABLE_BT</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">resultCode</span> <span class="o">==</span> <span class="n">RESULT_OK</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;蓝牙开启&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder_welcome</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder_welcome</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder_welcome</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">&#34;感谢使用蓝牙助手！\n 这款工具面向部分ROM没有提供查看蓝牙状态功能的机型\n 如：HTC，LG\n 如果您的手机ROM拥有类似功能，您仍可尝试使用。&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder_welcome</span><span class="o">.</span><span class="na">setPositiveButton</span><span class="o">(</span><span class="s">&#34;我知道了&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">DialogInterface</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">DialogInterface</span> <span class="n">dialog</span><span class="o">,</span> <span class="kt">int</span> <span class="n">which</span><span class="o">)</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">builder_welcome</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;蓝牙已开启&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;蓝牙助手需要蓝牙权限才可以正常运行&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">finish</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">default</span><span class="o">:</span><span class="kd">super</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span><span class="n">resultCode</span><span class="o">,</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><p>这么写或者说这么改写的主要原因是蓝牙部分相当于使用了一个新的activity进行控制。</p>
+<h4 id="与之匹配的contantsjava">与之匹配的contants.java<a hidden class="anchor" aria-hidden="true" href="#与之匹配的contantsjava">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Constants</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">REQUEST_ENABLE_BT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>这一段主要还是根据重写的onActivityResult()设定默认的request Code。</p>
+<h3 id="部分功能模块编写">部分功能模块编写<a hidden class="anchor" aria-hidden="true" href="#部分功能模块编写">#</a></h3>
+<h4 id="蓝牙开关">蓝牙开关<a hidden class="anchor" aria-hidden="true" href="#蓝牙开关">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mswitch</span><span class="o">.</span><span class="na">setOnCheckedChangeListener</span><span class="o">(</span><span class="k">new</span> <span class="n">CompoundButton</span><span class="o">.</span><span class="na">OnCheckedChangeListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCheckedChanged</span><span class="o">(</span><span class="n">CompoundButton</span> <span class="n">buttonView</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isChecked</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">isChecked</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Intent</span> <span class="n">enablebtIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_ENABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">enablebtIntent</span><span class="o">,</span> <span class="n">Constants</span><span class="o">.</span><span class="na">REQUEST_ENABLE_BT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;蓝牙开启&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;蓝牙开启&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">disable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;蓝牙关闭&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;蓝牙关闭&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><h4 id="日志查看">日志查看<a hidden class="anchor" aria-hidden="true" href="#日志查看">#</a></h4>
+<h5 id="模块主代码">模块主代码<a hidden class="anchor" aria-hidden="true" href="#模块主代码">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">goTO_log</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Intent</span> <span class="n">log</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="n">log_watcher</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Bundle</span> <span class="n">bundle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bundle</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bundle</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="s">&#34;information&#34;</span><span class="o">,</span><span class="n">information</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bundle</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="s">&#34;time&#34;</span><span class="o">,</span><span class="n">time</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">log</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">&#34;bundle&#34;</span><span class="o">,</span><span class="n">bundle</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">startActivity</span><span class="o">(</span><span class="n">log</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><h5 id="查看activity部分代码">查看Activity部分代码<a hidden class="anchor" aria-hidden="true" href="#查看activity部分代码">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.widget.Button</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.widget.TextView</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">log_watcher</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">TextView</span> <span class="n">log</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TextView</span> <span class="n">log_time</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Button</span> <span class="n">btn</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_log_watcher</span><span class="o">);{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setTitle</span><span class="o">(</span><span class="s">&#34;LOG&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Bundle</span> <span class="n">bundle</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getBundleExtra</span><span class="o">(</span><span class="s">&#34;bundle&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">information</span> <span class="o">=</span> <span class="o">{</span><span class="n">bundle</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;information&#34;</span><span class="o">)};</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">time</span> <span class="o">=</span> <span class="o">{</span><span class="n">bundle</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;time&#34;</span><span class="o">)};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">log</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">logcat</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log_time</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">logcat_time</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">btn</span> <span class="o">=</span> <span class="o">(</span><span class="n">Button</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">log_clean</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">btn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">time</span><span class="o">[</span><span class="mi">0</span><span class="o">]=</span><span class="s">&#34;\0&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">information</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span><span class="s">&#34;\0&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="n">log</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">&#34;\0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">log_time</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">&#34;\0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">log_watcher</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;日志已清除&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">information</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log_time</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">time</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h5 id="传递log">传递log<a hidden class="anchor" aria-hidden="true" href="#传递log">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">String</span> <span class="nf">logcat</span><span class="o">(</span><span class="n">String</span> <span class="n">information</span><span class="o">,</span> <span class="n">String</span> <span class="n">additional_inform</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">information</span><span class="o">=</span><span class="n">information</span><span class="o">+</span><span class="n">additional_inform</span><span class="o">+</span><span class="sc">&#39;\n&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;\0&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//log.setText(information);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">get_log_time</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">information</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="nf">get_log_time</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SimpleDateFormat</span> <span class="n">sdf</span><span class="o">=</span><span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&#34;HH:mm:ss&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span> <span class="n">date</span><span class="o">=</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="o">+</span><span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//log_time.setText(time+&#34;\n&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">time</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><h4 id="设定可被发现时间">设定可被发现时间<a hidden class="anchor" aria-hidden="true" href="#设定可被发现时间">#</a></h4>
+<p>如果认真研究过蓝牙的文档的话，不难发现蓝牙默认最长可被发现时间为300秒，并且在高版本Android上不能使用旧方法进行时间的延展，另外输入值的“null”以及“0”最终获取值并不相同，因此具体代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">cs_btn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">_timeout</span> <span class="o">=</span> <span class="n">editText</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">TextUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">editText</span><span class="o">.</span><span class="na">getText</span><span class="o">())</span> <span class="o">){</span><span class="c1">//判断输入是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Intent</span> <span class="n">dis_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_DISCOVERABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">dis_intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">EXTRA_DISCOVERABLE_DURATION</span><span class="o">,</span> <span class="mi">300</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">startActivity</span><span class="o">(</span><span class="n">dis_intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;设备参照默认最大时间:300秒设置可被发现&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;设备可被发现，时间&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">timeout</span> <span class="o">=</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">_timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//若输入值不为空，采用安卓本身方法进行广播
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">if</span> <span class="o">(</span><span class="n">timeout</span> <span class="o">&lt;=</span> <span class="mi">300</span> <span class="o">&amp;&amp;</span> <span class="n">timeout</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="n">Intent</span> <span class="n">dis_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_DISCOVERABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">dis_intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">EXTRA_DISCOVERABLE_DURATION</span><span class="o">,</span> <span class="n">timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">startActivity</span><span class="o">(</span><span class="n">dis_intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;设备目前已经可被发现，时间为&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;设备可被发现，时间&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">if</span> <span class="o">(</span><span class="n">timeout</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//若时间长于300秒，采用反射方式调用系统蓝牙可被发现的开关以达到延时目的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">setDiscoverableTimeout</span><span class="o">(</span><span class="n">timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;设备目前已经可被发现，时间为&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;设备可被发现，时间&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">if</span> <span class="o">(</span><span class="n">timeout</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Intent</span> <span class="n">dis_intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_DISCOVERABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">dis_intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">EXTRA_DISCOVERABLE_DURATION</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">startActivity</span><span class="o">(</span><span class="n">dis_intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;输入值为0。设备目前已经可被发现，默认时间为&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;设备可被发现，时间&#34;</span><span class="o">+</span><span class="n">timeout</span><span class="o">+</span><span class="s">&#34;秒&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><h5 id="时间高于300秒时方法重写">时间高于300秒时方法重写<a hidden class="anchor" aria-hidden="true" href="#时间高于300秒时方法重写">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDiscoverableTimeout</span><span class="o">(</span><span class="kt">int</span> <span class="n">timeout</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BluetoothAdapter</span> <span class="n">adapter</span><span class="o">=</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">getDefaultAdapter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Method</span> <span class="n">setDiscoverableTimeout</span> <span class="o">=</span> <span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setDiscoverableTimeout&#34;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setDiscoverableTimeout</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Method</span> <span class="n">setScanMode</span> <span class="o">=</span><span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setScanMode&#34;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setScanMode</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setDiscoverableTimeout</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">adapter</span><span class="o">,</span> <span class="n">timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setScanMode</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">adapter</span><span class="o">,</span> <span class="n">BluetoothAdapter</span><span class="o">.</span><span class="na">SCAN_MODE_CONNECTABLE_DISCOVERABLE</span><span class="o">,</span><span class="n">timeout</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><blockquote>
+<p>另外一定要注意：一定要抛异常，否则编译时会报错</p>
+</blockquote>
+<h4 id="蓝牙扫描">蓝牙扫描<a hidden class="anchor" aria-hidden="true" href="#蓝牙扫描">#</a></h4>
+<p>另外说起蓝牙，应该难点就是在广播及扫描部分，但是由于本人理解并不深刻因此可能会出现问题。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">scan_btn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">bltAdapter</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">()){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">bltAdapter</span><span class="o">.</span><span class="na">isDiscovering</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">cancelDiscovery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="c1">//利用睡眠阻隔系统重启扫描服务，并处理异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">startDiscovery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">startDiscovery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;正在进行扫描...&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">bltAdapter</span><span class="o">.</span><span class="na">ACTION_REQUEST_ENABLE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">startActivity</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//扫描到了任一蓝牙设备
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span><span class="o">(</span><span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">ACTION_FOUND</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">                <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;### BT BluetoothDevice.ACTION_FOUND ##&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">BluetoothDevice</span> <span class="n">btDevice</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getParcelableExtra</span><span class="o">(</span><span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">EXTRA_DEVICE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span><span class="o">(</span><span class="n">btDevice</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span> <span class="o">,</span> <span class="s">&#34;Name : &#34;</span> <span class="o">+</span> <span class="n">btDevice</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; Address: &#34;</span> <span class="o">+</span> <span class="n">btDevice</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;Name:&#34;</span><span class="o">+</span><span class="n">btDevice</span><span class="o">.</span><span class="na">getName</span><span class="o">()+</span><span class="s">&#34;Address:&#34;</span><span class="o">+</span><span class="n">btDevice</span><span class="o">.</span><span class="na">getAddress</span><span class="o">(),</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">ACTION_BOND_STATE_CHANGED</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;### BT ACTION_BOND_STATE_CHANGED ##&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">int</span> <span class="n">cur_bond_state</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getIntExtra</span><span class="o">(</span><span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">EXTRA_BOND_STATE</span><span class="o">,</span> <span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">BOND_NONE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">int</span> <span class="n">previous_bond_state</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getIntExtra</span><span class="o">(</span><span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">EXTRA_PREVIOUS_BOND_STATE</span><span class="o">,</span> <span class="n">BluetoothDevice</span><span class="o">.</span><span class="na">BOND_NONE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;### cur_bond_state ##&#34;</span> <span class="o">+</span> <span class="n">cur_bond_state</span> <span class="o">+</span> <span class="s">&#34; ~~ previous_bond_state&#34;</span> <span class="o">+</span> <span class="n">previous_bond_state</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">additional_inform</span><span class="o">=</span><span class="s">&#34;设备进行扫描&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">information</span><span class="o">=</span><span class="n">logcat</span><span class="o">(</span><span class="n">information</span><span class="o">,</span><span class="n">additional_inform</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><h4 id="取消扫描">取消扫描<a hidden class="anchor" aria-hidden="true" href="#取消扫描">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">mCancel</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">bltAdapter</span><span class="o">.</span><span class="na">isDiscovering</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">bltAdapter</span><span class="o">.</span><span class="na">cancelDiscovery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="c1">//利用睡眠阻隔系统重启扫描服务，并处理异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span><span class="s">&#34;已取消&#34;</span><span class="o">,</span><span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span></code></pre></div><h4 id="双击返回键退出">双击返回键退出<a hidden class="anchor" aria-hidden="true" href="#双击返回键退出">#</a></h4>
+<p>这一段也是对返回键的执行进行重写：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onBackPressed</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="n">secondTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">secondTime</span> <span class="o">-</span> <span class="n">firstTime</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="s">&#34;再按一次退出程序&#34;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">firstTime</span> <span class="o">=</span> <span class="n">secondTime</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">finish</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><p>至于其他部分比如关于，非常简单没必要来说。</p>
+<h3 id="res部分">RES部分<a hidden class="anchor" aria-hidden="true" href="#res部分">#</a></h3>
+<p>这部分最具有说服力应该只有这一段代码，方法是在res部分新建style.xml：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;shape</span> <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    android:shape=&#34;rectangle&#34;&gt;
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;solid</span> <span class="na">android:color=</span><span class="s">&#34;#3dafeb&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;corners</span> <span class="na">android:radius=</span><span class="s">&#34;150dp&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;stroke</span> <span class="na">android:width=</span><span class="s">&#34;5dp&#34;</span> <span class="na">android:dashWidth=</span><span class="s">&#34;5dp&#34;</span> <span class="na">android:color=</span><span class="s">&#34;#77d5cf&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;stroke</span> <span class="na">android:width=</span><span class="s">&#34;10dp&#34;</span> <span class="na">android:color=</span><span class="s">&#34;#84ebe5&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/shape&gt;</span>
+</span></span></code></pre></div><h3 id="顺便附上主activity的layout">顺便附上主activity的layout<a hidden class="anchor" aria-hidden="true" href="#顺便附上主activity的layout">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;android.support.constraint.ConstraintLayout</span> <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:app=</span><span class="s">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:tools=</span><span class="s">&#34;http://schemas.android.com/tools&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:layout_width=</span><span class="s">&#34;match_parent&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:layout_height=</span><span class="s">&#34;match_parent&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:accessibilityHeading=</span><span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:minHeight=</span><span class="s">&#34;142dp&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">tools:context=</span><span class="s">&#34;.MainActivity&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Button</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/changeStatus&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;138dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;51dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginStart=</span><span class="s">&#34;15dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginEnd=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginBottom=</span><span class="s">&#34;148dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:background=</span><span class="s">&#34;@drawable/round_botton_2&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;change status&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&#34;0.484&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Switch</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/_switch&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;309dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;38dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginStart=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginTop=</span><span class="s">&#34;44dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginEnd=</span><span class="s">&#34;2dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:checked=</span><span class="s">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:showText=</span><span class="s">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;蓝牙&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textOff=</span><span class="s">&#34;蓝牙关闭&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textOn=</span><span class="s">&#34;蓝牙开启&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">tools:checked=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Button</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/_scan&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">style=</span><span class="s">&#34;?android:attr/buttonStyle&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;159dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;160dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginTop=</span><span class="s">&#34;132dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:background=</span><span class="s">&#34;@drawable/circled_button&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:fontFamily=</span><span class="s">&#34;sans-serif&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:lineSpacingExtra=</span><span class="s">&#34;10sp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;SCAN&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textAllCaps=</span><span class="s">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textSize=</span><span class="s">&#34;30sp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textStyle=</span><span class="s">&#34;bold&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:typeface=</span><span class="s">&#34;monospace&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&#34;parent&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Button</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/goTO_log&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;78dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;34dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginTop=</span><span class="s">&#34;72dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textSize=</span><span class="s">&#34;10sp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:background=</span><span class="s">&#34;@drawable/round_botton_2&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&#34;0.498&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">&#34;@+id/changeStatus&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;EditText</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/editText&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;128dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;54dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginBottom=</span><span class="s">&#34;208dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:ems=</span><span class="s">&#34;10&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:inputType=</span><span class="s">&#34;number&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textAlignment=</span><span class="s">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textStyle=</span><span class="s">&#34;bold&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&#34;0.498&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Button</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/mhelp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;42dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;39dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginStart=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginEnd=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginBottom=</span><span class="s">&#34;216dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:background=</span><span class="s">&#34;@drawable/question_button&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;\?&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textStyle=</span><span class="s">&#34;bold&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&#34;0.0&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toEndOf=</span><span class="s">&#34;@+id/editText&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Button</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:id=</span><span class="s">&#34;@+id/mCancel&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_width=</span><span class="s">&#34;28dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_height=</span><span class="s">&#34;28dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginStart=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginEnd=</span><span class="s">&#34;8dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:layout_marginBottom=</span><span class="s">&#34;160dp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:background=</span><span class="s">&#34;@drawable/round_botton_2&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:text=</span><span class="s">&#34;×&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textSize=</span><span class="s">&#34;10sp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">android:textStyle=</span><span class="s">&#34;bold&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&#34;parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&#34;0.033&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">app:layout_constraintStart_toEndOf=</span><span class="s">&#34;@+id/changeStatus&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/android.support.constraint.ConstraintLayout&gt;</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/android/">Android</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/smalltalks01/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>生活好了，但是我想回到以前</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/php1/">
+    <span class="title">Next »</span>
+    <br>
+    <span>php入门到入土1</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on twitter"
+        href="https://twitter.com/intent/tweet/?text=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f&amp;hashtags=Android">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f&amp;title=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b&amp;summary=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b&amp;source=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f&title=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on whatsapp"
+        href="https://api.whatsapp.com/send?text=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b%20-%20https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share android课设-蓝牙助手 on telegram"
+        href="https://telegram.me/share/url?text=android%e8%af%be%e8%ae%be-%e8%93%9d%e7%89%99%e5%8a%a9%e6%89%8b&amp;url=https%3a%2f%2fblog.weearc.top%2fposts%2fandroid-works01%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just go go',
+            notify: 'false',
+            verify: 'false',
+            path: 'window.location.pathname',
+            avatar: 'mm',
+            meta: '[nick mail link]',
+            pageSize: '10',
+            lang: 'en',
+            visitor: 'false',
+            highlight: 'true',
+            avatarForce: 'false',
+            recordIP: 'false'
+        });
+    }
+
+    loadComments()
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

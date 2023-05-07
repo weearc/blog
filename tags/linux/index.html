@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>linux | weearc 的个人博客</title>
+<meta name="keywords" content="">
+<meta name="description" content="想离相惜莫相忘，且行且歌且珍惜">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/tags/linux/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d918aa2b3672274a508449848c9e6fcc030030e995cea61623654add81dfe9a7.css" integrity="sha256-2RiqKzZyJ0pQhEmEjJ5vzAMAMOmVzqYWI2VK3YHf6ac=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://blog.weearc.top/tags/linux/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="linux" />
+<meta property="og:description" content="想离相惜莫相忘，且行且歌且珍惜" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blog.weearc.top/tags/linux/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="linux"/>
+<meta name="twitter:description" content="想离相惜莫相忘，且行且歌且珍惜"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友联">
+                    <span>友联</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://blog.weearc.top">Home</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/tags/">Tags</a></div>
+  <h1>
+    linux
+    <a href="/tags/linux/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>解决 Fish 不认 history 的问题
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>原本 fish shell 用的好好的，及其方便的设置和高度可自定义的选项和快速的智能补全让它成为懒人的不二之选，但是某天更新过后却出现了无法调用历史的情况，这显然不正常。而我又高度依赖与 fish 的自动补全，尤其对于管理服务器而言是非常之方便的。那肯定就需要搞清楚到底出现了什么问题了。
+首先大概查了一下发现大多是隐私需要删除历史的，这个与我无关。然后翻了一下 fish 的 文档 ，里面关于 history 的描述有这么一段比较令人在意的：
+merge immediately incorporates history changes from other sessions. Ordinarily fish ignores history changes from sessions started after the current one. This command applies those changes immediately.
+于是首先先确认一下历史文件是否正常：
+# 我的历史文件等保存在默认位置 ls ~/.local/share/fish/ 然后返回了：
+fish_history fish_read_history generated_completions 证明历史文件还在，查看了一下内容，10 万行左右，基本没啥问题，还都在。然后尝试合并历史到当前会话：
+history --merge 退出当前会话并查看发现恢复如初，这就很迷惑了…因为我加载 fish 的方式是 konsole 启动时才加载 fish ，所以理应在启动时自动合并。因此为了以防万一可以在 fish 配置文件里加一句让它每次启动自动合并历史。算是暂时解决了这个问题。</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-08-02 18:29:31 +0000 UTC'>August 2, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to 解决 Fish 不认 history 的问题" href="https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>archlinux安装配置(3)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>距离第一篇博文时隔快两年的更新。由于本次配置文件有问题，KDE直接罢工。修补无果于是决定重装。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-07-08 23:22:05 +0000 UTC'>July 8, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to archlinux安装配置(3)" href="https://blog.weearc.top/12422/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>新年折腾记---从Manjaro迁移到Arch
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>新的一年，热爱折腾的我当然是从折腾开始新的一年了….
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-02-06 17:48:04 +0000 UTC'>February 6, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to 新年折腾记---从Manjaro迁移到Arch" href="https://blog.weearc.top/posts/new-year-s-day-2/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>编译安装gcc6.1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-01-23 18:12:53 +0000 UTC'>January 23, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to 编译安装gcc6.1" href="https://blog.weearc.top/posts/compiing-gcc-after-a-long-time-leaving-gentoo/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Firefox每夜构建食用指南
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>可能和你想的不大一样，这是个不算完善的方法，但保证好用。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2018-08-25 16:04:16 +0000 UTC'>August 25, 2018</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to Firefox每夜构建食用指南" href="https://blog.weearc.top/posts/firefox-nightly/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://blog.weearc.top/tags/linux/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

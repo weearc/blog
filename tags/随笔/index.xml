@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>随笔 on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 随笔 on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 27 Aug 2019 21:20:57 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>杂谈</title>
+      <link>https://blog.weearc.top/12326/</link>
+      <pubDate>Tue, 27 Aug 2019 21:20:57 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/12326/</guid>
+      <description>&lt;p&gt;人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>怀念，甚想念，无法想念其一</title>
+      <link>https://blog.weearc.top/posts/new-year-s-day-1/</link>
+      <pubDate>Mon, 04 Feb 2019 23:41:25 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/new-year-s-day-1/</guid>
+      <description>&lt;p&gt;春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>youtuber木下ゆうか篇（一）</title>
+      <link>https://blog.weearc.top/posts/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B-1/</link>
+      <pubDate>Sun, 05 Aug 2018 18:12:04 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B-1/</guid>
+      <description>&lt;p&gt;又一篇由于图床挂掉丧失乐趣的文章，但是不嫌弃的话，还是看看呗？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为什么我屏蔽了知乎？</title>
+      <link>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</link>
+      <pubDate>Mon, 02 Jul 2018 21:11:08 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</guid>
+      <description>&lt;p&gt;别的我不知道反正我是先在路由器里执行了如下命令&amp;hellip;&amp;hellip;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    iptables -I FORWARD -d www.zhihu.com -J DROP
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>狂欢之夜，似乎内心也有些苦涩</title>
+      <link>https://blog.weearc.top/posts/father-s-day/</link>
+      <pubDate>Mon, 18 Jun 2018 01:52:06 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/father-s-day/</guid>
+      <description>&lt;p&gt;今天不来谈技术，我们来说些柔软的东西。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2018-06-09</title>
+      <link>https://blog.weearc.top/50563/</link>
+      <pubDate>Sat, 09 Jun 2018 22:21:14 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/50563/</guid>
+      <description>天气炎热，本来说好的义诊人一共没来几个。微型网友见面会了解一下，虽然还是很舒服的。</description>
+    </item>
+    
+    <item>
+      <title>六月，我们</title>
+      <link>https://blog.weearc.top/posts/gruaduate/</link>
+      <pubDate>Tue, 05 Jun 2018 21:32:35 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/gruaduate/</guid>
+      <description>&lt;p&gt;五月已经远去，儿童节已经过去了三天，如果没记错的话，毕业答辩也差不多在进行当中了。今天我们不来谈技术，来谈一谈更加柔软的东西。逐渐远离的五月，我们再犯一次五月病。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

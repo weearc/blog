@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hello hexo on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/categories/hello-hexo/</link>
+    <description>Recent content in hello hexo on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Aug 2018 00:00:20 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/hello-hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://blog.weearc.top/posts/hello-world/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:20 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/hello-world/</guid>
+      <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello World！&lt;/h1&gt;
+&lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

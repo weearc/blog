@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hexo on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/hexo/</link>
+    <description>Recent content in hexo on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 19 Feb 2021 17:17:28 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hexo 主题模板改造记录 2</title>
+      <link>https://blog.weearc.top/posts/2021-02-19-hexo-%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E6%94%B9%E9%80%A0%E8%AE%B0%E5%BD%95-2/</link>
+      <pubDate>Fri, 19 Feb 2021 17:17:28 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/2021-02-19-hexo-%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E6%94%B9%E9%80%A0%E8%AE%B0%E5%BD%95-2/</guid>
+      <description>本来应该早几天写出来发出来的，但是那几天撸了个脚本，结果要写的也增加了啊...早知道能成为第一个工具轮子这么久就早点把博客完善了。</description>
+    </item>
+    
+    <item>
+      <title>使用 github actions 部署博客到腾讯云</title>
+      <link>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</link>
+      <pubDate>Fri, 21 Aug 2020 17:31:23 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</guid>
+      <description>&lt;p&gt;因为我本人也不是那么熟悉 GITHUB Actions 这玩意儿所以这篇文章仅仅针对性的告诉你怎样配置单单这个自动化部署而已。咕咕咕了很久也是时候应该把这篇补上了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>hexo主题模版改造记录</title>
+      <link>https://blog.weearc.top/31380/</link>
+      <pubDate>Mon, 05 Aug 2019 23:37:27 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/31380/</guid>
+      <description>&lt;p&gt;有时候就是心血来潮才想搞一些好玩的，假期一旦懒下来人就待完了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>hexo主题迁移and折腾记</title>
+      <link>https://blog.weearc.top/6009/</link>
+      <pubDate>Sat, 06 Apr 2019 15:25:05 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/6009/</guid>
+      <description>&lt;p&gt;老实说，其实为什么突然又开始折腾折腾主题了呢&amp;hellip;&amp;hellip;.因为&lt;em&gt;&lt;strong&gt;用NexT的人实在太多了&lt;/strong&gt;&lt;/em&gt;。而我又不想让别人打开发现“和某个某个人的很像”。那样就失去了折腾的必要。因此我决定切换主题。另：本文在调整的相对安逸之前会持续更新。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

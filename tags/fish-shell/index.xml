@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>fish shell on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/fish-shell/</link>
+    <description>Recent content in fish shell on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Aug 2021 18:29:31 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/fish-shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决 Fish 不认 history 的问题</title>
+      <link>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 02 Aug 2021 18:29:31 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>谁能想到用着用着就故障了呢...</description>
+    </item>
+    
+  </channel>
+</rss>

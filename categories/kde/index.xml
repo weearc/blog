@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>kde on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/categories/kde/</link>
+    <description>Recent content in kde on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Jul 2018 21:21:49 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/kde/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>archlinux安装配置(2)</title>
+      <link>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</link>
+      <pubDate>Mon, 02 Jul 2018 21:21:49 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</guid>
+      <description>&lt;p&gt;上一次我们配置了基础系统，这一次我们需要进行进一步的配置以使这个系统能够进行日称使用，至少来讲，不能出大问题。我们在上次的安装中已经结束了基础环境的配置。但是仍然需要后续的一些准备。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

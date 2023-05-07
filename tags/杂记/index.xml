@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>杂记 on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/%E6%9D%82%E8%AE%B0/</link>
+    <description>Recent content in 杂记 on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 27 Aug 2019 21:20:57 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>杂谈</title>
+      <link>https://blog.weearc.top/12326/</link>
+      <pubDate>Tue, 27 Aug 2019 21:20:57 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/12326/</guid>
+      <description>&lt;p&gt;人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2018-06-09</title>
+      <link>https://blog.weearc.top/50563/</link>
+      <pubDate>Sat, 09 Jun 2018 22:21:14 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/50563/</guid>
+      <description>天气炎热，本来说好的义诊人一共没来几个。微型网友见面会了解一下，虽然还是很舒服的。</description>
+    </item>
+    
+  </channel>
+</rss>

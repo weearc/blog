@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>firefox-nightly on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/firefox-nightly/</link>
+    <description>Recent content in firefox-nightly on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 25 Aug 2018 16:04:16 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/firefox-nightly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Firefox每夜构建食用指南</title>
+      <link>https://blog.weearc.top/posts/firefox-nightly/</link>
+      <pubDate>Sat, 25 Aug 2018 16:04:16 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/firefox-nightly/</guid>
+      <description>&lt;p&gt;可能和你想的不大一样，这是个不算完善的方法，但保证好用。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

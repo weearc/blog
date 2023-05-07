@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>知乎 on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/%E7%9F%A5%E4%B9%8E/</link>
+    <description>Recent content in 知乎 on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 Jul 2018 21:11:08 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E7%9F%A5%E4%B9%8E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么我屏蔽了知乎？</title>
+      <link>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</link>
+      <pubDate>Mon, 02 Jul 2018 21:11:08 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</guid>
+      <description>&lt;p&gt;别的我不知道反正我是先在路由器里执行了如下命令&amp;hellip;&amp;hellip;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    iptables -I FORWARD -d www.zhihu.com -J DROP
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

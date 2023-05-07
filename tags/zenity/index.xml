@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>zenity on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/tags/zenity/</link>
+    <description>Recent content in zenity on weearc 的个人博客</description>
+    <image>
+      <title>weearc 的个人博客</title>
+      <url>https://blog.weearc.top/papermod-cover.png</url>
+      <link>https://blog.weearc.top/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 21 Jul 2019 19:27:40 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/zenity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用zenity&#43;xclip实现文字复制粘贴</title>
+      <link>https://blog.weearc.top/5960/</link>
+      <pubDate>Sun, 21 Jul 2019 19:27:40 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/5960/</guid>
+      <description>&lt;p&gt;都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
