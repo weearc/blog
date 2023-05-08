@@ -13,7 +13,7 @@ function setParticuleDirection(e) {
 
 function createParticule(e, t) { var a = {}; return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function() { ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill() }, a }
 
-function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a }
+function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#e793c3", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a }
 
 function renderParticule(e) { for (var t = 0; t < e.animatables.length; t++) { e.animatables[t].target.draw() } }
 
@@ -37,7 +37,7 @@ if (canvasEl) {
         pointerX = 0,
         pointerY = -2,
         tap = "mousedown",
-        colors = ["#ffb8d5", "#a7ffe9", "#ffe7eb", "#FBF38C"],
+        colors = ["#C2E6FE", "#C0D1FC", "#FCFCFA", "#ECDF40"],
         setCanvasSize = debounce(function() { canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2) }, 500),
         render = anime({ duration: 1 / 0, update: function() { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) } });
     document.addEventListener(tap, function(e) { "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY)) }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)
@@ -55,7 +55,7 @@ function setParticuleDirection(e) {
 
 function createParticule(e, t) { var a = {}; return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function() { ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill() }, a }
 
-function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a }
+function createCircle(e, t) { var a = {}; return a.x = e, a.y = t, a.color = "#e793c3", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() { ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1 }, a }
 
 function renderParticule(e) { for (var t = 0; t < e.animatables.length; t++) { e.animatables[t].target.draw() } }
 
@@ -79,7 +79,7 @@ if (canvasEl) {
         pointerX = 0,
         pointerY = 0,
         tap = "mousedown",
-        colors = ["#ffb8d5", "#a7ffe9", "#ffe7eb", "#FBF38C"],
+        colors = ["#C2E6FE", "#C0D1FC", "#FCFCFA", "#ECDF40"],
         setCanvasSize = debounce(function() { canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2) }, 500),
         render = anime({ duration: 1 / 0, update: function() { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) } });
     document.addEventListener(tap, function(e) { "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY)) }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)

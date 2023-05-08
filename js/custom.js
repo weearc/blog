@@ -2,9 +2,9 @@
 function homeInfoScroll() {
     let card = document.getElementById('home-info-master');
     let listLayout = document.getElementById('list-layout');
-    if (window.location.pathname === '/') {
+    if (window.location.pathname === '/' && window.innerWidth > 721) {
         card.style.margin = '0 20vw 15vh auto';
-        listLayout.style.marginTop = '73vh';
+        listLayout.style.marginTop = '80vh';
         listLayout.style.overflow = 'visible';
         window.addEventListener('scroll' ,() => {
             const scroll_y = window.scrollY || window.pageYOffset;
@@ -22,7 +22,25 @@ function homeInfoScroll() {
     }
     else {
         listLayout.style.transition = 'none'
+        listLayout.style.marginTop = '20vh'
         listLayout.classList.remove('beforeScrollMaster')
+        card.classList.remove('beforeScroll')
     }
 }
+function navBackground() {
+    const nav = document.getElementById('navBar')
+    window.addEventListener('scroll', () => {
+        const scrollPercentage = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        if (scrollPercentage < 0.2) {
+            nav.style.backgroundColor = 'rgb(255,255,255,0)';
+            nav.style['backdrop-filter'] = 'none'
+            nav.style['border-shadow'] = 'none'
+        } else {
+            nav.style.backgroundColor = 'rgba(255,255,255,0.5)';
+            nav.style['backdrop-filter'] = 'blur(25px) saturate(200%)'
+            nav.style['border-shadow'] = '0 0 5px rgba(0, 0, 0, 0.5)'
+        }
+    });
+}
+navBackground()
 homeInfoScroll()

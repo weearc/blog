@@ -10,7 +10,7 @@
 <meta name="description" content="在给 NAS 升级系统之前我是很忐忑的,毕竟以前有过 Ubuntu 升级滚挂的经历(桌面版)，稍微查了一下似乎没有给 Ubuntu Server 升级的，那我就自己水一篇算了，过程比桌面版稳定很多也不容易出现什么问题。">
 <meta name="author" content="weearc">
 <link rel="canonical" href="https://blog.weearc.top/posts/2020-06-02-%E5%88%92%E6%B0%B4%E6%96%87-%E7%BB%99nas%E7%9A%84ubuntu-server%E5%8D%87%E7%BA%A7/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da6b016a47bc2e02ef9b9e17d711ae4d8613e6be0c7d7674384a553be2b8ab9e.css" integrity="sha256-2msBake8LgLvm54X1xGuTYYT5r4MfXZ0OEpVO&#43;K4q54=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8a4e09fb39b2d0f8bc137b3d81a00054f6e13d76913ff0318b085e67ce467674.css" integrity="sha256-ik4J&#43;zmy0Pi8E3s9gaAAVPbhPXaRP/AxiwheZ85GdnQ=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://blog.weearc.top/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
@@ -103,7 +103,7 @@
 
 <body class="" id="top">
 
-<header class="header">
+<header class="header" id="navBar">
     <nav class="nav">
         <div class="logo">
             <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
@@ -525,7 +525,7 @@
             recordIP: ''
         });
     }
-    if (window.location.pathname !== '/about/') {
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
         loadComments()
     }
 </script>

@@ -10,7 +10,16 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 07 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记从 HEXO 迁移到 Hugo 安家之旅</title>
+      <link>https://blog.weearc.top/2817549702/</link>
+      <pubDate>Mon, 08 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/2817549702/</guid>
+      <description>&lt;p&gt;过了生命周期的 nodejs 的玩具，那是真的蛋痛&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>在Archlinux上启用外接设备唤醒</title>
       <link>https://blog.weearc.top/4169015263/</link>
