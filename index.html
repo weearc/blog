@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="zh" dir="auto">
 
 <head>
 	<meta name="generator" content="Hugo 0.111.3"><meta charset="utf-8">
@@ -149,8 +149,8 @@
                 </a>
             </li>
             <li>
-                <a href="https://blog.weearc.top/frlink/" title="友联">
-                    <span>友联</span>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
                 </a>
             </li>
         </ul>
@@ -205,20 +205,8 @@
     <p>我的新伙伴，HP 暗影精灵7，因为N卡毕竟太好用了，而且可以支持独显直出，在外接屏幕了以后拿来当作“台式机”了。
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2023-05-07 00:00:00 +0000 UTC'>May 7, 2023</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;weearc</footer>
+  <footer class="entry-footer"><span title='2023-05-07 00:00:00 +0000 UTC'>五月 7, 2023</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to 在Archlinux上启用外接设备唤醒" href="https://blog.weearc.top/4169015263/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Test
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p></p>
-  </div>
-  <footer class="entry-footer"><span title='2023-04-28 18:59:38 +0800 CST'>April 28, 2023</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;weearc</footer>
-  <a class="entry-link" aria-label="post link to Test" href="https://blog.weearc.top/1628586211/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -231,10 +219,9 @@
 起因 手里多了一台服务器，目前部署在 IDC 中心，由于忘记某个服务的端口我遍采取了端口扫描的方式来查看暴露的端口进而判断服务位置，但是我校 IDS 系统比较厉害，不仅仅是没有扫到服务顺带着连我的 IP 到服务器的访问也一并切断了，因此我需要更换 IP 才能重新正常访问该服务器。但是由于一般使用硬件 MAC 因此对于 DHCP 服务器不会为我重新分配新的 IP 地址直到我上一个 IP 过期释放掉。然而释放的这个过程最长可达一年（我上一年度内网 IP 均未发生变更）。因此只能通过更换 MAC 使得 DHCP 服务器认为我是新的接入设备并重新分配可用 IP。
 思路 一般来讲我可能会选用 Python 来实现更换 MAC 这个操作，但是受限于路由器本身，使用 Shell 脚本可能是更加经济实惠的选择。
 初步思路是从 /dev/urandom 抓取随机数，取 md5sum 获取 16 进制格式然后再切分插入符号。类似如下形式：
-echo `dd if=/dev/urandom bs=1 count=32 2&gt;/dev/null | md5sum | cut -b 1-12 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;` # result &#39;21:29:25:69:ec:ad&#39; 但是正如这条 stackoverflow 的讨论串所描述的那样，这样生成的 MAC 地址有概率无法使用，即最直观的感受是要求前两位地址必须为偶数。说白了，由于单播地址限制，首位地址为0x21时相当于映射到多播，但是由于单个硬件设备作为节点连接到网络时其使用单播方法，因此必须限制首位为偶数。即：
-如果第一个八位字节的 LSB 为 0，则它是单播地址。如果第一个八位字节的第二个 LSB 是 1，则它是本地生成的 MAC 地址。...</p>
+1 echo `dd if=/dev/urandom bs=1 count=32 2&gt;/dev/null | md5sum | cut -b 1-12 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;` 1 2 # result &#39;21:29:25:69:ec:ad&#39; 但是正如这条 stackoverflow 的讨论串所描述的那样，这样生成的 MAC 地址有概率无法使用，即最直观的感受是要求前两位地址必须为偶数。说白了，由于单播地址限制，首位地址为0x21时相当于映射到多播，但是由于单个硬件设备作为节点连接到网络时其使用单播方法，因此必须限制首位为偶数。即：...</p>
   </div>
-  <footer class="entry-footer"><span title='2021-10-14 10:43:50 +0000 UTC'>October 14, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <footer class="entry-footer"><span title='2021-10-14 10:43:50 +0000 UTC'>十月 14, 2021</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to openwrt 随机 mac --- ip 地址重新分配" href="https://blog.weearc.top/posts/2021-10-14-openwrt-%E9%9A%8F%E6%9C%BA-mac-ip-%E5%9C%B0%E5%9D%80%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D/"></a>
 </article>
 
@@ -246,7 +233,7 @@ echo `dd if=/dev/urandom bs=1 count=32 2&gt;/dev/null | md5sum | cut -b 1-12 | s
   <div class="entry-content">
     <p></p>
   </div>
-  <footer class="entry-footer"><span title='2021-09-11 00:23:15 +0000 UTC'>September 11, 2021</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;weearc</footer>
+  <footer class="entry-footer"><span title='2021-09-11 00:23:15 +0000 UTC'>九月 11, 2021</span>&nbsp;·&nbsp;0 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to 通过 GITHUB Actions 部署博客---腾讯云 Cloudbase 踩坑2" href="https://blog.weearc.top/posts/2021-09-11-%E9%80%9A%E8%BF%87-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2-%E8%85%BE%E8%AE%AF%E4%BA%91-cloudbase-%E8%B8%A9%E5%9D%912/"></a>
 </article>
 
@@ -259,12 +246,30 @@ echo `dd if=/dev/urandom bs=1 count=32 2&gt;/dev/null | md5sum | cut -b 1-12 | s
     <p>最近事情有点多,待完善
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2021-09-10 22:36:04 +0000 UTC'>September 10, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <footer class="entry-footer"><span title='2021-09-10 22:36:04 +0000 UTC'>九月 10, 2021</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to 在 Linux 下生活你需要什么（软件包）" href="https://blog.weearc.top/posts/2021-09-10-%E5%9C%A8-linux-%E4%B8%8B%E7%94%9F%E6%B4%BB%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E8%BD%AF%E4%BB%B6%E5%8C%85%E6%8E%A8%E8%8D%90%E5%90%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>降低你的 Minecraft 存档版本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>关于我不小心手欠把存档升级到 1.17.1 这件事。 1.17.1 本来就没有打算认真去玩，但是对于手欠升级自己存档这件事真的很恼火可以说是。因此就得想个办法来处理一下。
+对于一般的存档来说只要生成了新地形那么降级就几乎不可能，但是对于我这个存档来说就很万幸了，因为不小心进入的时候正好处于 20*20 区块空置域正中心，所以避免了区块的生成和结构的破坏，那样的话就只剩下修改 level.dat一条路了。
+level.dat一般结构如下：
+1 2 3 4 5 6 7 8 level.dat |-Data---CustomBossEvents |-DataPacks |-DragonFight |-GameRules |-Player |-Version |-WorldGenSettings 所幸的是 1.17.1 对于 WorldGenSettings 几乎没有改动，否则就要大修理了。Version 存储关于 Minecraft 的版本信息。直接参照 1.16.2 的其他存档修改为如下：
+1 2 3 4 Version--- 3 entries |- Id: 2578 |- Name: 1.16.2 |- Snapshot: 0 保存并退出，然后使用 1.16.2 加载存档，保存并退出即修复完成。但是无论如何记得备份好存档再操作，直接操作存档是非常危险的。
+1.17.1 这垃圾优化估计可以让我坚守 1.16.2 更久了，而且对于生电玩法更加困难，没必要再升级了至少目前是这样。
+至于 Linux 下如何运行 NBTexplorer ，直接使用 mono即可，非常简单。</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-08-11 13:10:57 +0000 UTC'>八月 11, 2021</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to 降低你的 Minecraft 存档版本" href="https://blog.weearc.top/posts/2021-08-11-%E9%99%8D%E4%BD%8E%E4%BD%A0%E7%9A%84-minecraft-%E5%AD%98%E6%A1%A3%E7%89%88%E6%9C%AC/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://blog.weearc.top/page/2/">Next&nbsp;&nbsp;»
+    <a class="next" href="https://blog.weearc.top/page/2/">下一页&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
@@ -282,6 +287,10 @@ echo `dd if=/dev/urandom bs=1 count=32 2&gt;/dev/null | md5sum | cut -b 1-12 | s
             辽ICP备2020011073号
         </a>
     </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

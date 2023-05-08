@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="zh" dir="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -134,15 +134,15 @@
                 </a>
             </li>
             <li>
-                <a href="https://blog.weearc.top/frlink/" title="友联">
-                    <span>友联</span>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://blog.weearc.top">Home</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/tags/">Tags</a></div>
+<header class="page-header"><div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/tags/">Tags</a></div>
   <h1>
     history file
     <a href="/tags/history-file/index.xml" title="RSS" aria-label="RSS">
@@ -166,11 +166,11 @@
 首先大概查了一下发现大多是隐私需要删除历史的，这个与我无关。然后翻了一下 fish 的 文档 ，里面关于 history 的描述有这么一段比较令人在意的：
 merge immediately incorporates history changes from other sessions. Ordinarily fish ignores history changes from sessions started after the current one. This command applies those changes immediately.
 于是首先先确认一下历史文件是否正常：
-# 我的历史文件等保存在默认位置 ls ~/.local/share/fish/ 然后返回了：
-fish_history fish_read_history generated_completions 证明历史文件还在，查看了一下内容，10 万行左右，基本没啥问题，还都在。然后尝试合并历史到当前会话：
-history --merge 退出当前会话并查看发现恢复如初，这就很迷惑了…因为我加载 fish 的方式是 konsole 启动时才加载 fish ，所以理应在启动时自动合并。因此为了以防万一可以在 fish 配置文件里加一句让它每次启动自动合并历史。算是暂时解决了这个问题。</p>
+1 2 # 我的历史文件等保存在默认位置 ls ~/.local/share/fish/ 然后返回了：
+1 fish_history fish_read_history generated_completions 证明历史文件还在，查看了一下内容，10 万行左右，基本没啥问题，还都在。然后尝试合并历史到当前会话：
+1 history --merge 退出当前会话并查看发现恢复如初，这就很迷惑了…因为我加载 fish 的方式是 konsole 启动时才加载 fish ，所以理应在启动时自动合并。因此为了以防万一可以在 fish 配置文件里加一句让它每次启动自动合并历史。算是暂时解决了这个问题。</p>
   </div>
-  <footer class="entry-footer"><span title='2021-08-02 18:29:31 +0000 UTC'>August 2, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;weearc</footer>
+  <footer class="entry-footer"><span title='2021-08-02 18:29:31 +0000 UTC'>八月 2, 2021</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to 解决 Fish 不认 history 的问题" href="https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/"></a>
 </article>
     </main>
@@ -187,6 +187,10 @@ history --merge 退出当前会话并查看发现恢复如初，这就很迷惑�
             辽ICP备2020011073号
         </a>
     </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
