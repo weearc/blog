@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>manjaro下生存报告 | weearc 的个人博客</title>
+<meta name="keywords" content="manjaro, linux, 生存记录">
+<meta name="description" content="今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。
+前言
+说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/35108/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e818a682773ae864f2cfea822ad5cf56c1131e7df88173821ad0b465bcb2bf6b.css" integrity="sha256-6Bimgnc66GTyz&#43;qCKtXPVsETHn34gXOCGtC0Zbyyv2s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="manjaro下生存报告" />
+<meta property="og:description" content="今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。
+前言
+说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/35108/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-02-11T00:24:29+00:00" />
+<meta property="article:modified_time" content="2018-02-11T00:24:29+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="manjaro下生存报告"/>
+<meta name="twitter:description" content="今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。
+前言
+说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "manjaro下生存报告",
+      "item": "https://blog.weearc.top/posts/35108/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "manjaro下生存报告",
+  "name": "manjaro下生存报告",
+  "description": "今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。\n前言 说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就\n",
+  "keywords": [
+    "manjaro", "linux", "生存记录"
+  ],
+  "articleBody": "今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。\n前言 说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就\n只好做做本地化工作了。传送门：gnome翻译组 其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。 上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．． 于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：manjaro linux kde edition调教记录效果图如下: 感受 其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。 “那我为什么又说无法反驳？”\n我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。\n但是使用体验仍然不够好。\n就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件…使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。\n“你这家伙是闭源商业狗”\n如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？\n那为什么现在我又不愿意离开？\n我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。 老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。\n开源与闭源，我的个人经历 开源与开源组织；闭源与商业化组织 开源的好处，弊端；为什么仍有人选择开源作品 未完待续…",
+  "wordCount" : "26",
+  "inLanguage": "zh",
+  "datePublished": "2018-02-11T00:24:29Z",
+  "dateModified": "2018-02-11T00:24:29Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/35108/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header" id="navBar">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main beforeScrollMaster" id="list-layout">
+        <div id="content-list">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      manjaro下生存报告
+    </h1>
+    <div class="post-meta"><span title='2018-02-11 00:24:29 +0000 UTC'>二月 11, 2018</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#%e6%84%9f%e5%8f%97" aria-label="感受">感受</a></li>
+                <li>
+                    <a href="#%e5%bc%80%e6%ba%90%e4%b8%8e%e9%97%ad%e6%ba%90%e6%88%91%e7%9a%84%e4%b8%aa%e4%ba%ba%e7%bb%8f%e5%8e%86" aria-label="开源与闭源，我的个人经历">开源与闭源，我的个人经历</a><ul>
+                        
+                <li>
+                    <a href="#%e5%bc%80%e6%ba%90%e4%b8%8e%e5%bc%80%e6%ba%90%e7%bb%84%e7%bb%87%e9%97%ad%e6%ba%90%e4%b8%8e%e5%95%86%e4%b8%9a%e5%8c%96%e7%bb%84%e7%bb%87" aria-label="开源与开源组织；闭源与商业化组织">开源与开源组织；闭源与商业化组织</a></li>
+                <li>
+                    <a href="#%e5%bc%80%e6%ba%90%e7%9a%84%e5%a5%bd%e5%a4%84%e5%bc%8a%e7%ab%af%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bb%8d%e6%9c%89%e4%ba%ba%e9%80%89%e6%8b%a9%e5%bc%80%e6%ba%90%e4%bd%9c%e5%93%81" aria-label="开源的好处，弊端；为什么仍有人选择开源作品">开源的好处，弊端；为什么仍有人选择开源作品</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9c%aa%e5%ae%8c%e5%be%85%e7%bb%ad" aria-label="未完待续&amp;hellip;">未完待续&hellip;</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。</p>
+<h3 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h3>
+<p>说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就</p>
+<p>只好做做本地化工作了。传送门：<a href="http://l10n.gnome.org/teams/">gnome翻译组</a>
+其实，现在的开源社区早已不是当时的开源社区了。我们在进入的时候，多少还有想着去回馈一下社区的开发者。而如今，伸手党遍地的现在，开源的各个项目早已是费力不讨好。氛围不在，过去的人也一个个离开，就连一些信仰纯正的人都不见了踪影。莫不如自己在博客上码码字，也算是对自己成长的回忆及立一个flag(笑)。总而言之，看看自己还能呆多久了。<img loading="lazy" src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro1.png" alt="manjaro"  />
+
+上面其实也是蛮早的截图了，后面由于一些原因更换为了KDE，但是KDE５的表现却着实不能让我这个以KDE４入门的人高兴起来，也许是我要求太高了也说不定．．．
+于是决定做一些简单的优化，毕竟电脑配置不算很好，但是能这么顺利地跑起来我就已经感激不尽了。具体优化策略和设置步骤放在这里：<a href="https://weearc.github.io/2018/04/25/manjaro-linux-kde-edition%E8%B0%83%E6%95%99%E8%AE%B0%E5%BD%95/">manjaro linux kde edition调教记录</a>效果图如下:
+<img loading="lazy" src="http://p7qoj2mv6.bkt.clouddn.com/image/manjaro/2.png" alt="manjaro"  />
+</p>
+<h3 id="感受">感受<a hidden class="anchor" aria-hidden="true" href="#感受">#</a></h3>
+<p>其实，如果对于某些工具没有特殊的执着，使用哪个系统来工作都无可厚非。只不过是操作习惯有所不同。说实话，有人也曾经说过使用LINUX是一种自虐。老实说我无法反驳，但是，也用了这么长时间。现在这些配置文件就像是老朋友一样，也是舍不得再离开。
+　</p>
+<blockquote>
+<p>“那我为什么又说无法反驳？”</p>
+</blockquote>
+<p>我个人觉得，linux虽然在服务器市场是一方霸主，虽然在个人桌面领域也逐渐受到重视。</p>
+<blockquote>
+<p>但是使用体验仍然不够好。</p>
+</blockquote>
+<p>就这一点，使得大量的小白用户最后又回到了Windows的怀抱。就算它蓝屏，就算它出了问题有多么难以修复，这么多年在个人桌面领域的投入：人力，财力，外加大量的基础设施建设，Office套件&hellip;使得微软和Windows不得不令人佩服。这点不得不承认，现有开源桌面环境是无法与之匹敌的。</p>
+<blockquote>
+<p>“你这家伙是闭源商业狗”</p>
+</blockquote>
+<p>如果你真的这么认为，那实在是太对不起了。我不否认我对于开源的热爱。这种人人都可以参与并改进的方式与我的生存理念是相合的。但是，你也无法否认，大量的闭源软件比如微软的办公套件，实际使用效率和稳定性明显高过现有开源解决方案。但这不能说明我有任何方向的倾向，我都会使用，支持，如果体验良好，我也会做推广。只不过与所谓“忠犬”不同，我只用我喜欢用的。毕竟，开源的LIBRE口号可不是白喊的，“人人都有选择的权利”。但是还有一点：少骂人了，你敢保证你使用的东西从硬件到软件到设计都是完全开源的？</p>
+<blockquote>
+<p>那为什么现在我又不愿意离开？</p>
+</blockquote>
+<p>我觉得原因很好解释：linux的自定义性可不是盖的。尤其是LFS系的发行版,包括Archlinux,Gentoo Linux等（注意了,LFS本身并不是发行版）。良好的文档和手册使得在熟悉了以后使用很是便利，外加桌面环境带来的良好体验，以及作为国内用户最重要的本地化软件的上线，都使得现在在一部分硬件资源吃紧的电脑上，linux的表现要明显好过Windows，不能说是吊打，但是日常使用方面还是体验不可同日而语。
+老实说，像我这种工科类的学生，平时也会大量使用专业软件，包括SolidWorks,AutoCAD等纯种闭源商业软件。但是这并不影响我花费更多的时间在linux下。双系统只是为了专业软件，平时另一个系统也只是放在那里，打入冷宫。</p>
+<h3 id="开源与闭源我的个人经历">开源与闭源，我的个人经历<a hidden class="anchor" aria-hidden="true" href="#开源与闭源我的个人经历">#</a></h3>
+<h4 id="开源与开源组织闭源与商业化组织">开源与开源组织；闭源与商业化组织<a hidden class="anchor" aria-hidden="true" href="#开源与开源组织闭源与商业化组织">#</a></h4>
+<h4 id="开源的好处弊端为什么仍有人选择开源作品">开源的好处，弊端；为什么仍有人选择开源作品<a hidden class="anchor" aria-hidden="true" href="#开源的好处弊端为什么仍有人选择开源作品">#</a></h4>
+<h3 id="未完待续">未完待续&hellip;<a hidden class="anchor" aria-hidden="true" href="#未完待续">#</a></h3>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/manjaro/">manjaro</a></li>
+      <li><a href="https://blog.weearc.top/tags/linux/">linux</a></li>
+      <li><a href="https://blog.weearc.top/tags/%E7%94%9F%E5%AD%98%E8%AE%B0%E5%BD%95/">生存记录</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/50906/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>六月，我们</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/38757/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>js从入门到坚持（转载）</span>
+  </a>
+</nav>
+
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just so so',
+            notify: 'true',
+            verify: 'true',
+            path: 'window.location.pathname',
+            avatar: '',
+            meta: '',
+            pageSize: '',
+            lang: '',
+            visitor: '',
+            highlight: '',
+            avatarForce: '',
+            recordIP: ''
+        });
+    }
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        loadComments()
+    }
+</script>
+</article>
+        </div>
+        <div id="side-bar">
+
+
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script type="text/javascript" src="/js/custom.js"></script>
+</html>

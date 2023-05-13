@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用zenity&#43;xclip实现文字复制粘贴 | weearc 的个人博客</title>
+<meta name="keywords" content="zenity, xclip, 去他妈的网易云">
+<meta name="description" content="都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/5960/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e818a682773ae864f2cfea822ad5cf56c1131e7df88173821ad0b465bcb2bf6b.css" integrity="sha256-6Bimgnc66GTyz&#43;qCKtXPVsETHn34gXOCGtC0Zbyyv2s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="使用zenity&#43;xclip实现文字复制粘贴" />
+<meta property="og:description" content="都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/5960/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-21T19:27:40+00:00" />
+<meta property="article:modified_time" content="2019-07-21T19:27:40+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="使用zenity&#43;xclip实现文字复制粘贴"/>
+<meta name="twitter:description" content="都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "使用zenity+xclip实现文字复制粘贴",
+      "item": "https://blog.weearc.top/posts/5960/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用zenity+xclip实现文字复制粘贴",
+  "name": "使用zenity\u002bxclip实现文字复制粘贴",
+  "description": "都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。\n",
+  "keywords": [
+    "zenity", "xclip", "去他妈的网易云"
+  ],
+  "articleBody": "都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。\n就算直接不能输入中文我们也有办法暂时解决这个问题。那就是使用zenity+xclip制作一个可输入中文的带有 GUI 的一个脚本。\nxclip是Unix以及类Unix系统下非常强大的剪贴板交互程序\n我们可以简单看一下xclip的help输出：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Usage: xclip [OPTION] [FILE]... Access an X server selection for reading or writing. -i, -in read text into X selection from standard input or files (default) -o, -out prints the selection to standard out (generally for piping to a file or program) -l, -loops number of selection requests to wait for before exiting -d, -display X display to connect to (eg localhost:0\") -h, -help usage information -selection selection to access (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\") -noutf8 don't treat text as utf-8, use old unicode -target use the given target atom -rmlastnl remove the last newline charater if present -version version information -silent errors only, run in background (default) -quiet run in foreground, show what's happening -verbose running commentary 按照功能，我们需要：\n输入文字 将文字输入到剪贴板 将文字传给clipboard程序 非常简单的三个部分。输入文字部分由zenity负责，同时将输入的文字存入变量中，之后用管道传给xclip程序。\n那么需要用到的xclip选项应该就很容易选择了。\n1 2 3 # xclip option xclip -i # read text into X selection from standard input or files xclip --selectron clipboard # copy input to clipboard for output 思路明确了以后就非常容易办了，我们再看一下zenity entry部分的帮助说明：\n1 2 3 4 5 6 7 8 用法： zenity [OPTION…] 文字输入选项 --entry 显示文本输入对话框 --text=文字 设置对话框文字 --entry-text=文字 设置输入文字 --hide-text 隐藏输入文字 也就是说我们只需要使用 --entry 选项显示输入框即可，在尝试中发现，bash下执行zenity –entry后会将输入打印到终端，也就是说我们需要将其存为变量才可以使用。因此完整代码如下：\n1 2 3 4 5 #!/bin/bash words_to_copy=$(zenity --entry) # Use zenity to display a GUI information message. echo $words_to_copy | xclip -i echo $words_to_copy | xclip -sel c ",
+  "wordCount" : "231",
+  "inLanguage": "zh",
+  "datePublished": "2019-07-21T19:27:40Z",
+  "dateModified": "2019-07-21T19:27:40Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/5960/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header" id="navBar">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main beforeScrollMaster" id="list-layout">
+        <div id="content-list">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      使用zenity&#43;xclip实现文字复制粘贴
+    </h1>
+    <div class="post-meta"><span title='2019-07-21 19:27:40 +0000 UTC'>七月 21, 2019</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;weearc
+
+</div>
+  </header> 
+
+  <div class="post-content"><p>都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。</p>
+<p>就算直接不能输入中文我们也有办法暂时解决这个问题。那就是使用zenity+xclip制作一个可输入中文的带有 <strong>GUI</strong> 的一个脚本。</p>
+<blockquote>
+<p>xclip是Unix以及类Unix系统下非常强大的剪贴板交互程序</p>
+</blockquote>
+<p>我们可以简单看一下xclip的help输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Usage: xclip <span class="o">[</span>OPTION<span class="o">]</span> <span class="o">[</span>FILE<span class="o">]</span>...
+</span></span><span class="line"><span class="cl">Access an X server selection <span class="k">for</span> reading or writing.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  -i, -in          <span class="nb">read</span> text into X selection from standard input or files
+</span></span><span class="line"><span class="cl">                   <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -o, -out         prints the selection to standard out <span class="o">(</span>generally <span class="k">for</span>
+</span></span><span class="line"><span class="cl">                   piping to a file or program<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -l, -loops       number of selection requests to <span class="nb">wait</span> <span class="k">for</span> before exiting
+</span></span><span class="line"><span class="cl">  -d, -display     X display to connect to <span class="o">(</span>eg localhost:0<span class="s2">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">  -h, -help        usage information
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -selection   selection to access (&#34;</span>primary<span class="s2">&#34;, &#34;</span>secondary<span class="s2">&#34;, &#34;</span>clipboard<span class="s2">&#34; or &#34;</span>buffer-cut<span class="s2">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -noutf8      don&#39;t treat text as utf-8, use old unicode
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -target      use the given target atom
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -rmlastnl    remove the last newline charater if present
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -version     version information
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -silent      errors only, run in background (default)
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -quiet       run in foreground, show what&#39;s happening
+</span></span></span><span class="line"><span class="cl"><span class="s2">      -verbose     running commentary
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>按照功能，我们需要：</p>
+<ol>
+<li>输入文字</li>
+<li>将文字输入到剪贴板</li>
+<li>将文字传给clipboard程序</li>
+</ol>
+<p>非常简单的三个部分。输入文字部分由zenity负责，同时将输入的文字存入变量中，之后用管道传给xclip程序。</p>
+<p>那么需要用到的xclip选项应该就很容易选择了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># xclip option</span>
+</span></span><span class="line"><span class="cl">xclip -i  <span class="c1"># read text into X selection from standard input or files</span>
+</span></span><span class="line"><span class="cl">xclip --selectron clipboard <span class="c1"># copy input to clipboard for output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路明确了以后就非常容易办了，我们再看一下zenity <code>entry</code>部分的帮助说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">用法：
+</span></span><span class="line"><span class="cl">  zenity <span class="o">[</span>OPTION…<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">文字输入选项
+</span></span><span class="line"><span class="cl">  --entry                                显示文本输入对话框
+</span></span><span class="line"><span class="cl">  --text<span class="o">=</span>文字                            设置对话框文字
+</span></span><span class="line"><span class="cl">  --entry-text<span class="o">=</span>文字                      设置输入文字
+</span></span><span class="line"><span class="cl">  --hide-text                            隐藏输入文字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也就是说我们只需要使用 <code>--entry</code> 选项显示输入框即可，在尝试中发现，bash下执行zenity &ndash;entry后会将输入打印到终端，也就是说我们需要将其存为变量才可以使用。因此完整代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nv">words_to_copy</span><span class="o">=</span><span class="k">$(</span>zenity --entry<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Use zenity to display a GUI information message.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$words_to_copy</span> <span class="p">|</span> xclip -i 
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$words_to_copy</span> <span class="p">|</span> xclip -sel c
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/zenity/">zenity</a></li>
+      <li><a href="https://blog.weearc.top/tags/xclip/">xclip</a></li>
+      <li><a href="https://blog.weearc.top/tags/%E5%8E%BB%E4%BB%96%E5%A6%88%E7%9A%84%E7%BD%91%E6%98%93%E4%BA%91/">去他妈的网易云</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/31380/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>hexo主题模版改造记录</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/12422/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>archlinux安装配置(3)</span>
+  </a>
+</nav>
+
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just so so',
+            notify: 'true',
+            verify: 'true',
+            path: 'window.location.pathname',
+            avatar: '',
+            meta: '',
+            pageSize: '',
+            lang: '',
+            visitor: '',
+            highlight: '',
+            avatarForce: '',
+            recordIP: ''
+        });
+    }
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        loadComments()
+    }
+</script>
+</article>
+        </div>
+        <div id="side-bar">
+
+
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script type="text/javascript" src="/js/custom.js"></script>
+</html>

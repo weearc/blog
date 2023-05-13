@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>搭建私人图床并使用 | weearc 的个人博客</title>
+<meta name="keywords" content="archlinux">
+<meta name="description" content="其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/61150/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e818a682773ae864f2cfea822ad5cf56c1131e7df88173821ad0b465bcb2bf6b.css" integrity="sha256-6Bimgnc66GTyz&#43;qCKtXPVsETHn34gXOCGtC0Zbyyv2s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="搭建私人图床并使用" />
+<meta property="og:description" content="其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/61150/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-02-02T23:27:37+00:00" />
+<meta property="article:modified_time" content="2019-02-02T23:27:37+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="搭建私人图床并使用"/>
+<meta name="twitter:description" content="其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "搭建私人图床并使用",
+      "item": "https://blog.weearc.top/posts/61150/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "搭建私人图床并使用",
+  "name": "搭建私人图床并使用",
+  "description": "其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。\n",
+  "keywords": [
+    "archlinux"
+  ],
+  "articleBody": "其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。\n如图所见！锵锵锵，自建了一个新图床。至于为什么这么做，主要还是因为腾讯云更改了收费及免费的条款，并且已有的vps不好好利用的话实在是资源浪费，所以决定自己建立一个算了。\nVPS准备 因为是要用作图库的VPS所以建议还是选择一个靠谱一些的服务商比较好，国内阿里云以及腾讯云都可以（毕竟学生优惠www）。如果可以的话建议选择storge instance之类的类型，特点是价格便宜并且硬盘空间很大。构架建议选择KVM，极度不推荐openVZ的机器。系统选择任意linux发行版都可以，既然都有能力弄主机，就别说连基础linux的操作都不会。\n环境配置 由于我们要使用的图床程序是chevereto ,按照官方文档的说明，使用LNMP是比较合适的。 这里选择LNMP一键包（其实也是我懒了）。LNMP那么容易配置就不细讲述了。主要需要注意的是phpMyAdmin的一些坑。\n这个地方如果未选择相匹配的MySQL版本会导致无法远程连接到phpMyAdmin。因此请在选择版本时多加注意。另外安装完成时记得把/home/wwwroot/default/下的几个文件备份并清除。\n安装chevereto 这里我使用的是脚本安装方式，仍然是将脚本放到网站根目录即可。\n注意：记得检查脚本的所有者以及权限\n1 2 ls -lash chmod a+x index.php 如果正常的话你会得到index.php的所有者和组为www，权限为775或者777。\n所有步骤跟着向导就好，没有需要特殊注意的地方。\n但是有一个地方需要注意以下，在新建mysql账户时请选择本机域（大概是这个，是localhost）这个地方以前在部署owncloud时就踩过，到现在才弄得比较明白。至此站点部署完毕。\n",
+  "wordCount" : "23",
+  "inLanguage": "zh",
+  "datePublished": "2019-02-02T23:27:37Z",
+  "dateModified": "2019-02-02T23:27:37Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/61150/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header" id="navBar">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main beforeScrollMaster" id="list-layout">
+        <div id="content-list">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      搭建私人图床并使用
+    </h1>
+    <div class="post-meta"><span title='2019-02-02 23:27:37 +0000 UTC'>二月 2, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#vps%e5%87%86%e5%a4%87" aria-label="VPS准备">VPS准备</a></li>
+                <li>
+                    <a href="#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae" aria-label="环境配置">环境配置</a></li>
+                <li>
+                    <a href="#%e5%ae%89%e8%a3%85chevereto" aria-label="安装chevereto">安装chevereto</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。</p>
+<p><img loading="lazy" src="http://picb.weearc.top/images/2019/02/02/0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg" alt="0bd162d9f2d3572c94bb080b8b13632763d0c388.jpg"  />
+</p>
+<p>如图所见！锵锵锵，自建了一个新图床。至于为什么这么做，主要还是因为腾讯云更改了收费及免费的条款，并且已有的vps不好好利用的话实在是资源浪费，所以决定自己建立一个算了。</p>
+<h2 id="vps准备">VPS准备<a hidden class="anchor" aria-hidden="true" href="#vps准备">#</a></h2>
+<p>因为是要用作图库的VPS所以建议还是选择一个靠谱一些的服务商比较好，国内阿里云以及腾讯云都可以（毕竟学生优惠www）。如果可以的话建议选择storge instance之类的类型，特点是价格便宜并且硬盘空间很大。构架建议选择KVM，极度不推荐openVZ的机器。系统选择任意linux发行版都可以，既然都有能力弄主机，就别说连基础linux的操作都不会。</p>
+<h2 id="环境配置">环境配置<a hidden class="anchor" aria-hidden="true" href="#环境配置">#</a></h2>
+<p>由于我们要使用的图床程序是<a href="https://chevereto.com/">chevereto</a> ,按照<a href="https://chevereto.com/docs/requirements">官方文档</a>的说明，使用LNMP是比较合适的。<a href="http://picb.weearc.top/image/Wah"><img loading="lazy" src="http://picb.weearc.top/images/2019/02/03/261b794faf0d9cee7a8b90c41d544ab7.png" alt="261b794faf0d9cee7a8b90c41d544ab7.png"  />
+</a></p>
+<p>这里选择<a href="https://lnmp.org/download.html">LNMP一键包</a>（其实也是我懒了）。LNMP那么容易配置就不细讲述了。主要需要注意的是<a href="https://www.phpmyadmin.net/">phpMyAdmin</a>的一些坑。</p>
+<p><a href="http://picb.weearc.top/image/gdo"><img loading="lazy" src="http://picb.weearc.top/images/2019/02/03/e865198482f4b22ae431bdc369ab3e79.md.png" alt="e865198482f4b22ae431bdc369ab3e79.md.png"  />
+</a></p>
+<p>这个地方如果未选择相匹配的MySQL版本会导致无法远程连接到phpMyAdmin。因此请在选择版本时多加注意。<em><strong>另外安装完成时记得把/home/wwwroot/default/下的几个文件备份并清除。</strong></em></p>
+<h2 id="安装chevereto">安装chevereto<a hidden class="anchor" aria-hidden="true" href="#安装chevereto">#</a></h2>
+<p>这里我使用的是脚本安装方式，仍然是将脚本放到网站根目录即可。</p>
+<blockquote>
+<p>注意：记得检查脚本的所有者以及权限</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -lash 
+</span></span><span class="line"><span class="cl">chmod a+x index.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>如果正常的话你会得到index.php的所有者和组为<strong>www</strong>，权限为775或者777。</p>
+</blockquote>
+<p>所有步骤跟着向导就好，没有需要特殊注意的地方。</p>
+<p>但是有一个地方需要注意以下，在新建mysql账户时请选择本机域（大概是这个，是localhost）这个地方以前在部署owncloud时就踩过，到现在才弄得比较明白。至此站点部署完毕。</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/32312/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>怀念，甚想念，无法想念其一</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/51180/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>编译安装gcc6.1</span>
+  </a>
+</nav>
+
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just so so',
+            notify: 'true',
+            verify: 'true',
+            path: 'window.location.pathname',
+            avatar: '',
+            meta: '',
+            pageSize: '',
+            lang: '',
+            visitor: '',
+            highlight: '',
+            avatarForce: '',
+            recordIP: ''
+        });
+    }
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        loadComments()
+    }
+</script>
+</article>
+        </div>
+        <div id="side-bar">
+
+
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script type="text/javascript" src="/js/custom.js"></script>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>ArchLinux &#43; Windows10 双系统固态硬盘迁移 | weearc 的个人博客</title>
+<meta name="keywords" content="archlinux, 系统迁移">
+<meta name="description" content="盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/25676/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e818a682773ae864f2cfea822ad5cf56c1131e7df88173821ad0b465bcb2bf6b.css" integrity="sha256-6Bimgnc66GTyz&#43;qCKtXPVsETHn34gXOCGtC0Zbyyv2s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="ArchLinux &#43; Windows10 双系统固态硬盘迁移" />
+<meta property="og:description" content="盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/25676/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-26T20:22:54+00:00" />
+<meta property="article:modified_time" content="2019-11-26T20:22:54+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="ArchLinux &#43; Windows10 双系统固态硬盘迁移"/>
+<meta name="twitter:description" content="盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "ArchLinux + Windows10 双系统固态硬盘迁移",
+      "item": "https://blog.weearc.top/posts/25676/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ArchLinux + Windows10 双系统固态硬盘迁移",
+  "name": "ArchLinux \u002b Windows10 双系统固态硬盘迁移",
+  "description": "盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。\n",
+  "keywords": [
+    "archlinux", "系统迁移"
+  ],
+  "articleBody": "盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。\n既然固态硬盘体验这么好，那为啥以前非要买那么写机械？因为我是仓鼠症患者，买的硬盘全部拿去存电影了…….\n那到固态以后其实就没什么好说的，之前光驱位以及主硬盘位都有机械硬盘，光驱位上的盘作为纯粹的数据盘挂载在 Arch 下面。所以就算单独拿下来去给 NAS 挂着也没什么大问题。那么最终就还是主硬盘位的机械硬盘去了光驱位，新买的固态上了主硬盘位。\n其实在迁移前我很纠结要不要重装windows，本意上是不想重新安装的，一大堆专业软件和自己配置的环境重新弄起来费时费力而且真的要命。那么就还是决定使用软件做系统迁移。先把最麻烦的windows的部分解决。Linux 反而是一向最容易迁移的了。\n迁移windows10 下载 aomei 无损分区助手PE版本，配合wepe做好系统迁移，这个时候会一并把esp分区迁移过来，所以 linux 下就不需要重建了。有的电脑可能会遇到说是内存不足，那就老老实实重装吧。\n迁移ArchLinux 在windows下面如果没有了 Aomei这样的工具，那么迁移起来说实在说的是极其痛苦的，尤其现在ghost还不能用。Arch就要轻松很多。只需要用到 rsync 即可。\n在旧的Arch下面给新硬盘剩余空间分好区，然后直接把新的根分区挂载在 /mnt 其余比如 /home /boo/efi 也依次挂载好。终端中执行以下命令：\n1 rsync -aAXv /* /mnt/. --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/var/tmp/*,/run/*,/mnt/*,/home/*,/media/*,/lost+found,/boot/*} 命令参数详情请参阅 rsync 的手册部分。然后排除掉 “运行态”的部分，对所有目录进行重建，文件按照归档进行迁移。执行以后大功告成一半。\n由于我需要将原来的根分区删掉分给 home , 因此进入 Livecd 对旧分区进行删除操作，然后将分区移动到空间头部。完成后执行：\n1 arch-chroot /mnt 参照当初安装 Arch 的步骤进行，执行：\n1 grub-install --target=x86_64-efi --efi-directory=/boot/efi/ --recheck 重新安装grub。并配置grub：\n1 grub-mkconfig -o /boot/grub/grub.cfg 在此之前记得删除掉旧的esp分区。至此基本大功告成。最后记得检查一下 /etc/fstab 以免启动时出现问题。\n耗时4个小时两个系统迁移完毕，windows用了三个多小时，Arch用了40分钟不到。\n",
+  "wordCount" : "62",
+  "inLanguage": "zh",
+  "datePublished": "2019-11-26T20:22:54Z",
+  "dateModified": "2019-11-26T20:22:54Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/25676/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header" id="navBar">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main beforeScrollMaster" id="list-layout">
+        <div id="content-list">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      ArchLinux &#43; Windows10 双系统固态硬盘迁移
+    </h1>
+    <div class="post-meta"><span title='2019-11-26 20:22:54 +0000 UTC'>十一月 26, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e8%bf%81%e7%a7%bbwindows10" aria-label="迁移windows10">迁移windows10</a></li>
+                <li>
+                    <a href="#%e8%bf%81%e7%a7%bbarchlinux" aria-label="迁移ArchLinux">迁移ArchLinux</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。</p>
+<p>既然固态硬盘体验这么好，那为啥以前非要买那么写机械？因为我是仓鼠症患者，买的硬盘全部拿去存电影了&hellip;&hellip;.</p>
+<p>那到固态以后其实就没什么好说的，之前光驱位以及主硬盘位都有机械硬盘，光驱位上的盘作为纯粹的数据盘挂载在 Arch 下面。所以就算单独拿下来去给 NAS 挂着也没什么大问题。那么最终就还是主硬盘位的机械硬盘去了光驱位，新买的固态上了主硬盘位。</p>
+<p>其实在迁移前我很纠结要不要重装windows，本意上是不想重新安装的，一大堆专业软件和自己配置的环境重新弄起来费时费力而且真的要命。那么就还是决定使用软件做系统迁移。先把最麻烦的windows的部分解决。Linux 反而是一向最容易迁移的了。</p>
+<h2 id="迁移windows10">迁移windows10<a hidden class="anchor" aria-hidden="true" href="#迁移windows10">#</a></h2>
+<p>下载 aomei 无损分区助手PE版本，配合wepe做好系统迁移，这个时候会一并把esp分区迁移过来，所以 linux 下就不需要重建了。有的电脑可能会遇到说是内存不足，那就老老实实重装吧。</p>
+<h2 id="迁移archlinux">迁移ArchLinux<a hidden class="anchor" aria-hidden="true" href="#迁移archlinux">#</a></h2>
+<p>在windows下面如果没有了 Aomei这样的工具，那么迁移起来说实在说的是极其痛苦的，尤其现在ghost还不能用。Arch就要轻松很多。只需要用到 <code>rsync</code> 即可。</p>
+<p>在旧的Arch下面给新硬盘剩余空间分好区，然后直接把新的根分区挂载在 <code>/mnt</code> 其余比如 <code>/home</code> <code>/boo/efi</code> 也依次挂载好。终端中执行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -aAXv /* /mnt/. --exclude<span class="o">={</span>/dev/*,/proc/*,/sys/*,/tmp/*,/var/tmp/*,/run/*,/mnt/*,/home/*,/media/*,/lost+found,/boot/*<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>命令参数详情请参阅 <code>rsync</code> 的手册部分。然后排除掉 “运行态”的部分，对所有目录进行重建，文件按照归档进行迁移。执行以后大功告成一半。</p>
+<p>由于我需要将原来的根分区删掉分给 home , 因此进入 Livecd 对旧分区进行删除操作，然后将分区移动到空间头部。完成后执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">arch-chroot /mnt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参照当初安装 Arch 的步骤进行，执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grub-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi/ --recheck
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新安装grub。并配置grub：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在此之前记得删除掉旧的esp分区。至此基本大功告成。最后记得检查一下 <code>/etc/fstab</code> 以免启动时出现问题。</p>
+<p>耗时4个小时两个系统迁移完毕，windows用了三个多小时，Arch用了40分钟不到。</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
+      <li><a href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/">系统迁移</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/32494/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>有失公允？ 红米AC2100路由器体验</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/14466/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>fcitx5尝鲜(另付fcitx5输入法皮肤摸索)</span>
+  </a>
+</nav>
+
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just so so',
+            notify: 'true',
+            verify: 'true',
+            path: 'window.location.pathname',
+            avatar: '',
+            meta: '',
+            pageSize: '',
+            lang: '',
+            visitor: '',
+            highlight: '',
+            avatarForce: '',
+            recordIP: ''
+        });
+    }
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        loadComments()
+    }
+</script>
+</article>
+        </div>
+        <div id="side-bar">
+
+
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script type="text/javascript" src="/js/custom.js"></script>
+</html>

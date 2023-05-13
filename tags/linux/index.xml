@@ -13,64 +13,64 @@
     <lastBuildDate>Mon, 02 Aug 2021 18:29:31 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解决 Fish 不认 history 的问题</title>
-      <link>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <link>https://blog.weearc.top/posts/53128/</link>
       <pubDate>Mon, 02 Aug 2021 18:29:31 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://blog.weearc.top/posts/53128/</guid>
       <description>谁能想到用着用着就故障了呢...</description>
     </item>
     
     <item>
       <title>archlinux安装配置(3)</title>
-      <link>https://blog.weearc.top/12422/</link>
+      <link>https://blog.weearc.top/posts/12422/</link>
       <pubDate>Mon, 08 Jul 2019 23:22:05 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/12422/</guid>
+      <guid>https://blog.weearc.top/posts/12422/</guid>
       <description>&lt;p&gt;距离第一篇博文时隔快两年的更新。由于本次配置文件有问题，KDE直接罢工。修补无果于是决定重装。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>新年折腾记---从Manjaro迁移到Arch</title>
-      <link>https://blog.weearc.top/posts/new-year-s-day-2/</link>
+      <link>https://blog.weearc.top/posts/30549/</link>
       <pubDate>Wed, 06 Feb 2019 17:48:04 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/new-year-s-day-2/</guid>
+      <guid>https://blog.weearc.top/posts/30549/</guid>
       <description>&lt;p&gt;新的一年，热爱折腾的我当然是从折腾开始新的一年了&amp;hellip;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>编译安装gcc6.1</title>
-      <link>https://blog.weearc.top/posts/compiing-gcc-after-a-long-time-leaving-gentoo/</link>
+      <link>https://blog.weearc.top/posts/51180/</link>
       <pubDate>Wed, 23 Jan 2019 18:12:53 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/compiing-gcc-after-a-long-time-leaving-gentoo/</guid>
+      <guid>https://blog.weearc.top/posts/51180/</guid>
       <description>&lt;p&gt;俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Firefox每夜构建食用指南</title>
-      <link>https://blog.weearc.top/posts/firefox-nightly/</link>
+      <link>https://blog.weearc.top/posts/55829/</link>
       <pubDate>Sat, 25 Aug 2018 16:04:16 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/firefox-nightly/</guid>
+      <guid>https://blog.weearc.top/posts/55829/</guid>
       <description>&lt;p&gt;可能和你想的不大一样，这是个不算完善的方法，但保证好用。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>archlinux安装配置(2)</title>
-      <link>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</link>
+      <link>https://blog.weearc.top/posts/60769/</link>
       <pubDate>Mon, 02 Jul 2018 21:21:49 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</guid>
+      <guid>https://blog.weearc.top/posts/60769/</guid>
       <description>&lt;p&gt;上一次我们配置了基础系统，这一次我们需要进行进一步的配置以使这个系统能够进行日称使用，至少来讲，不能出大问题。我们在上次的安装中已经结束了基础环境的配置。但是仍然需要后续的一些准备。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>manjaro下生存报告</title>
-      <link>https://blog.weearc.top/posts/manjaro%E4%B8%8B%E7%94%9F%E5%AD%98%E6%8A%A5%E5%91%8A/</link>
+      <link>https://blog.weearc.top/posts/35108/</link>
       <pubDate>Sun, 11 Feb 2018 00:24:29 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/manjaro%E4%B8%8B%E7%94%9F%E5%AD%98%E6%8A%A5%E5%91%8A/</guid>
+      <guid>https://blog.weearc.top/posts/35108/</guid>
       <description>&lt;p&gt;今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。&lt;/p&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就&lt;/p&gt;</description>
@@ -78,10 +78,10 @@
     
     <item>
       <title>archlinux安装配置(1)</title>
-      <link>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+      <link>https://blog.weearc.top/posts/7521/</link>
       <pubDate>Sat, 12 Aug 2017 22:10:50 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://blog.weearc.top/posts/7521/</guid>
       <description>&lt;h1 id=&#34;安装之前&#34;&gt;安装之前&lt;/h1&gt;
 &lt;p&gt;请确认：&lt;/p&gt;
 &lt;blockquote&gt;

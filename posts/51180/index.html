@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>编译安装gcc6.1 | weearc 的个人博客</title>
+<meta name="keywords" content="linux, archlinux">
+<meta name="description" content="俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。">
+<meta name="author" content="weearc">
+<link rel="canonical" href="https://blog.weearc.top/posts/51180/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.e818a682773ae864f2cfea822ad5cf56c1131e7df88173821ad0b465bcb2bf6b.css" integrity="sha256-6Bimgnc66GTyz&#43;qCKtXPVsETHn34gXOCGtC0Zbyyv2s=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.weearc.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="编译安装gcc6.1" />
+<meta property="og:description" content="俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.weearc.top/posts/51180/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-01-23T18:12:53+00:00" />
+<meta property="article:modified_time" content="2019-01-23T18:12:53+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
+
+<meta name="twitter:title" content="编译安装gcc6.1"/>
+<meta name="twitter:description" content="俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Posts",
+      "item": "https://blog.weearc.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "编译安装gcc6.1",
+      "item": "https://blog.weearc.top/posts/51180/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "编译安装gcc6.1",
+  "name": "编译安装gcc6.1",
+  "description": "俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。\n",
+  "keywords": [
+    "linux", "archlinux"
+  ],
+  "articleBody": "俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。\n源码获取 这个应该是最简单的了，只要你能找到个镜像站，里面镜像列表都差不多有GNU，里面有诸多项目的源代码，gcc源码也不例外。怎么获取，请自己看着办。\n展开源码 正常操作\n1 tar xvf gcc6.1.tar.xz 定位到源码目录 1 cd gcc6.1/ 建立编译的工作目录：\n1 makedir build 建立工作目录的好处是可以避免编译过程中的中间文件污染源码（大概）。\n查看编译选项 先简单观察一下Archlinux的gcc编译选项\ngcc 8.2.1\n1 2 3 4 5 6 7 使用内建 specs。 COLLECT_GCC=gcc COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/lto-wrapper 目标：x86_64-pc-linux-gnu 配置为：/build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --enable-multilib --disable-werror --enable-checking=release --enable-default-pie --enable-default-ssp --enable-cet=auto 线程模型：posix gcc 版本 8.2.1 20181127 (GCC) gcc 7.4.1\n1 2 3 4 5 6 7 使用内建 specs。 COLLECT_GCC=gcc-7 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1/lto-wrapper 目标：x86_64-pc-linux-gnu 配置为：/build/gcc7/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,lto --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-werror --enable-checking=release --enable-default-pie --enable-default-ssp --program-suffix=-7 --enable-version-specific-runtime-libs 线程模型：posix gcc 版本 7.4.1 20181207 (GCC) 前面部分是：\n1 --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ 比较有用的部分只有 –prefix 选项。大致都可以看懂：\n1 --prefix=一级目录 --libdir=二级目录1 --libexecdir=二级目录2 --mandir=二级目录3 --infodir=二级目录4 --with-bugurl=URL 对于已经有了内置GCC的发行版，如果照搬选项则不是明智之举，因此按照个人需求将此处选项改为只定义一级目录即可。\n1 --prefix=$HOME/GCC-6.1 ",
+  "wordCount" : "143",
+  "inLanguage": "zh",
+  "datePublished": "2019-01-23T18:12:53Z",
+  "dateModified": "2019-01-23T18:12:53Z",
+  "author":{
+    "@type": "Person",
+    "name": "weearc"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.weearc.top/posts/51180/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "weearc 的个人博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.weearc.top/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+
+<header class="header" id="navBar">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.weearc.top/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/search/" title="检索">
+                    <span>检索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/about/" title="关于我">
+                    <span>关于我</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.weearc.top/frlink/" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main beforeScrollMaster" id="list-layout">
+        <div id="content-list">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
+    <h1 class="post-title">
+      编译安装gcc6.1
+    </h1>
+    <div class="post-meta"><span title='2019-01-23 18:12:53 +0000 UTC'>一月 23, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%ba%90%e7%a0%81%e8%8e%b7%e5%8f%96" aria-label="源码获取">源码获取</a></li>
+                <li>
+                    <a href="#%e5%b1%95%e5%bc%80%e6%ba%90%e7%a0%81" aria-label="展开源码">展开源码</a></li>
+                <li>
+                    <a href="#%e5%ae%9a%e4%bd%8d%e5%88%b0%e6%ba%90%e7%a0%81%e7%9b%ae%e5%bd%95" aria-label="定位到源码目录">定位到源码目录</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e7%9c%8b%e7%bc%96%e8%af%91%e9%80%89%e9%a1%b9" aria-label="查看编译选项">查看编译选项</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。</p>
+<h2 id="源码获取">源码获取<a hidden class="anchor" aria-hidden="true" href="#源码获取">#</a></h2>
+<p>这个应该是最简单的了，只要你能找到个镜像站，里面镜像列表都差不多有GNU，里面有诸多项目的源代码，gcc源码也不例外。怎么获取，请自己看着办。</p>
+<h2 id="展开源码">展开源码<a hidden class="anchor" aria-hidden="true" href="#展开源码">#</a></h2>
+<p>正常操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar xvf gcc6.1.tar.xz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="定位到源码目录">定位到源码目录<a hidden class="anchor" aria-hidden="true" href="#定位到源码目录">#</a></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> gcc6.1/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立编译的工作目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">makedir build
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立工作目录的好处是可以避免编译过程中的中间文件污染源码（大概）。</p>
+<h2 id="查看编译选项">查看编译选项<a hidden class="anchor" aria-hidden="true" href="#查看编译选项">#</a></h2>
+<p>先简单观察一下Archlinux的gcc编译选项</p>
+<blockquote>
+<p>gcc 8.2.1</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">使用内建 specs。
+</span></span><span class="line"><span class="cl"><span class="nv">COLLECT_GCC</span><span class="o">=</span>gcc
+</span></span><span class="line"><span class="cl"><span class="nv">COLLECT_LTO_WRAPPER</span><span class="o">=</span>/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/lto-wrapper
+</span></span><span class="line"><span class="cl">目标：x86_64-pc-linux-gnu
+</span></span><span class="line"><span class="cl">配置为：/build/gcc/src/gcc/configure --prefix<span class="o">=</span>/usr --libdir<span class="o">=</span>/usr/lib --libexecdir<span class="o">=</span>/usr/lib --mandir<span class="o">=</span>/usr/share/man --infodir<span class="o">=</span>/usr/share/info --with-bugurl<span class="o">=</span>https://bugs.archlinux.org/ --enable-languages<span class="o">=</span>c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads<span class="o">=</span>posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale<span class="o">=</span>gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style<span class="o">=</span>gnu --enable-gnu-indirect-function --enable-multilib --disable-werror --enable-checking<span class="o">=</span>release --enable-default-pie --enable-default-ssp --enable-cet<span class="o">=</span>auto
+</span></span><span class="line"><span class="cl">线程模型：posix
+</span></span><span class="line"><span class="cl">gcc 版本 8.2.1 <span class="m">20181127</span> <span class="o">(</span>GCC<span class="o">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>gcc 7.4.1</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">使用内建 specs。
+</span></span><span class="line"><span class="cl"><span class="nv">COLLECT_GCC</span><span class="o">=</span>gcc-7
+</span></span><span class="line"><span class="cl"><span class="nv">COLLECT_LTO_WRAPPER</span><span class="o">=</span>/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1/lto-wrapper
+</span></span><span class="line"><span class="cl">目标：x86_64-pc-linux-gnu
+</span></span><span class="line"><span class="cl">配置为：/build/gcc7/src/gcc/configure --prefix<span class="o">=</span>/usr --libdir<span class="o">=</span>/usr/lib --libexecdir<span class="o">=</span>/usr/lib --mandir<span class="o">=</span>/usr/share/man --infodir<span class="o">=</span>/usr/share/info --with-bugurl<span class="o">=</span>https://bugs.archlinux.org/ --enable-languages<span class="o">=</span>c,c++,lto --enable-shared --enable-threads<span class="o">=</span>posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale<span class="o">=</span>gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style<span class="o">=</span>gnu --enable-gnu-indirect-function --disable-werror --enable-checking<span class="o">=</span>release --enable-default-pie --enable-default-ssp --program-suffix<span class="o">=</span>-7 --enable-version-specific-runtime-libs
+</span></span><span class="line"><span class="cl">线程模型：posix
+</span></span><span class="line"><span class="cl">gcc 版本 7.4.1 <span class="m">20181207</span> <span class="o">(</span>GCC<span class="o">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前面部分是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--prefix<span class="o">=</span>/usr --libdir<span class="o">=</span>/usr/lib --libexecdir<span class="o">=</span>/usr/lib --mandir<span class="o">=</span>/usr/share/man --infodir<span class="o">=</span>/usr/share/info --with-bugurl<span class="o">=</span>https://bugs.archlinux.org/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>比较有用的部分只有 &ndash;prefix 选项。大致都可以看懂：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--prefix<span class="o">=</span>一级目录 --libdir<span class="o">=</span>二级目录1 --libexecdir<span class="o">=</span>二级目录2 --mandir<span class="o">=</span>二级目录3 --infodir<span class="o">=</span>二级目录4 --with-bugurl<span class="o">=</span>URL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于已经有了内置GCC的发行版，如果照搬选项则不是明智之举，因此按照个人需求将此处选项改为只定义一级目录即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--prefix<span class="o">=</span><span class="nv">$HOME</span>/GCC-6.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.weearc.top/tags/linux/">linux</a></li>
+      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.weearc.top/posts/61150/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>搭建私人图床并使用</span>
+  </a>
+  <a class="next" href="https://blog.weearc.top/posts/21989/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>生活好了，但是我想回到以前</span>
+  </a>
+</nav>
+
+  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments"></div>
+<script>
+    function loadComments() {
+        
+        new Valine({
+            el: '#vcomments',
+            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
+            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
+            placeholder: 'Just so so',
+            notify: 'true',
+            verify: 'true',
+            path: 'window.location.pathname',
+            avatar: '',
+            meta: '',
+            pageSize: '',
+            lang: '',
+            visitor: '',
+            highlight: '',
+            avatarForce: '',
+            recordIP: ''
+        });
+    }
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        loadComments()
+    }
+</script>
+</article>
+        </div>
+        <div id="side-bar">
+
+
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span></br>
+    <span>
+        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+            辽ICP备2020011073号
+        </a>
+    </span>
+    </br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script type="text/javascript" src="/js/custom.js"></script>
+</html>

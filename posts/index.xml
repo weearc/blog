@@ -13,55 +13,55 @@
     <lastBuildDate>Mon, 08 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>记从 HEXO 迁移到 Hugo 安家之旅</title>
-      <link>https://blog.weearc.top/2817549702/</link>
+      <link>https://blog.weearc.top/posts/2817549702/</link>
       <pubDate>Mon, 08 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/2817549702/</guid>
+      <guid>https://blog.weearc.top/posts/2817549702/</guid>
       <description>&lt;p&gt;过了生命周期的 nodejs 的玩具，那是真的蛋痛&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>在Archlinux上启用外接设备唤醒</title>
-      <link>https://blog.weearc.top/4169015263/</link>
+      <link>https://blog.weearc.top/posts/4169015263/</link>
       <pubDate>Sun, 07 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/4169015263/</guid>
+      <guid>https://blog.weearc.top/posts/4169015263/</guid>
       <description>&lt;p&gt;我的新伙伴，HP 暗影精灵7，因为N卡毕竟太好用了，而且可以支持独显直出，在外接屏幕了以后拿来当作“台式机”了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>openwrt 随机 mac --- ip 地址重新分配</title>
-      <link>https://blog.weearc.top/posts/2021-10-14-openwrt-%E9%9A%8F%E6%9C%BA-mac-ip-%E5%9C%B0%E5%9D%80%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D/</link>
+      <link>https://blog.weearc.top/posts/10719/</link>
       <pubDate>Thu, 14 Oct 2021 10:43:50 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-10-14-openwrt-%E9%9A%8F%E6%9C%BA-mac-ip-%E5%9C%B0%E5%9D%80%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D/</guid>
+      <guid>https://blog.weearc.top/posts/10719/</guid>
       <description>有点狗急跳墙的那个味道，不得已而为之</description>
     </item>
     
     <item>
       <title>通过 GITHUB Actions 部署博客---腾讯云 Cloudbase 踩坑2</title>
-      <link>https://blog.weearc.top/posts/2021-09-11-%E9%80%9A%E8%BF%87-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2-%E8%85%BE%E8%AE%AF%E4%BA%91-cloudbase-%E8%B8%A9%E5%9D%912/</link>
+      <link>https://blog.weearc.top/posts/11375/</link>
       <pubDate>Sat, 11 Sep 2021 00:23:15 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-09-11-%E9%80%9A%E8%BF%87-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2-%E8%85%BE%E8%AE%AF%E4%BA%91-cloudbase-%E8%B8%A9%E5%9D%912/</guid>
+      <guid>https://blog.weearc.top/posts/11375/</guid>
       <description></description>
     </item>
     
     <item>
       <title>在 Linux 下生活你需要什么（软件包）</title>
-      <link>https://blog.weearc.top/posts/2021-09-10-%E5%9C%A8-linux-%E4%B8%8B%E7%94%9F%E6%B4%BB%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E8%BD%AF%E4%BB%B6%E5%8C%85%E6%8E%A8%E8%8D%90%E5%90%91/</link>
+      <link>https://blog.weearc.top/posts/4448/</link>
       <pubDate>Fri, 10 Sep 2021 22:36:04 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-09-10-%E5%9C%A8-linux-%E4%B8%8B%E7%94%9F%E6%B4%BB%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E8%BD%AF%E4%BB%B6%E5%8C%85%E6%8E%A8%E8%8D%90%E5%90%91/</guid>
+      <guid>https://blog.weearc.top/posts/4448/</guid>
       <description>&lt;p&gt;最近事情有点多,待完善&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>降低你的 Minecraft 存档版本</title>
-      <link>https://blog.weearc.top/posts/2021-08-11-%E9%99%8D%E4%BD%8E%E4%BD%A0%E7%9A%84-minecraft-%E5%AD%98%E6%A1%A3%E7%89%88%E6%9C%AC/</link>
+      <link>https://blog.weearc.top/posts/4518/</link>
       <pubDate>Wed, 11 Aug 2021 13:10:57 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-08-11-%E9%99%8D%E4%BD%8E%E4%BD%A0%E7%9A%84-minecraft-%E5%AD%98%E6%A1%A3%E7%89%88%E6%9C%AC/</guid>
+      <guid>https://blog.weearc.top/posts/4518/</guid>
       <description>关于我不小心手欠把存档升级到 1.17.1 这件事。 1.17.1 本来就没有打算认真去玩，但是对于手欠升级自己存档这件事真的很恼火可以说是。因此就得想个办法来处理一下。
 对于一般的存档来说只要生成了新地形那么降级就几乎不可能，但是对于我这个存档来说就很万幸了，因为不小心进入的时候正好处于 20*20 区块空置域正中心，所以避免了区块的生成和结构的破坏，那样的话就只剩下修改 level.dat一条路了。
 level.dat一般结构如下：
@@ -73,282 +73,282 @@ level.dat一般结构如下：
     
     <item>
       <title>解决 Fish 不认 history 的问题</title>
-      <link>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <link>https://blog.weearc.top/posts/53128/</link>
       <pubDate>Mon, 02 Aug 2021 18:29:31 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-08-02-%E8%A7%A3%E5%86%B3-fish-%E4%B8%8D%E8%AE%A4-history-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://blog.weearc.top/posts/53128/</guid>
       <description>谁能想到用着用着就故障了呢...</description>
     </item>
     
     <item>
       <title>Redmi K30 pro 完整体验(后篇)</title>
-      <link>https://blog.weearc.top/posts/2021-03-24-redmi-k30-pro-%E5%AE%8C%E6%95%B4%E4%BD%93%E9%AA%8C-%E5%90%8E%E7%AF%87/</link>
+      <link>https://blog.weearc.top/posts/34801/</link>
       <pubDate>Wed, 24 Mar 2021 00:18:44 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-03-24-redmi-k30-pro-%E5%AE%8C%E6%95%B4%E4%BD%93%E9%AA%8C-%E5%90%8E%E7%AF%87/</guid>
+      <guid>https://blog.weearc.top/posts/34801/</guid>
       <description>用了这么大半年将近一年，虽然再看到类原生多少还是眼馋，虽然看到新机器也眼馋，但是感觉已经不是再像当初那样非常急迫地想要换机了。可能是环境变了，也可能是我自己变了。</description>
     </item>
     
     <item>
       <title>hexo 主题模板改造记录 2</title>
-      <link>https://blog.weearc.top/posts/2021-02-19-hexo-%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E6%94%B9%E9%80%A0%E8%AE%B0%E5%BD%95-2/</link>
+      <link>https://blog.weearc.top/posts/60875/</link>
       <pubDate>Fri, 19 Feb 2021 17:17:28 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-02-19-hexo-%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E6%94%B9%E9%80%A0%E8%AE%B0%E5%BD%95-2/</guid>
+      <guid>https://blog.weearc.top/posts/60875/</guid>
       <description>本来应该早几天写出来发出来的，但是那几天撸了个脚本，结果要写的也增加了啊...早知道能成为第一个工具轮子这么久就早点把博客完善了。</description>
     </item>
     
     <item>
       <title>使用 github actions 部署博客到腾讯云</title>
-      <link>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</link>
+      <link>https://blog.weearc.top/posts/4529/</link>
       <pubDate>Fri, 21 Aug 2020 17:31:23 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</guid>
+      <guid>https://blog.weearc.top/posts/4529/</guid>
       <description>&lt;p&gt;因为我本人也不是那么熟悉 GITHUB Actions 这玩意儿所以这篇文章仅仅针对性的告诉你怎样配置单单这个自动化部署而已。咕咕咕了很久也是时候应该把这篇补上了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用 Webhook 自动部署博客到服务器</title>
-      <link>https://blog.weearc.top/posts/2020-08-11-%E4%BD%BF%E7%94%A8-webhook-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>https://blog.weearc.top/posts/49037/</link>
       <pubDate>Tue, 11 Aug 2020 21:58:34 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-08-11-%E4%BD%BF%E7%94%A8-webhook-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>https://blog.weearc.top/posts/49037/</guid>
       <description>&lt;p&gt;本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 &lt;a href=&#34;https://mirrors.cqu.edu.cn/wiki/&#34;&gt;CQU mirror wiki&lt;/a&gt; 上。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>[划水文] 给NAS的Ubuntu Server升级</title>
-      <link>https://blog.weearc.top/posts/2020-06-02-%E5%88%92%E6%B0%B4%E6%96%87-%E7%BB%99nas%E7%9A%84ubuntu-server%E5%8D%87%E7%BA%A7/</link>
+      <link>https://blog.weearc.top/posts/60365/</link>
       <pubDate>Tue, 02 Jun 2020 16:41:51 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-06-02-%E5%88%92%E6%B0%B4%E6%96%87-%E7%BB%99nas%E7%9A%84ubuntu-server%E5%8D%87%E7%BA%A7/</guid>
+      <guid>https://blog.weearc.top/posts/60365/</guid>
       <description>&lt;p&gt;在给 NAS 升级系统之前我是很忐忑的,毕竟以前有过 Ubuntu 升级滚挂的经历(桌面版)，稍微查了一下似乎没有给 Ubuntu Server 升级的，那我就自己水一篇算了，过程比桌面版稳定很多也不容易出现什么问题。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>redmi K30 Pro 简评</title>
-      <link>https://blog.weearc.top/posts/2020-05-17-redmi-k30-pro-%E7%AE%80%E8%AF%84/</link>
+      <link>https://blog.weearc.top/posts/155/</link>
       <pubDate>Sun, 17 May 2020 23:05:40 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-05-17-redmi-k30-pro-%E7%AE%80%E8%AF%84/</guid>
+      <guid>https://blog.weearc.top/posts/155/</guid>
       <description>&lt;p&gt;今年换手机这个时间节点卡的非常不好，早一点有最末代 4G 旗舰机纷纷大降价，晚一点可能还有 5G 手机集体跳水。但是买了就买了。鄙人第三部纯小米家搭载 MIUI 的设备。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>夜食食谱</title>
-      <link>https://blog.weearc.top/posts/2020-04-08-%E5%A4%9C%E9%A3%9F%E9%A3%9F%E8%B0%B1/</link>
+      <link>https://blog.weearc.top/posts/1552/</link>
       <pubDate>Wed, 08 Apr 2020 01:21:14 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-04-08-%E5%A4%9C%E9%A3%9F%E9%A3%9F%E8%B0%B1/</guid>
+      <guid>https://blog.weearc.top/posts/1552/</guid>
       <description>&lt;p&gt;最近晚上很容易饿，就自己摸索了一点简单的食谱出来。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>[冷门向] 使用 mpv 打造专属播放器</title>
-      <link>https://blog.weearc.top/posts/2020-03-29-%E5%86%B7%E9%97%A8%E5%90%91-%E4%BD%BF%E7%94%A8-mpv-%E6%89%93%E9%80%A0%E4%B8%93%E5%B1%9E%E6%92%AD%E6%94%BE%E5%99%A8/</link>
+      <link>https://blog.weearc.top/posts/162/</link>
       <pubDate>Sun, 29 Mar 2020 20:53:56 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-03-29-%E5%86%B7%E9%97%A8%E5%90%91-%E4%BD%BF%E7%94%A8-mpv-%E6%89%93%E9%80%A0%E4%B8%93%E5%B1%9E%E6%92%AD%E6%94%BE%E5%99%A8/</guid>
+      <guid>https://blog.weearc.top/posts/162/</guid>
       <description>&lt;p&gt;全文已发布至重庆大学蓝盟微信公众号往期内容内，博客上的版本待修改完善。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>一言 20200319</title>
-      <link>https://blog.weearc.top/posts/2020-03-19-%E4%B8%80%E8%A8%80-20200319/</link>
+      <link>https://blog.weearc.top/posts/3498/</link>
       <pubDate>Thu, 19 Mar 2020 01:32:52 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-03-19-%E4%B8%80%E8%A8%80-20200319/</guid>
+      <guid>https://blog.weearc.top/posts/3498/</guid>
       <description>人完全可以为自己的愤怒而感到庆幸，因为它维系了自己的价值观。</description>
     </item>
     
     <item>
       <title>有失公允？ 红米AC2100路由器体验</title>
-      <link>https://blog.weearc.top/posts/2020-03-05-%E6%9C%89%E5%A4%B1%E5%85%AC%E5%85%81-%E7%BA%A2%E7%B1%B3ac2100%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BD%93%E9%AA%8C/</link>
+      <link>https://blog.weearc.top/posts/32494/</link>
       <pubDate>Thu, 05 Mar 2020 16:12:35 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-03-05-%E6%9C%89%E5%A4%B1%E5%85%AC%E5%85%81-%E7%BA%A2%E7%B1%B3ac2100%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BD%93%E9%AA%8C/</guid>
+      <guid>https://blog.weearc.top/posts/32494/</guid>
       <description>&lt;p&gt;往年这个时间就已经回到学校了，今年算是个例外也正好给家里换一下老旧设备。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ArchLinux &#43; Windows10 双系统固态硬盘迁移</title>
-      <link>https://blog.weearc.top/posts/2019-11-26-archlinux-windows10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E8%BF%81%E7%A7%BB/</link>
+      <link>https://blog.weearc.top/posts/25676/</link>
       <pubDate>Tue, 26 Nov 2019 20:22:54 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2019-11-26-archlinux-windows10-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E8%BF%81%E7%A7%BB/</guid>
+      <guid>https://blog.weearc.top/posts/25676/</guid>
       <description>&lt;p&gt;盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>fcitx5尝鲜(另付fcitx5输入法皮肤摸索)</title>
-      <link>https://blog.weearc.top/14466/</link>
+      <link>https://blog.weearc.top/posts/14466/</link>
       <pubDate>Fri, 25 Oct 2019 21:19:33 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/14466/</guid>
+      <guid>https://blog.weearc.top/posts/14466/</guid>
       <description>&lt;p&gt;原本搜狗输入法确实是真香的，但是架不住它总不更新问题一大堆。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>杂谈</title>
-      <link>https://blog.weearc.top/12326/</link>
+      <link>https://blog.weearc.top/posts/12326/</link>
       <pubDate>Tue, 27 Aug 2019 21:20:57 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/12326/</guid>
+      <guid>https://blog.weearc.top/posts/12326/</guid>
       <description>&lt;p&gt;人大多数时候选择去做一件事，也许并不是为了获得什么，而是单纯的害怕空虚。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hexo主题模版改造记录</title>
-      <link>https://blog.weearc.top/31380/</link>
+      <link>https://blog.weearc.top/posts/31380/</link>
       <pubDate>Mon, 05 Aug 2019 23:37:27 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/31380/</guid>
+      <guid>https://blog.weearc.top/posts/31380/</guid>
       <description>&lt;p&gt;有时候就是心血来潮才想搞一些好玩的，假期一旦懒下来人就待完了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用zenity&#43;xclip实现文字复制粘贴</title>
-      <link>https://blog.weearc.top/5960/</link>
+      <link>https://blog.weearc.top/posts/5960/</link>
       <pubDate>Sun, 21 Jul 2019 19:27:40 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/5960/</guid>
+      <guid>https://blog.weearc.top/posts/5960/</guid>
       <description>&lt;p&gt;都多久了我也不太记得，网易云下竟然由于qt的某个问题不能使用fcitx输入中文了！WTF！不过我们可以曲线救国。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>archlinux安装配置(3)</title>
-      <link>https://blog.weearc.top/12422/</link>
+      <link>https://blog.weearc.top/posts/12422/</link>
       <pubDate>Mon, 08 Jul 2019 23:22:05 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/12422/</guid>
+      <guid>https://blog.weearc.top/posts/12422/</guid>
       <description>&lt;p&gt;距离第一篇博文时隔快两年的更新。由于本次配置文件有问题，KDE直接罢工。修补无果于是决定重装。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用pandoc撰写论文</title>
-      <link>https://blog.weearc.top/1448/</link>
+      <link>https://blog.weearc.top/posts/1448/</link>
       <pubDate>Thu, 02 May 2019 20:45:10 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/1448/</guid>
+      <guid>https://blog.weearc.top/posts/1448/</guid>
       <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;谁又说不可以呢？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>hexo主题迁移and折腾记</title>
-      <link>https://blog.weearc.top/6009/</link>
+      <link>https://blog.weearc.top/posts/6009/</link>
       <pubDate>Sat, 06 Apr 2019 15:25:05 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/6009/</guid>
+      <guid>https://blog.weearc.top/posts/6009/</guid>
       <description>&lt;p&gt;老实说，其实为什么突然又开始折腾折腾主题了呢&amp;hellip;&amp;hellip;.因为&lt;em&gt;&lt;strong&gt;用NexT的人实在太多了&lt;/strong&gt;&lt;/em&gt;。而我又不想让别人打开发现“和某个某个人的很像”。那样就失去了折腾的必要。因此我决定切换主题。另：本文在调整的相对安逸之前会持续更新。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>新年折腾记---从Manjaro迁移到Arch</title>
-      <link>https://blog.weearc.top/posts/new-year-s-day-2/</link>
+      <link>https://blog.weearc.top/posts/30549/</link>
       <pubDate>Wed, 06 Feb 2019 17:48:04 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/new-year-s-day-2/</guid>
+      <guid>https://blog.weearc.top/posts/30549/</guid>
       <description>&lt;p&gt;新的一年，热爱折腾的我当然是从折腾开始新的一年了&amp;hellip;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>怀念，甚想念，无法想念其一</title>
-      <link>https://blog.weearc.top/posts/new-year-s-day-1/</link>
+      <link>https://blog.weearc.top/posts/32312/</link>
       <pubDate>Mon, 04 Feb 2019 23:41:25 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/new-year-s-day-1/</guid>
+      <guid>https://blog.weearc.top/posts/32312/</guid>
       <description>&lt;p&gt;春节第一篇2333，顺便还是要吐槽一下，rime真心难调教，实在是太难受了，换回搜狗了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>搭建私人图床并使用</title>
-      <link>https://blog.weearc.top/posts/picbed-build-process-1/</link>
+      <link>https://blog.weearc.top/posts/61150/</link>
       <pubDate>Sat, 02 Feb 2019 23:27:37 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/picbed-build-process-1/</guid>
+      <guid>https://blog.weearc.top/posts/61150/</guid>
       <description>&lt;p&gt;其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>编译安装gcc6.1</title>
-      <link>https://blog.weearc.top/posts/compiing-gcc-after-a-long-time-leaving-gentoo/</link>
+      <link>https://blog.weearc.top/posts/51180/</link>
       <pubDate>Wed, 23 Jan 2019 18:12:53 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/compiing-gcc-after-a-long-time-leaving-gentoo/</guid>
+      <guid>https://blog.weearc.top/posts/51180/</guid>
       <description>&lt;p&gt;俗话说得好，一回生二回熟，但是时间长了也怕忘。离开了Gentoo那么久也懒得手动编译，但是偶尔也要复习一下为好。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>生活好了，但是我想回到以前</title>
-      <link>https://blog.weearc.top/posts/smalltalks01/</link>
+      <link>https://blog.weearc.top/posts/21989/</link>
       <pubDate>Mon, 07 Jan 2019 20:39:40 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/smalltalks01/</guid>
+      <guid>https://blog.weearc.top/posts/21989/</guid>
       <description>睡前聊一聊 上次像这样写文章大概是很久以前的事情了，那我为何突然想起来这些？用我自己的话来讲，现在我才一点点感觉到，越是接触新技术、新产品，愈是变得更孤独。当然了，学技术可以当做一个例外，但是，如果可以不与这些新玩意儿接触，从某种角度上讲确实不想接触。</description>
     </item>
     
     <item>
       <title>android课设-蓝牙助手</title>
-      <link>https://blog.weearc.top/posts/android-works01/</link>
+      <link>https://blog.weearc.top/posts/37370/</link>
       <pubDate>Thu, 13 Dec 2018 20:41:19 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/android-works01/</guid>
+      <guid>https://blog.weearc.top/posts/37370/</guid>
       <description>&lt;p&gt;课设制作思路非常简单，就是制作一个蓝牙助手&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>php入门到入土1</title>
-      <link>https://blog.weearc.top/posts/php1/</link>
+      <link>https://blog.weearc.top/posts/33109/</link>
       <pubDate>Wed, 28 Nov 2018 16:42:32 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/php1/</guid>
+      <guid>https://blog.weearc.top/posts/33109/</guid>
       <description>&lt;p&gt;入土是不可能入土的&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Firefox每夜构建食用指南</title>
-      <link>https://blog.weearc.top/posts/firefox-nightly/</link>
+      <link>https://blog.weearc.top/posts/55829/</link>
       <pubDate>Sat, 25 Aug 2018 16:04:16 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/firefox-nightly/</guid>
+      <guid>https://blog.weearc.top/posts/55829/</guid>
       <description>&lt;p&gt;可能和你想的不大一样，这是个不算完善的方法，但保证好用。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hello World</title>
-      <link>https://blog.weearc.top/posts/hello-world/</link>
+      <link>https://blog.weearc.top/posts/16107/</link>
       <pubDate>Sun, 12 Aug 2018 00:00:20 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/hello-world/</guid>
+      <guid>https://blog.weearc.top/posts/16107/</guid>
       <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello World！&lt;/h1&gt;
 &lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>youtuber木下ゆうか篇（一）</title>
-      <link>https://blog.weearc.top/posts/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B-1/</link>
+      <link>https://blog.weearc.top/posts/30769/</link>
       <pubDate>Sun, 05 Aug 2018 18:12:04 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B-1/</guid>
+      <guid>https://blog.weearc.top/posts/30769/</guid>
       <description>&lt;p&gt;又一篇由于图床挂掉丧失乐趣的文章，但是不嫌弃的话，还是看看呗？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>archlinux安装配置(2)</title>
-      <link>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</link>
+      <link>https://blog.weearc.top/posts/60769/</link>
       <pubDate>Mon, 02 Jul 2018 21:21:49 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-2/</guid>
+      <guid>https://blog.weearc.top/posts/60769/</guid>
       <description>&lt;p&gt;上一次我们配置了基础系统，这一次我们需要进行进一步的配置以使这个系统能够进行日称使用，至少来讲，不能出大问题。我们在上次的安装中已经结束了基础环境的配置。但是仍然需要后续的一些准备。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>为什么我屏蔽了知乎？</title>
-      <link>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</link>
+      <link>https://blog.weearc.top/posts/12984/</link>
       <pubDate>Mon, 02 Jul 2018 21:11:08 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/why-i-keep-out-zhihu/</guid>
+      <guid>https://blog.weearc.top/posts/12984/</guid>
       <description>&lt;p&gt;别的我不知道反正我是先在路由器里执行了如下命令&amp;hellip;&amp;hellip;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -363,37 +363,37 @@ level.dat一般结构如下：
     
     <item>
       <title>狂欢之夜，似乎内心也有些苦涩</title>
-      <link>https://blog.weearc.top/posts/father-s-day/</link>
+      <link>https://blog.weearc.top/posts/34170/</link>
       <pubDate>Mon, 18 Jun 2018 01:52:06 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/father-s-day/</guid>
+      <guid>https://blog.weearc.top/posts/34170/</guid>
       <description>&lt;p&gt;今天不来谈技术，我们来说些柔软的东西。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>2018-06-09</title>
-      <link>https://blog.weearc.top/50563/</link>
+      <link>https://blog.weearc.top/posts/50563/</link>
       <pubDate>Sat, 09 Jun 2018 22:21:14 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/50563/</guid>
+      <guid>https://blog.weearc.top/posts/50563/</guid>
       <description>天气炎热，本来说好的义诊人一共没来几个。微型网友见面会了解一下，虽然还是很舒服的。</description>
     </item>
     
     <item>
       <title>六月，我们</title>
-      <link>https://blog.weearc.top/posts/gruaduate/</link>
+      <link>https://blog.weearc.top/posts/50906/</link>
       <pubDate>Tue, 05 Jun 2018 21:32:35 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/gruaduate/</guid>
+      <guid>https://blog.weearc.top/posts/50906/</guid>
       <description>&lt;p&gt;五月已经远去，儿童节已经过去了三天，如果没记错的话，毕业答辩也差不多在进行当中了。今天我们不来谈技术，来谈一谈更加柔软的东西。逐渐远离的五月，我们再犯一次五月病。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>manjaro下生存报告</title>
-      <link>https://blog.weearc.top/posts/manjaro%E4%B8%8B%E7%94%9F%E5%AD%98%E6%8A%A5%E5%91%8A/</link>
+      <link>https://blog.weearc.top/posts/35108/</link>
       <pubDate>Sun, 11 Feb 2018 00:24:29 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/manjaro%E4%B8%8B%E7%94%9F%E5%AD%98%E6%8A%A5%E5%91%8A/</guid>
+      <guid>https://blog.weearc.top/posts/35108/</guid>
       <description>&lt;p&gt;今天写这个不为别的，就为了现在在linux内核操作系统下生存暂时成功而进行记录。&lt;/p&gt;
 &lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
 &lt;p&gt;说实话，现在用linux也快６年了，也算是对各个系统的特性有所熟悉了。但是，根本称不上是所谓大佬什么的。毕竟，虽然也能写一些脚本啥的，也算是会编程啥的，但是和一下子会好几门语言的其他人相比，我还是太弱了。很喜欢开源社区的氛围，有时候却不知道要做些什么好，没法维护一些项目就&lt;/p&gt;</description>
@@ -401,10 +401,10 @@ level.dat一般结构如下：
     
     <item>
       <title>js从入门到坚持（转载）</title>
-      <link>https://blog.weearc.top/posts/js-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%9D%9A%E6%8C%81%E5%85%A5%E9%97%A8/</link>
+      <link>https://blog.weearc.top/posts/38757/</link>
       <pubDate>Tue, 26 Dec 2017 19:48:56 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/js-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%9D%9A%E6%8C%81%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://blog.weearc.top/posts/38757/</guid>
       <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;本手册的使用说明：&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;按着顺序看就应该能懂，并且少走弯路&lt;/li&gt;
@@ -416,10 +416,10 @@ level.dat一般结构如下：
     
     <item>
       <title>archlinux安装配置(1)</title>
-      <link>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+      <link>https://blog.weearc.top/posts/7521/</link>
       <pubDate>Sat, 12 Aug 2017 22:10:50 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/archlinux%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://blog.weearc.top/posts/7521/</guid>
       <description>&lt;h1 id=&#34;安装之前&#34;&gt;安装之前&lt;/h1&gt;
 &lt;p&gt;请确认：&lt;/p&gt;
 &lt;blockquote&gt;

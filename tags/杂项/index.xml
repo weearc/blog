@@ -13,10 +13,10 @@
     <lastBuildDate>Wed, 11 Aug 2021 13:10:57 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E6%9D%82%E9%A1%B9/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>降低你的 Minecraft 存档版本</title>
-      <link>https://blog.weearc.top/posts/2021-08-11-%E9%99%8D%E4%BD%8E%E4%BD%A0%E7%9A%84-minecraft-%E5%AD%98%E6%A1%A3%E7%89%88%E6%9C%AC/</link>
+      <link>https://blog.weearc.top/posts/4518/</link>
       <pubDate>Wed, 11 Aug 2021 13:10:57 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2021-08-11-%E9%99%8D%E4%BD%8E%E4%BD%A0%E7%9A%84-minecraft-%E5%AD%98%E6%A1%A3%E7%89%88%E6%9C%AC/</guid>
+      <guid>https://blog.weearc.top/posts/4518/</guid>
       <description>关于我不小心手欠把存档升级到 1.17.1 这件事。 1.17.1 本来就没有打算认真去玩，但是对于手欠升级自己存档这件事真的很恼火可以说是。因此就得想个办法来处理一下。
 对于一般的存档来说只要生成了新地形那么降级就几乎不可能，但是对于我这个存档来说就很万幸了，因为不小心进入的时候正好处于 20*20 区块空置域正中心，所以避免了区块的生成和结构的破坏，那样的话就只剩下修改 level.dat一条路了。
 level.dat一般结构如下：

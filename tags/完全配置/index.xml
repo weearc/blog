@@ -13,19 +13,19 @@
     <lastBuildDate>Fri, 21 Aug 2020 17:31:23 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 github actions 部署博客到腾讯云</title>
-      <link>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</link>
+      <link>https://blog.weearc.top/posts/4529/</link>
       <pubDate>Fri, 21 Aug 2020 17:31:23 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-08-21-%E4%BD%BF%E7%94%A8-github-actions-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E8%85%BE%E8%AE%AF%E4%BA%91/</guid>
+      <guid>https://blog.weearc.top/posts/4529/</guid>
       <description>&lt;p&gt;因为我本人也不是那么熟悉 GITHUB Actions 这玩意儿所以这篇文章仅仅针对性的告诉你怎样配置单单这个自动化部署而已。咕咕咕了很久也是时候应该把这篇补上了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>archlinux安装配置(3)</title>
-      <link>https://blog.weearc.top/12422/</link>
+      <link>https://blog.weearc.top/posts/12422/</link>
       <pubDate>Mon, 08 Jul 2019 23:22:05 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/12422/</guid>
+      <guid>https://blog.weearc.top/posts/12422/</guid>
       <description>&lt;p&gt;距离第一篇博文时隔快两年的更新。由于本次配置文件有问题，KDE直接罢工。修补无果于是决定重装。&lt;/p&gt;</description>
     </item>
     

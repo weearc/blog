@@ -13,10 +13,10 @@
     <lastBuildDate>Tue, 02 Jun 2020 16:41:51 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E5%8D%87%E7%BA%A7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[划水文] 给NAS的Ubuntu Server升级</title>
-      <link>https://blog.weearc.top/posts/2020-06-02-%E5%88%92%E6%B0%B4%E6%96%87-%E7%BB%99nas%E7%9A%84ubuntu-server%E5%8D%87%E7%BA%A7/</link>
+      <link>https://blog.weearc.top/posts/60365/</link>
       <pubDate>Tue, 02 Jun 2020 16:41:51 +0000</pubDate>
       
-      <guid>https://blog.weearc.top/posts/2020-06-02-%E5%88%92%E6%B0%B4%E6%96%87-%E7%BB%99nas%E7%9A%84ubuntu-server%E5%8D%87%E7%BA%A7/</guid>
+      <guid>https://blog.weearc.top/posts/60365/</guid>
       <description>&lt;p&gt;在给 NAS 升级系统之前我是很忐忑的,毕竟以前有过 Ubuntu 升级滚挂的经历(桌面版)，稍微查了一下似乎没有给 Ubuntu Server 升级的，那我就自己水一篇算了，过程比桌面版稳定很多也不容易出现什么问题。&lt;/p&gt;</description>
     </item>
     
