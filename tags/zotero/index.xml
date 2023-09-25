@@ -10,6 +10,7 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Thu, 02 May 2019 20:45:10 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/zotero/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用pandoc撰写论文</title>

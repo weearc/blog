@@ -10,7 +10,53 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 11 Aug 2021 13:10:57 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh</language>
+    <lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>archlinux</title>
+      <link>https://blog.weearc.top/tags/archlinux/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/tags/archlinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>btrfs</title>
+      <link>https://blog.weearc.top/tags/btrfs/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/tags/btrfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debian</title>
+      <link>https://blog.weearc.top/tags/debian/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>系统备份</title>
+      <link>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>系统迁移</title>
+      <link>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Minecraft</title>
       <link>https://blog.weearc.top/tags/minecraft/</link>
@@ -215,24 +261,6 @@
       <pubDate>Thu, 05 Mar 2020 16:12:35 +0000</pubDate>
       
       <guid>https://blog.weearc.top/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>archlinux</title>
-      <link>https://blog.weearc.top/tags/archlinux/</link>
-      <pubDate>Tue, 26 Nov 2019 20:22:54 +0000</pubDate>
-      
-      <guid>https://blog.weearc.top/tags/archlinux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>系统迁移</title>
-      <link>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</link>
-      <pubDate>Tue, 26 Nov 2019 20:22:54 +0000</pubDate>
-      
-      <guid>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</guid>
       <description></description>
     </item>
     

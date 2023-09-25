@@ -10,6 +10,7 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Sat, 25 Aug 2018 16:04:16 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Firefox每夜构建食用指南</title>

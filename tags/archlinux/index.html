@@ -108,6 +108,24 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>其实我从来没想好自己应该使用什么发行版，十多年前最开始使用 Arch Linux 也只是因为觉得大家都在使用 什么 Ubuntu 啊觉得自己可以特例独行一些，并没有深刻的体会到什么叫做 KISS，也没有体会到各种拆包粒度对于使用的影响，也一直只是“会用”而已，并没有太多作为用户之外的使用体验差距。就算是第二个使用的发行版是 openSUSE 也一样，因为某种程度上有类似的基因。
+起因 闲的蛋痛。年初企图迁移到 Fedora 失败，仅仅过了5个小时就滚回了 Arch 。可能考虑到了 Debian Sid 的如下特性，打算这次外迁一定要迁移出去，去 Debian。
+足够稳定 apt 的前端 nala，看上去很帅 周围用 Arch 的很多，向特立独行一点 复习时间之余闲的蛋痛 但是也考虑到一些区别，比如：
+包管理器的整合性：debian 系素以混乱的包管理功能著称，dpkg、apt、apt-get、apt-file 软件包获取的难度：这也是为什么我一直非常抗拒使用 deb 系，你可以在软件官网上（比如 zotero），在 github release，在 makedeb ，在 pacstall，在 ppa…你能找出一百个不同的软件包来源，但是你没办法把他们整合（Debian CN repo 许久未变更了） 不知道的一些奇奇怪怪的特性 wiki，debian wiki 也就将将是能参考的程度 以上这些问题并没罗列全面，但是我曾经认为自己能够克服这些问题。虽然显然还是太高看自己了。
+Arch Linux -&gt; Debian 安装一个新的发行版是容易的，也没什么好说。但是考虑到年初 fedora 的惨痛经历，我打算还是给自己留个后路，方法可以有很多，rsync、或者整体dd、或者打个 tarball 什么的，之前有过尝试用 squashfs 备份系统的经验，而且打包后镜像体积特别小，也是很多发行版安装 CD 的首选方案。那就决定了。
+首先备份根分区，需要排除掉所有额外挂载的分区和运行态的玩意儿：
+1 sudo mksquashfs / backup-archlinux.squashfs -e /home -e /run -e /proc -e /dev -e /sys -e /tmp -e /var/tmp -e /mnt /boot/efi 直接把镜像扔到了外挂的 SSD 上面，体积也不大，150 G 根分区体积也就 27 G。然后下载了 Debian stable bookworm 的镜像，写盘，分区，安装…不一而足。...</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-09-25 00:00:00 +0000 UTC'>九月 25, 2023</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;weearc</footer>
+  <a class="entry-link" aria-label="post link to 记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历" href="https://blog.weearc.top/posts/2866972811/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>ArchLinux &#43; Windows10 双系统固态硬盘迁移
     </h2>
   </header>
@@ -156,19 +174,6 @@
   </div>
   <footer class="entry-footer"><span title='2019-02-06 17:48:04 +0000 UTC'>二月 6, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
   <a class="entry-link" aria-label="post link to 新年折腾记---从Manjaro迁移到Arch" href="https://blog.weearc.top/posts/30549/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>搭建私人图床并使用
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2019-02-02 23:27:37 +0000 UTC'>二月 2, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc</footer>
-  <a class="entry-link" aria-label="post link to 搭建私人图床并使用" href="https://blog.weearc.top/posts/61150/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -10,6 +10,7 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Fri, 21 Aug 2020 17:31:23 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 github actions 部署博客到腾讯云</title>

@@ -10,6 +10,7 @@
       <link>https://blog.weearc.top/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
     <lastBuildDate>Sun, 21 Jul 2019 19:27:40 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/zenity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用zenity&#43;xclip实现文字复制粘贴</title>
