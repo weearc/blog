@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>btrfs on weearc 的个人博客</title>
     <link>https://blog.weearc.top/tags/btrfs/</link>
     <description>Recent content in btrfs on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/btrfs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/tags/btrfs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历</title>
       <link>https://blog.weearc.top/posts/2866972811/</link>
       <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/2866972811/</guid>
-      <description>其实我从来没想好自己应该使用什么发行版，十多年前最开始使用 Arch Linux 也只是因为觉得大家都在使用 什么 Ubuntu 啊觉得自己可以特例独行一些，并没有深刻的体会到什么叫做 KISS，也没有体会到各种拆包粒度对于使用的影响，也一直只是“会用”而已，并没有太多作为用户之外的使用体验差距。就算是第二个使用的发行版是 openSUSE 也一样，因为某种程度上有类似的基因。
-起因 闲的蛋痛。年初企图迁移到 Fedora 失败，仅仅过了5个小时就滚回了 Arch 。可能考虑到了 Debian Sid 的如下特性，打算这次外迁一定要迁移出去，去 Debian。
-足够稳定 apt 的前端 nala，看上去很帅 周围用 Arch 的很多，向特立独行一点 复习时间之余闲的蛋痛 但是也考虑到一些区别，比如：
-包管理器的整合性：debian 系素以混乱的包管理功能著称，dpkg、apt、apt-get、apt-file 软件包获取的难度：这也是为什么我一直非常抗拒使用 deb 系，你可以在软件官网上（比如 zotero），在 github release，在 makedeb ，在 pacstall，在 ppa&amp;hellip;你能找出一百个不同的软件包来源，但是你没办法把他们整合（Debian CN repo 许久未变更了） 不知道的一些奇奇怪怪的特性 wiki，debian wiki 也就将将是能参考的程度 以上这些问题并没罗列全面，但是我曾经认为自己能够克服这些问题。虽然显然还是太高看自己了。
-Arch Linux -&amp;gt; Debian 安装一个新的发行版是容易的，也没什么好说。但是考虑到年初 fedora 的惨痛经历，我打算还是给自己留个后路，方法可以有很多，rsync、或者整体dd、或者打个 tarball 什么的，之前有过尝试用 squashfs 备份系统的经验，而且打包后镜像体积特别小，也是很多发行版安装 CD 的首选方案。那就决定了。
-首先备份根分区，需要排除掉所有额外挂载的分区和运行态的玩意儿：
-1 sudo mksquashfs / backup-archlinux.squashfs -e /home -e /run -e /proc -e /dev -e /sys -e /tmp -e /var/tmp -e /mnt /boot/efi 直接把镜像扔到了外挂的 SSD 上面，体积也不大，150 G 根分区体积也就 27 G。然后下载了 Debian stable bookworm 的镜像，写盘，分区，安装&amp;hellip;不一而足。</description>
+      <description>&lt;p&gt;其实我从来没想好自己应该使用什么发行版，十多年前最开始使用 Arch Linux 也只是因为觉得大家都在使用 什么 Ubuntu 啊觉得自己可以特例独行一些，并没有深刻的体会到什么叫做 KISS，也没有体会到各种拆包粒度对于使用的影响，也一直只是“会用”而已，并没有太多作为用户之外的使用体验差距。就算是第二个使用的发行版是 openSUSE 也一样，因为某种程度上有类似的基因。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

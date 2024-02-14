@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>杂谈 on weearc 的个人博客</title>
     <link>https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/</link>
     <description>Recent content in 杂谈 on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 08 Apr 2020 01:21:14 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Apr 2020 01:21:14 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>夜食食谱</title>
       <link>https://blog.weearc.top/posts/1552/</link>
       <pubDate>Wed, 08 Apr 2020 01:21:14 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/1552/</guid>
       <description>&lt;p&gt;最近晚上很容易饿，就自己摸索了一点简单的食谱出来。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>生活好了，但是我想回到以前</title>
       <link>https://blog.weearc.top/posts/21989/</link>
       <pubDate>Mon, 07 Jan 2019 20:39:40 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/21989/</guid>
       <description>睡前聊一聊 上次像这样写文章大概是很久以前的事情了，那我为何突然想起来这些？用我自己的话来讲，现在我才一点点感觉到，越是接触新技术、新产品，愈是变得更孤独。当然了，学技术可以当做一个例外，但是，如果可以不与这些新玩意儿接触，从某种角度上讲确实不想接触。</description>
     </item>
-    
   </channel>
 </rss>

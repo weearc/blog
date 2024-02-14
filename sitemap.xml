@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.weearc.top/categories/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/posts/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/posts/2197/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.weearc.top/tags/archlinux/</loc>
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,19 +26,10 @@
     <loc>https://blog.weearc.top/tags/btrfs/</loc>
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.weearc.top/categories/</loc>
-    <lastmod>2023-09-25T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.weearc.top/tags/debian/</loc>
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.weearc.top/posts/</loc>
-    <lastmod>2023-09-25T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.weearc.top/tags/</loc>
-    <lastmod>2023-09-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/</loc>
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/posts/2866972811/</loc>
@@ -361,8 +367,6 @@
   </url><url>
     <loc>https://blog.weearc.top/posts/7521/</loc>
     <lastmod>2017-08-12T22:10:50+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/archives/</loc>
   </url><url>
     <loc>https://blog.weearc.top/search/</loc>
   </url><url>

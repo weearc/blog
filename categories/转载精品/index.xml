@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>转载精品 on weearc 的个人博客</title>
     <link>https://blog.weearc.top/categories/%E8%BD%AC%E8%BD%BD%E7%B2%BE%E5%93%81/</link>
     <description>Recent content in 转载精品 on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 26 Dec 2017 19:48:56 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/%E8%BD%AC%E8%BD%BD%E7%B2%BE%E5%93%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Dec 2017 19:48:56 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/categories/%E8%BD%AC%E8%BD%BD%E7%B2%BE%E5%93%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>js从入门到坚持（转载）</title>
       <link>https://blog.weearc.top/posts/38757/</link>
       <pubDate>Tue, 26 Dec 2017 19:48:56 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/38757/</guid>
-      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;本手册的使用说明：&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;按着顺序看就应该能懂，并且少走弯路&lt;/li&gt;
-&lt;li&gt;👉👉👉 后面的链接为主要内容&lt;/li&gt;
-&lt;li&gt;更多 后面的链接为补充内容，不一定需要看&lt;/li&gt;
-&lt;li&gt;⚠️ 的意思是「需要注意的是」&lt;/li&gt;
-&lt;/ol&gt;</description>
+      <description>&lt;p&gt;&lt;em&gt;&lt;strong&gt;本手册的使用说明：&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;按着顺序看就应该能懂，并且少走弯路&lt;/li&gt;&#xA;&lt;li&gt;👉👉👉 后面的链接为主要内容&lt;/li&gt;&#xA;&lt;li&gt;更多 后面的链接为补充内容，不一定需要看&lt;/li&gt;&#xA;&lt;li&gt;⚠️ 的意思是「需要注意的是」&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
-    
   </channel>
 </rss>

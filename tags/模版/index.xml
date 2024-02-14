@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>模版 on weearc 的个人博客</title>
     <link>https://blog.weearc.top/tags/%E6%A8%A1%E7%89%88/</link>
     <description>Recent content in 模版 on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 19 Feb 2021 17:17:28 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/%E6%A8%A1%E7%89%88/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 17:17:28 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/tags/%E6%A8%A1%E7%89%88/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hexo 主题模板改造记录 2</title>
       <link>https://blog.weearc.top/posts/60875/</link>
       <pubDate>Fri, 19 Feb 2021 17:17:28 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/60875/</guid>
-      <description>本来应该早几天写出来发出来的，但是那几天撸了个脚本，结果要写的也增加了啊...早知道能成为第一个工具轮子这么久就早点把博客完善了。</description>
+      <description>第一篇： hexo主题迁移and折腾记&#xA;第二篇：hexo主题模版改造记录&#xA;本来在第二篇的时间就打算把剪贴板这件事搞定的，但是一拖拖了好久。&#xA;起因 要知道很多 Hexo 模版都提供剪贴板功能，以及备案号展示功能，但是我这模版太早期了，要是用最新版本的那么自己的代码部分又要全部重新弄，我是非常不愿意这么做。那就不如自己来实现了。然后搜了很久以后我看到这么一篇文章：在 Hexo 主題內新增程式碼片段複製功能 这就很好啊，很符合我的要求。于是动工。&#xA;思路 如果直接修改模版的话似乎也不是不行，但是那样的话可能会极大降低灵活度，另外我在翻看页面文件的时候也并未发现指定代码框的部分，因此还是直接用 JS 操作 DOM Tree 吧。&#xA;如图我们基本可以看到实际上应该一个 highlight 下面俩子节点一个 code 一个 gutter ，这样的话其实如果按照上面链接内文章操作的话是在这段的顶部套一个 DIV 然后插入按钮什么的进去，但是这样似乎对我的这个模板来说不是很友好，所以最后我会选择插入这么个玩意儿：&#xA;1 2 3 4 5 6 7 &amp;lt;div id=&amp;#34;codeblock-titlebar&amp;#34;&amp;gt; &amp;lt;span id=&amp;#34;lang-title&amp;#34; style=&amp;#34;font-size: 5px&amp;#34;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;button class=&amp;#34;codecopy-btn tooltipped tooltipped-sw&amp;#34; aria-label=&amp;#34;Copy to clipboard&amp;#34;&amp;gt; &amp;lt;span class=&amp;#34;fa fa-copy&amp;#34; aria-hidden=&amp;#34;true&amp;#34;&amp;gt;&amp;lt;/span&amp;gt; click to copy &amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; 这样就好多了，也不需要担心顶层按钮后面放不了东西背景空一块出来。&#xA;操作 但是其实只要观察过就会知道，整个代码框的部分全部是动态的，也就是说我们无法根据元素进行定位，只能使用 hexo 给定的父级对象操作，然后针对每个对象都如此操作才能在每个代码框中都插入按钮。因此代码如下：&#xA;1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 var snippets = document.</description>
     </item>
-    
     <item>
       <title>hexo主题模版改造记录</title>
       <link>https://blog.weearc.top/posts/31380/</link>
       <pubDate>Mon, 05 Aug 2019 23:37:27 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/31380/</guid>
       <description>&lt;p&gt;有时候就是心血来潮才想搞一些好玩的，假期一旦懒下来人就待完了。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,206 +1,111 @@
 <!DOCTYPE html>
-<html lang="zh" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>archlinux安装配置(1) | weearc 的个人博客</title>
-<meta name="keywords" content="archlinux, linux">
-<meta name="description" content="安装之前
-请确认：
-
-1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？
-2.你将安装它到哪里？是你正在使用的电脑上，是一个即将淘汰的旧电脑上，亦或是虚拟机中？
-">
-<meta name="author" content="weearc">
-<link rel="canonical" href="https://blog.weearc.top/posts/7521/">
-<meta name="google-site-verification" content="alQM1UuXbvXlVZiBJFDOVusGSakBpQYyv7f5x2tBGiw">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.3c2040296aae8b5eb23e89af25f860a0e4acc3932d25385dad48cdfae63e7c43.css" integrity="sha256-PCBAKWqui16yPomvJfhgoOSsw5MtJThdrUjN&#43;uY&#43;fEM=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://blog.weearc.top/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
-<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-
-<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
-<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-<script type="text/javascript" src="/js/fireworks.js"></script>
 
 
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript><meta property="og:title" content="archlinux安装配置(1)" />
-<meta property="og:description" content="安装之前
-请确认：
-
-1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？
-2.你将安装它到哪里？是你正在使用的电脑上，是一个即将淘汰的旧电脑上，亦或是虚拟机中？
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.weearc.top/posts/7521/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2017-08-12T22:10:50+00:00" />
-<meta property="article:modified_time" content="2017-08-12T22:10:50+00:00" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
-
-<meta name="twitter:title" content="archlinux安装配置(1)"/>
-<meta name="twitter:description" content="安装之前
-请确认：
-
-1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？
-2.你将安装它到哪里？是你正在使用的电脑上，是一个即将淘汰的旧电脑上，亦或是虚拟机中？
-"/>
+<script src="https://blog.weearc.top/js/lib/jquery-3.7.1.min.js"></script>
 
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Posts",
-      "item": "https://blog.weearc.top/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  3 ,
-      "name": "archlinux安装配置(1)",
-      "item": "https://blog.weearc.top/posts/7521/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "archlinux安装配置(1)",
-  "name": "archlinux安装配置(1)",
-  "description": "安装之前 请确认：\n1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？ 2.你将安装它到哪里？是你正在使用的电脑上，是一个即将淘汰的旧电脑上，亦或是虚拟机中？\n",
-  "keywords": [
-    "archlinux", "linux"
-  ],
-  "articleBody": "安装之前 请确认：\n1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？ 2.你将安装它到哪里？是你正在使用的电脑上，是一个即将淘汰的旧电脑上，亦或是虚拟机中？\n3.你是否了解它的安装方式？还是你打算一步一步学习如何安装？ 4.你是否了解它的优点和缺点？如果你并不不了解，你是否能承担风险? 我并不是要打消你尝试arch Linux的热情，但是arch Linux激进又高频的更新却几乎使所有使用过它的人印象深刻。频繁更新所带来的新功能和其带来的极不稳定性也为人所诟病。如果你可以在终端下面对字符愉快的玩耍，那么你使用arch Linux将不会有任何问题，但是，如果你是一个新手，那么你将需要一点时间，耐心和解决问题的能力来安装并使用arch Linux。\n准备安装 1.你可能需要确认你要安装位置，如：实体机，虚拟机，为此你将可能要额外准备例如软碟通或UUI这样的工具来帮助你将镜像文件写入U盘中 2.如果你的主力系统是Windows xp或Windows 7你可以正常的准备一定的空白磁盘空间，如果是Windows8/8.1/10，你则需要额外了解UEFI模式下Linux操作系统的安装方式\n开始安装(基础系统) 首先，你需要设置你的电脑从你的可引导设备（也就是你在前一步中的U盘） 在arch的引导菜单中，你要选择boot x86-64那项以安装arch Linux，在经过短暂的加载后你将进入Linux的shell模式下。 注意：请确保你有网络连接 如果你拥有有线连接或被Linux内核原生支持的无线网连接，那么恭喜你，可以继续安装了 首先要确保网络连接的速率\n1 ping -c 3 www.baidu.com 如果速率良好，则可继续安装。如果速率不佳则要执行：\n1 nano /etc/pacman.conf 在文件中用快捷键\n1 ^w 找到含wget那行并去除行前的“#”号，然后执行\n1 ^o 以写入改动，并用\n1 ^x 来退出nano。\n磁盘准备 在这里我们选用cfdisk图形化分区工具 在shell界面执行\n1 cfdisk 在打开的界面选择磁盘类型\n如果你是用的是已经有操作系统的计算机,请确认你的操作系统使用的磁盘类型 通常win7及以下版本的Windows使用的是有诸多限制的mbr的类型,即\"dos\";而win8及以上为gpt格式的磁盘 这里就先选择传统格式DOS类型\n选择GPT类型,回车 按照传统的分区方式,将分区分为/,/home,和efi分区.\n注意 一定要将/分区选为Bootable 然后选择write选项将改动写入磁盘并退出 接下来执行\n1 mkfs.ext4 /dev/sdYX 1.这里Y代表磁盘的编号,通常以小写字母a,b,c,d…表示 2.X表示分区编号,通常以数字1,2,3…形式表示 3.在本文中sda1为/分区,sda2为swap分区,sda3为/home分区 4.这里涉及了efi分区。由于这个分区的特殊性，如果是双系统则不需要另外建立，如果是Archlinux单系统就需要建立一个格式为fat32的分区用来储存efi文件。\n因此执行\n1 2 mkfs.ext4 /dev/sda1 mkfs.ext4 /dev/sda3 然后执行\n1 mount /dev/sda1 /mnt 挂载分区到挂载点/ 执行\n1 mkdir /mnt/home 创建/home目录 并执行\n1 mount /dev/sda3 /mnt/home 来挂载sda3分区到/home目录 创建目录/boot/EFI,并将efi分区挂载上去\n1 2 mkdir -p /mnt/boot/EFI mount /dev/sda2 /mnt/boot/EFI pacman配置 首先配置软件源\n1 nano /etc/pacman.d/mirrorlist 寻找含有China一行的软件源并去掉句前的＃号,一般启用2,3个源即可\nLinux内核的操作系统大部分的调整都是通过修改配置文件进行的 有诸多选项是可进行选择的,而大部分配置文件会预先给出选项,因此只需删除句前的＃号即可启用选项,而保留＃的哪一航被称为\"注释掉了\"\n最后执行\n1 pacman -Syy 强制刷新软件源. 至此,包管理器pacman配置完成\n基础系统安装 执行\n1 pacstrap -i /mnt base base-devel 来安装基础系统 待安装完成,使用\n1 fstab -t LABEL -p /mnt \u003e\u003e /mnt/etc/fstab 添加分区的UUID标记。UUID之后也可能会无数次用到遇到。需要特殊注意。\n更新：fstab使用UUID虽然是推荐的但是很是麻烦，因此个人建议个人使用时候使用卷标即可。\n记得执行：\n1 cat /mnt/etc/fstab 来查看内容是否正确生成。\n至此，基础系统安装和准备全部完毕。\n",
-  "wordCount" : "139",
-  "inLanguage": "zh",
-  "datePublished": "2017-08-12T22:10:50Z",
-  "dateModified": "2017-08-12T22:10:50Z",
-  "author":{
-    "@type": "Person",
-    "name": "weearc"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://blog.weearc.top/posts/7521/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "weearc 的个人博客",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.weearc.top/favicon.ico"
-    }
-  }
-}
-</script>
+
+
+
+
+
+
+<link href="https://blog.weearc.top/css/lib/pure-min.css" rel="stylesheet">
+
+
+    <link href="https://blog.weearc.top/css/lib/grids-responsive-min.css" rel="stylesheet">
+
+
+<link href="https://blog.weearc.top/css/lib/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.89d3be76f84197c3596897a53848d3cbca2716251c192653582a106b08f8818a.css" integrity="sha256-idO&#43;dvhBl8NZaJelOEjTy8onFiUcGSZTWCoQawj4gYo=" crossorigin="anonymous">
+
+
+
+
+      <script src="/js/main.5e50194a83be2bdbc72833e58131c9a48becd1aa38ad6cd07332b99197c54a5a.js" integrity="sha256-XlAZSoO&#43;K9vHKDPlgTHJpIvs0ao4rWzQczK5kZfFSlo=" crossorigin="anonymous"></script>
+
+
+
+
 </head>
-
-<body class="" id="top">
-
-<header class="header" id="navBar">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
-            <div class="logo-switches">
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://blog.weearc.top/" title="首页">
-                    <span>首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/archives" title="归档">
-                    <span>归档</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/search/" title="检索">
-                    <span>检索</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/tags/" title="标签">
-                    <span>标签</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/about/" title="关于我">
-                    <span>关于我</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/frlink/" title="友链">
-                    <span>友链</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main beforeScrollMaster" id="list-layout">
-        <div id="content-list">
-
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
-    <h1 class="post-title">
-      archlinux安装配置(1)
-    </h1>
-    <div class="post-meta"><span title='2017-08-12 22:10:50 +0000 UTC'>八月 12, 2017</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
-
+<body>
+  <div class="body__container">
+    <div id="header">
+      <div class="site__name" >
+    <a id="logo" href="/.">weearc 的个人博客</a>
+    <p class="description">想离相惜莫相忘，且行且歌且珍惜</p>
 </div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#%e5%ae%89%e8%a3%85%e4%b9%8b%e5%89%8d" aria-label="安装之前">安装之前</a></li>
-                <li>
-                    <a href="#%e5%87%86%e5%a4%87%e5%ae%89%e8%a3%85" aria-label="准备安装">准备安装</a></li>
-                <li>
-                    <a href="#%e5%bc%80%e5%a7%8b%e5%ae%89%e8%a3%85%e5%9f%ba%e7%a1%80%e7%b3%bb%e7%bb%9f" aria-label="开始安装(基础系统)">开始安装(基础系统)</a><ul>
-                        
-                <li>
-                    <a href="#%e7%a3%81%e7%9b%98%e5%87%86%e5%a4%87" aria-label="磁盘准备">磁盘准备</a></li>
-                <li>
-                    <a href="#pacman%e9%85%8d%e7%bd%ae" aria-label="pacman配置">pacman配置</a></li>
-                <li>
-                    <a href="#%e5%9f%ba%e7%a1%80%e7%b3%bb%e7%bb%9f%e5%ae%89%e8%a3%85" aria-label="基础系统安装">基础系统安装</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
+<div id="nav-menu">
+    
+    
+    
+        <a href="https://blog.weearc.top/" title="首页">
+           <i class="fa fa-home">首页</i>
+        </a>
+        <a href="https://blog.weearc.top/posts/" title="归档">
+           <i class="fa fa-archive">归档</i>
+        </a>
+        <a href="https://blog.weearc.top/frlink/" title="友链">
+           <i class="fa fa-link">友链</i>
+        </a>
+        <a href="https://blog.weearc.top/about/" title="关于">
+           <i class="fa fa-user">关于</i>
+        </a>
+        <a href="https://blog.weearc.top/index.xml" title="订阅">
+           <i class="fa fa-rss">订阅</i>
+        </a>
 </div>
 
-  <div class="post-content"><h1 id="安装之前">安装之前<a hidden class="anchor" aria-hidden="true" href="#安装之前">#</a></h1>
+
+    </div>
+    <div class="pure-g" id="layout">
+      <div class="pure-u-1  pure-u-md-3-4 ">
+        <div class="content__container">
+          
+  <div class="post">
+    <h1 class="post-title">archlinux安装配置(1)</h1>
+    <div class="post-meta">
+      
+      
+      
+      <span datetime="2017-08-12T22:10:50&#43;00:00">Aug. 12, 2017</span>
+      <span class="post-time">
+        <span class="post-meta-item-text"> | </span>
+        <span class="post-meta-item-icon">
+          <i class="fa fa-keyboard-o"></i>
+          <span class="post-count">1657</span>
+          <span class="post-meta-item-text"> 字</span>
+        </span>
+      </span>
+    </div>
+    <a class="disqus-comment-count" href="./#vcomments">
+      <span class="valine-comment-count" data-xid="/posts/7521/"></span>
+      <span> 条评论</span>
+    </a>
+    <div class="clear">
+      
+        <div class="toc-article" id="toc">
+          <div class="toc-title">文章目录</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#磁盘准备">磁盘准备</a></li>
+    <li><a href="#pacman配置">pacman配置</a></li>
+    <li><a href="#基础系统安装">基础系统安装</a></li>
+  </ul>
+</nav>
+        </div>
+      
+    </div>
+    <div class="post-content">
+      <h1 id="安装之前">安装之前</h1>
 <p>请确认：</p>
 <blockquote>
 <p>1.你安装arch Linux的目的是什么。是学习Linux吗？是为了装酷，还是寻求刺激？</br>
@@ -211,12 +116,12 @@
 4.你是否了解它的优点和缺点？如果你并不不了解，你是否能承担风险?</br>
 我并不是要打消你尝试arch Linux的热情，但是arch Linux激进又高频的更新却几乎使所有使用过它的人印象深刻。频繁更新所带来的新功能和其带来的极不稳定性也为人所诟病。如果你可以在终端下面对字符愉快的玩耍，那么你使用arch Linux将不会有任何问题，但是，如果你是一个新手，那么你将需要一点时间，耐心和解决问题的能力来安装并使用arch Linux。</p>
 </blockquote>
-<h1 id="准备安装">准备安装<a hidden class="anchor" aria-hidden="true" href="#准备安装">#</a></h1>
+<h1 id="准备安装">准备安装</h1>
 <blockquote>
 <p>1.你可能需要确认你要安装位置，如：实体机，虚拟机，为此你将可能要额外准备例如软碟通或UUI这样的工具来帮助你将镜像文件写入U盘中</br>
 2.如果你的主力系统是Windows xp或Windows 7你可以正常的准备一定的空白磁盘空间，如果是Windows8/8.1/10，你则需要额外了解UEFI模式下Linux操作系统的安装方式</p>
 </blockquote>
-<h1 id="开始安装基础系统">开始安装(基础系统)<a hidden class="anchor" aria-hidden="true" href="#开始安装基础系统">#</a></h1>
+<h1 id="开始安装基础系统">开始安装(基础系统)</h1>
 <blockquote>
 <p>首先，你需要设置你的电脑从你的可引导设备（也就是你在前一步中的U盘）</br>
 在arch的引导菜单中，你要选择boot x86-64那项以安装arch Linux，在经过短暂的加载后你将进入Linux的shell模式下。</br>
@@ -224,60 +129,60 @@
 如果你拥有有线连接或被Linux内核原生支持的无线网连接，那么恭喜你，可以继续安装了
 首先要确保网络连接的速率</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ping -c 3 www.baidu.com
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ping -c 3 www.baidu.com
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果速率良好，则可继续安装。如果速率不佳则要执行：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano /etc/pacman.conf
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>nano /etc/pacman.conf
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在文件中用快捷键</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">^w
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>^w
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>找到含wget那行并去除行前的“#”号，然后执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">^o
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>^o
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>以写入改动，并用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">^x
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>^x
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>来退出nano。</p>
-<h2 id="磁盘准备">磁盘准备<a hidden class="anchor" aria-hidden="true" href="#磁盘准备">#</a></h2>
+<h2 id="磁盘准备">磁盘准备</h2>
 <p>在这里我们选用cfdisk图形化分区工具
 在shell界面执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cfdisk
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cfdisk
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在打开的界面选择磁盘类型</p>
@@ -294,12 +199,12 @@
 然后选择write选项将改动写入磁盘并退出
 接下来执行</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkfs.ext4 /dev/sdYX
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkfs.ext4 /dev/sdYX
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -309,65 +214,65 @@
 4.这里涉及了efi分区。由于这个分区的特殊性，如果是双系统则不需要另外建立，如果是Archlinux单系统就需要建立一个格式为fat32的分区用来储存efi文件。</p>
 </blockquote>
 <p>因此执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkfs.ext4 /dev/sda1
-</span></span><span class="line"><span class="cl">mkfs.ext4 /dev/sda3
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkfs.ext4 /dev/sda1
+</span></span><span style="display:flex;"><span>mkfs.ext4 /dev/sda3
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mount /dev/sda1 /mnt
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mount /dev/sda1 /mnt
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>挂载分区到挂载点/
 执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir /mnt/home
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkdir /mnt/home
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>创建/home目录
 并执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mount /dev/sda3 /mnt/home
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mount /dev/sda3 /mnt/home
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>来挂载sda3分区到/home目录</br>
 创建目录/boot/EFI,并将efi分区挂载上去</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir -p /mnt/boot/EFI
-</span></span><span class="line"><span class="cl">mount /dev/sda2 /mnt/boot/EFI
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mkdir -p /mnt/boot/EFI
+</span></span><span style="display:flex;"><span>mount /dev/sda2 /mnt/boot/EFI
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="pacman配置">pacman配置<a hidden class="anchor" aria-hidden="true" href="#pacman配置">#</a></h2>
+</div><h2 id="pacman配置">pacman配置</h2>
 <p>首先配置软件源</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nano /etc/pacman.d/mirrorlist
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>nano /etc/pacman.d/mirrorlist
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>寻找含有China一行的软件源并去掉句前的＃号,一般启用2,3个源即可</p>
@@ -376,67 +281,74 @@
 有诸多选项是可进行选择的,而大部分配置文件会预先给出选项,因此只需删除句前的＃号即可启用选项,而保留＃的哪一航被称为&quot;注释掉了&quot;</br></p>
 </blockquote>
 <p>最后执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pacman -Syy 
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pacman -Syy 
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>强制刷新软件源.
 至此,包管理器pacman配置完成</p>
-<h2 id="基础系统安装">基础系统安装<a hidden class="anchor" aria-hidden="true" href="#基础系统安装">#</a></h2>
+<h2 id="基础系统安装">基础系统安装</h2>
 <p>执行</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pacstrap -i /mnt base base-devel
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pacstrap -i /mnt base base-devel
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>来安装基础系统
 待安装完成,使用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fstab -t LABEL -p /mnt &gt;&gt; /mnt/etc/fstab
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>fstab -t LABEL -p /mnt &gt;&gt; /mnt/etc/fstab
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><del>添加分区的UUID标记。UUID之后也可能会无数次用到遇到。需要特殊注意。</del></p>
 <p>更新：fstab使用UUID虽然是推荐的但是很是麻烦，因此个人建议个人使用时候使用卷标即可。</p>
 <p>记得执行：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /mnt/etc/fstab
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cat /mnt/etc/fstab
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>来查看内容是否正确生成。</p>
 <p>至此，基础系统安装和准备全部完毕。</p>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
-      <li><a href="https://blog.weearc.top/tags/linux/">linux</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://blog.weearc.top/posts/38757/">
-    <span class="title">« 上一页</span>
-    <br>
-    <span>js从入门到坚持（转载）</span>
-  </a>
-</nav>
-
-  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<div id="vcomments"></div>
+    </div>
+    <div>
+      <ul class="post-copyright">
+        <li class="post-copyright-author"><strong>本文作者: </strong>weearc</li>
+        <li class="post-copyright-link"><strong>本文链接: </strong><a title="https://blog.weearc.top/posts/7521/" href="https://blog.weearc.top/posts/7521/">https://blog.weearc.top/posts/7521/</a></li>
+        <li class="post-copyright-license"><strong>版权声明: </strong>除特殊声明，转载需遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="tags">
+      
+        <a href="/tags/archlinux">archlinux</a>
+      
+        <a href="/tags/linux">linux</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <a class="pre" href="/search/" title="Search">Search</a>
+      
+      
+        <a class="next" href="/posts/38757/" title="js从入门到坚持（转载）">js从入门到坚持（转载）</a>
+      
+    </div>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" class=" v" data-class="v"></div>
 <script>
     function loadComments() {
         
@@ -462,122 +374,339 @@
         loadComments()
     }
 </script>
-</article>
+
+  </div>
+
         </div>
-    </main>
+      </div>
+      
+      <div class="pure-u-1-4 hidden_mid_and_down">
+        <div id="sidebar">
     
-<footer class="footer">
-    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span></br>
-    <span>
-        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
-            辽ICP备2020011073号
-        </a>
-    </span>
-    </br>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
-    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+<div class="widget">
+    <div class="search-form">
+        <input id="local-search-input" placeholder="搜索" type="text" name="q" results="0">
+        <div id="local-search-result"></div>
+    </div>
+</div>
 
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
+    <div class="widget">
+    <div class="widget__title">
+        <i class="fa fa-folder-o">分类</i>
+    </div>
+    <ul class="category-list">
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/android/">
+                    Android
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/archlinux/">
+                    archlinux
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hello-hexo/">
+                    hello hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hexo/">
+                    hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/kde/">
+                    kde
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/minecraft/">
+                    Minecraft
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/php/">
+                    php
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/tools/">
+                    tools
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E4%B8%80%E8%A8%80/">
+                    一言
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%89%8D%E7%AB%AF/">
+                    前端
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E5%A5%97/">
+                    博客配套
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+                    实用工具
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%BE%85%E4%BF%AE%E6%94%B9/">
+                    待修改
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%BE%85%E5%A1%AB%E5%9D%91/">
+                    待填坑
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%9D%82%E8%AE%B0/">
+                    杂记
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%9D%82%E8%B0%88/">
+                    杂谈
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%B5%8B%E8%AF%95/">
+                    测试
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E7%8E%A9%E8%B5%8F/">
+                    玩赏
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E8%BD%AC%E8%BD%BD%E7%B2%BE%E5%93%81/">
+                    转载精品
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E8%BE%93%E5%85%A5%E6%B3%95/">
+                    输入法
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E9%9A%8F%E7%AC%94/">
+                    随笔
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
+    <div class="widget">
+    <div class="widget__title">
+        <i class="fa fa-tag">
+            标签
+        </i>
+    </div>
+    <div class="tagcloud">
+        
+            <a href="https://blog.weearc.top/tags/android/">android</a>
+        
+            <a href="https://blog.weearc.top/tags/archlinux/">archlinux</a>
+        
+            <a href="https://blog.weearc.top/tags/btrfs/">btrfs</a>
+        
+            <a href="https://blog.weearc.top/tags/debian/">debian</a>
+        
+            <a href="https://blog.weearc.top/tags/fcitx/">fcitx</a>
+        
+            <a href="https://blog.weearc.top/tags/fcitx5/">fcitx5</a>
+        
+            <a href="https://blog.weearc.top/tags/firefox/">firefox</a>
+        
+            <a href="https://blog.weearc.top/tags/firefox-nightly/">firefox-nightly</a>
+        
+            <a href="https://blog.weearc.top/tags/fish-shell/">fish-shell</a>
+        
+            <a href="https://blog.weearc.top/tags/github-actions/">github-actions</a>
+        
+            <a href="https://blog.weearc.top/tags/github-webhook/">github-webhook</a>
+        
+            <a href="https://blog.weearc.top/tags/hello-word/">hello-word</a>
+        
+            <a href="https://blog.weearc.top/tags/hexo/">hexo</a>
+        
+            <a href="https://blog.weearc.top/tags/history-file/">history-file</a>
+        
+            <a href="https://blog.weearc.top/tags/js/">js</a>
+        
+            <a href="https://blog.weearc.top/tags/linux/">linux</a>
+        
+            <a href="https://blog.weearc.top/tags/manjaro/">manjaro</a>
+        
+            <a href="https://blog.weearc.top/tags/markdown/">markdown</a>
+        
+            <a href="https://blog.weearc.top/tags/minecraft/">minecraft</a>
+        
+            <a href="https://blog.weearc.top/tags/pandoc/">pandoc</a>
+        
+            <a href="https://blog.weearc.top/tags/php/">php</a>
+        
+            <a href="https://blog.weearc.top/tags/redmi/">redmi</a>
+        
+            <a href="https://blog.weearc.top/tags/ubuntu/">ubuntu</a>
+        
+            <a href="https://blog.weearc.top/tags/xclip/">xclip</a>
+        
+            <a href="https://blog.weearc.top/tags/zenity/">zenity</a>
+        
+            <a href="https://blog.weearc.top/tags/zotero/">zotero</a>
+        
+            <a href="https://blog.weearc.top/tags/%E4%B8%80%E8%A8%80/">一言</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%8D%87%E7%BA%A7/">升级</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%8E%BB%E4%BB%96%E5%A6%88%E7%9A%84%E7%BD%91%E6%98%93%E4%BA%91/">去他妈的网易云</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/">响应式</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/">完全配置</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%B0%8F%E7%B1%B3/">小米</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%BE%85%E4%BF%AE%E6%94%B9/">待修改</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%95%99%E7%A8%8B/">教程</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B/">木下ゆうか</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E4%BD%91%E9%A6%99/">木下佑香</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E8%AE%B0/">杂记</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/">杂谈</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%A8%A1%E7%89%88/">模版</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%AF%95%E4%B8%9A%E5%AD%A3/">毕业季</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%94%9F%E5%AD%98%E8%AE%B0%E5%BD%95/">生存记录</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%94%B5%E9%87%8F%E7%84%A6%E8%99%91/">电量焦虑</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%9F%A5%E4%B9%8E/">知乎</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/">系统备份</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/">系统迁移</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%BA%A2%E7%B1%B3-k30-pro/">红米-k30-pro</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/">自动化部署</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%BD%AC%E8%BD%BD%E6%96%87%E7%AB%A0/">转载文章</a>
+        
+            <a href="https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+        
+            <a href="https://blog.weearc.top/tags/%E9%A3%9F%E8%B0%B1/">食谱</a>
+        
+    </div>
+</div>
+
+</div>
+
+
+      </div>
+      
+      <div class="pure-u-1  pure-u-md-3-4 ">
+        
+    <footer id="footer">
+            <span>Copyright &copy; 2024 | <i class="fa fa-moon-o"></i><a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+        <span>
+            Powered by
+            <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> | Theme by
+            <a href="https://github.com/weearc" rel="noopener" target="_blank">weearc</a>
+        </span></br>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
+        <span>
+            <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+                辽ICP备2020011073号
+            </a>
+        </span>
+    </footer>
+    <script>
+    var htmlCopyButton = `
+    <div id="codeblock-titlebar">
+        <span id="lang-title" style="font-size: 5px"></span>
+        <button id="clipboard-btn" class="codecopy-btn tooltipped tooltipped-sw" aria-label="Copy to clipboard">
+            <span id="clipboard-btn-icon" class="fa fa-copy" aria-hidden="true"></span>
+            点击复制
+        </button>
+    </div>
+    `;
+
+    $('.highlight').each(function(index) {
+        $(this).prepend(htmlCopyButton)
     });
 
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
+    $('.codecopy-btn').click(function() {
+        var parent = $(this).parent().parent();
+        var title = $(this).parent();
+        var siblingsNext = parent.children().not(title);
+        var tbody = siblingsNext.find('table tbody');
+        var td = tbody.find('tr:eq(0)').find('td:eq(1)');
+        if ('clipboard' in navigator) {
+            navigator.clipboard.writeText(td[0].textContent);
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
+            this.innerHTML = `
+            <span id="clipboard-btn-icon" class="fa fa-check" aria-hidden="true"></span>
+            已复制！
+            `;
             setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
+                this.innerHTML = `
+                <span id="clipboard-btn-icon" class="fa fa-copy" aria-hidden="true"></span>
+                点击复制
+                `;
+            }, 900);
 
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
 
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
+            return;
+        };
     });
 </script>
+
+
+      </div>
+    </div>
+  </div>
 </body>
-<script type="text/javascript" src="/js/custom.js"></script>
 </html>

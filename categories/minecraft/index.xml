@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Minecraft on weearc 的个人博客</title>
     <link>https://blog.weearc.top/categories/minecraft/</link>
     <description>Recent content in Minecraft on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 11 Aug 2021 13:10:57 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/minecraft/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Aug 2021 13:10:57 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/categories/minecraft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>降低你的 Minecraft 存档版本</title>
       <link>https://blog.weearc.top/posts/4518/</link>
       <pubDate>Wed, 11 Aug 2021 13:10:57 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/4518/</guid>
-      <description>关于我不小心手欠把存档升级到 1.17.1 这件事。 1.17.1 本来就没有打算认真去玩，但是对于手欠升级自己存档这件事真的很恼火可以说是。因此就得想个办法来处理一下。
-对于一般的存档来说只要生成了新地形那么降级就几乎不可能，但是对于我这个存档来说就很万幸了，因为不小心进入的时候正好处于 20*20 区块空置域正中心，所以避免了区块的生成和结构的破坏，那样的话就只剩下修改 level.dat一条路了。
-level.dat一般结构如下：
-1 2 3 4 5 6 7 8 level.dat |-Data---CustomBossEvents |-DataPacks |-DragonFight |-GameRules |-Player |-Version |-WorldGenSettings 所幸的是 1.17.1 对于 WorldGenSettings 几乎没有改动，否则就要大修理了。Version 存储关于 Minecraft 的版本信息。直接参照 1.16.2 的其他存档修改为如下：
-1 2 3 4 Version--- 3 entries |- Id: 2578 |- Name: 1.16.2 |- Snapshot: 0 保存并退出，然后使用 1.16.2 加载存档，保存并退出即修复完成。但是无论如何记得备份好存档再操作，直接操作存档是非常危险的。
-1.17.1 这垃圾优化估计可以让我坚守 1.16.2 更久了，而且对于生电玩法更加困难，没必要再升级了至少目前是这样。
-至于 Linux 下如何运行 NBTexplorer ，直接使用 mono即可，非常简单。</description>
+      <description>关于我不小心手欠把存档升级到 1.17.1 这件事。 1.17.1 本来就没有打算认真去玩，但是对于手欠升级自己存档这件事真的很恼火可以说是。因此就得想个办法来处理一下。&#xA;对于一般的存档来说只要生成了新地形那么降级就几乎不可能，但是对于我这个存档来说就很万幸了，因为不小心进入的时候正好处于 20*20 区块空置域正中心，所以避免了区块的生成和结构的破坏，那样的话就只剩下修改 level.dat一条路了。&#xA;level.dat一般结构如下：&#xA;1 2 3 4 5 6 7 8 level.dat |-Data---CustomBossEvents |-DataPacks |-DragonFight |-GameRules |-Player |-Version |-WorldGenSettings 所幸的是 1.17.1 对于 WorldGenSettings 几乎没有改动，否则就要大修理了。Version 存储关于 Minecraft 的版本信息。直接参照 1.16.2 的其他存档修改为如下：&#xA;1 2 3 4 Version--- 3 entries |- Id: 2578 |- Name: 1.16.2 |- Snapshot: 0 保存并退出，然后使用 1.16.2 加载存档，保存并退出即修复完成。但是无论如何记得备份好存档再操作，直接操作存档是非常危险的。&#xA;1.17.1 这垃圾优化估计可以让我坚守 1.16.2 更久了，而且对于生电玩法更加困难，没必要再升级了至少目前是这样。&#xA;至于 Linux 下如何运行 NBTexplorer ，直接使用 mono即可，非常简单。</description>
     </item>
-    
   </channel>
 </rss>

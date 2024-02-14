@@ -1,165 +1,105 @@
 <!DOCTYPE html>
-<html lang="zh" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<html lang="zh" dir="ltr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>新年折腾记---从Manjaro迁移到Arch | weearc 的个人博客</title>
-<meta name="keywords" content="archlinux, linux">
-<meta name="description" content="新的一年，热爱折腾的我当然是从折腾开始新的一年了&hellip;.">
-<meta name="author" content="weearc">
-<link rel="canonical" href="https://blog.weearc.top/posts/30549/">
-<meta name="google-site-verification" content="alQM1UuXbvXlVZiBJFDOVusGSakBpQYyv7f5x2tBGiw">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.3c2040296aae8b5eb23e89af25f860a0e4acc3932d25385dad48cdfae63e7c43.css" integrity="sha256-PCBAKWqui16yPomvJfhgoOSsw5MtJThdrUjN&#43;uY&#43;fEM=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://blog.weearc.top/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://blog.weearc.top/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://blog.weearc.top/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://blog.weearc.top/apple-touch-icon.png">
-<link rel="mask-icon" href="https://blog.weearc.top/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-
-<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
-<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
-<script type="text/javascript" src="/js/fireworks.js"></script>
 
 
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript><meta property="og:title" content="新年折腾记---从Manjaro迁移到Arch" />
-<meta property="og:description" content="新的一年，热爱折腾的我当然是从折腾开始新的一年了&hellip;." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.weearc.top/posts/30549/" /><meta property="og:image" content="https://blog.weearc.top/papermod-cover.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-02-06T17:48:04+00:00" />
-<meta property="article:modified_time" content="2019-02-06T17:48:04+00:00" />
-
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://blog.weearc.top/papermod-cover.png"/>
-
-<meta name="twitter:title" content="新年折腾记---从Manjaro迁移到Arch"/>
-<meta name="twitter:description" content="新的一年，热爱折腾的我当然是从折腾开始新的一年了&hellip;."/>
+<script src="https://blog.weearc.top/js/lib/jquery-3.7.1.min.js"></script>
 
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Posts",
-      "item": "https://blog.weearc.top/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  3 ,
-      "name": "新年折腾记---从Manjaro迁移到Arch",
-      "item": "https://blog.weearc.top/posts/30549/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "新年折腾记---从Manjaro迁移到Arch",
-  "name": "新年折腾记---从Manjaro迁移到Arch",
-  "description": "新的一年，热爱折腾的我当然是从折腾开始新的一年了\u0026hellip;.\n",
-  "keywords": [
-    "archlinux", "linux"
-  ],
-  "articleBody": "新的一年，热爱折腾的我当然是从折腾开始新的一年了….\n在经过了各位arch大佬和Gentoo大佬一年的洗礼…我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了….）。\n准备迁移过程中考虑了两个问题：\n我那快1800个软件包要怎么办 最初选择manjaro，主要是看中了manjaro对于内核切换的便利，以及方便的附加驱动的安装 有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉…\n那么正常来做迁移，首先需要备份一下软件列表，根据archwiki，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。\n因此在原有系统中执行：\n1 2 3 4 #Qqen选项备份的是除了aur和自己打包安装的以外的包 pacman -Qqen \u003e listQqen.txt #Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集 pacman -Qqem \u003e listQqem.txt 这两个列表保存在主目录就好，之后会用到。\n然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。\n这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。\n然后执行：\n1 2 3 4 #获取arch中的存在的包 pacman -S --needed $(comm -12 \u003c(pacman -Slq | sort) \u003c(sort listQqen.txt)) #获取aur里的包 yaourt -S --needed $(comm -12 \u003c(pacman -Slq | sort) \u003c(sort Qqem.txt)) 这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone manjaro的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。\n后记：\n貌似很多用arch的用户还在有着对manjaro的鄙视链啊…..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。\n",
-  "wordCount" : "59",
-  "inLanguage": "zh",
-  "datePublished": "2019-02-06T17:48:04Z",
-  "dateModified": "2019-02-06T17:48:04Z",
-  "author":{
-    "@type": "Person",
-    "name": "weearc"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://blog.weearc.top/posts/30549/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "weearc 的个人博客",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blog.weearc.top/favicon.ico"
-    }
-  }
-}
-</script>
+
+
+
+
+
+
+<link href="https://blog.weearc.top/css/lib/pure-min.css" rel="stylesheet">
+
+
+    <link href="https://blog.weearc.top/css/lib/grids-responsive-min.css" rel="stylesheet">
+
+
+<link href="https://blog.weearc.top/css/lib/font-awesome.min.css" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.89d3be76f84197c3596897a53848d3cbca2716251c192653582a106b08f8818a.css" integrity="sha256-idO&#43;dvhBl8NZaJelOEjTy8onFiUcGSZTWCoQawj4gYo=" crossorigin="anonymous">
+
+
+
+
+      <script src="/js/main.5e50194a83be2bdbc72833e58131c9a48becd1aa38ad6cd07332b99197c54a5a.js" integrity="sha256-XlAZSoO&#43;K9vHKDPlgTHJpIvs0ao4rWzQczK5kZfFSlo=" crossorigin="anonymous"></script>
+
+
+
+
 </head>
-
-<body class="" id="top">
-
-<header class="header" id="navBar">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://blog.weearc.top" accesskey="h" title="weearc 的个人博客 (Alt + H)">weearc 的个人博客</a>
-            <div class="logo-switches">
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://blog.weearc.top/" title="首页">
-                    <span>首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/archives" title="归档">
-                    <span>归档</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/search/" title="检索">
-                    <span>检索</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/tags/" title="标签">
-                    <span>标签</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/about/" title="关于我">
-                    <span>关于我</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://blog.weearc.top/frlink/" title="友链">
-                    <span>友链</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main beforeScrollMaster" id="list-layout">
-        <div id="content-list">
-
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="https://blog.weearc.top">主页</a>&nbsp;»&nbsp;<a href="https://blog.weearc.top/posts/">Posts</a></div>
-    <h1 class="post-title">
-      新年折腾记---从Manjaro迁移到Arch
-    </h1>
-    <div class="post-meta"><span title='2019-02-06 17:48:04 +0000 UTC'>二月 6, 2019</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;weearc
-
+<body>
+  <div class="body__container">
+    <div id="header">
+      <div class="site__name" >
+    <a id="logo" href="/.">weearc 的个人博客</a>
+    <p class="description">想离相惜莫相忘，且行且歌且珍惜</p>
 </div>
-  </header> 
+<div id="nav-menu">
+    
+    
+    
+        <a href="https://blog.weearc.top/" title="首页">
+           <i class="fa fa-home">首页</i>
+        </a>
+        <a href="https://blog.weearc.top/posts/" title="归档">
+           <i class="fa fa-archive">归档</i>
+        </a>
+        <a href="https://blog.weearc.top/frlink/" title="友链">
+           <i class="fa fa-link">友链</i>
+        </a>
+        <a href="https://blog.weearc.top/about/" title="关于">
+           <i class="fa fa-user">关于</i>
+        </a>
+        <a href="https://blog.weearc.top/index.xml" title="订阅">
+           <i class="fa fa-rss">订阅</i>
+        </a>
+</div>
 
-  <div class="post-content"><p>新的一年，热爱折腾的我当然是从折腾开始新的一年了&hellip;.</p>
+
+    </div>
+    <div class="pure-g" id="layout">
+      <div class="pure-u-1  pure-u-md-3-4 ">
+        <div class="content__container">
+          
+  <div class="post">
+    <h1 class="post-title">新年折腾记---从Manjaro迁移到Arch</h1>
+    <div class="post-meta">
+      
+      
+      
+      <span datetime="2019-02-06T17:48:04&#43;00:00">Feb. 06, 2019</span>
+      <span class="post-time">
+        <span class="post-meta-item-text"> | </span>
+        <span class="post-meta-item-icon">
+          <i class="fa fa-keyboard-o"></i>
+          <span class="post-count">987</span>
+          <span class="post-meta-item-text"> 字</span>
+        </span>
+      </span>
+    </div>
+    <a class="disqus-comment-count" href="./#vcomments">
+      <span class="valine-comment-count" data-xid="/posts/30549/"></span>
+      <span> 条评论</span>
+    </a>
+    <div class="clear">
+      
+        <div class="toc-article" id="toc">
+          <div class="toc-title">文章目录</div>
+          <nav id="TableOfContents"></nav>
+        </div>
+      
+    </div>
+    <div class="post-content">
+      <p>新的一年，热爱折腾的我当然是从折腾开始新的一年了&hellip;.</p>
 <p>在经过了各位arch大佬和Gentoo大佬一年的洗礼&hellip;我终于决定从Manjaro切换到Arch Linux了（没十足的把握千万别学我，Manjaro其实是个非常好的发行版，其实我也没啥把握就是了&hellip;.）。</p>
 <p>准备迁移过程中考虑了两个问题：</p>
 <ol>
@@ -169,64 +109,66 @@
 <p>有关第一个问题，可以通过备份一遍软件列表来解决，但是有关问题二，就要比较头痛了，习惯了方便的一键切换再反过来熟悉一下这种方式未免有点“仿古”的感觉&hellip;</p>
 <p>那么正常来做迁移，首先需要备份一下软件列表，根据<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Install_packages_from_a_list">archwiki</a>，我们需要用pacman导出一份列表，这里注意一下arch和manjaro的关系：manjaro的源，可以理解为大于arch的，也就是说对于arch的仓库，manjaro的一众自己的工具等都是“多余的”，但是介于我从aur也安了一部分包来看，aur和自己打包安装的那部分也要考虑进去。</p>
 <p>因此在原有系统中执行：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span>
-</span></span><span class="line"><span class="cl">pacman -Qqen &gt; listQqen.txt 
-</span></span><span class="line"><span class="cl"><span class="c1">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span>
-</span></span><span class="line"><span class="cl">pacman -Qqem &gt; listQqem.txt
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Qqen选项备份的是除了aur和自己打包安装的以外的包</span>
+</span></span><span style="display:flex;"><span>pacman -Qqen &gt; listQqen.txt 
+</span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic">#Qqem选项备份的是aur中的和自己打包安装的包，可以理解为Qqen的补集</span>
+</span></span><span style="display:flex;"><span>pacman -Qqem &gt; listQqem.txt
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这两个列表保存在主目录就好，之后会用到。</p>
 <p>然后还是基础系统的安装，直接base和base-devel两个包组外加iw、wpa_supplicant两个包解决，然后走一遍常规的过程。</p>
 <p>这个时候我们再考虑一下，对于manjaro是在源里的软件，对于arch应该是如同aur里的，因为我也使用了相当多archcn的包，因此记得添加archcn源。</p>
 <p>然后执行：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="c1">#获取arch中的存在的包</span>
-</span></span><span class="line"><span class="cl"> pacman -S --needed <span class="k">$(</span>comm -12 &lt;<span class="o">(</span>pacman -Slq <span class="p">|</span> sort<span class="k">)</span> &lt;<span class="o">(</span>sort listQqen.txt<span class="o">))</span>
-</span></span><span class="line"><span class="cl"> <span class="c1">#获取aur里的包</span>
-</span></span><span class="line"><span class="cl"> yaourt  -S --needed <span class="k">$(</span>comm -12 &lt;<span class="o">(</span>pacman -Slq <span class="p">|</span> sort<span class="k">)</span> &lt;<span class="o">(</span>sort Qqem.txt<span class="o">))</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#080;font-style:italic">#获取arch中的存在的包</span>
+</span></span><span style="display:flex;"><span> pacman -S --needed <span style="color:#a2f;font-weight:bold">$(</span>comm -12 &lt;<span style="color:#666">(</span>pacman -Slq | sort<span style="color:#a2f;font-weight:bold">)</span> &lt;<span style="color:#666">(</span>sort listQqen.txt<span style="color:#666">))</span>
+</span></span><span style="display:flex;"><span> <span style="color:#080;font-style:italic">#获取aur里的包</span>
+</span></span><span style="display:flex;"><span> yaourt  -S --needed <span style="color:#a2f;font-weight:bold">$(</span>comm -12 &lt;<span style="color:#666">(</span>pacman -Slq | sort<span style="color:#a2f;font-weight:bold">)</span> &lt;<span style="color:#666">(</span>sort Qqem.txt<span style="color:#666">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这时候剩下的包就是manjaro专有的了，如果你愿意的话也可以和我一样直接clone <a href="https://gitlab.manjaro.org/explore/groups">manjaro</a>的那些包的源代码然后自己编译安装，这之后记得把相关的服务启动了，然后就大功告成了。重启一下看看是不是熟悉的界面又回来了。</p>
 <p>后记：</p>
 <p>貌似很多用arch的用户还在有着对manjaro的鄙视链啊&hellip;..但是有一点不得不说，就是该承认的非常用户友好的特性还是承认吧，都是linux用户互怼没啥好处。</p>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://blog.weearc.top/tags/archlinux/">archlinux</a></li>
-      <li><a href="https://blog.weearc.top/tags/linux/">linux</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://blog.weearc.top/posts/6009/">
-    <span class="title">« 上一页</span>
-    <br>
-    <span>hexo主题迁移and折腾记</span>
-  </a>
-  <a class="next" href="https://blog.weearc.top/posts/32312/">
-    <span class="title">下一页 »</span>
-    <br>
-    <span>怀念，甚想念，无法想念其一</span>
-  </a>
-</nav>
-
-  </footer><script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<div id="vcomments"></div>
+    </div>
+    <div>
+      <ul class="post-copyright">
+        <li class="post-copyright-author"><strong>本文作者: </strong>weearc</li>
+        <li class="post-copyright-link"><strong>本文链接: </strong><a title="https://blog.weearc.top/posts/30549/" href="https://blog.weearc.top/posts/30549/">https://blog.weearc.top/posts/30549/</a></li>
+        <li class="post-copyright-license"><strong>版权声明: </strong>除特殊声明，转载需遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="tags">
+      
+        <a href="/tags/archlinux">archlinux</a>
+      
+        <a href="/tags/linux">linux</a>
+      
+    </div>
+    <div class="post-nav">
+      
+        <a class="pre" href="/posts/32312/" title="怀念，甚想念，无法想念其一">怀念，甚想念，无法想念其一</a>
+      
+      
+        <a class="next" href="/posts/6009/" title="hexo主题迁移and折腾记">hexo主题迁移and折腾记</a>
+      
+    </div>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<div id="vcomments" class=" v" data-class="v"></div>
 <script>
     function loadComments() {
         
@@ -252,122 +194,339 @@
         loadComments()
     }
 </script>
-</article>
+
+  </div>
+
         </div>
-    </main>
+      </div>
+      
+      <div class="pure-u-1-4 hidden_mid_and_down">
+        <div id="sidebar">
     
-<footer class="footer">
-    <span>Copyright &copy; 2023 | <a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & theme based on
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span></br>
-    <span>
-        <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
-            辽ICP备2020011073号
-        </a>
-    </span>
-    </br>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
-    <span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+<div class="widget">
+    <div class="search-form">
+        <input id="local-search-input" placeholder="搜索" type="text" name="q" results="0">
+        <div id="local-search-result"></div>
+    </div>
+</div>
 
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
+    <div class="widget">
+    <div class="widget__title">
+        <i class="fa fa-folder-o">分类</i>
+    </div>
+    <ul class="category-list">
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/android/">
+                    Android
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/archlinux/">
+                    archlinux
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hello-hexo/">
+                    hello hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hexo/">
+                    hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/kde/">
+                    kde
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/minecraft/">
+                    Minecraft
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/php/">
+                    php
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/tools/">
+                    tools
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E4%B8%80%E8%A8%80/">
+                    一言
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%89%8D%E7%AB%AF/">
+                    前端
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E5%A5%97/">
+                    博客配套
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">
+                    实用工具
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%BE%85%E4%BF%AE%E6%94%B9/">
+                    待修改
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E5%BE%85%E5%A1%AB%E5%9D%91/">
+                    待填坑
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%9D%82%E8%AE%B0/">
+                    杂记
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%9D%82%E8%B0%88/">
+                    杂谈
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E6%B5%8B%E8%AF%95/">
+                    测试
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E7%8E%A9%E8%B5%8F/">
+                    玩赏
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E8%BD%AC%E8%BD%BD%E7%B2%BE%E5%93%81/">
+                    转载精品
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E8%BE%93%E5%85%A5%E6%B3%95/">
+                    输入法
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/%E9%9A%8F%E7%AC%94/">
+                    随笔
+                </a>
+            </li>
+        
+    </ul>
+</div>
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
+    <div class="widget">
+    <div class="widget__title">
+        <i class="fa fa-tag">
+            标签
+        </i>
+    </div>
+    <div class="tagcloud">
+        
+            <a href="https://blog.weearc.top/tags/android/">android</a>
+        
+            <a href="https://blog.weearc.top/tags/archlinux/">archlinux</a>
+        
+            <a href="https://blog.weearc.top/tags/btrfs/">btrfs</a>
+        
+            <a href="https://blog.weearc.top/tags/debian/">debian</a>
+        
+            <a href="https://blog.weearc.top/tags/fcitx/">fcitx</a>
+        
+            <a href="https://blog.weearc.top/tags/fcitx5/">fcitx5</a>
+        
+            <a href="https://blog.weearc.top/tags/firefox/">firefox</a>
+        
+            <a href="https://blog.weearc.top/tags/firefox-nightly/">firefox-nightly</a>
+        
+            <a href="https://blog.weearc.top/tags/fish-shell/">fish-shell</a>
+        
+            <a href="https://blog.weearc.top/tags/github-actions/">github-actions</a>
+        
+            <a href="https://blog.weearc.top/tags/github-webhook/">github-webhook</a>
+        
+            <a href="https://blog.weearc.top/tags/hello-word/">hello-word</a>
+        
+            <a href="https://blog.weearc.top/tags/hexo/">hexo</a>
+        
+            <a href="https://blog.weearc.top/tags/history-file/">history-file</a>
+        
+            <a href="https://blog.weearc.top/tags/js/">js</a>
+        
+            <a href="https://blog.weearc.top/tags/linux/">linux</a>
+        
+            <a href="https://blog.weearc.top/tags/manjaro/">manjaro</a>
+        
+            <a href="https://blog.weearc.top/tags/markdown/">markdown</a>
+        
+            <a href="https://blog.weearc.top/tags/minecraft/">minecraft</a>
+        
+            <a href="https://blog.weearc.top/tags/pandoc/">pandoc</a>
+        
+            <a href="https://blog.weearc.top/tags/php/">php</a>
+        
+            <a href="https://blog.weearc.top/tags/redmi/">redmi</a>
+        
+            <a href="https://blog.weearc.top/tags/ubuntu/">ubuntu</a>
+        
+            <a href="https://blog.weearc.top/tags/xclip/">xclip</a>
+        
+            <a href="https://blog.weearc.top/tags/zenity/">zenity</a>
+        
+            <a href="https://blog.weearc.top/tags/zotero/">zotero</a>
+        
+            <a href="https://blog.weearc.top/tags/%E4%B8%80%E8%A8%80/">一言</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%8D%87%E7%BA%A7/">升级</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%8E%BB%E4%BB%96%E5%A6%88%E7%9A%84%E7%BD%91%E6%98%93%E4%BA%91/">去他妈的网易云</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/">响应式</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%AE%8C%E5%85%A8%E9%85%8D%E7%BD%AE/">完全配置</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%B0%8F%E7%B1%B3/">小米</a>
+        
+            <a href="https://blog.weearc.top/tags/%E5%BE%85%E4%BF%AE%E6%94%B9/">待修改</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%95%99%E7%A8%8B/">教程</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E3%82%86%E3%81%86%E3%81%8B/">木下ゆうか</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9C%A8%E4%B8%8B%E4%BD%91%E9%A6%99/">木下佑香</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E8%AE%B0/">杂记</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/">杂谈</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%9D%82%E9%A1%B9/">杂项</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%A8%A1%E7%89%88/">模版</a>
+        
+            <a href="https://blog.weearc.top/tags/%E6%AF%95%E4%B8%9A%E5%AD%A3/">毕业季</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%94%9F%E5%AD%98%E8%AE%B0%E5%BD%95/">生存记录</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%94%B5%E9%87%8F%E7%84%A6%E8%99%91/">电量焦虑</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%9F%A5%E4%B9%8E/">知乎</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/">系统备份</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/">系统迁移</a>
+        
+            <a href="https://blog.weearc.top/tags/%E7%BA%A2%E7%B1%B3-k30-pro/">红米-k30-pro</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/">自动化部署</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a>
+        
+            <a href="https://blog.weearc.top/tags/%E8%BD%AC%E8%BD%BD%E6%96%87%E7%AB%A0/">转载文章</a>
+        
+            <a href="https://blog.weearc.top/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+        
+            <a href="https://blog.weearc.top/tags/%E9%A3%9F%E8%B0%B1/">食谱</a>
+        
+    </div>
+</div>
+
+</div>
+
+
+      </div>
+      
+      <div class="pure-u-1  pure-u-md-3-4 ">
+        
+    <footer id="footer">
+            <span>Copyright &copy; 2024 | <i class="fa fa-moon-o"></i><a href="https://blog.weearc.top">weearc 的个人博客</a></span></br>
+        <span>
+            Powered by
+            <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> | Theme by
+            <a href="https://github.com/weearc" rel="noopener" target="_blank">weearc</a>
+        </span></br>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
+        <span>
+            <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
+                辽ICP备2020011073号
+            </a>
+        </span>
+    </footer>
+    <script>
+    var htmlCopyButton = `
+    <div id="codeblock-titlebar">
+        <span id="lang-title" style="font-size: 5px"></span>
+        <button id="clipboard-btn" class="codecopy-btn tooltipped tooltipped-sw" aria-label="Copy to clipboard">
+            <span id="clipboard-btn-icon" class="fa fa-copy" aria-hidden="true"></span>
+            点击复制
+        </button>
+    </div>
+    `;
+
+    $('.highlight').each(function(index) {
+        $(this).prepend(htmlCopyButton)
     });
 
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
+    $('.codecopy-btn').click(function() {
+        var parent = $(this).parent().parent();
+        var title = $(this).parent();
+        var siblingsNext = parent.children().not(title);
+        var tbody = siblingsNext.find('table tbody');
+        var td = tbody.find('tr:eq(0)').find('td:eq(1)');
+        if ('clipboard' in navigator) {
+            navigator.clipboard.writeText(td[0].textContent);
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
+            this.innerHTML = `
+            <span id="clipboard-btn-icon" class="fa fa-check" aria-hidden="true"></span>
+            已复制！
+            `;
             setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
+                this.innerHTML = `
+                <span id="clipboard-btn-icon" class="fa fa-copy" aria-hidden="true"></span>
+                点击复制
+                `;
+            }, 900);
 
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
 
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
+            return;
+        };
     });
 </script>
+
+
+      </div>
+    </div>
+  </div>
 </body>
-<script type="text/javascript" src="/js/custom.js"></script>
 </html>

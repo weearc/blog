@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>博客配套 on weearc 的个人博客</title>
     <link>https://blog.weearc.top/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E5%A5%97/</link>
     <description>Recent content in 博客配套 on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 02 Feb 2019 23:27:37 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E5%A5%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Feb 2019 23:27:37 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/categories/%E5%8D%9A%E5%AE%A2%E9%85%8D%E5%A5%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>搭建私人图床并使用</title>
       <link>https://blog.weearc.top/posts/61150/</link>
       <pubDate>Sat, 02 Feb 2019 23:27:37 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/61150/</guid>
       <description>&lt;p&gt;其实还是挺好用的？但是，由于图床挂掉，此文内容基本已废，将就看倒还可以。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

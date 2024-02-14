@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>fish shell on weearc 的个人博客</title>
     <link>https://blog.weearc.top/tags/fish-shell/</link>
     <description>Recent content in fish shell on weearc 的个人博客</description>
-    <image>
-      <title>weearc 的个人博客</title>
-      <url>https://blog.weearc.top/papermod-cover.png</url>
-      <link>https://blog.weearc.top/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 02 Aug 2021 18:29:31 +0000</lastBuildDate><atom:link href="https://blog.weearc.top/tags/fish-shell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Aug 2021 18:29:31 +0000</lastBuildDate>
+    <atom:link href="https://blog.weearc.top/tags/fish-shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解决 Fish 不认 history 的问题</title>
       <link>https://blog.weearc.top/posts/53128/</link>
       <pubDate>Mon, 02 Aug 2021 18:29:31 +0000</pubDate>
-      
       <guid>https://blog.weearc.top/posts/53128/</guid>
-      <description>谁能想到用着用着就故障了呢...</description>
+      <description>原本 fish shell 用的好好的，及其方便的设置和高度可自定义的选项和快速的智能补全让它成为懒人的不二之选，但是某天更新过后却出现了无法调用历史的情况，这显然不正常。而我又高度依赖与 fish 的自动补全，尤其对于管理服务器而言是非常之方便的。那肯定就需要搞清楚到底出现了什么问题了。&#xA;首先大概查了一下发现大多是隐私需要删除历史的，这个与我无关。然后翻了一下 fish 的 文档 ，里面关于 history 的描述有这么一段比较令人在意的：&#xA;merge immediately incorporates history changes from other sessions. Ordinarily fish ignores history changes from sessions started after the current one. This command applies those changes immediately.&#xA;于是首先先确认一下历史文件是否正常：&#xA;1 2 # 我的历史文件等保存在默认位置 ls ~/.local/share/fish/ 然后返回了：&#xA;1 fish_history fish_read_history generated_completions 证明历史文件还在，查看了一下内容，10 万行左右，基本没啥问题，还都在。然后尝试合并历史到当前会话：&#xA;1 history --merge 退出当前会话并查看发现恢复如初，这就很迷惑了&amp;hellip;因为我加载 fish 的方式是 konsole 启动时才加载 fish ，所以理应在启动时自动合并。因此为了以防万一可以在 fish 配置文件里加一句让它每次启动自动合并历史。算是暂时解决了这个问题。</description>
     </item>
-    
   </channel>
 </rss>
