@@ -352,22 +352,22 @@
         font-size: 0.5em; }
 
 @media print, screen and (max-width: 900px) {
-  #frlink .frienddivright {
+  .frienddivright {
     white-space: nowrap;
     word-break: unset; } }
 
 @media print, screen and (max-width: 850px) {
-  #frlink .frienddiv {
-    width: 48%;
-    padding-left: 1%; }
-  #frlink .frienddivright {
+  .frienddiv {
+    width: 48% !important;
+    padding-left: 1% !important; }
+  .frienddivright {
     white-space: nowrap;
     word-break: unset; } }
 
-@media print, screen and (max-width: 35.5em) {
-  #frlink .frienddiv {
-    width: 100%; }
-  #frlink .frienddivright {
+@media print, screen and (max-width: 768px) {
+  .frienddiv {
+    width: 100% !important; }
+  .frienddivright {
     white-space: nowrap;
     word-break: unset; } }
 
