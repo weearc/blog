@@ -13,7 +13,7 @@
       <link>https://blog.weearc.top/posts/2197/</link>
       <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://blog.weearc.top/posts/2197/</guid>
-      <description>1 2 3 4 5 6 1&#xA;2&#xA;3&#xA;1 cat 111 cqumirror&#xA;test&#xA;斜体&#x9;加粗 加粗的斜体 下划线&#xA;title1 title2 title3 左侧对齐 居中 右侧对齐 x y z $ x^n $&#xA;$ C^2_3 $&#xA;$$ T(n)=\begin{cases} \Theta(1)\quad n=1\ T(n-q)+\Theta(n) \quad n&amp;gt;1 \end{cases} $$&#xA;$$ \begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\ 4 &amp;amp; 5 &amp;amp; 6 \\ 7 &amp;amp; 8 &amp;amp; 9 \\ \end{bmatrix} \tag{1} $$&#xA;$$ \begin{equation} %开始数学环境 \left( %左括号 \begin{array}{ccc} %该矩阵一共3列，每一列都居中放置 a11 &amp;amp; a12 &amp;amp; a13\\ %第一行元素 a21 &amp;amp; a22 &amp;amp; a23\\ %第二行元素 \end{array} \right) %右括号 \end{equation} $$</description>
+      <description>&lt;p&gt;测试用&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -25,7 +25,7 @@
 
 
 
-  <link rel="stylesheet" href="https://blog.weearc.top/css/main.89d3be76f84197c3596897a53848d3cbca2716251c192653582a106b08f8818a.css" integrity="sha256-idO&#43;dvhBl8NZaJelOEjTy8onFiUcGSZTWCoQawj4gYo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.120a8f26055aa0e5c36a561bd650188d382fa5bd211f9a9c21f7828a847a6ec4.css" integrity="sha256-EgqPJgVaoOXDalYb1lAYjTgvpb0hH5qcIfeCioR6bsQ=" crossorigin="anonymous">
 
 
 
@@ -50,7 +50,7 @@
         <a href="https://blog.weearc.top/" title="首页">
            <i class="fa fa-home">首页</i>
         </a>
-        <a href="https://blog.weearc.top/posts/" title="归档">
+        <a href="https://blog.weearc.top/archives/" title="归档">
            <i class="fa fa-archive">归档</i>
         </a>
         <a href="https://blog.weearc.top/frlink/" title="友链">
@@ -110,7 +110,8 @@
       <p>全文已发布至重庆大学蓝盟微信公众号往期内容内，博客上的版本待修改完善。</p>
 <p>作为一个影音爱好者，我需要利器去使电影播放效果更加出色。作为技术向玩家，既然目前已有的工具都不怎么好用，那我们就来改造它让它更好用。</p>
 <p>这就是我们今天要介绍的主角：mpv。</p>
-<p><img src="/home/ddqi/%E6%8E%A8%E6%96%87/mpv-logo-128-0baae5aa.png" alt="mpv-logo-128-0baae5aa"></p>
+<p><img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/mpv-logo-128-0baae5aa.png" alt="mpv-logo-128-0baae5aa"  />
+</p>
 <blockquote>
 <p>MPV 是基于 MPlayer 和 MPlayer2 的开源软件。具有卓越的性能以及跨平台兼容性。</p>
 <p>&mdash; 维基百科</p>
@@ -179,15 +180,18 @@
 <h1 id="配置">配置</h1>
 <p>如果你成功的克服了心里上的恐惧，成功“安装”了MPV，那么这一步将是你能够愉快使用与否的关键。</p>
 <p>在大部分情况下（尤其是 Mac 和 Linux 用户），已经将编解码器作为依赖安装到了操作系统中，而 Windows 用户可能需要手动安装 FFmpeg 作为编解码工具。由于没有编解码器的播放器只是一个“睁眼瞎”，只有在编解码器的存在下它才能发挥其真正的作用。那么在安装结束后，你可以使用 MPV 的默认设置进行视频播放了。</p>
-<p><img src="/home/ddqi/%E6%8E%A8%E6%96%87/image-20200329212708064.png" alt="image-20200329212708064"></p>
+<p><img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/image-20200329212708064.png" alt="image-20200329212708064"  />
+</p>
 <p>通常来讲直接运行 MPV 应该是这个样子，相比于其他完全基于命令行的播放器，MPV 还有个 GUI（虽然没什么用）。</p>
-<p><img src="/home/ddqi/%E6%8E%A8%E6%96%87/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20200329212939.png" alt="深度截图_选择区域_20200329212939"></p>
+<p><img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/%e6%b7%b1%e5%ba%a6%e6%88%aa%e5%9b%be_%e9%80%89%e6%8b%a9%e5%8c%ba%e5%9f%9f_20200329212939.png" alt="深度截图_选择区域_20200329212939"  />
+</p>
 <p>播放视频的时候是这个样子，功能全部集中于下部的控制栏上，好像也还够用（其实确实够用了）。这个是小编配置完的 MPV ，但是因为懒 GUI 部分就不打算动了，这样也挺好的。</p>
 <p>MPV 之所以看上去很简单（应该叫简陋），是因为它和大多数的高自定义化的工具一样，许多功能只有在探索之后才会被发现，另外支持丰富的扩展，可以找别人已经写好了的插件，也可以自己学着写一些插件。与其让开发者动手去满足用户（还不一定都会满足），不如自己动手丰衣足食。如果使用默认配置就能够让你满足那确实是最好不过，但是我们完全可以给它加上一些更有趣的功能。</p>
 <h2 id="缩略图">缩略图</h2>
 <p>这个是一般开箱即用的播放器都会有的功能。</p>
 <p>地址：https://github.com/TheAMM/mpv_thumbnail_script</p>
-<p>这是一个非常棒的查看进度条上缩略图的脚本，基于 Lua ，并具有一定的自定义功能<img src="/home/ddqi/%E6%8E%A8%E6%96%87/%E6%B7%B1%E5%BA%A6%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20200329214106.gif" alt="深度录屏_选择区域_20200329214106"></p>
+<p>这是一个非常棒的查看进度条上缩略图的脚本，基于 Lua ，并具有一定的自定义功能<img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/%e6%b7%b1%e5%ba%a6%e5%bd%95%e5%b1%8f_%e9%80%89%e6%8b%a9%e5%8c%ba%e5%9f%9f_20200329214106.gif" alt="深度录屏_选择区域_20200329214106"  />
+</p>
 <p>安装：将脚本放于以下位置</p>
 <p>Windows: <code>%APPDATA%\mpv\scripts\mpv_thumbnail_script_server.lua</code> &amp; <code>%APPDATA%\mpv\scripts\mpv_thumbnail_script_client_osc.lua</code></p>
 <p>Linux/Unix/Mac: ~/.config/mpv/scripts/mpv_thumbnail_script_server.lua &amp; ~/.config/mpv/scripts/mpv_thumbnail_script_client_osc.lua</p>
@@ -195,11 +199,13 @@
 <h2 id="文本菜单">文本菜单</h2>
 <p>如果觉得部分基于命令行的功能不太适应的话，不妨试一下图形菜单。</p>
 <p>地址： <a href="https://github.com/carmanaught/mpvcontextmenu">https://github.com/carmanaught/mpvcontextmenu</a></p>
-<p><img src="/home/ddqi/%E6%8E%A8%E6%96%87/687474703a2f2f692e696d6775722e636f6d2f446a7053546f6d2e706e67.png" alt="687474703a2f2f692e696d6775722e636f6d2f446a7053546f6d2e706e67"></p>
+<p><img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/687474703a2f2f692e696d6775722e636f6d2f446a7053546f6d2e706e67.png" alt="687474703a2f2f692e696d6775722e636f6d2f446a7053546f6d2e706e67"  />
+</p>
 <p>这里只给出了作者展示的样式，可以通过自己修改样式表获得更加美观并且好用的菜单。图形部分通过 TK 或 GTK 实现。部分功能需要自己书写一定配置。</p>
 <h2 id="kdialog-open-files">kdialog open files</h2>
 <p>此方法仅适用于 Linux （KDE）。</p>
-<p>作为一名 KDE 用户，在 Linux 桌面环境上 GTK 和 QT 程序体验上的割裂极其难受，别的都可以忍，但是 GTK 反人类的会话样式不能忍。幸好有人开源了这个调用 Kdialog 打开文件的脚本，打开 MPV 以后，使用快捷键即可开启打开文件的窗口。<img src="/home/ddqi/%E6%8E%A8%E6%96%87/%E6%B7%B1%E5%BA%A6%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20200329215427.gif" alt="深度录屏_选择区域_20200329215427"></p>
+<p>作为一名 KDE 用户，在 Linux 桌面环境上 GTK 和 QT 程序体验上的割裂极其难受，别的都可以忍，但是 GTK 反人类的会话样式不能忍。幸好有人开源了这个调用 Kdialog 打开文件的脚本，打开 MPV 以后，使用快捷键即可开启打开文件的窗口。<img loading="lazy" src="/home/ddqi/%e6%8e%a8%e6%96%87/%e6%b7%b1%e5%ba%a6%e5%bd%95%e5%b1%8f_%e9%80%89%e6%8b%a9%e5%8c%ba%e5%9f%9f_20200329215427.gif" alt="深度录屏_选择区域_20200329215427"  />
+</p>
 <h2 id="play-with-mpv">Play with mpv</h2>
 <p>这是一个相当好用的浏览器插件。在看视频的时候希望不看到浏览器上花花绿绿的列表 / 广告？还是单纯的就只想在本地播放器上播放网页视频？这个插件都可以满足你。该插件需要配合一个 Python 脚本实现网页视频本地化播放，通过调用 youtube-dl 解析播放地址，实测支持大部分主流的视频网站，配合弹幕插件可以本地愉快的看番，不用“关弹幕保智商”了。</p>
 <h2 id="总结">总结</h2>
@@ -288,6 +294,12 @@
             </li>
         
             <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/blog/">
+                    blog
+                </a>
+            </li>
+        
+            <li class="category-list__item">
                 <a class="category-list__link" href="https://blog.weearc.top/categories/hello-hexo/">
                     hello hexo
                 </a>
@@ -296,6 +308,12 @@
             <li class="category-list__item">
                 <a class="category-list__link" href="https://blog.weearc.top/categories/hexo/">
                     hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hugo/">
+                    hugo
                 </a>
             </li>
         
@@ -416,6 +434,8 @@
         
             <a href="https://blog.weearc.top/tags/archlinux/">archlinux</a>
         
+            <a href="https://blog.weearc.top/tags/blog/">blog</a>
+        
             <a href="https://blog.weearc.top/tags/btrfs/">btrfs</a>
         
             <a href="https://blog.weearc.top/tags/debian/">debian</a>
@@ -439,6 +459,8 @@
             <a href="https://blog.weearc.top/tags/hexo/">hexo</a>
         
             <a href="https://blog.weearc.top/tags/history-file/">history-file</a>
+        
+            <a href="https://blog.weearc.top/tags/hugo/">hugo</a>
         
             <a href="https://blog.weearc.top/tags/js/">js</a>
         
@@ -534,8 +556,8 @@
             <a href="https://github.com/weearc" rel="noopener" target="_blank">weearc</a>
         </span></br>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
-        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
+        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
         <span>
             <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
                 辽ICP备2020011073号

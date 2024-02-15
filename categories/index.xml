@@ -9,6 +9,20 @@
     <lastBuildDate>Tue, 13 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.weearc.top/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>blog</title>
+      <link>https://blog.weearc.top/categories/blog/</link>
+      <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.weearc.top/categories/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>hugo</title>
+      <link>https://blog.weearc.top/categories/hugo/</link>
+      <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.weearc.top/categories/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>测试</title>
       <link>https://blog.weearc.top/categories/%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>

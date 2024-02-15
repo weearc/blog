@@ -25,7 +25,7 @@
 
 
 
-  <link rel="stylesheet" href="https://blog.weearc.top/css/main.89d3be76f84197c3596897a53848d3cbca2716251c192653582a106b08f8818a.css" integrity="sha256-idO&#43;dvhBl8NZaJelOEjTy8onFiUcGSZTWCoQawj4gYo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.120a8f26055aa0e5c36a561bd650188d382fa5bd211f9a9c21f7828a847a6ec4.css" integrity="sha256-EgqPJgVaoOXDalYb1lAYjTgvpb0hH5qcIfeCioR6bsQ=" crossorigin="anonymous">
 
 
 
@@ -50,7 +50,7 @@
         <a href="https://blog.weearc.top/" title="首页">
            <i class="fa fa-home">首页</i>
         </a>
-        <a href="https://blog.weearc.top/posts/" title="归档">
+        <a href="https://blog.weearc.top/archives/" title="归档">
            <i class="fa fa-archive">归档</i>
         </a>
         <a href="https://blog.weearc.top/frlink/" title="友链">
@@ -103,7 +103,8 @@
 <p>然后花费了相当长一段时间发现并没有搞懂主题的布局&hellip;Orz。这就产生了一个问题，在寻找了非常多 HEXO 主题开发相关的博文时候，发现不管是用脚手架来搭建还是怎样，一个主题一定是先有布局再往里面填肉，虽然日常自己写点东西是这个思想却没想到用这个思想来解构，有点呆。</p>
 <h1 id="解构主题">解构主题</h1>
 <p>所以，整体布局确实如下图，从代码中也多少能看出点倪端：</p>
-<p><img src="https://blog-1256749229.cos.eu-frankfurt.myqcloud.com/2019.08.06/base.png" alt=""></p>
+<p><img loading="lazy" src="https://blog-1256749229.cos.eu-frankfurt.myqcloud.com/2019.08.06/base.png" alt=""  />
+</p>
 <p>那么看下整体文件的解构：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -438,6 +439,12 @@
             </li>
         
             <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/blog/">
+                    blog
+                </a>
+            </li>
+        
+            <li class="category-list__item">
                 <a class="category-list__link" href="https://blog.weearc.top/categories/hello-hexo/">
                     hello hexo
                 </a>
@@ -446,6 +453,12 @@
             <li class="category-list__item">
                 <a class="category-list__link" href="https://blog.weearc.top/categories/hexo/">
                     hexo
+                </a>
+            </li>
+        
+            <li class="category-list__item">
+                <a class="category-list__link" href="https://blog.weearc.top/categories/hugo/">
+                    hugo
                 </a>
             </li>
         
@@ -566,6 +579,8 @@
         
             <a href="https://blog.weearc.top/tags/archlinux/">archlinux</a>
         
+            <a href="https://blog.weearc.top/tags/blog/">blog</a>
+        
             <a href="https://blog.weearc.top/tags/btrfs/">btrfs</a>
         
             <a href="https://blog.weearc.top/tags/debian/">debian</a>
@@ -589,6 +604,8 @@
             <a href="https://blog.weearc.top/tags/hexo/">hexo</a>
         
             <a href="https://blog.weearc.top/tags/history-file/">history-file</a>
+        
+            <a href="https://blog.weearc.top/tags/hugo/">hugo</a>
         
             <a href="https://blog.weearc.top/tags/js/">js</a>
         
@@ -684,8 +701,8 @@
             <a href="https://github.com/weearc" rel="noopener" target="_blank">weearc</a>
         </span></br>
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
-        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
+        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
+        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
         <span>
             <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
                 辽ICP备2020011073号

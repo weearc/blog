@@ -2,13 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.weearc.top/archives/</loc>
+    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/</loc>
+    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/tags/blog/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/categories/blog/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.weearc.top/categories/</loc>
     <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.weearc.top/posts/</loc>
+    <loc>https://blog.weearc.top/tags/hugo/</loc>
     <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.weearc.top/</loc>
+    <loc>https://blog.weearc.top/categories/hugo/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/tags/</loc>
     <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/categories/%E6%B5%8B%E8%AF%95/</loc>
@@ -27,9 +42,6 @@
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/tags/debian/</loc>
-    <lastmod>2023-09-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/tags/</loc>
     <lastmod>2023-09-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/posts/2866972811/</loc>

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on weearc 的个人博客</title>
-    <link>https://blog.weearc.top/posts/</link>
-    <description>Recent content in Posts on weearc 的个人博客</description>
+    <title>Archives on weearc 的个人博客</title>
+    <link>https://blog.weearc.top/archives/</link>
+    <description>Recent content in Archives on weearc 的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 13 Feb 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://blog.weearc.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.weearc.top/archives/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>测试页</title>
       <link>https://blog.weearc.top/posts/2197/</link>
       <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://blog.weearc.top/posts/2197/</guid>
-      <description>1 2 3 4 5 6 1&#xA;2&#xA;3&#xA;1 cat 111 cqumirror&#xA;test&#xA;斜体&#x9;加粗 加粗的斜体 下划线&#xA;title1 title2 title3 左侧对齐 居中 右侧对齐 x y z $ x^n $&#xA;$ C^2_3 $&#xA;$$ T(n)=\begin{cases} \Theta(1)\quad n=1\ T(n-q)+\Theta(n) \quad n&amp;gt;1 \end{cases} $$&#xA;$$ \begin{bmatrix} 1 &amp;amp; 2 &amp;amp; 3 \\ 4 &amp;amp; 5 &amp;amp; 6 \\ 7 &amp;amp; 8 &amp;amp; 9 \\ \end{bmatrix} \tag{1} $$&#xA;$$ \begin{equation} %开始数学环境 \left( %左括号 \begin{array}{ccc} %该矩阵一共3列，每一列都居中放置 a11 &amp;amp; a12 &amp;amp; a13\\ %第一行元素 a21 &amp;amp; a22 &amp;amp; a23\\ %第二行元素 \end{array} \right) %右括号 \end{equation} $$</description>
+      <description>&lt;p&gt;测试用&lt;/p&gt;</description>
     </item>
     <item>
       <title>记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历</title>
       <link>https://blog.weearc.top/posts/2866972811/</link>
       <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
       <guid>https://blog.weearc.top/posts/2866972811/</guid>
-      <description>&lt;p&gt;其实我从来没想好自己应该使用什么发行版，十多年前最开始使用 Arch Linux 也只是因为觉得大家都在使用 什么 Ubuntu 啊觉得自己可以特例独行一些，并没有深刻的体会到什么叫做 KISS，也没有体会到各种拆包粒度对于使用的影响，也一直只是“会用”而已，并没有太多作为用户之外的使用体验差距。就算是第二个使用的发行版是 openSUSE 也一样，因为某种程度上有类似的基因。&lt;/p&gt;</description>
+      <description>&lt;p&gt;真就以折腾自己为乐。&lt;/p&gt;</description>
     </item>
     <item>
       <title>记从 HEXO 迁移到 Hugo 安家之旅</title>

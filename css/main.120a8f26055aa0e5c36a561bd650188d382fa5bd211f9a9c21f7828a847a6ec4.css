@@ -295,7 +295,8 @@
   margin-top: 1em;
   line-height: 2.5;
   color: #6E7173;
-  text-align: center; }
+  text-align: center;
+  font-size: .3em; }
   #footer span {
     font-size: .9em; }
   #footer a {
@@ -477,6 +478,9 @@
     padding: 0 5px;
     background: #f7f8f8;
     font-family: Menlo, Consolas, monospace !important; }
+  .post .post-content p img {
+    display: block;
+    max-width: 100%; }
   .post .post-content .highlight div {
     overflow-x: auto; }
     .post .post-content .highlight div table tbody tr td:first-child {
@@ -533,7 +537,7 @@
 #codeblock-titlebar {
   overflow: hidden;
   background: #efefef;
-  height: 2em; }
+  height: 3vh; }
   #codeblock-titlebar .codecopy-btn {
     border: none;
     display: inline-block;
@@ -544,8 +548,7 @@
     box-shadow: none;
     outline: none;
     height: 100%;
-    font-size: .3em;
-    line-height: 1em; }
+    font-size: .3em/1.1; }
   #codeblock-titlebar .codecopy-btn:hover {
     background-color: #b6b6b6;
     text-decoration-color: #1b1f23; }
