@@ -6,8 +6,15 @@
     <description>Recent content in hugo on weearc 的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 13 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.weearc.top/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>定制hugo主题模板</title>
+      <link>https://blog.weearc.top/posts/469339652/</link>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.weearc.top/posts/469339652/</guid>
+      <description>更换到 hugo 也有段时间了，之前使用的好歹还是个类似 next 之于 hexo 的 PaperMod 主题作为切换到 hugo 的第一个主题。但是毕竟自己魔改了一大堆东西，然后全部是用 js 操作各种 dom ，虽然看上去挺炫酷的，但是代价是 iso支持直接没做。 以及稀烂的可维护性。这时候想起来 Maupassant 的好了，hexo 虽然核心程序一坨，但是主题足够轻快，自己定义维护修改了好些年也可用度相当高。那没办法，心一横自己重新写好了。&#xA;布局研究 各部件编写 插件编写 默认写作模板协调 其他非核心三方件引入和配置 其他与 hugo 配置整理和协调 成果 </description>
+    </item>
     <item>
       <title>测试页</title>
       <link>https://blog.weearc.top/posts/2197/</link>
