@@ -13,7 +13,7 @@
       <link>https://blog.weearc.top/posts/469339652/</link>
       <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://blog.weearc.top/posts/469339652/</guid>
-      <description>更换到 hugo 也有段时间了，之前使用的好歹还是个类似 next 之于 hexo 的 PaperMod 主题作为切换到 hugo 的第一个主题。但是毕竟自己魔改了一大堆东西，然后全部是用 js 操作各种 dom ，虽然看上去挺炫酷的，但是代价是 iso支持直接没做。 以及稀烂的可维护性。这时候想起来 Maupassant 的好了，hexo 虽然核心程序一坨，但是主题足够轻快，自己定义维护修改了好些年也可用度相当高。那没办法，心一横自己重新写好了。&#xA;布局研究 各部件编写 插件编写 默认写作模板协调 其他非核心三方件引入和配置 其他与 hugo 配置整理和协调 成果 </description>
+      <description>更换到 hugo 也有段时间了，之前使用的好歹还是个类似 next 之于 hexo 的 PaperMod 主题作为切换到 hugo 的第一个主题。但是毕竟自己魔改了一大堆东西，然后全部是用 js 操作各种 dom ，虽然看上去挺炫酷的，但是代价是 iOS 支持直接没做。 以及稀烂的可维护性。这时候想起来 Maupassant 的好了，hexo 虽然核心程序一坨，但是主题足够轻快，自己定义维护修改了好些年也可用度相当高。那没办法，心一横自己重新写好了。&#xA;但至于怎么写，和怎么设计，这次也没多考虑，换 hugo 以前用什么理论上照着写就行，毕竟都是模板，css 也比较好迁移，只要 css 库不用太奇葩的都能应对。但缺点是没用到比如 hugo 的 og （opengraph） 部分，还是用一些老办法，可能过于守旧，而且不利于再以后的一些迁移工作。不过话又说回来能完成需求的代码就是好代码，过去的代码就足够稳健，能用就行，既然是博客，除了应该是技术的 playground 还应该出产内容才对，不应该只关注技术更新忽略内容产出。&#xA;结构研究 hugo 文件目录结构 关于 hexo 的部分可以参考以前的文章。hugo 虽然默认模块有点反直觉，但是其实还是老一套的东西。直接先生成一套模板：&#xA;1 hugo new theme &amp;#34;&amp;lt;theme-name&amp;gt;&amp;#34; 然后就会在 themes/&amp;lt;theme-name&amp;gt; 生成对应内容模板。如果这时候去查看一下目录下的文件：&#xA;1 2 ❯ ls archetypes/ assets/ content/ data/ hugo.toml i18n/ layouts/ LICENSE README.md static/ theme.toml 很容易就发现其实就是个 hugo site 的结构。那么如果发现了这点，就很容易联想到 hugo 本身当使用三方主题时候的一些技巧。就是当三方主题被 git clone 或者作为 mod 引入时候，如果需要更改则不需要更改主题本身的文件，由于 hugo 的查找顺序是优先匹配，大概的查找顺序如下，比如针对 layout/test.</description>
     </item>
     <item>
       <title>hexo 主题模板改造记录 2</title>

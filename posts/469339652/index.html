@@ -79,7 +79,7 @@
         <span class="post-meta-item-text"> | </span>
         <span class="post-meta-item-icon">
           <i class="fa fa-keyboard-o"></i>
-          <span class="post-count">223</span>
+          <span class="post-count">3519</span>
           <span class="post-meta-item-text"> 字</span>
         </span>
       </span>
@@ -98,8 +98,21 @@
           <div class="toc-title">文章目录</div>
           <nav id="TableOfContents">
   <ul>
-    <li><a href="#布局研究">布局研究</a></li>
-    <li><a href="#各部件编写">各部件编写</a></li>
+    <li><a href="#结构研究">结构研究</a>
+      <ul>
+        <li><a href="#hugo-文件目录结构">hugo 文件目录结构</a></li>
+        <li><a href="#布局划分">布局划分</a></li>
+      </ul>
+    </li>
+    <li><a href="#各部件编写">各部件编写</a>
+      <ul>
+        <li><a href="#head">head</a></li>
+        <li><a href="#baseof">baseof</a></li>
+        <li><a href="#header">header</a></li>
+        <li><a href="#footer">footer</a></li>
+        <li><a href="#home">home</a></li>
+      </ul>
+    </li>
     <li><a href="#插件编写">插件编写</a></li>
     <li><a href="#默认写作模板协调">默认写作模板协调</a></li>
     <li><a href="#其他非核心三方件引入和配置">其他非核心三方件引入和配置</a></li>
@@ -112,11 +125,636 @@
     </div>
     
     <div class="post-content">
-      <p>更换到 hugo 也有段时间了，之前使用的好歹还是个类似 <code>next</code> 之于 <code>hexo</code> 的 <code>PaperMod</code> 主题作为切换到 hugo 的第一个主题。但是毕竟自己魔改了一大堆东西，然后全部是用 js 操作各种 dom ，虽然看上去挺炫酷的，但是代价是 iso支持直接没做。
+      <p>更换到 hugo 也有段时间了，之前使用的好歹还是个类似 <code>next</code> 之于 <code>hexo</code> 的 <code>PaperMod</code> 主题作为切换到 hugo 的第一个主题。但是毕竟自己魔改了一大堆东西，然后全部是用 js 操作各种 dom ，虽然看上去挺炫酷的，但是代价是 iOS 支持直接没做。
 以及稀烂的可维护性。这时候想起来 <code>Maupassant</code> 的好了，hexo 虽然核心程序一坨，但是主题足够轻快，自己定义维护修改了好些年也可用度相当高。那没办法，心一横自己重新写好了。</p>
-<h2 id="布局研究">布局研究</h2>
+<p>但至于怎么写，和怎么设计，这次也没多考虑，换 hugo 以前用什么理论上照着写就行，毕竟都是模板，css 也比较好迁移，只要 css 库不用太奇葩的都能应对。但缺点是没用到比如 hugo 的 og （opengraph） 部分，还是用一些老办法，可能过于守旧，而且不利于再以后的一些迁移工作。不过话又说回来能完成需求的代码就是好代码，过去的代码就足够稳健，能用就行，既然是博客，除了应该是技术的 playground 还应该出产内容才对，不应该只关注技术更新忽略内容产出。</p>
+<h2 id="结构研究">结构研究</h2>
+<h3 id="hugo-文件目录结构">hugo 文件目录结构</h3>
+<p>关于 hexo 的部分可以参考<a href="/posts/60875/">以前的文章</a>。hugo 虽然默认模块有点反直觉，但是其实还是老一套的东西。直接先生成一套模板：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new theme <span style="color:#b44">&#34;&lt;theme-name&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后就会在 <code>themes/&lt;theme-name&gt;</code> 生成对应内容模板。如果这时候去查看一下目录下的文件：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ ls
+</span></span><span style="display:flex;"><span>archetypes/  assets/  content/  data/  hugo.toml  i18n/  layouts/  LICENSE  README.md  static/  theme.toml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>很容易就发现其实就是个 hugo site 的结构。那么如果发现了这点，就很容易联想到 hugo 本身当使用三方主题时候的一些技巧。就是当三方主题被 <code>git clone</code> 或者作为 mod 引入时候，如果需要更改则不需要更改主题本身的文件，由于 hugo 的查找顺序是优先匹配，大概的查找顺序如下，比如针对 <code>layout/test.html</code></p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;site&gt;/layout/test.html
+</span></span><span style="display:flex;"><span>&lt;site&gt;/themes/&lt;theme&gt;/layout/test.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以如果存在和主题位置结构相同，但是同名的文件，会优先采用 site 中的覆盖主题的部分。这样也不会导致主题难以更新以及更新后难以合并变更。</p>
+<p>回到正题上，我们编写主题主要需要关注 <code>assets/</code>, <code>i18n/</code>, <code>layouts/</code>, <code>static/</code> 这四个目录。</p>
+<ul>
+<li>assets: 存放 css 和 js 或者其他库文件</li>
+<li>i18n: 国际化文件</li>
+<li>layouts: 布局文件，对应到 hexo 就是模板文件</li>
+<li>static: 静态文件，下面的内容会直接部署到 <code>public/</code> 下面而不经过渲染，大部分图片等索引位置都在此</li>
+</ul>
+<p>而对于 <code>layouts</code> 部分，结构如下：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ tree .
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── _default  -- 默认模板
+</span></span><span style="display:flex;"><span>│   ├── baseof.html  -- 基础布局，全部其他部件和模板都以此为基础
+</span></span><span style="display:flex;"><span>│   ├── home.html  -- 主页
+</span></span><span style="display:flex;"><span>│   ├── list.html  -- 所有列表页，包括诸如 tag，category, article 等的列表
+</span></span><span style="display:flex;"><span>│   └── single.html  -- 文章页，渲染后在里面渲染文章内容，所有自定义页其实也是使用该页渲染
+</span></span><span style="display:flex;"><span>└── partials
+</span></span><span style="display:flex;"><span>    ├── footer.html  -- footer
+</span></span><span style="display:flex;"><span>    ├── head  -- head.html 的引用部分，js 和自定义css 等
+</span></span><span style="display:flex;"><span>    │   ├── css.html
+</span></span><span style="display:flex;"><span>    │   └── js.html
+</span></span><span style="display:flex;"><span>    ├── header.html -- header 部分
+</span></span><span style="display:flex;"><span>    ├── head.html -- 头信息
+</span></span><span style="display:flex;"><span>    ├── menu.html -- 默认的页面 navigation 菜单
+</span></span><span style="display:flex;"><span>    └── terms.html -- taxonomy 默认的模板，用于渲染 tags 等
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>试看一下内容，大概也能发现一些：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>❯ cat _default/baseof.html 
+</span></span><span style="display:flex;"><span><span style="color:#080">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">html</span> <span style="color:#b44">lang</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ or site.Language.LanguageCode site.Language.Lang }}&#34;</span> <span style="color:#b44">dir</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ or site.Language.LanguageDirection `ltr` }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>  {{ partial &#34;head.html&#34; . }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">header</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ partial &#34;header.html&#34; . }}
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#008000;font-weight:bold">header</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">main</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ block &#34;main&#34; . }}{{ end }}
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#008000;font-weight:bold">main</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">footer</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ partial &#34;footer.html&#34; . }}
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#008000;font-weight:bold">footer</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>乍一看的话和 hexo 的思路几乎没啥很大的区别，使用 <code>{{ partial }}</code> 标签进行组件的引入。定义 block 来将其他模板作为该 block 嵌入到对应位置。那么如果没猜错的话比如 <code>single.html</code> 就需要把 <code>main</code> 先定义出来，事实上也确实如此：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ define &#34;main&#34; }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">h1</span>&gt;{{ .Title }}&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  {{ $dateMachine := .Date | time.Format &#34;2006-01-02T15:04:05-07:00&#34; }}
+</span></span><span style="display:flex;"><span>  {{ $dateHuman := .Date | time.Format &#34;:date_long&#34; }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">time</span> <span style="color:#b44">datetime</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ $dateMachine }}&#34;</span>&gt;{{ $dateHuman }}&lt;/<span style="color:#008000;font-weight:bold">time</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  {{ .Content }}
+</span></span><span style="display:flex;"><span>  {{ partial &#34;terms.html&#34; (dict &#34;taxonomy&#34; &#34;tags&#34; &#34;page&#34; .) }}
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="布局划分">布局划分</h3>
+<p>既然文件结构基本搞明白了，现在就可以直接把布局划分出来，先简单的用 html 写一下。考虑到我们还需要做成能够自适应的，那栅格难以避免，基本上除了一个头部以外身体和脚都要塞一块去才能相对比较容易的做出来自适应。</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">div</span>&gt; header &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">div</span>&gt; content &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">div</span>&gt; sidebar &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">div</span>&gt; footer &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 footer 平时自己一行，content 和 sidebar 一行，当变为移动设备尺寸时候，sidebar 会被挤下去，三个元素为一列进行排布。至于栅格布局，我懒得自己搞，还是按照原样用 purecss 的 grid 组件来完成。</p>
+<p>其他我已经确认需要完成的东西如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">页面</th>
+<th style="text-align:center">是否需要侧栏</th>
+<th style="text-align:center">位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">友链</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">main</td>
+</tr>
+<tr>
+<td style="text-align:center">关于</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">main</td>
+</tr>
+<tr>
+<td style="text-align:center">归档</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">main</td>
+</tr>
+</tbody>
+</table>
+<p>那么差不多需要独立写完的只有少部分模板，其他需要更换的使用 <code>frontmatter</code> 来开关就好了。</p>
+<p>关于所有独立页面，就需要手动创建一下:</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new content/about.md
+</span></span><span style="display:flex;"><span>hugo new content/frlink.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建后的两个文件位于 <code>content</code>根目录下，属于是一个 page （页面），对于 frlink 我们会有单独的模板用于适配，而对于关于页面的话仍然还是需要在 md 文件中添加相应内容的。</p>
+<p>这里再引入 hugo 的一个概念： <code>.Kind</code> ，用于指代页面类型，一般分为 sections 和 page 。这里因为需求只用到 sections，所以只对需要的部分进行分析，具体需要<a href="https://gohugo.io/content-management/sections/">参考文档</a>。</p>
+<blockquote>
+<p>A section is a top-level content directory, or any content directory with an _index.md file. A content directory with an _index.md file is also known as a <a href="https://gohugo.io/getting-started/glossary/#branch-bundle">branch bundle</a>. Section templates receive one or more page <a href="https://gohugo.io/getting-started/glossary/#collection">collections</a> in <a href="https://gohugo.io/getting-started/glossary/#context">context</a>.</p>
+</blockquote>
+<p>很显然，按照我的目录结构：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>content -- a section
+</span></span><span style="display:flex;"><span>├── about.md -- not a section, is a page
+</span></span><span style="display:flex;"><span>├── frlink.md -- not a section, is a page
+</span></span><span style="display:flex;"><span>└── posts -- a section
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>按照我的需求，我需要一个 archives 用于归档以及检索归档内容。显然所有博文会位于 posts 下，我需要给予 posts 一个 sections 属性，那么非常明确了：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new content/posts/_index.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只需要为 posts 目录建立一个 <code>_index</code> 即可。但是这样一来 url 上 archives 作为 posts 出现，url 并不匹配，因此需要给 <code>_index</code> 在 frontmatters 中单独指定 url 为 <code>archives</code> 来变相解决问题。这个问题后面进行分页组件编写时候就会遇到，如此的解决方法节省了大量尝试分页组件可用性的时间。</p>
+<p>那就开始写吧。</p>
 <h2 id="各部件编写">各部件编写</h2>
-<h2 id="插件编写">插件编写</h2>
+<p>首先必须声明此部分不会包含任何 SEO 相关。因此编写出来的模板也没有 SEO 优化。</p>
+<h3 id="head">head</h3>
+<p>进入编写之前，库是需要引入不少的，差不多盘算了一下大体是需要这么几样东西:</p>
+<ul>
+<li>purecss</li>
+<li>jquery</li>
+<li>fuse</li>
+<li>font-awesome</li>
+<li>其他</li>
+</ul>
+<p>所以先把 head 部分解决掉：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">meta</span> <span style="color:#b44">charset</span><span style="color:#666">=</span><span style="color:#b44">&#34;utf-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">meta</span> <span style="color:#b44">name</span><span style="color:#666">=</span><span style="color:#b44">&#34;viewport&#34;</span> <span style="color:#b44">content</span><span style="color:#666">=</span><span style="color:#b44">&#34;width=device-width, initial-scale=1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf &#34;%s | %s&#34; .Title site.Title }}{{ end }}&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{ with resources.Get &#34;js/lib/jquery-3.7.1.min.js&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">script</span> <span style="color:#b44">src</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Permalink | safeURL }}&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>{{ with resources.Get &#34;js/lib/fuse.js&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">script</span> <span style="color:#b44">src</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Permalink | safeURL }}&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>{{ with resources.Get &#34;css/lib/pure-min.css&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Permalink | safeURL }}&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>{{ with resources.Get &#34;css/lib/grids-responsive-min.css&#34; }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Permalink | safeURL }}&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>{{ with resources.Get &#34;css/lib/font-awesome.min.css&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Permalink | safeURL }}&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span><span style="display:flex;"><span>{{ partialCached &#34;head/css.html&#34; . }}
+</span></span><span style="display:flex;"><span>{{ partialCached &#34;head/js.html&#34; . }}
+</span></span><span style="display:flex;"><span>{{ if .Param &#34;math&#34; }}
+</span></span><span style="display:flex;"><span>    {{ if ne .Params.mathjax false }}
+</span></span><span style="display:flex;"><span>        {{ partialCached &#34;math.html&#34; . }}
+</span></span><span style="display:flex;"><span>    {{ end }}
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>至于最后的部分先不进行解释，是引入mathjax 相关的内容。其他的部分，如果是本地托管的则需要放置在 <code>assets</code> 下面并使用 <code>resources.Get</code>才能获取到。这篇不会讲那么细致，具体仍然需要自己查一下 hugo 文档（编写这个模板时候才发现有版本更新，但是确实不算太好查有哪些新选项更新了 ）。css 部分由于我使用 sass ，因此引入部分可能有点区别，需要更改 <code>css.html </code> ：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ $sass := resources.Get &#34;css/main.scss&#34; }}
+</span></span><span style="display:flex;"><span>{{ $style := $sass | resources.ToCSS | resources.Fingerprint }}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{{- if eq hugo.Environment &#34;development&#34; }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;stylesheet&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ $style.Permalink }}&#34;</span> <span style="color:#b44">integrity</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ $style.Data.Integrity }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{- else }}
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">link</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;stylesheet&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ $style.Permalink }}&#34;</span> <span style="color:#b44">integrity</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ $style.Data.Integrity }}&#34;</span> <span style="color:#b44">crossorigin</span><span style="color:#666">=</span><span style="color:#b44">&#34;anonymous&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>{{- end }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="baseof">baseof</h3>
+<p>直接就着默认模板开始写，不用 purecss 不要全抄：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#080">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">html</span> <span style="color:#b44">lang</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ or site.Language.LanguageCode site.Language.Lang }}&#34;</span> <span style="color:#b44">dir</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ or site.Language.LanguageDirection `ltr` }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>  {{ partial &#34;head.html&#34; . }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;body__container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;header&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      {{ partial &#34;header.html&#34; . }}
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;pure-g&#34;</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;layout&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;pure-u-1 {{ if ne .Params.sidebar false }} pure-u-md-3-4 {{ else }} pure-u-md-4-4 {{ end }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;content__container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          {{ block &#34;main&#34; . }}{{ end }}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>      {{ if ne .Params.sidebar false }}
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;pure-u-1-4 hidden_mid_and_down&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {{ partial &#34;sidebar&#34; . }}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>      {{ end }}
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;pure-u-1 {{ if ne .Params.sidebar false }} pure-u-md-3-4 {{ else }} pure-u-md-4-4 {{ end }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {{ partial &#34;footer.html&#34; . }}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关于侧栏是否开启使用了 frontmatter 里面的自定义的参数来进行控制，使用 <code>.Params</code> 进行参数的获取。</p>
+<h3 id="header">header</h3>
+<p>默认 menu 是很好，但是也没必要分那么细碎&hellip;首先看下配置文件，这个地方肯定是不应该硬编码的，还是需要走配置：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">languages</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">zh</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">languageName</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Chinese&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">taxonomies</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#008000;font-weight:bold">category</span>:<span style="color:#bbb"> </span>categories<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#008000;font-weight:bold">tag</span>:<span style="color:#bbb"> </span>tags<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#008000;font-weight:bold">series</span>:<span style="color:#bbb"> </span>series<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#008000;font-weight:bold">menu</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">            </span><span style="color:#008000;font-weight:bold">main</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>- <span style="color:#008000;font-weight:bold">name</span>:<span style="color:#bbb"> </span>首页<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>/<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span><span style="color:#008000;font-weight:bold">icon</span>:<span style="color:#bbb"> </span>fa-home<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>- <span style="color:#008000;font-weight:bold">name</span>:<span style="color:#bbb"> </span>归档<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>archives/<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">5</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span><span style="color:#008000;font-weight:bold">icon</span>:<span style="color:#bbb"> </span>fa-archive<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>- <span style="color:#008000;font-weight:bold">name</span>:<span style="color:#bbb"> </span>关于<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>about/<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">25</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span><span style="color:#008000;font-weight:bold">icon</span>:<span style="color:#bbb"> </span>fa-user<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>- <span style="color:#008000;font-weight:bold">name</span>:<span style="color:#bbb"> </span>友链<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>frlink/<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">20</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span><span style="color:#008000;font-weight:bold">icon</span>:<span style="color:#bbb"> </span>fa-link<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                </span>- <span style="color:#008000;font-weight:bold">name</span>:<span style="color:#bbb"> </span>订阅<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>index.xml<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">weight</span>:<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                  </span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">                    </span><span style="color:#008000;font-weight:bold">icon</span>:<span style="color:#bbb"> </span>fa-rss<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是我所使用的一份简要的目录菜单的配置，对于单个菜单项目，hugo 默认支持了包括 <code>pre</code> 在内的很多新标签，但是似乎在模板中调用仍然是硬编码的，不能像是 hexo 等直接调用自定义标签，所以比如 icon 这种仍然需要放在 <code>params</code> 下然后通过 <code>.Params</code> 方法调用对应标签来用。而且虽然默认支持 <code>weight</code> ，但是却不支持通过 <code>weight</code> 进行排序，因此这个地方还是需要手动处理下。因此一个简单的菜单部分如下：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;nav-menu&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    {{- $currentPage := . }}
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">&lt;!-- Iterate over main menu items --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">&lt;!-- Sorted by weight --&gt;</span>
+</span></span><span style="display:flex;"><span>    {{ $sortedMenu := sort .Site.Menus.main &#34;Weight&#34; }}
+</span></span><span style="display:flex;"><span>    {{- range $sortedMenu }}
+</span></span><span style="display:flex;"><span>    {{- $menu_item_url := (cond (strings.HasSuffix .URL &#34;/&#34;) .URL (printf &#34;%s/&#34; .URL) ) | absLangURL }}
+</span></span><span style="display:flex;"><span>    {{- $page_url:= $currentPage.Permalink | absLangURL }}
+</span></span><span style="display:flex;"><span>    {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .URL | absLangURL }}&#34;</span> <span style="color:#b44">title</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ .Title | default .Name }}&#34;</span> <span style="">{{</span><span style="color:#b44">-</span> <span style="color:#b44">if</span> <span style="color:#b44">eq</span> <span style="">$</span><span style="color:#b44">menu_item_url</span> <span style="">$</span><span style="color:#b44">page_url</span> <span style="">}}</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;current&#34;</span> <span style="">{{</span><span style="color:#b44">-</span> <span style="color:#b44">end</span> <span style="">}}</span>&gt;
+</span></span><span style="display:flex;"><span>           &lt;<span style="color:#008000;font-weight:bold">i</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;fa {{ .Params.icon }}&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              {{- .Name -}}
+</span></span><span style="display:flex;"><span>           &lt;/<span style="color:#008000;font-weight:bold">i</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#008000;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>    {{- end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>自己再额外根据需求调整一下比如标题，应该就相对可用了。同样，hugo 不支持很多自定义的参数，因此仍然需要放在 params 下来使用：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;site__name&#34;</span> &gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;logo&#34;</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;/.&#34;</span>&gt;{{ .Site.Title }}&lt;/<span style="color:#008000;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">p</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;description&#34;</span>&gt;{{ .Site.Params.description }}&lt;/<span style="color:#008000;font-weight:bold">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对应的配置文件就如下了：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">title</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">description</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="footer">footer</h3>
+<p>把主要的部分写完了以后我们先来写页脚，也算是相对简单的部分，我的案例中支持备案域名的备案号通过配置文件配置。首先先定义好配置文件：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">params</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">recordICPInfo</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&lt;备案号&gt;&#34;</span><span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>剩下部分直接硬编码：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- if not (.Param &#34;hideFooter&#34;) }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#008000;font-weight:bold">footer</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;footer&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {{- if site.Copyright }}
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#008000;font-weight:bold">span</span>&gt;{{ site.Copyright | markdownify }}&lt;/<span style="color:#008000;font-weight:bold">span</span>&gt;
+</span></span><span style="display:flex;"><span>        {{- else }}
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#008000;font-weight:bold">span</span>&gt;Copyright <span style="color:#999;font-weight:bold">&amp;copy;</span> {{ now.Year }} | &lt;<span style="color:#008000;font-weight:bold">i</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;fa fa-moon-o&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">i</span>&gt;&lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;{{ &#34;</span><span style="">&#34;</span> <span style="">|</span> <span style="color:#b44">absLangURL</span> <span style="">}}&#34;</span>&gt;{{ site.Title }}&lt;/<span style="color:#008000;font-weight:bold">a</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">span</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">br</span>&gt;
+</span></span><span style="display:flex;"><span>        {{- end }}
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">span</span>&gt;
+</span></span><span style="display:flex;"><span>            Powered by
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;https://gohugo.io/&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;noopener noreferrer&#34;</span> <span style="color:#b44">target</span><span style="color:#666">=</span><span style="color:#b44">&#34;_blank&#34;</span>&gt;Hugo&lt;/<span style="color:#008000;font-weight:bold">a</span>&gt; | Theme by
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;https://github.com/weearc&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;noopener&#34;</span> <span style="color:#b44">target</span><span style="color:#666">=</span><span style="color:#b44">&#34;_blank&#34;</span>&gt;weearc&lt;/<span style="color:#008000;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#008000;font-weight:bold">span</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">br</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">script</span> <span style="color:#b44">async</span> <span style="color:#b44">src</span><span style="color:#666">=</span><span style="color:#b44">&#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">i</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;fa fa-eye&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">i</span>&gt;&lt;<span style="color:#008000;font-weight:bold">span</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;busuanzi_container_site_pv&#34;</span>&gt; 总访问量 &lt;<span style="color:#008000;font-weight:bold">span</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;busuanzi_value_site_pv&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">span</span>&gt; 次 &lt;/<span style="color:#008000;font-weight:bold">span</span>&gt; |
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">i</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;fa fa-user-md&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">i</span>&gt;&lt;<span style="color:#008000;font-weight:bold">span</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;busuanzi_container_site_uv&#34;</span>&gt; 访客数 &lt;<span style="color:#008000;font-weight:bold">span</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;busuanzi_value_site_uv&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">span</span>&gt; 人次 &lt;/<span style="color:#008000;font-weight:bold">span</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">br</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#008000;font-weight:bold">span</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#008000;font-weight:bold">a</span> <span style="color:#b44">href</span><span style="color:#666">=</span><span style="color:#b44">&#34;http://beian.miit.gov.cn/&#34;</span> <span style="color:#b44">rel</span><span style="color:#666">=</span><span style="color:#b44">&#34;noopener&#34;</span> <span style="color:#b44">target</span><span style="color:#666">=</span><span style="color:#b44">&#34;_blank&#34;</span> <span style="color:#b44">style</span><span style="color:#666">=</span><span style="color:#b44">&#34;border:none;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                {{ site.Params.recordICPInfo }}
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#008000;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#008000;font-weight:bold">span</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#008000;font-weight:bold">footer</span>&gt;
+</span></span><span style="display:flex;"><span>{{- end }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里添加了不算子来统计访问量，也算是常规操作了。并通过引用 font-awesome 来使用对应字体图标。</p>
+<h3 id="home">home</h3>
+<p>主页部分我直接进行了拆分：</p>
+<div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ define &#34;main&#34; }}
+</span></span><span style="display:flex;"><span>      {{ partial &#34;home-article-list&#34; . }}
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="插件编写">插件编写</h2>
 <h2 id="默认写作模板协调">默认写作模板协调</h2>
 <h2 id="其他非核心三方件引入和配置">其他非核心三方件引入和配置</h2>
 <h2 id="其他与-hugo-配置整理和协调">其他与 hugo 配置整理和协调</h2>
@@ -141,6 +779,8 @@
         <a href="/tags/%e5%89%8d%e7%ab%af">前端</a>
       
         <a href="/tags/%e5%8d%9a%e5%ae%a2">博客</a>
+      
+        <a href="/tags/%e4%b8%80%e7%99%be%e7%af%87%e5%8d%9a%e6%96%87">一百篇博文</a>
       
     </div>
     
@@ -412,6 +1052,8 @@
             <a href="https://blog.weearc.top/tags/zenity/">zenity</a>
         
             <a href="https://blog.weearc.top/tags/zotero/">zotero</a>
+        
+            <a href="https://blog.weearc.top/tags/%E4%B8%80%E7%99%BE%E7%AF%87%E5%8D%9A%E6%96%87/">一百篇博文</a>
         
             <a href="https://blog.weearc.top/tags/%E4%B8%80%E8%A8%80/">一言</a>
         
