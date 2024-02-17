@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.weearc.top/archives/</loc>
-    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.weearc.top/categories/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/tags/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/posts/3729692222/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/categories/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/tags/%E8%AF%81%E6%82%9F/</loc>
+    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.weearc.top/archives/</loc>
     <lastmod>2024-02-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/tags/hexo/</loc>
     <lastmod>2024-02-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/tags/hugo/</loc>
-    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/tags/</loc>
-    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/</loc>
     <lastmod>2024-02-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/tags/%E5%8D%9A%E5%AE%A2/</loc>
@@ -177,12 +189,6 @@
     <lastmod>2020-04-08T01:21:14+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/posts/1552/</loc>
-    <lastmod>2020-04-08T01:21:14+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/tags/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2020-04-08T01:21:14+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.weearc.top/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2020-04-08T01:21:14+00:00</lastmod>
   </url><url>
     <loc>https://blog.weearc.top/posts/162/</loc>
