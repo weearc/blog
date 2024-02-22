@@ -617,6 +617,20 @@
         font-style: normal;
         color: #01579f; }
 
+.not-found {
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
+  .not-found h2 {
+    font-size: 100px;
+    font-weight: bolder; }
+  .not-found span {
+    margin: .8em 0 .5em 0;
+    font-size: 35px; }
+  .not-found a {
+    text-decoration: none;
+    color: #6E7173; }
+
 div {
   box-sizing: border-box;
   display: block; }

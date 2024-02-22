@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
 <head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="还是hugo,但是不是同一个风味（还没写完）hugo, hexo, 前端, 博客, 一百篇博文" name="description">
+<meta content="hugo, hexo, 前端, 博客, 一百篇博文" name="keywords" >
+<meta content="定制hugo主题模板 | weearc 的个人博客" name="title">
+
 <title>定制hugo主题模板 | weearc 的个人博客</title>
 
 
@@ -22,7 +29,7 @@
 
 
 
-  <link rel="stylesheet" href="https://blog.weearc.top/css/main.e14d6e97a633ae72a7963b2b2e87f950d1f54e0d084abbc09bed682f9d98142f.css" integrity="sha256-4U1ul6YzrnKnljsrLof5UNH1Tg0ISrvAm&#43;1oL52YFC8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.5fe10d7655e0f702e094714df46cc9b0a9a349ed09e671acf340e386e9ce3bff.css" integrity="sha256-X&#43;ENdlXg9wLglHFN9GzJsKmjSe0J5nGs80DjhunOO/8=" crossorigin="anonymous">
 
 
 
@@ -88,7 +95,7 @@
         <span class="post-meta-item-text"> | </span>
         <span class="post-meta-item-icon">
           <i class="fa fa-keyboard-o"></i>
-          <span class="post-count">3581</span>
+          <span class="post-count">3591</span>
           <span class="post-meta-item-text"> 字</span>
         </span>
       </span>
@@ -115,11 +122,11 @@
     </li>
     <li><a href="#各部件编写">各部件编写</a>
       <ul>
-        <li><a href="#head">head</a></li>
-        <li><a href="#baseof">baseof</a></li>
-        <li><a href="#header">header</a></li>
-        <li><a href="#footer">footer</a></li>
-        <li><a href="#home">home</a></li>
+        <li><a href="#head-部分">head 部分</a></li>
+        <li><a href="#baseof-部分">baseof 部分</a></li>
+        <li><a href="#header-部分">header 部分</a></li>
+        <li><a href="#footer-部分">footer 部分</a></li>
+        <li><a href="#home-部分">home 部分</a></li>
       </ul>
     </li>
     <li><a href="#插件编写">插件编写</a></li>
@@ -384,7 +391,7 @@
 <p>那就开始写吧。</p>
 <h2 id="各部件编写">各部件编写</h2>
 <p>首先必须声明此部分不会包含任何 SEO 相关。因此编写出来的模板也没有 SEO 优化。</p>
-<h3 id="head">head</h3>
+<h3 id="head-部分">head 部分</h3>
 <p>进入编写之前，库是需要引入不少的，差不多盘算了一下大体是需要这么几样东西:</p>
 <ul>
 <li>purecss</li>
@@ -475,7 +482,7 @@
 </span></span><span style="display:flex;"><span>{{- end }}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="baseof">baseof</h3>
+</div><h3 id="baseof-部分">baseof 部分</h3>
 <p>直接就着默认模板开始写，不用 purecss 不要全抄：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -540,7 +547,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>关于侧栏是否开启使用了 frontmatter 里面的自定义的参数来进行控制，使用 <code>.Params</code> 进行参数的获取。</p>
-<h3 id="header">header</h3>
+<h3 id="header-部分">header 部分</h3>
 <p>默认 menu 是很好，但是也没必要分那么细碎&hellip;首先看下配置文件，这个地方肯定是不应该硬编码的，还是需要走配置：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -685,7 +692,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">description</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="footer">footer</h3>
+</div><h3 id="footer-部分">footer 部分</h3>
 <p>把主要的部分写完了以后我们先来写页脚，也算是相对简单的部分，我的案例中支持备案域名的备案号通过配置文件配置。首先先定义好配置文件：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -749,7 +756,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里添加了不算子来统计访问量，也算是常规操作了。并通过引用 font-awesome 来使用对应字体图标。</p>
-<h3 id="home">home</h3>
+<h3 id="home-部分">home 部分</h3>
 <p>主页部分我直接进行了拆分：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
