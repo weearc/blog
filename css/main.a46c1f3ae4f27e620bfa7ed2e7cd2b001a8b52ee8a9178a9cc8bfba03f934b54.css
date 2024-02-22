@@ -71,7 +71,7 @@
     float: left;
     display: inline;
     text-indent: .15em;
-    font-size: 5px; }
+    font-size: 0.5rem; }
     .post .post__meta:before {
       font-family: "FontAwesome";
       content: "\f073";
