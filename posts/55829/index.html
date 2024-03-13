@@ -104,7 +104,7 @@
     
     
     <a class="disqus-comment-count" href="./#vcomments">
-      <span class="valine-comment-count" data-xid="/posts/55829/"></span>
+      <span class="valine-comment-count" data-path="/posts/55829/"></span>
       <span> 条评论</span>
     </a>
     
@@ -383,33 +383,81 @@ Mozilla会在你进行下载的时候对系统进行判断，Linux下载后会�
     </div>
     
     
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <link rel="stylesheet" href="//unpkg.com/@waline/client@v3/dist/waline.css">
+
 <div id="vcomments" class=" v" data-class="v"></div>
-<script>
-    function loadComments() {
-        
-        new Valine({
+<script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
+        init({
             el: '#vcomments',
-            appId: 'bhQyg8BFhAianSbFIDztqY5F-gzGzoHsz',
-            appKey: 'hyBnHdPlTNOtclNbq8oB5bwg',
-            placeholder: 'Just so so',
-            notify: 'true',
-            verify: 'true',
-            path: '\/posts\/55829\/',
-            avatar: '',
-            meta: '',
-            pageSize: '',
-            lang: '',
-            visitor: '',
-            highlight: '',
-            avatarForce: '',
-            recordIP: ''
+            comment: '.valine-comment-count',
+            serverURL: 'blog-comment-system.weearc.top',
+            emoji: ['//unpkg.com/@waline/emojis@1.2.0/tieba'],
+            search: false,
+            reaction: false,
+            lang: 'zh',
+            locale: {
+                placeholder: "Just so so",
+                link: "网址",
+            },
+            requiredMeta: ['nick','mail'],
+            imageUploader: false,
+
+        });
+        const locale_custom = {
+            "nick": "昵称（必填）",
+            "mail": "邮箱（必填）",
+            "link": "网址（https://）"
+        }
+        $('.wl-header-item').each(function(){
+            $(this).find('label').remove();
+            $(this).find('input').each(function(){
+                console.log($(this).attr('name'))
+                $(this).attr('placeholder', locale_custom[$(this).attr('name')]);
+            });
+        });
+        $(".wl-btn").each(function() {
+            if ($(this).text().trim() === '登录') {
+                $(this).remove();
+            }
+        })
+        $(".wl-meta-head").remove();
+        $('.wl-power').each(function(){
+            let jqueryLink = $('<a>').attr('href', 'https://jquery.com/').attr("target",'_blank').text('jQuery');
+            $(this).html($(this).html() + ' and ').append(jqueryLink);
         });
     }
-    if (window.location.pathname !== '/about/' && window.location.pathname !== '/frlink/') {
-        loadComments()
-    }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
   </div>
