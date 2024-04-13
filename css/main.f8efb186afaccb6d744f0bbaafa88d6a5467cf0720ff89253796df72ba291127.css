@@ -345,11 +345,11 @@
       #frlink .friendurl .frienddiv .frienddivright .frlink-title {
         color: #555 !important;
         text-align: left;
-        font: bold 1em "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif; }
+        font: bold 16px "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif; }
       #frlink .friendurl .frienddiv .frienddivright .frlink-des {
         color: #6E7173;
         text-align: left;
-        font-size: 0.5em; }
+        font-size: 14px; }
 
 @media print, screen and (max-width: 900px) {
   .frienddivright {
