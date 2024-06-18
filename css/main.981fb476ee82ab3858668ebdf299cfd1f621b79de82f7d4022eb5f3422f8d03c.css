@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .pagination {
   border-top: 1px solid #ddd;
   list-style: none;
@@ -630,6 +631,129 @@
   .not-found a {
     text-decoration: none;
     color: #6E7173; }
+
+#about__container {
+  display: flex;
+  flex-direction: row; }
+  #about__container #about__left #about__avatar img {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+    margin-top: 14px !important;
+    margin-left: 14px !important;
+    background-color: #fff; }
+  #about__container #about__left .about__content {
+    margin-left: 20%;
+    margin-top: 2vh; }
+    #about__container #about__left .about__content .about__contact {
+      margin: 1vh auto; }
+      #about__container #about__left .about__content .about__contact a {
+        color: #555555 !important;
+        text-decoration: none !important; }
+      #about__container #about__left .about__content .about__contact i {
+        color: #555555 !important;
+        text-decoration: none !important; }
+  #about__container #about__right {
+    color: #444444 !important; }
+    #about__container #about__right .about_content {
+      border-top: #e0e0e0 30px solid;
+      border-bottom: #e0e0e0 1px dotted;
+      border-right: #e0e0e0 1px dotted;
+      border-left: #e0e0e0 1px dotted;
+      border-radius: 5px 5px 10px 10px;
+      margin: 1vh auto 4vh 2vw;
+      padding: 1vh 1vw; }
+    #about__container #about__right .about__eduinfo {
+      position: relative; }
+      #about__container #about__right .about__eduinfo ul:first-child:after {
+        content: '学习经历';
+        position: absolute;
+        top: -25px;
+        font-size: 1em; }
+      #about__container #about__right .about__eduinfo ul:first-child:before {
+        content: '\f097';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+    #about__container #about__right .about__workinfo {
+      position: relative; }
+      #about__container #about__right .about__workinfo ul:first-child:before {
+        content: '\f0b1';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+      #about__container #about__right .about__workinfo ul:first-child:after {
+        content: '工作经历';
+        position: absolute;
+        top: -25px;
+        font-size: 1em; }
+    #about__container #about__right .about__self_comment {
+      position: relative; }
+      #about__container #about__right .about__self_comment p:first-child:before {
+        content: '\f299';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+      #about__container #about__right .about__self_comment p:first-child:after {
+        content: '关于我';
+        position: absolute;
+        top: -25px;
+        left: 55px;
+        font-size: 1em; }
+    #about__container #about__right .about__self_game {
+      position: relative; }
+      #about__container #about__right .about__self_game p:first-child:before {
+        content: '\f11b';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+      #about__container #about__right .about__self_game p:first-child:after {
+        content: '喜欢的游戏';
+        position: absolute;
+        top: -25px;
+        left: 55px;
+        font-size: 1em; }
+    #about__container #about__right .about__self_music {
+      position: relative; }
+      #about__container #about__right .about__self_music p:first-child:before {
+        content: '\f001';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+      #about__container #about__right .about__self_music p:first-child:after {
+        content: '喜欢的音乐';
+        position: absolute;
+        top: -25px;
+        left: 55px;
+        font-size: 1em; }
+    #about__container #about__right .about_gpg {
+      position: relative; }
+      #about__container #about__right .about_gpg p:first-child:before {
+        content: '\f1cb';
+        font-family: FontAwesome;
+        position: absolute;
+        top: -25px;
+        left: 30px;
+        font-size: 1em; }
+      #about__container #about__right .about_gpg p:first-child:after {
+        content: 'GPG';
+        position: absolute;
+        top: -25px;
+        left: 55px;
+        font-size: 1em; }
 
 div {
   box-sizing: border-box;
