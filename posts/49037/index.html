@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="yes" name="apple-mobile-web-app-capable">
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
-<meta content="telephone=no" name="format-detection">
-<meta content="本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 &lt;a href=&#34;https://mirrors.cqu.edu.cn/wiki/&#34;&gt;CQU mirror wiki&lt;/a&gt; 上。 TAGS: github webhook, 自动化部署" name="description">
-<meta content="github webhook, 自动化部署" name="keywords" >
-<meta content="使用 Webhook 自动部署博客到服务器 | weearc 的个人博客" name="title">
-<meta name="google-site-verification" content="alQM1UuXbvXlVZiBJFDOVusGSakBpQYyv7f5x2tBGiw" />
-<link rel="canonical" href="https://blog.weearc.top/posts/49037/" />
+  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="google-site-verification" content="alQM1UuXbvXlVZiBJFDOVusGSakBpQYyv7f5x2tBGiw"><title>使用 Webhook 自动部署博客到服务器 | weearc 的个人博客</title>
+<meta name="title" content="使用 Webhook 自动部署博客到服务器 | weearc 的个人博客"><meta name="description" content="本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 CQU mirror wiki 上。">
+<meta name="description" content="本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 CQU mirror wiki 上。"><meta name="keywords" content="github webhook, 自动化部署"><link rel="canonical" href="https://blog.weearc.top/posts/49037/">
 
-<title>使用 Webhook 自动部署博客到服务器 | weearc 的个人博客</title>
+<meta property="og:title" content="使用 Webhook 自动部署博客到服务器 | weearc 的个人博客">
+<meta property="og:description" content="本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 CQU mirror wiki 上。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.weearc.top/posts/49037/"><meta property="og:image" content="https://blog.weearc.top/image/bg.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="使用 Webhook 自动部署博客到服务器 | weearc 的个人博客">
+<meta name="twitter:description" content="本文所提到的大概还是有实用价值的，但是我个人应该是不会用在博客上了。至于为什么 &amp;hellip; 因为心态炸了，退掉了手里所剩的几台 vps ，没必要使用自动部署了，但是日后可能会用在 CQU mirror wiki 上。">
 
-<script src="https://blog.weearc.top/js/lib/jquery-3.7.1.min.js"></script>
-
-
-<script src="https://blog.weearc.top/js/lib/fuse.js"></script>
-
-
-<link href="https://blog.weearc.top/css/lib/pure-min.css" rel="stylesheet">
-
-
-    <link href="https://blog.weearc.top/css/lib/grids-responsive-min.css" rel="stylesheet">
-
-
-<link href="https://blog.weearc.top/css/lib/font-awesome.min.css" rel="stylesheet">
+<script src="/js/lib/jquery-3.7.1.min.fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" defer></script>
 
 
 
-  <link rel="stylesheet" href="https://blog.weearc.top/css/main.981fb476ee82ab3858668ebdf299cfd1f621b79de82f7d4022eb5f3422f8d03c.css" integrity="sha256-mB&#43;0du6CqzhYZo698pnP0fYht53oL31AIutfNCL40Dw=" crossorigin="anonymous">
+<script src="/js/lib/fuse.e3621b53cb77b4ec306dec41ed95511e6dd80d17fae5a04f3e346d214b9f8f92.js" integrity="sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=" defer></script>
+
+
+
+<link href="/css/lib/pure-min.01757dff5e174cd963090a7bbb79f4d95222600202abca1c5e4735d6bbcc952c.css" integrity="sha256-AXV9/14XTNljCQp7u3n02VIiYAICq8ocXkc11rvMlSw=" rel="stylesheet">
+
+
+
+<link href="/css/lib/grids-responsive-min.e980b19ca1e76eb125e894643fa43503b966933d2184df8b7d57de32c29ab441.css" integrity="sha256-6YCxnKHnbrEl6JRkP6Q1A7lmkz0hhN&#43;LfVfeMsKatEE=" rel="stylesheet">
+
+
+
+<link href="/css/lib/font-awesome.min.799aeb25cc0373fdee0e1b1db7ad6c2f6a0e058dfadaa3379689f583213190bd.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" rel="stylesheet">
 
 
 
 
-      <script src="/js/main.1de2e63b2f316e087a071ebe652e354054e2d100b986d2002f27cccfd8a24ff0.js" integrity="sha256-HeLmOy8xbgh6Bx6&#43;ZS41QFTi0QC5htIALyfMz9iiT/A=" crossorigin="anonymous"></script>
+
+
+
+
+  
+  <link rel="stylesheet" href="https://blog.weearc.top/css/main.min.f4b139ea0473315386cc02147624acf636e0bf2f8e158b9117b34dc6561b5186.css" integrity="sha256-9LE56gRzMVOGzAIUdiSs9jbgvy&#43;OFYuRF7NNxlYbUYY=" crossorigin="anonymous">
+
+      <script src="/js/main.0874042423dd9ab200782a566d5ddf54fc16fddb704d4ce32538df91d51151f5.js" integrity="sha256-CHQEJCPdmrIAeCpWbV3fVPwW/dtwTUzjJTjfkdURUfU=" crossorigin="anonymous" defer></script>
+
 
 
 
@@ -154,23 +166,23 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span><span style="color:#a2f;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;crypto/hmac&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;crypto/sha1&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;encoding/hex&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;gopkg.in/urfave/cli.v1&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;io&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;io/ioutil&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;log&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;net/http&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;os&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;os/exec&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;sort&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;strconv&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span><span style="color:#a2f;font-weight:bold">package</span><span style="color:#bbb"> </span>main<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">import</span><span style="color:#bbb"> </span>(<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;crypto/hmac&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;crypto/sha1&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;encoding/hex&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;fmt&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;gopkg.in/urfave/cli.v1&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;io&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;io/ioutil&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;log&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;net/http&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;os&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;os/exec&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;sort&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#b44">&#34;strconv&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>)<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中 <a href="https://gopkg.in/urfave/cli.v1">cli</a> 框架是用来处理 cli 下 Flag 等传值的，比起自己造轮子这个库要好用得多。然后需要处理一下监听：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -178,8 +190,8 @@
 <pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>http.<span style="color:#00a000">ListenAndServe</span>(portForward, <span style="color:#a2f;font-weight:bold">nil</span>)
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>http.<span style="color:#00a000">ListenAndServe</span>(portForward,<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">nil</span>)<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>有了 http 库，监听只需要这一行代码即可实现。然后是请求头：</p>
 <div class="highlight"><div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -204,25 +216,25 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">index</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	signature <span style="color:#666">:=</span> r.Header.<span style="color:#00a000">Get</span>(<span style="color:#b44">&#34;X-Hub-Signature&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> <span style="color:#a2f">len</span>(signature) <span style="color:#666">&lt;=</span> <span style="color:#666">0</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	payload, _ <span style="color:#666">:=</span> ioutil.<span style="color:#00a000">ReadAll</span>(r.Body)
-</span></span><span style="display:flex;"><span>	mac <span style="color:#666">:=</span> hmac.<span style="color:#00a000">New</span>(sha1.New, []<span style="color:#a2f">byte</span>(secret))
-</span></span><span style="display:flex;"><span>	fmt.<span style="color:#00a000">Printf</span>(secret)
-</span></span><span style="display:flex;"><span>	_, _ = mac.<span style="color:#00a000">Write</span>(payload)
-</span></span><span style="display:flex;"><span>	expectedMac <span style="color:#666">:=</span> hex.<span style="color:#00a000">EncodeToString</span>(mac.<span style="color:#00a000">Sum</span>(<span style="color:#a2f;font-weight:bold">nil</span>))
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> !hmac.<span style="color:#00a000">Equal</span>([]<span style="color:#a2f">byte</span>(signature[<span style="color:#666">5</span>:]), []<span style="color:#a2f">byte</span>(expectedMac)) {
-</span></span><span style="display:flex;"><span>		io.<span style="color:#00a000">WriteString</span>(w, <span style="color:#b44">&#34;&lt;h1&gt;401 Signature is error!&lt;/h1&gt;&#34;</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	io.<span style="color:#00a000">WriteString</span>(w, <span style="color:#b44">&#34;&lt;h1&gt;200 Deploy server is running!&lt;/h1&gt;&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#00a000">reLaunch</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span><span style="color:#bbb"> </span><span style="color:#00a000">index</span>(w<span style="color:#bbb"> </span>http.ResponseWriter,<span style="color:#bbb"> </span>r<span style="color:#bbb"> </span><span style="color:#666">*</span>http.Request)<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>signature<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>r.Header.<span style="color:#00a000">Get</span>(<span style="color:#b44">&#34;X-Hub-Signature&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#a2f;font-weight:bold">if</span><span style="color:#bbb"> </span><span style="color:#a2f">len</span>(signature)<span style="color:#bbb"> </span><span style="color:#666">&lt;=</span><span style="color:#bbb"> </span><span style="color:#666">0</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#a2f;font-weight:bold">return</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>payload,<span style="color:#bbb"> </span>_<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>ioutil.<span style="color:#00a000">ReadAll</span>(r.Body)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>mac<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>hmac.<span style="color:#00a000">New</span>(sha1.New,<span style="color:#bbb"> </span>[]<span style="color:#a2f">byte</span>(secret))<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>fmt.<span style="color:#00a000">Printf</span>(secret)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>_,<span style="color:#bbb"> </span>_<span style="color:#bbb"> </span>=<span style="color:#bbb"> </span>mac.<span style="color:#00a000">Write</span>(payload)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>expectedMac<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>hex.<span style="color:#00a000">EncodeToString</span>(mac.<span style="color:#00a000">Sum</span>(<span style="color:#a2f;font-weight:bold">nil</span>))<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#a2f;font-weight:bold">if</span><span style="color:#bbb"> </span>!hmac.<span style="color:#00a000">Equal</span>([]<span style="color:#a2f">byte</span>(signature[<span style="color:#666">5</span>:]),<span style="color:#bbb"> </span>[]<span style="color:#a2f">byte</span>(expectedMac))<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span>io.<span style="color:#00a000">WriteString</span>(w,<span style="color:#bbb"> </span><span style="color:#b44">&#34;&lt;h1&gt;401 Signature is error!&lt;/h1&gt;&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span><span style="color:#a2f;font-weight:bold">return</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>io.<span style="color:#00a000">WriteString</span>(w,<span style="color:#bbb"> </span><span style="color:#b44">&#34;&lt;h1&gt;200 Deploy server is running!&lt;/h1&gt;&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#00a000">reLaunch</span>()<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这部分主要是需要有两个参数，一个是响应请求，一些是读取请求，具体怎么分析请求头，这接点开 webhook 的历史即可看到一个实例请求，我们需要处理的仅仅是 <strong>X-Hub-Signature</strong> 这一项，然后比对请求中的秘钥和转码后的秘钥是否相同判断是否可以执行接下来的动作。</p>
 <p>http 库最好用的我认为应该是可以对请求执行自定义函数了，直接指定一个 reload 方法即可调用拉取更新的脚本等：</p>
@@ -241,18 +253,18 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">reLaunch</span>() {
-</span></span><span style="display:flex;"><span>	cmd <span style="color:#666">:=</span> exec.<span style="color:#00a000">Command</span>(<span style="color:#b44">&#34;load&#34;</span>)
-</span></span><span style="display:flex;"><span>	err <span style="color:#666">:=</span> cmd.<span style="color:#00a000">Start</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		log.<span style="color:#00a000">Fatal</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	err = cmd.<span style="color:#00a000">Wait</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#666">...</span>
-</span></span><span style="display:flex;"><span>http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/&#34;</span>, index)
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span><span style="color:#bbb"> </span><span style="color:#00a000">reLaunch</span>()<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>cmd<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>exec.<span style="color:#00a000">Command</span>(<span style="color:#b44">&#34;load&#34;</span>)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>err<span style="color:#bbb"> </span><span style="color:#666">:=</span><span style="color:#bbb"> </span>cmd.<span style="color:#00a000">Start</span>()<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span><span style="color:#a2f;font-weight:bold">if</span><span style="color:#bbb"> </span>err<span style="color:#bbb"> </span><span style="color:#666">!=</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">nil</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">		</span>log.<span style="color:#00a000">Fatal</span>(err)<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">	</span>err<span style="color:#bbb"> </span>=<span style="color:#bbb"> </span>cmd.<span style="color:#00a000">Wait</span>()<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#666">...</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/&#34;</span>,<span style="color:#bbb"> </span>index)<span style="color:#bbb">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后最后一点就是为整个功能套上 cli 框架即可，由于 cli 框架本身并不难用，所以一般直接看代码示例即可。项目地址：https://github.com/weearc/blog-webhook-deploy</p>
 <p>项目使用 GPLv3 开源，许可证也会在稍后进行添加。</p>
@@ -304,6 +316,8 @@
             },
             requiredMeta: ['nick','mail'],
             imageUploader: false,
+            noCopyright: true,
+            noRss: true,
 
         });
         const locale_custom = {
@@ -644,15 +658,21 @@
       <div class="pure-u-1  pure-u-md-3-4 ">
         
     <footer id="footer">
-            <span>Copyright &copy; 2024 | <i class="fa fa-moon-o"></i><a href="https://blog.weearc.top/">weearc 的个人博客</a></span></br>
+            <span>Copyright &copy; 2026 | <i class="fa fa-moon-o"></i><a href="https://blog.weearc.top/">weearc 的个人博客</a></span></br>
         <span>
             Powered by
             <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> | Theme by
             <a href="https://github.com/weearc" rel="noopener" target="_blank">weearc</a>
         </span></br>
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv"> 总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span> |
-        <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 访客数 <span id="busuanzi_value_site_uv"></span> 人次 </span></br>
+        <div class="site-statistics">
+            <i class="fa fa-eye"></i> 总访问量 <span id="waline_site_pv" style="font-weight: bold;">...</span> 次 |
+            <i class="fa fa-user-md"></i> 访客数 <span id="waline_site_uv" style="font-weight: bold;">...</span> 人次
+        </div>
+        
+        <script>
+            window.WALINE_SERVER_URL = "https://blog-comment-system.weearc.top";
+        </script>
+        
         <span>
             <a href="http://beian.miit.gov.cn/" rel="noopener" target="_blank" style="border:none;">
                 辽ICP备2020011073号

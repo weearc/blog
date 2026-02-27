@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>系统迁移 on weearc 的个人博客</title>
-    <link>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</link>
-    <description>Recent content in 系统迁移 on weearc 的个人博客</description>
-    <generator>Hugo</generator>
-    <language>zh</language>
-    <lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历</title>
-      <link>https://blog.weearc.top/posts/2866972811/</link>
-      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://blog.weearc.top/posts/2866972811/</guid>
-      <description>&lt;p&gt;真就以折腾自己为乐。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ArchLinux &#43; Windows10 双系统固态硬盘迁移</title>
-      <link>https://blog.weearc.top/posts/25676/</link>
-      <pubDate>Tue, 26 Nov 2019 20:22:54 +0000</pubDate>
-      <guid>https://blog.weearc.top/posts/25676/</guid>
-      <description>&lt;p&gt;盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。&lt;/p&gt;</description>
-    </item>
-  </channel>
+    <channel>
+        <title>系统迁移 on weearc 的个人博客</title>
+        <link>https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/</link>
+        <description>Recent content in 系统迁移 on weearc 的个人博客</description>
+        <language>zh</language>
+        <lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate>
+            <atom:link href="https://blog.weearc.top/tags/%E7%B3%BB%E7%BB%9F%E8%BF%81%E7%A7%BB/index.xml" rel="self" type="application/rss+xml" />
+            
+            <item>
+                <title>记一次失败的从 Arch Linux 迁移到 Debian Sid 的经历</title>
+                <link>https://blog.weearc.top/posts/2866972811/</link>
+                <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+                <guid>https://blog.weearc.top/posts/2866972811/</guid>
+                <description>真就以折腾自己为乐。</description>
+            </item>
+            
+            
+            <item>
+                <title>ArchLinux &#43; Windows10 双系统固态硬盘迁移</title>
+                <link>https://blog.weearc.top/posts/25676/</link>
+                <pubDate>Tue, 26 Nov 2019 20:22:54 +0000</pubDate>
+                <guid>https://blog.weearc.top/posts/25676/</guid>
+                <description>盼星星盼月亮终于拿到了心心念念的固态硬盘，终于能够有畅快淋漓的体验了。</description>
+            </item>
+            
+    </channel>
 </rss>
